@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2016 12:01:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.javaweb.model.Vendor" table="vendor" catalog="db_tintuc_banhang" optimistic-lock="version">
+        <id name="idVendor" type="java.lang.Integer">
+            <column name="id_vendor" />
+            <generator class="identity" />
+        </id>
+        <property name="vendorName" type="string">
+            <column name="vendor_name" length="45" not-null="true" />
+        </property>
+        <property name="vendorAddress" type="string">
+            <column name="vendor_address" length="100" not-null="true" />
+        </property>
+        <property name="vendorPhone" type="string">
+            <column name="vendor_phone" length="11" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="150" />
+        </property>
+        <set name="vendorInvoices" table="vendor_invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_vendor" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.model.VendorInvoice" />
+        </set>
+    </class>
+</hibernate-mapping>

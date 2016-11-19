@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2016 12:01:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.javaweb.model.User" table="user" catalog="db_tintuc_banhang" optimistic-lock="version">
+        <id name="iduser" type="java.lang.Integer">
+            <column name="iduser" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="roleUser" class="com.javaweb.model.RoleUser" fetch="select">
+            <column name="idrole_user" not-null="true" />
+        </many-to-one>
+        <property name="username" type="string">
+            <column name="username" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" not-null="true" />
+        </property>
+        <property name="fullname" type="string">
+            <column name="fullname" length="45" not-null="true" />
+        </property>
+        <property name="gender" type="boolean">
+            <column name="gender" not-null="true" />
+        </property>
+        <property name="userPhone" type="string">
+            <column name="user_phone" length="11" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="200" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="birthday" type="date">
+            <column name="birthday" length="10" not-null="true" />
+        </property>
+        <property name="image" type="string">
+            <column name="image" length="60" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="150" />
+        </property>
+        <set name="receiptsForCreater" table="receipt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="creater" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.model.Receipt" />
+        </set>
+        <set name="products" table="product" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="creater" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.model.Product" />
+        </set>
+        <set name="vendorInvoices" table="vendor_invoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="creater" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.model.VendorInvoice" />
+        </set>
+        <set name="receiptsForBuyer" table="receipt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="buyer" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.model.Receipt" />
+        </set>
+        <set name="articles" table="article" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="creater" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.model.Article" />
+        </set>
+    </class>
+</hibernate-mapping>
