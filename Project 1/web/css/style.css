@@ -8,3 +8,42 @@ and open the template in the editor.
     Author     : MinhNguyen
 */
 
+.danhmucsp{
+    background-color: #dff0d8;
+    height: 40px;
+    margin-bottom: 20px;
+}
+.trai{
+    background-color: #eee;
+    height: 300px;
+    border: 1px solid #fff;
+}
+.phai{
+    background-color: #eee;
+    height:1245px;
+}
+.theohang{
+    height: 150px;
+}
+.theogia{
+    height: 100px;
+}
+.sp{
+
+    width: 300px;
+    height: 400px;
+
+
+}
+.sp img{
+-webkit-transition-duration: 0.5s; /*Webkit: Animation duration*/
+-moz-transition-duration: 0.5s; /*Mozilla duration version*/
+-o-transition-duration: 0.5s; /*Opera duration version*/
+margin: 0 10px 5px 0; /*margin between images*/
+
+}
+.sp img:hover{
+-webkit-transform:scale(1.2); /*Webkit: Scale up image to 1.2x original size*/
+-moz-transform:scale(1.2); /*Mozilla scale version*/
+-o-transform:scale(1.2); /*Opera scale version*/
+}
