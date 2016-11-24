@@ -7,32 +7,47 @@ and open the template in the editor.
     Created on : Nov 19, 2016, 11:31:45 AM
     Author     : MinhNguyen
 */
-
+body{
+    background-color: #d4d4d4;
+}
+a, a:hover, a:active, a:focus{
+    text-decoration: none;
+}
 .danhmucsp{
-    background-color: #dff0d8;
+    background-color: #222;
     height: 40px;
-    margin-bottom: 20px;
+
+    color:#fff;
 }
 .trai{
-    background-color: #eee;
-    height: 300px;
-    border: 1px solid #fff;
+    
+    height: 1245px;
+    border: 1px solid #fff;;
+
 }
 .phai{
-    background-color: #eee;
+    background-color: #fff;
     height:1245px;
 }
 .theohang{
     height: 150px;
+    background-color: #d4d4d4;
 }
 .theogia{
-    height: 100px;
+    height: 150px;
+    background-color: #d4d4d4;
+}
+.quangcao{
+    height: 300px;
+   
+   
+
 }
 .sp{
 
     width: 300px;
     height: 400px;
-
+    
 
 }
 .sp img{
@@ -63,4 +78,10 @@ margin: 0 10px 5px 0; /*margin between images*/
     height: 400px;
     background-color: #f5f5f5;
     margin-top: 20px;
+}
+.spnoibat{
+    height: 300px;
+    width: 304px;
+    border-bottom: 1px solid red;
+    margin: 0 auto;
 }
