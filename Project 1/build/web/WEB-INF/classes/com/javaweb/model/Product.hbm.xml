@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2016 12:01:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.javaweb.model.Product" table="product" catalog="db_tintuc_banhang" optimistic-lock="version">
+        <id name="idproduct" type="java.lang.Integer">
+            <column name="idproduct" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="productCategory" class="com.javaweb.model.ProductCategory" fetch="select">
+            <column name="idproduct_category" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="com.javaweb.model.User" fetch="select">
+            <column name="creater" not-null="true" />
+        </many-to-one>
+        <property name="productName" type="string">
+            <column name="product_name" length="45" not-null="true" />
+        </property>
+        <property name="salePrice" type="double">
+            <column name="sale_price" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="boughtPrice" type="double">
+            <column name="bought_price" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="productQuantity" type="int">
+            <column name="product_quantity" not-null="true" />
+        </property>
+        <property name="unit" type="string">
+            <column name="unit" length="45" not-null="true" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="created_date" length="19" />
+        </property>
+        <property name="dateModified" type="timestamp">
+            <column name="date_modified" length="19" />
+        </property>
+        <property name="productImage" type="string">
+            <column name="product_image" length="60" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="100" />
+        </property>
+        <set name="vendorInvoiceDetails" table="vendor_invoice_detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_product" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.model.VendorInvoiceDetail" />
+        </set>
+        <set name="productTagses" table="product_tags" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_product" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.model.ProductTags" />
+        </set>
+        <set name="productSizes" table="product_size" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_product" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.model.ProductSize" />
+        </set>
+        <set name="productRatings" table="product_rating" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_product" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.model.ProductRating" />
+        </set>
+        <set name="receiptDetails" table="receipt_detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_product" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.model.ReceiptDetail" />
+        </set>
+    </class>
+</hibernate-mapping>

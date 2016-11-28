@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2016 12:01:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.javaweb.model.DetailImages" table="detail_images" catalog="db_tintuc_banhang" optimistic-lock="version">
+        <id name="iddetailImages" type="java.lang.Integer">
+            <column name="iddetail_images" />
+            <generator class="identity" />
+        </id>
+        <property name="imageName" type="string">
+            <column name="image_name" length="45" not-null="true" />
+        </property>
+        <set name="articleDetailImageses" table="article_detail_images" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_detail_image" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.model.ArticleDetailImages" />
+        </set>
+    </class>
+</hibernate-mapping>

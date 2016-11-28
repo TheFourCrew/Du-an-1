@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2016 12:01:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.javaweb.model.Comment" table="comment" catalog="db_tintuc_banhang" optimistic-lock="version">
+        <id name="idcomment" type="java.lang.Integer">
+            <column name="idcomment" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="article" class="com.javaweb.model.Article" fetch="select">
+            <column name="id_article" not-null="true" />
+        </many-to-one>
+        <property name="nameUser" type="string">
+            <column name="name_user" length="40" not-null="true" />
+        </property>
+        <property name="dateComment" type="timestamp">
+            <column name="date_comment" length="19" />
+        </property>
+        <property name="commentReply" type="int">
+            <column name="comment_reply" not-null="true" />
+        </property>
+        <property name="content" type="string">
+            <column name="content" length="200" not-null="true" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="150" />
+        </property>
+    </class>
+</hibernate-mapping>

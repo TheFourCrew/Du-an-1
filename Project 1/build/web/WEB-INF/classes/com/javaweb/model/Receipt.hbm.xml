@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2016 12:01:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.javaweb.model.Receipt" table="receipt" catalog="db_tintuc_banhang" optimistic-lock="version">
+        <id name="idreceipt" type="java.lang.Integer">
+            <column name="idreceipt" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userByCreater" class="com.javaweb.model.User" fetch="select">
+            <column name="creater" not-null="true" />
+        </many-to-one>
+        <many-to-one name="userByBuyer" class="com.javaweb.model.User" fetch="select">
+            <column name="buyer" not-null="true" />
+        </many-to-one>
+        <property name="receiptNumber" type="string">
+            <column name="receipt_number" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="created_date" length="19" />
+        </property>
+        <property name="totalPrice" type="double">
+            <column name="total_price" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="150" />
+        </property>
+        <set name="receiptDetails" table="receipt_detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_receipt" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.model.ReceiptDetail" />
+        </set>
+    </class>
+</hibernate-mapping>

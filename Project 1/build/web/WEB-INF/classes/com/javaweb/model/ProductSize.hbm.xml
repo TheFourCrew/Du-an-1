@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2016 12:01:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.javaweb.model.ProductSize" table="product_size" catalog="db_tintuc_banhang" optimistic-lock="version">
+        <id name="idproductSize" type="java.lang.Integer">
+            <column name="idproduct_size" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="product" class="com.javaweb.model.Product" fetch="select">
+            <column name="id_product" not-null="true" />
+        </many-to-one>
+        <many-to-one name="size" class="com.javaweb.model.Size" fetch="select">
+            <column name="id_size" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

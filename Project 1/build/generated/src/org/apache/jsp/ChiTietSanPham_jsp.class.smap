@@ -1,0 +1,14 @@
+SMAP
+ChiTietSanPham_jsp.java
+JSP
+*S JSP
+*F
++ 0 ChiTietSanPham.jsp
+ChiTietSanPham.jsp
++ 1 headtag.jsp
+includes/headtag.jsp
+*L
+5,9:49
+5#1,24:58
+13#0,142:81
+*E

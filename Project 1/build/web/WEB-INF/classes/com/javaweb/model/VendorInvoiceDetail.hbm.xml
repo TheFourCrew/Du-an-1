@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2016 12:01:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.javaweb.model.VendorInvoiceDetail" table="vendor_invoice_detail" catalog="db_tintuc_banhang" optimistic-lock="version">
+        <id name="idvendorInvoiceDetail" type="java.lang.Integer">
+            <column name="idvendor_invoice_detail" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="product" class="com.javaweb.model.Product" fetch="select">
+            <column name="id_product" not-null="true" />
+        </many-to-one>
+        <many-to-one name="vendorInvoice" class="com.javaweb.model.VendorInvoice" fetch="select">
+            <column name="id_vendor_invoice" not-null="true" />
+        </many-to-one>
+        <property name="quanity" type="int">
+            <column name="quanity" not-null="true" />
+        </property>
+        <property name="unitPrice" type="double">
+            <column name="unit_price" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="150" />
+        </property>
+    </class>
+</hibernate-mapping>
