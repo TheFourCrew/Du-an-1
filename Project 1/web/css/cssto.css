@@ -1,0 +1,144 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 28, 2016, 3:28:38 PM
+    Author     : Admin
+*/
+
+body{
+    background-color: #f5f5f5;
+}
+a, a:hover, a:active, a:focus{
+    text-decoration: none;
+}
+.danhmucsp{
+    background-color: #222;
+    height: 40px;
+
+    color:#fff;
+}
+.trai{
+
+    height: 1245px;
+    border: 1px solid #fff;;
+
+}
+.phai{
+    background-color: #fff;
+    height:1245px;
+}
+.theohang{
+    height: 150px;
+    background-color: #f5f5f5;
+}
+.theogia{
+    height: 150px;
+    background-color: #f5f5f5;
+}
+.quangcao{
+    height: 300px;
+
+
+
+}
+.sp{
+
+    width: 300px;
+    height: 400px;
+
+
+}
+.sp img{
+    -webkit-transition-duration: 0.5s; 
+    -moz-transition-duration: 0.5s; 
+    -o-transition-duration: 0.5s; 
+    margin: 0 10px 5px 0; 
+
+}
+.sp img:hover{
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2); 
+    -o-transform:scale(1.2);
+}
+.ctsp{
+    height: 400px;
+
+}
+.hinhctsp{
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid #e7e7e7;
+}
+.hinhctsp img{
+    -webkit-transition-duration: 0.5s; 
+    -moz-transition-duration: 0.5s; 
+    -o-transition-duration: 0.5s; 
+    margin: 0 10px 5px 0; 
+}
+.hinhctsp img:hover{
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2); 
+    -o-transform:scale(1.2);
+}
+.thongsoctsp{
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid #e7e7e7;
+}
+.baivietctsp{
+    height: 400px;
+    background-color: #fff;
+    margin-top: 20px;
+}
+.spnoibat{
+    height: 300px;
+    width: 304px;
+    border-bottom: 1px solid red;
+    margin: 0 auto;
+}
+.thongsokythuat{
+    width: 450px;
+    height: 200px;
+    background-color: #f5f5f5;
+    margin:0 auto;   
+    border: 1px solid #e7e7e7;
+}
+.thongsokythuattrai{
+    width: 224px;
+    height: 200px;
+    padding-top: 20px;
+    float: left;
+    border-right: 1px solid #fff;
+    padding-left: 4px;
+}
+
+.thongsokythuatphai{
+    width: 224px;
+    height: 200px;
+    padding-top: 20px;
+    float: left;
+    padding-left: 3px;
+}
+.splienquan{
+    margin-top: 20px;
+
+}
+.splienquan1{
+    border: 1px solid #e7e7e7;
+    background-color: #fff;
+
+}
+.splienquan1 img{
+    width: 200px;
+    height: 200px;
+}
+.baivietctsp{
+    padding-top: 15px;
+   
+}
+.tenbaivietctsp{
+    text-align: center !important; 
+}
