@@ -23,19 +23,19 @@
                 <div class="col-md-12 col-sm-6 ctsp">
                     <div class="col-md-6 col-sm-6 hinhctsp text-center">
                         <div class="w3-content" style="max-width:300px">
-                            <img class="mySlides" src="img/dell.png" style="width:100%; display: block">
-                            <img class="mySlides" src="img/dell.png" style="width:100%">
-                            <img class="mySlides" src="img/dell.png" style="width:100%">
-
+                            <img class="mySlides" src="img/dell.png" style="width:300px;height: 300px; display: block">
+                            <img class="mySlides" src="img/3.jpg" style="width:300px;height: 300px;">
+                            <img class="mySlides" src="img/2.jpg" style="width:300px;height: 300px;">
+                            
                             <div class="w3-row-padding w3-section">
                                 <div class="w3-col s4">
                                     <img class="demo w3-opacity w3-hover-opacity-off" src="img/dell.png" style="width:100%" onclick="currentDiv(1)">
                                 </div>
                                 <div class="w3-col s4">
-                                    <img class="demo w3-opacity w3-hover-opacity-off" src="img/dell.png" style="width:100%" onclick="currentDiv(2)">
+                                    <img class="demo w3-opacity w3-hover-opacity-off" src="img/3.jpg" style="width:100%" onclick="currentDiv(2)">
                                 </div>
                                 <div class="w3-col s4">
-                                    <img class="demo w3-opacity w3-hover-opacity-off" src="img/dell.png" style="width:100%" onclick="currentDiv(3)">
+                                    <img class="demo w3-opacity w3-hover-opacity-off" src="img/2.jpg" style="width:100%" onclick="currentDiv(3)">
                                 </div>
                             </div>
                         </div>
