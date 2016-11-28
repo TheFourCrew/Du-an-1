@@ -52,7 +52,7 @@
                                 <p style="padding-top: 15px">Resolution: <span>1366x768</span></p>
                             </div>
                             <div class="thongsokythuatphai">
-                                
+
                                 <p>Size: <span>40x40</span></p>
                                 <p style="padding-top: 15px">Weight: <span>1kg</span></p>
                                 <p style="padding-top: 15px">System: <span>Windows 10</span></p>
@@ -95,21 +95,35 @@
                 }
             </script>
             <div class="row">
-                <div class="baivietctsp">
-                    
-                    <center><span class="tenbaivietctsp" style="color:#008ac2;font-size: 30px">LAPTOP DELL INSPIRON 3558 - MÀN HÌNH LED LỚN, XỬ LÝ MẠNH MẼ</span></center>
-                    <p style="font-size: 18px">Laptop Dell Inspiron 3558 sở hữu màn hình LED có kích thước lớn 15.6 inches và độ phân giải HD cho hình ảnh sắc nét, màu sắc tươi sáng và giúp người dùng dễ dàng thao tác hơn. Đồng hành cùng màn hình kích thước lớn, laptop còn được trang bị một bộ vi xử lý mạnh mẽ với chip Intel Core i5 Broadwell 5200U, RAM 4GB cùng card đồ họa nVidia GeForce 820M 2GB có thể đáp ứng hoạt động cùng lúc nhiều chương trình mà vẫn mượt mà.</p>
-                    
+                <div class="baivietlienquan col-md-6 col-sm-6">
+                    <center><span class="tenbaivietctsp" style="color:#008ac2;font-size: 30px">Bài viết liên quan</span></center>
+                    <a href="#"><span style="font-size: 15px;padding-top: 36px;" class="glyphicon glyphicon-list-alt  "> Mẹo "cấpcứu" bàn phím máy tính bị vô nước</span></a>
+                    <a href="#"><span style="font-size: 15px;padding-top: 10px;" class="glyphicon glyphicon-list-alt  "> Laptop màn hình cong đầu tiên trên thế giới giá 4.000 USD</span></a>
+                    <a href="#"><span style="font-size: 15px;padding-top: 10px;" class="glyphicon glyphicon-list-alt  "> Máy tính siêu nhỏ chạy trên Windows 10 sắp "đổ bộ" </span></a>
+                    <a href="#"><span style="font-size: 15px;padding-top: 10px;" class="glyphicon glyphicon-list-alt  "> Đánh giá laptop ThinkPad X1 Yoga đa năng 14 inch siêu mỏng</span></a>
+                    <a href="#"><span style="font-size: 15px;padding-top: 10px;" class="glyphicon glyphicon-list-alt  "> So sánh ASUS Zenbook và Macbook 12 inch </span></a>
+                    <a href="#"><span style="font-size: 15px;padding-top: 10px;" class="glyphicon glyphicon-list-alt  "> Bật mí về chiếc laptop Eve V - đối thủ của Surface Pro</span></a>
+                    <a href="#"><span style="font-size: 15px;padding-top: 10px;" class="glyphicon glyphicon-list-alt  "> "Dì ghẻ" Ngô Thanh Vân bật mí bộ sưu tập công nghệ </span></a>
+                    <a href="#"><span style="font-size: 15px;padding-top: 10px;" class="glyphicon glyphicon-list-alt  "> Macbook Pro 2016 - siêu phẩm đột phá của Apple</span></a>
                 </div>
+                <div class="baivietctsp col-md-6 col-sm-6">
+
+                    <center><span class="tenbaivietctsp" style="color:#008ac2;font-size: 25px">LAPTOP DELL INSPIRON 3558 - MÀN HÌNH LED LỚN, XỬ LÝ MẠNH MẼ</span></center>
+                    <p style="font-size: 18px">Laptop Dell Inspiron 3558 sở hữu màn hình LED có kích thước lớn 15.6 inches và độ phân giải HD cho hình ảnh sắc nét, màu sắc tươi sáng và giúp người dùng dễ dàng thao tác hơn. Đồng hành cùng màn hình kích thước lớn, laptop còn được trang bị một bộ vi xử lý mạnh mẽ với chip Intel Core i5 Broadwell 5200U, RAM 4GB cùng card đồ họa nVidia GeForce 820M 2GB có thể đáp ứng hoạt động cùng lúc nhiều chương trình mà vẫn mượt mà.</p>
+
+                </div>
+                
             </div>
-            <div class="row">
+            <div class="row rowsplienquan ">
+                <center><span class="tenbaivietctsp" style="color:#008ac2;font-size: 25px">Sản phẩm liên quan</span></center>
                 <div class="col-md-12 col-sm-6 splienquan">
+                    
                     <div class="col-md-3 splienquan1 ">
-                        <center>
+                        
                             <a href="#"><img  class="img-responsive" src="img/dell.png" alt=""/><br/>
                                 <span style="font-size: 20px;color: #008ae2;">Intel core i5</span>
                             </a>
-                        </center>
+                        
                     </div>
                     <div class="col-md-3 splienquan1 ">
                         <center>
