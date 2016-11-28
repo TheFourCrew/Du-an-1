@@ -17,10 +17,7 @@
         <section class="container-fluid">
             <div class="row ">
                 <div class="col-md-12 col-sm-6 danhmucsp ">
-                    <div class="col-md-1"><p>Máy Tính</p></div>
-                    <div class="col-md-1"><p>Máy Bàn</p></div>
-                    <div class="col-md-1"><p>Điện Thoại</p></div>
-                    <div class="col-md-1"><p>Phụ kiện</p></div>
+                    
 
                 </div>
                 <div  class="col-md-3 trai col-sm-3 ">
