@@ -13,7 +13,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
         <script src="js/jquery.min.js" type="text/javascript"></script>
         
         
