@@ -63,27 +63,29 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li> <hr></li>
                             <%
-                                if (session.getAttribute("tenHo") == null) {
+                                if (session.getAttribute("email") == null) {
                             %>
                         <li><a href="signup.jsp">
                                 <span class="glyphicon glyphicon-user"></span> Đăng ký
                             </a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="login.jsp" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="glyphicon glyphicon-log-in"></span> Đăng nhập
                                 <span class="caret"></span>
                             </a>
                             <ul id="login-dp" class="dropdown-menu">
                                 <%--<%@include file="../login.jsp" %>--%>
-                                <%                                } else {
+                                <%
+                                } else {
                                 %>
                                 <li>
-                                    <a href="profile.jsp"><span class="glyphicon glyphicon-user">Xin chào, 
-                                            <strong style="color: white"><%=session.getAttribute("tenHo")%> </strong>
+                                    <a href="index.jsp"><span class="glyphicon glyphicon-user">
+                                            <strong style="color: white"><%=session.getAttribute("email")%> </strong>
                                         </span>
                                     </a>
                                 </li>
+
                                 <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span>Thoát</a></li>
                                     <%
                                         }

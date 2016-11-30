@@ -12,8 +12,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Product</title>
         <%@include file="includes/headtag.jsp" %>
+        
     </head>
     <body>
+        <%@include file="includes/header.jsp" %>
         <section class="container-fluid">
             <div class="row ">
                 <div class="col-md-12 col-sm-6 danhmucsp ">
@@ -153,5 +155,6 @@
 
             </div>
         </section>
+        <%@include file="includes/footer.jsp" %>
     </body>
 </html>

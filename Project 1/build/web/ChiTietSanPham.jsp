@@ -18,6 +18,7 @@
         </style>
     </head>
     <body>
+        <%@include file="includes/header.jsp" %>
         <section class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-6 ctsp">
@@ -149,5 +150,6 @@
                 </div>
             </div>
         </section>
+        <%@include file="includes/footer.jsp" %>
     </body>
 </html>
