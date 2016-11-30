@@ -39,6 +39,7 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav ">
                         <li><a href="#" class="menu">Introduce</a></li>
+                        <li><a href="addproduct.jsp" class="menu">Thêm sản phẩm</a></li>
                             <%
                                 if (session.getAttribute("tenHo") != null) {
 
