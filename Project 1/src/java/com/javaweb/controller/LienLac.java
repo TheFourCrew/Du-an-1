@@ -51,7 +51,7 @@ public class LienLac extends HttpServlet {
         try {
             Email.sendEmail(host, port, user, pass, recipient,  csubject, cMessage);
             resultMessage += "The e-mail was sent successfully";
-            getServletContext().getRequestDispatcher("/lienlac.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (Exception e) {
             resultMessage += "There was an error: " + e.getMessage();
             getServletContext().getRequestDispatcher("/lienlac.jsp").forward(request, response);
