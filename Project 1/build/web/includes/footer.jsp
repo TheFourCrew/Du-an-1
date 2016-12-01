@@ -58,12 +58,9 @@
         </div>
         <!--/.row--> 
     </div>
-    <!--/.container--> 
-    <!--</div>-->
-    <!--/.footer-->
     <div class="footer-bottom">
         <div class="container">
-            <p class="pull-left"> Copyright © Minhnc 2016. All right reserved. </p>
+            <p class="pull-left"> Copyright © 2016. All right reserved. </p>
             <div class="pull-right">
                 <ul class="nav nav-pills payments">
                     <li><i class="fa fa-cc-visa"></i></li>

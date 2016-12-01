@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Nov 19, 2016 12:01:31 PM by Hibernate Tools 4.3.1
+// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -22,10 +22,9 @@ public class Article  implements java.io.Serializable {
      private String thumbnail;
      private String note;
      private Boolean public_;
-     private Set<ArticleTags> articleTagses = new HashSet<ArticleTags>(0);
      private Set<Comment> comments = new HashSet<Comment>(0);
-     private Set<ArticleDetailImages> articleDetailImageses = new HashSet<ArticleDetailImages>(0);
      private Set<LikeDislike> likeDislikes = new HashSet<LikeDislike>(0);
+     private Set<ArticleTags> articleTagses = new HashSet<ArticleTags>(0);
 
     public Article() {
     }
@@ -38,7 +37,7 @@ public class Article  implements java.io.Serializable {
         this.createdDate = createdDate;
         this.content = content;
     }
-    public Article(User user, String titleArticle, String headline, Date createdDate, Date modifiedDate, String content, String thumbnail, String note, Boolean public_, Set<ArticleTags> articleTagses, Set<Comment> comments, Set<ArticleDetailImages> articleDetailImageses, Set<LikeDislike> likeDislikes) {
+    public Article(User user, String titleArticle, String headline, Date createdDate, Date modifiedDate, String content, String thumbnail, String note, Boolean public_, Set<Comment> comments, Set<LikeDislike> likeDislikes, Set<ArticleTags> articleTagses) {
        this.user = user;
        this.titleArticle = titleArticle;
        this.headline = headline;
@@ -48,10 +47,9 @@ public class Article  implements java.io.Serializable {
        this.thumbnail = thumbnail;
        this.note = note;
        this.public_ = public_;
-       this.articleTagses = articleTagses;
        this.comments = comments;
-       this.articleDetailImageses = articleDetailImageses;
        this.likeDislikes = likeDislikes;
+       this.articleTagses = articleTagses;
     }
    
     public Integer getIdarticle() {
@@ -124,13 +122,6 @@ public class Article  implements java.io.Serializable {
     public void setPublic_(Boolean public_) {
         this.public_ = public_;
     }
-    public Set<ArticleTags> getArticleTagses() {
-        return this.articleTagses;
-    }
-    
-    public void setArticleTagses(Set<ArticleTags> articleTagses) {
-        this.articleTagses = articleTagses;
-    }
     public Set<Comment> getComments() {
         return this.comments;
     }
@@ -138,19 +129,19 @@ public class Article  implements java.io.Serializable {
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
-    public Set<ArticleDetailImages> getArticleDetailImageses() {
-        return this.articleDetailImageses;
-    }
-    
-    public void setArticleDetailImageses(Set<ArticleDetailImages> articleDetailImageses) {
-        this.articleDetailImageses = articleDetailImageses;
-    }
     public Set<LikeDislike> getLikeDislikes() {
         return this.likeDislikes;
     }
     
     public void setLikeDislikes(Set<LikeDislike> likeDislikes) {
         this.likeDislikes = likeDislikes;
+    }
+    public Set<ArticleTags> getArticleTagses() {
+        return this.articleTagses;
+    }
+    
+    public void setArticleTagses(Set<ArticleTags> articleTagses) {
+        this.articleTagses = articleTagses;
     }
 
 

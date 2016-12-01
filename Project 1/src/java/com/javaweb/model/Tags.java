@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Nov 19, 2016 12:01:31 PM by Hibernate Tools 4.3.1
+// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,8 +13,8 @@ public class Tags  implements java.io.Serializable {
 
      private Integer idtags;
      private String tagName;
-     private Set<ArticleTags> articleTagses = new HashSet<ArticleTags>(0);
      private Set<ProductTags> productTagses = new HashSet<ProductTags>(0);
+     private Set<ArticleTags> articleTagses = new HashSet<ArticleTags>(0);
 
     public Tags() {
     }
@@ -23,10 +23,10 @@ public class Tags  implements java.io.Serializable {
     public Tags(String tagName) {
         this.tagName = tagName;
     }
-    public Tags(String tagName, Set<ArticleTags> articleTagses, Set<ProductTags> productTagses) {
+    public Tags(String tagName, Set<ProductTags> productTagses, Set<ArticleTags> articleTagses) {
        this.tagName = tagName;
-       this.articleTagses = articleTagses;
        this.productTagses = productTagses;
+       this.articleTagses = articleTagses;
     }
    
     public Integer getIdtags() {
@@ -43,19 +43,19 @@ public class Tags  implements java.io.Serializable {
     public void setTagName(String tagName) {
         this.tagName = tagName;
     }
-    public Set<ArticleTags> getArticleTagses() {
-        return this.articleTagses;
-    }
-    
-    public void setArticleTagses(Set<ArticleTags> articleTagses) {
-        this.articleTagses = articleTagses;
-    }
     public Set<ProductTags> getProductTagses() {
         return this.productTagses;
     }
     
     public void setProductTagses(Set<ProductTags> productTagses) {
         this.productTagses = productTagses;
+    }
+    public Set<ArticleTags> getArticleTagses() {
+        return this.articleTagses;
+    }
+    
+    public void setArticleTagses(Set<ArticleTags> articleTagses) {
+        this.articleTagses = articleTagses;
     }
 
 

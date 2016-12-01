@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Nov 19, 2016 12:01:31 PM by Hibernate Tools 4.3.1
+// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,18 +15,21 @@ public class Product  implements java.io.Serializable {
      private Integer idproduct;
      private ProductCategory productCategory;
      private User user;
+     private String productNumber;
      private String productName;
-     private double salePrice;
+     private double pricePerUnit;
      private double boughtPrice;
      private int productQuantity;
      private String unit;
+     private String describe;
      private Date createdDate;
      private Date dateModified;
      private String productImage;
      private String note;
+     private Set<Promotion> promotions = new HashSet<Promotion>(0);
      private Set<VendorInvoiceDetail> vendorInvoiceDetails = new HashSet<VendorInvoiceDetail>(0);
      private Set<ProductTags> productTagses = new HashSet<ProductTags>(0);
-     private Set<ProductSize> productSizes = new HashSet<ProductSize>(0);
+     private Set<ProductParameters> productParameterses = new HashSet<ProductParameters>(0);
      private Set<ProductRating> productRatings = new HashSet<ProductRating>(0);
      private Set<ReceiptDetail> receiptDetails = new HashSet<ReceiptDetail>(0);
 
@@ -34,30 +37,34 @@ public class Product  implements java.io.Serializable {
     }
 
 	
-    public Product(ProductCategory productCategory, User user, String productName, double salePrice, double boughtPrice, int productQuantity, String unit) {
+    public Product(ProductCategory productCategory, User user, String productNumber, String productName, double pricePerUnit, double boughtPrice, int productQuantity, String unit) {
         this.productCategory = productCategory;
         this.user = user;
+        this.productNumber = productNumber;
         this.productName = productName;
-        this.salePrice = salePrice;
+        this.pricePerUnit = pricePerUnit;
         this.boughtPrice = boughtPrice;
         this.productQuantity = productQuantity;
         this.unit = unit;
     }
-    public Product(ProductCategory productCategory, User user, String productName, double salePrice, double boughtPrice, int productQuantity, String unit, Date createdDate, Date dateModified, String productImage, String note, Set<VendorInvoiceDetail> vendorInvoiceDetails, Set<ProductTags> productTagses, Set<ProductSize> productSizes, Set<ProductRating> productRatings, Set<ReceiptDetail> receiptDetails) {
+    public Product(ProductCategory productCategory, User user, String productNumber, String productName, double pricePerUnit, double boughtPrice, int productQuantity, String unit, String describe, Date createdDate, Date dateModified, String productImage, String note, Set<Promotion> promotions, Set<VendorInvoiceDetail> vendorInvoiceDetails, Set<ProductTags> productTagses, Set<ProductParameters> productParameterses, Set<ProductRating> productRatings, Set<ReceiptDetail> receiptDetails) {
        this.productCategory = productCategory;
        this.user = user;
+       this.productNumber = productNumber;
        this.productName = productName;
-       this.salePrice = salePrice;
+       this.pricePerUnit = pricePerUnit;
        this.boughtPrice = boughtPrice;
        this.productQuantity = productQuantity;
        this.unit = unit;
+       this.describe = describe;
        this.createdDate = createdDate;
        this.dateModified = dateModified;
        this.productImage = productImage;
        this.note = note;
+       this.promotions = promotions;
        this.vendorInvoiceDetails = vendorInvoiceDetails;
        this.productTagses = productTagses;
-       this.productSizes = productSizes;
+       this.productParameterses = productParameterses;
        this.productRatings = productRatings;
        this.receiptDetails = receiptDetails;
     }
@@ -83,6 +90,13 @@ public class Product  implements java.io.Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+    public String getProductNumber() {
+        return this.productNumber;
+    }
+    
+    public void setProductNumber(String productNumber) {
+        this.productNumber = productNumber;
+    }
     public String getProductName() {
         return this.productName;
     }
@@ -90,12 +104,12 @@ public class Product  implements java.io.Serializable {
     public void setProductName(String productName) {
         this.productName = productName;
     }
-    public double getSalePrice() {
-        return this.salePrice;
+    public double getPricePerUnit() {
+        return this.pricePerUnit;
     }
     
-    public void setSalePrice(double salePrice) {
-        this.salePrice = salePrice;
+    public void setPricePerUnit(double pricePerUnit) {
+        this.pricePerUnit = pricePerUnit;
     }
     public double getBoughtPrice() {
         return this.boughtPrice;
@@ -117,6 +131,13 @@ public class Product  implements java.io.Serializable {
     
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+    public String getDescribe() {
+        return this.describe;
+    }
+    
+    public void setDescribe(String describe) {
+        this.describe = describe;
     }
     public Date getCreatedDate() {
         return this.createdDate;
@@ -146,6 +167,13 @@ public class Product  implements java.io.Serializable {
     public void setNote(String note) {
         this.note = note;
     }
+    public Set<Promotion> getPromotions() {
+        return this.promotions;
+    }
+    
+    public void setPromotions(Set<Promotion> promotions) {
+        this.promotions = promotions;
+    }
     public Set<VendorInvoiceDetail> getVendorInvoiceDetails() {
         return this.vendorInvoiceDetails;
     }
@@ -160,12 +188,12 @@ public class Product  implements java.io.Serializable {
     public void setProductTagses(Set<ProductTags> productTagses) {
         this.productTagses = productTagses;
     }
-    public Set<ProductSize> getProductSizes() {
-        return this.productSizes;
+    public Set<ProductParameters> getProductParameterses() {
+        return this.productParameterses;
     }
     
-    public void setProductSizes(Set<ProductSize> productSizes) {
-        this.productSizes = productSizes;
+    public void setProductParameterses(Set<ProductParameters> productParameterses) {
+        this.productParameterses = productParameterses;
     }
     public Set<ProductRating> getProductRatings() {
         return this.productRatings;

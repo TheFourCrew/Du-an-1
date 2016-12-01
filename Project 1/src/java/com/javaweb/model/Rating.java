@@ -1,7 +1,8 @@
 package com.javaweb.model;
-// Generated Nov 19, 2016 12:01:31 PM by Hibernate Tools 4.3.1
+// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
 
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,18 +13,26 @@ public class Rating  implements java.io.Serializable {
 
 
      private Integer idrating;
+     private String nameUser;
      private int ratingPoint;
+     private String review;
+     private Date date;
      private Set<ProductRating> productRatings = new HashSet<ProductRating>(0);
 
     public Rating() {
     }
 
 	
-    public Rating(int ratingPoint) {
+    public Rating(String nameUser, int ratingPoint, String review) {
+        this.nameUser = nameUser;
         this.ratingPoint = ratingPoint;
+        this.review = review;
     }
-    public Rating(int ratingPoint, Set<ProductRating> productRatings) {
+    public Rating(String nameUser, int ratingPoint, String review, Date date, Set<ProductRating> productRatings) {
+       this.nameUser = nameUser;
        this.ratingPoint = ratingPoint;
+       this.review = review;
+       this.date = date;
        this.productRatings = productRatings;
     }
    
@@ -34,12 +43,33 @@ public class Rating  implements java.io.Serializable {
     public void setIdrating(Integer idrating) {
         this.idrating = idrating;
     }
+    public String getNameUser() {
+        return this.nameUser;
+    }
+    
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
+    }
     public int getRatingPoint() {
         return this.ratingPoint;
     }
     
     public void setRatingPoint(int ratingPoint) {
         this.ratingPoint = ratingPoint;
+    }
+    public String getReview() {
+        return this.review;
+    }
+    
+    public void setReview(String review) {
+        this.review = review;
+    }
+    public Date getDate() {
+        return this.date;
+    }
+    
+    public void setDate(Date date) {
+        this.date = date;
     }
     public Set<ProductRating> getProductRatings() {
         return this.productRatings;

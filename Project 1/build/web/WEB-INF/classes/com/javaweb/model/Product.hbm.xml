@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 19, 2016 12:01:34 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 1, 2016 3:28:03 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.javaweb.model.Product" table="product" catalog="db_tintuc_banhang" optimistic-lock="version">
         <id name="idproduct" type="java.lang.Integer">
@@ -14,11 +14,14 @@
         <many-to-one name="user" class="com.javaweb.model.User" fetch="select">
             <column name="creater" not-null="true" />
         </many-to-one>
+        <property name="productNumber" type="string">
+            <column name="product_number" length="45" not-null="true" />
+        </property>
         <property name="productName" type="string">
             <column name="product_name" length="45" not-null="true" />
         </property>
-        <property name="salePrice" type="double">
-            <column name="sale_price" precision="22" scale="0" not-null="true" />
+        <property name="pricePerUnit" type="double">
+            <column name="price_per_unit" precision="22" scale="0" not-null="true" />
         </property>
         <property name="boughtPrice" type="double">
             <column name="bought_price" precision="22" scale="0" not-null="true" />
@@ -28,6 +31,9 @@
         </property>
         <property name="unit" type="string">
             <column name="unit" length="45" not-null="true" />
+        </property>
+        <property name="describe" type="string">
+            <column name="describe" length="65535" />
         </property>
         <property name="createdDate" type="timestamp">
             <column name="created_date" length="19" />
@@ -41,6 +47,12 @@
         <property name="note" type="string">
             <column name="note" length="100" />
         </property>
+        <set name="promotions" table="promotion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_product" not-null="true" />
+            </key>
+            <one-to-many class="com.javaweb.model.Promotion" />
+        </set>
         <set name="vendorInvoiceDetails" table="vendor_invoice_detail" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_product" not-null="true" />
@@ -53,11 +65,11 @@
             </key>
             <one-to-many class="com.javaweb.model.ProductTags" />
         </set>
-        <set name="productSizes" table="product_size" inverse="true" lazy="true" fetch="select">
+        <set name="productParameterses" table="product_parameters" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_product" not-null="true" />
             </key>
-            <one-to-many class="com.javaweb.model.ProductSize" />
+            <one-to-many class="com.javaweb.model.ProductParameters" />
         </set>
         <set name="productRatings" table="product_rating" inverse="true" lazy="true" fetch="select">
             <key>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 1, 2016 3:28:03 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.javaweb.model.ProductParameters" table="product_parameters" catalog="db_tintuc_banhang" optimistic-lock="version">
+        <id name="idproductParameters" type="java.lang.Integer">
+            <column name="idproduct_parameters" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="product" class="com.javaweb.model.Product" fetch="select">
+            <column name="id_product" not-null="true" />
+        </many-to-one>
+        <property name="model" type="string">
+            <column name="model" length="45" not-null="true" />
+        </property>
+        <property name="cpu" type="string">
+            <column name="cpu" length="45" />
+        </property>
+        <property name="ram" type="string">
+            <column name="ram" length="45" />
+        </property>
+        <property name="screenResolution" type="string">
+            <column name="screen_resolution" length="45" />
+        </property>
+        <property name="screenSize" type="java.lang.Double">
+            <column name="screen_size" precision="22" scale="0" />
+        </property>
+        <property name="weight" type="java.lang.Double">
+            <column name="weight" precision="22" scale="0" />
+        </property>
+        <property name="operatingSystem" type="string">
+            <column name="operating_system" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

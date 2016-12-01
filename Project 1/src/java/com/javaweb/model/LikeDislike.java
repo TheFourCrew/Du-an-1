@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Nov 19, 2016 12:01:31 PM by Hibernate Tools 4.3.1
+// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
 
 
 
@@ -12,17 +12,22 @@ public class LikeDislike  implements java.io.Serializable {
      private Integer idlike;
      private Article article;
      private Boolean likeOrDislike;
+     private String ip;
+     private String mac;
 
     public LikeDislike() {
     }
 
 	
-    public LikeDislike(Article article) {
+    public LikeDislike(Article article, String ip) {
         this.article = article;
+        this.ip = ip;
     }
-    public LikeDislike(Article article, Boolean likeOrDislike) {
+    public LikeDislike(Article article, Boolean likeOrDislike, String ip, String mac) {
        this.article = article;
        this.likeOrDislike = likeOrDislike;
+       this.ip = ip;
+       this.mac = mac;
     }
    
     public Integer getIdlike() {
@@ -45,6 +50,20 @@ public class LikeDislike  implements java.io.Serializable {
     
     public void setLikeOrDislike(Boolean likeOrDislike) {
         this.likeOrDislike = likeOrDislike;
+    }
+    public String getIp() {
+        return this.ip;
+    }
+    
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+    public String getMac() {
+        return this.mac;
+    }
+    
+    public void setMac(String mac) {
+        this.mac = mac;
     }
 
 

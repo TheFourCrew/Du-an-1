@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Nov 19, 2016 12:01:31 PM by Hibernate Tools 4.3.1
+// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -23,12 +23,13 @@ public class User  implements java.io.Serializable {
      private String email;
      private Date birthday;
      private String image;
+     private Boolean status;
      private String note;
-     private Set<Receipt> receiptsForCreater = new HashSet<Receipt>(0);
-     private Set<Product> products = new HashSet<Product>(0);
      private Set<VendorInvoice> vendorInvoices = new HashSet<VendorInvoice>(0);
-     private Set<Receipt> receiptsForBuyer = new HashSet<Receipt>(0);
+     private Set<Product> products = new HashSet<Product>(0);
+     private Set<Receipt> receiptsForCreater = new HashSet<Receipt>(0);
      private Set<Article> articles = new HashSet<Article>(0);
+     private Set<Receipt> receiptsForBuyer = new HashSet<Receipt>(0);
 
     public User() {
     }
@@ -43,7 +44,7 @@ public class User  implements java.io.Serializable {
         this.email = email;
         this.birthday = birthday;
     }
-    public User(RoleUser roleUser, String username, String password, String fullname, boolean gender, String userPhone, String address, String email, Date birthday, String image, String note, Set<Receipt> receiptsForCreater, Set<Product> products, Set<VendorInvoice> vendorInvoices, Set<Receipt> receiptsForBuyer, Set<Article> articles) {
+    public User(RoleUser roleUser, String username, String password, String fullname, boolean gender, String userPhone, String address, String email, Date birthday, String image, Boolean status, String note, Set<VendorInvoice> vendorInvoices, Set<Product> products, Set<Receipt> receiptsForCreater, Set<Article> articles, Set<Receipt> receiptsForBuyer) {
        this.roleUser = roleUser;
        this.username = username;
        this.password = password;
@@ -54,12 +55,13 @@ public class User  implements java.io.Serializable {
        this.email = email;
        this.birthday = birthday;
        this.image = image;
+       this.status = status;
        this.note = note;
-       this.receiptsForCreater = receiptsForCreater;
-       this.products = products;
        this.vendorInvoices = vendorInvoices;
-       this.receiptsForBuyer = receiptsForBuyer;
+       this.products = products;
+       this.receiptsForCreater = receiptsForCreater;
        this.articles = articles;
+       this.receiptsForBuyer = receiptsForBuyer;
     }
    
     public Integer getIduser() {
@@ -97,7 +99,7 @@ public class User  implements java.io.Serializable {
     public void setFullname(String fullname) {
         this.fullname = fullname;
     }
-    public boolean isGender() {
+    public boolean getGender() {
         return this.gender;
     }
     
@@ -139,26 +141,19 @@ public class User  implements java.io.Serializable {
     public void setImage(String image) {
         this.image = image;
     }
+    public Boolean getStatus() {
+        return this.status;
+    }
+    
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
     public String getNote() {
         return this.note;
     }
     
     public void setNote(String note) {
         this.note = note;
-    }
-    public Set<Receipt> getReceiptsForCreater() {
-        return this.receiptsForCreater;
-    }
-    
-    public void setReceiptsForCreater(Set<Receipt> receiptsForCreater) {
-        this.receiptsForCreater = receiptsForCreater;
-    }
-    public Set<Product> getProducts() {
-        return this.products;
-    }
-    
-    public void setProducts(Set<Product> products) {
-        this.products = products;
     }
     public Set<VendorInvoice> getVendorInvoices() {
         return this.vendorInvoices;
@@ -167,12 +162,19 @@ public class User  implements java.io.Serializable {
     public void setVendorInvoices(Set<VendorInvoice> vendorInvoices) {
         this.vendorInvoices = vendorInvoices;
     }
-    public Set<Receipt> getReceiptsForBuyer() {
-        return this.receiptsForBuyer;
+    public Set<Product> getProducts() {
+        return this.products;
     }
     
-    public void setReceiptsForBuyer(Set<Receipt> receiptsForBuyer) {
-        this.receiptsForBuyer = receiptsForBuyer;
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+    public Set<Receipt> getReceiptsForCreater() {
+        return this.receiptsForCreater;
+    }
+    
+    public void setReceiptsForCreater(Set<Receipt> receiptsForCreater) {
+        this.receiptsForCreater = receiptsForCreater;
     }
     public Set<Article> getArticles() {
         return this.articles;
@@ -180,6 +182,13 @@ public class User  implements java.io.Serializable {
     
     public void setArticles(Set<Article> articles) {
         this.articles = articles;
+    }
+    public Set<Receipt> getReceiptsForBuyer() {
+        return this.receiptsForBuyer;
+    }
+    
+    public void setReceiptsForBuyer(Set<Receipt> receiptsForBuyer) {
+        this.receiptsForBuyer = receiptsForBuyer;
     }
 
 

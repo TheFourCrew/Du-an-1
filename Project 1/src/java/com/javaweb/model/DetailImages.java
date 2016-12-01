@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Nov 19, 2016 12:01:31 PM by Hibernate Tools 4.3.1
+// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,7 +13,7 @@ public class DetailImages  implements java.io.Serializable {
 
      private Integer iddetailImages;
      private String imageName;
-     private Set<ArticleDetailImages> articleDetailImageses = new HashSet<ArticleDetailImages>(0);
+     private Set<ProductDetailImages> productDetailImageses = new HashSet<ProductDetailImages>(0);
 
     public DetailImages() {
     }
@@ -22,9 +22,9 @@ public class DetailImages  implements java.io.Serializable {
     public DetailImages(String imageName) {
         this.imageName = imageName;
     }
-    public DetailImages(String imageName, Set<ArticleDetailImages> articleDetailImageses) {
+    public DetailImages(String imageName, Set<ProductDetailImages> productDetailImageses) {
        this.imageName = imageName;
-       this.articleDetailImageses = articleDetailImageses;
+       this.productDetailImageses = productDetailImageses;
     }
    
     public Integer getIddetailImages() {
@@ -41,12 +41,12 @@ public class DetailImages  implements java.io.Serializable {
     public void setImageName(String imageName) {
         this.imageName = imageName;
     }
-    public Set<ArticleDetailImages> getArticleDetailImageses() {
-        return this.articleDetailImageses;
+    public Set<ProductDetailImages> getProductDetailImageses() {
+        return this.productDetailImageses;
     }
     
-    public void setArticleDetailImageses(Set<ArticleDetailImages> articleDetailImageses) {
-        this.articleDetailImageses = articleDetailImageses;
+    public void setProductDetailImageses(Set<ProductDetailImages> productDetailImageses) {
+        this.productDetailImageses = productDetailImageses;
     }
 
 

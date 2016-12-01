@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Nov 19, 2016 12:01:31 PM by Hibernate Tools 4.3.1
+// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,6 +16,7 @@ public class Comment  implements java.io.Serializable {
      private Date dateComment;
      private int commentReply;
      private String content;
+     private String ip;
      private String note;
 
     public Comment() {
@@ -28,12 +29,13 @@ public class Comment  implements java.io.Serializable {
         this.commentReply = commentReply;
         this.content = content;
     }
-    public Comment(Article article, String nameUser, Date dateComment, int commentReply, String content, String note) {
+    public Comment(Article article, String nameUser, Date dateComment, int commentReply, String content, String ip, String note) {
        this.article = article;
        this.nameUser = nameUser;
        this.dateComment = dateComment;
        this.commentReply = commentReply;
        this.content = content;
+       this.ip = ip;
        this.note = note;
     }
    
@@ -78,6 +80,13 @@ public class Comment  implements java.io.Serializable {
     
     public void setContent(String content) {
         this.content = content;
+    }
+    public String getIp() {
+        return this.ip;
+    }
+    
+    public void setIp(String ip) {
+        this.ip = ip;
     }
     public String getNote() {
         return this.note;
