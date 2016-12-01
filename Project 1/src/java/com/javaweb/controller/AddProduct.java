@@ -1,11 +1,19 @@
 package com.javaweb.controller;
 
+import com.javaweb.model.Product;
+import com.javaweb.service.ProductServices;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -26,9 +34,66 @@ public class AddProduct extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
-        
-        
+
+//        String urlError = "/managementproduct.jsp";
+        boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
+        if (isMultiPart) {
+            ServletFileUpload upload = new ServletFileUpload();
+            try {
+                String tenSP = "", gia = "", soLuong = "", ghiChu = "", hinh = "Unknown.jpg";
+                int loaiSP = 0;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Date date = new Date();
+                FileItemStream item = null;
+                FileItemIterator itr = upload.getItemIterator(request);
+                while (itr.hasNext()) {
+                    item = itr.next();
+                    if (item.isFormField()) {
+                        //do field specific process
+                        String fieldName = item.getFieldName();
+                        InputStream is = item.openStream();
+                        byte[] b = new byte[is.available()];
+                        is.read(b);
+                        String value = new String(b);
+                        
+                        if (fieldName.equals("nP-price")) {
+                            gia = value;
+                        } else if (fieldName.equals("nP-name")) {
+                            tenSP = value;
+                        } else if (fieldName.equals("nP-quantity")) {
+                            soLuong = value;
+                        } else if (fieldName.equals("nP-note")) {
+                            ghiChu = value;
+                        } else if (fieldName.equals("nP-category")) {
+                            loaiSP = Integer.parseInt(value);
+                        }
+                        response.getWriter().println("<h2>" + item.getFieldName() + " " + item.getName() + "</h2>");
+                    } else {
+                        //do file upload specific process
+                        response.getWriter().println("<h2>" + item.getFieldName() + " " + item.getName() + "</h2>");
+//                        String path = getServletContext().getRealPath("/");
+                        //call a method to upload file.
+//                        if (!item.getName().equals("")) {
+                        hinh = item.getName();
+//                            ProductServices.processFile(path, item);
+//                            request.setAttribute("hinhne", item.getName() + " item.getName()");
+
+                        sdf.format(date.getDate());
+//                        } else {
+//                        }
+//                        Product product = new Product(tenSP, Float.parseFloat(gia), Integer.parseInt(soLuong), hinh, ghiChu, loaiSP, date, 0);
+//                        ProductServices productServices = new ProductServices();
+//                        productServices.InsertOrUpdateProduct(product);
+//                        String url = "/managementproduct.jsp";
+//                        getServletContext().getRequestDispatcher(url).forward(request, response);
+                    }
+                }
+                
+            } catch (FileUploadException fue) {
+                System.out.println(fue.toString());
+            }
+        }
+
 //        try (PrintWriter out = response.getWriter()) {
 //            /* TODO output your page here. You may use following sample code. */
 //            out.println("<!DOCTYPE html>");
