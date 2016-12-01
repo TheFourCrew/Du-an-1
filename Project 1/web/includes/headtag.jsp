@@ -12,13 +12,13 @@
 <!--<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">-->
 <link href="css/w3.css" rel="stylesheet" type="text/css"/>
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
 <link href="css/style.css" rel="stylesheet" type="text/css"/>
 <link href="css/style-minh.css" rel="stylesheet" type="text/css"/>
 <link href="css/cssto.css" rel="stylesheet" type="text/css"/>
 
+
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
+<script src="js/javascript.js" type="text/javascript"></script>
 <script src="ckeditor/ckeditor.js" type="text/javascript" ></script>

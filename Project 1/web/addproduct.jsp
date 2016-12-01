@@ -19,7 +19,7 @@
         <%@include file="includes/header.jsp" %>
         <section class="container">
             <div class="col-md-9">
-                <form class="form-horizontal" action="LienLac" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" action="AddProduct" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label class="control-label col-sm-2 col-md-3" for="prod-name">Tên sản phẩm<em>*</em>:</label>
                         <div class="col-md-7">
@@ -37,7 +37,7 @@
                     <div class="form-group ">
                         <label class="control-label col-sm-2 col-md-3" for="prod-describe">Mô tả thông tin<em>*</em>:</label>
                         <div class="col-sm-3 col-md-9">
-                            <textarea rows="4" id="prod-describe" cols="20" class="form-control ckeditor" placeholder="Nhập" name="cMessage"></textarea>
+                            <textarea rows="4" id="prod-describe" cols="20" class="form-control ckeditor" placeholder="Nhập" name="prod-describe"></textarea>
                         </div>
 
                         <!--<script src="//cdn.ckeditor.com/4.6.0/ull/ckeditor.js"></script>-->
@@ -81,15 +81,16 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2 col-md-3" for="prod-thumbnail">Chọn hình đại diện<em>*</em>:</label>
                         <div class="col-sm-3 col-md-7">
-                            <input type="file" name="prod-thumbnail"  class="form-control" id="prod-thumbnail">
-
+                            <input type="file" name="prod-thumbnail" id="prod-thumbnail" onchange="loadFile(event, 'addpro')">
+                            <img  id="outputaddpro"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-sm-2 col-md-3" for="prod-images">Chọn hình chi tiết<em>*</em>:</label>
                         <div class="col-sm-3 col-md-7">
-                            <input type="file" name="prod-images" class="form-control" id="prod-images" multiple="">
+                            <input type="file" name="prod-images" id="prod-images" multiple>
+                            <div id="gallery"></div>
                         </div> 
                     </div>
 
