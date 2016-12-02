@@ -77,3 +77,62 @@ $(window).ready(function () {
         }
     });
 });
+$(window).ready(function () {
+    $('#edituser').validate({
+        onchange: true,
+        rules: {
+            'username':{
+                required:true,
+                minlength:6,
+            },
+            'password':{
+                required:true,
+                minlength:6,
+            },
+            'repassword':{
+                required:true,
+                equalto:"#password",
+            },
+            'role':'required',
+            'fullname':'required',
+            'dienthoai':{
+                required:true,
+                number:true,
+                minlength:10,
+                maxlength:11,
+            },
+            'address':'required',
+            'email':{
+                required:true,
+                email:true,
+            },
+        },
+        messages: {
+            'username':{
+                required:"Bạn chưa nhập tên đăng nhập",
+                minlength:'Tên đăng nhập chưa đủ 6 ký tự',
+            },
+            'password':{
+                required:"Bạn chưa nhập mật khẩu",
+                minlength:'Mật khẩu chưa đủ 6 ký tự',
+            },
+            'repassword':{
+                required:'Vui lòng nhập lại mật khẩu',
+                equaTo:"Mật khẩu nhập lại sai",
+            },
+            'role':'Vui lòng chọn quyền',
+            'fullname':'Bạn chưa nhập họ tên ',
+            'dienthoai':{
+                required:'Chưa nhập điện thoại',
+                number:'Điện thoại chỉ có số',
+                minlength:'Số điện thoại không hợp lệ',
+                maxlength:'Số điện thoại không hợp lệ',
+            },
+            'address':'Bạn chưa nhập địa chỉ',
+            'email':{
+                required:'Chưa nhập email',
+                email:'Email không hợp lệ',
+            },
+        }
+    });
+});
