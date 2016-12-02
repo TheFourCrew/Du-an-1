@@ -28,7 +28,7 @@
         %>
         <section class="container">
             <div class="row">
-                <form action="EditUserServlet" method="post"enctype="multipart/form-data" >
+                <form action="EditUserServlet" method="post"enctype="multipart/form-data" id="edituser" >
                     <input style="display: none;" name="iduser" value="<%=user.getIduser()%>" />
                     <div class="form-group">
                         <label for="username">Tên Đăng Nhập: </label>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label for="idrole_user">Nhập lại mật khẩu:</label>
-                        <input type="t" name="idrole" value="<%=user.getPassword()%>" class="form-control" required id="repassword">
+                        <input type="repassword" name="repassword" value="<%=user.getPassword()%>" class="form-control" required id="repassword">
                     </div>
                     <div class="form-group">
                         <label for="idrole_user">Quyền:</label>
@@ -53,9 +53,16 @@
 
                                 listRole = role.GetAllRole();
                                 for (int i = 0; i < listRole.size(); i++) {
+                                    if (user.getIduser() == listRole.get(i).getIdroleUser()) {
+                            %>
+                            <option value="<%=listRole.get(i).getIdroleUser()%>" selected><%=listRole.get(i).getRoleName()%></option>
+                            <%
+                            } else {
+
                             %>
                             <option value="<%=listRole.get(i).getIdroleUser()%>"><%=listRole.get(i).getRoleName()%></option>
                             <%
+                                    }
                                 }
                             %>
                         </select>
@@ -108,7 +115,7 @@
                         <textarea row="4" cols="20" class="form-control" name="note"> <%=user.getNote()%></textarea>
                     </div>
                     <div class="form-group avatar-gr">
-
+                        
                         <%
                             if (user.getImage() != null) {
                                 String folderupload = getServletContext().getInitParameter("file-upload");
@@ -117,7 +124,7 @@
                         <%
                             }
                         %>
-                        <input type="file" name="file" size="50" onchange="loadFile(event)"/>
+                        <input type="file" name="file" size="50" onchange="loadFile(event)" style="margin-top: 20px;"/>
                         <img id="output" src="">
                         <script type="text/javascript">
                             var loadFile = function (event) {
