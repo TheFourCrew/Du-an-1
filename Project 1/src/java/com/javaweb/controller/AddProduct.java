@@ -41,8 +41,9 @@ public class AddProduct extends HttpServlet {
         if (isMultiPart) {
             ServletFileUpload upload = new ServletFileUpload();
             try {
-                String tenSP = "", gia = "",  ghiChu = "", thumbnail = "Unknown.jpg", moTa = "", donVi = "";
+                String tenSP = "", ghiChu = "", thumbnail = "Unknown.jpg", moTa = "", donVi = "", maSP = "";
                 int loaiSP = 0, soLuong = 0;
+                double gia = 0;
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Date date = new Date();
                 FileItemStream item = null;
@@ -56,22 +57,27 @@ public class AddProduct extends HttpServlet {
                         byte[] b = new byte[is.available()];
                         is.read(b);
                         String value = new String(b);
-
-                        if (fieldName.equals("nP-price")) {
-                            gia = value;
-                        } else if (fieldName.equals("nP-name")) {
+                        if (fieldName.equals("prod-name")) {
                             tenSP = value;
-                        } else if (fieldName.equals("nP-quantity")) {
+                        } else if (fieldName.equals("prod-describe")) {
+                            moTa = value;
+                        } else if (fieldName.equals("prod-price")) {
+                            gia = Double.parseDouble(value);
+                        } else if (fieldName.equals("prod-quantity")) {
                             soLuong = Integer.parseInt(value);
-                        } else if (fieldName.equals("nP-note")) {
-                            ghiChu = value;
-                        } else if (fieldName.equals("nP-category")) {
+                        } else if (fieldName.equals("prod-unit")) {
+                            donVi = value;
+                        } else if (fieldName.equals("loaiSP")) {
                             loaiSP = Integer.parseInt(value);
                         }
-                        response.getWriter().println("<h2>" + item.getFieldName() + " " + item.getName() + "</h2>");
+//                        else if (fieldName.equals("nP-note")) {
+//                            ghiChu = value;
+//                        }
+//                        response.getWriter().println("<h2>" + item.getFieldName() + " " + item.getName() + "</h2>");
+//                        response.getWriter().println("<h3>" + tenSP + " "+ moTa+ " "+" "+loaiSP + " " + date + "</h3>");
                     } else {
                         //do file upload specific process
-                        response.getWriter().println("<h2>" + item.getFieldName() + " " + item.getName() + "</h2>");
+//                        response.getWriter().println("<h2>" + item.getFieldName() + " " + item.getName() + "</h2>");
                         String path = getServletContext().getRealPath("/");
                         //call a method to upload file.
                         if (!item.getName().equals("")) {
@@ -80,16 +86,13 @@ public class AddProduct extends HttpServlet {
 //                            request.setAttribute("hinhne", item.getName() + " item.getName()");
                             sdf.format(date.getDate());
                         } else {
-                            
+
                         }
-                        
-                        ProductCategory loaiSp = null;
-//                        loaiSp = (ProductCategory) loaiSP;
-                        
-//                        Product product = new Product(loaiSP, 0, 1, "BK-01", tenSP, gia, 0, soLuong, donVi, moTa, thumbnail);
+                        Product product = new Product(maSP, tenSP, gia, 1, soLuong, donVi, moTa, loaiSP, date, 1, date, thumbnail, 1, ghiChu);
+
                         ProductServices productServices = new ProductServices();
-//                        productServices.InsertOrUpdateProduct(product);
-                        String url = "/managementproduct.jsp";
+                        productServices.InsertOrUpdateProduct(product);
+                        String url = "/addproduct.jsp";
                         getServletContext().getRequestDispatcher(url).forward(request, response);
                     }
                 }
