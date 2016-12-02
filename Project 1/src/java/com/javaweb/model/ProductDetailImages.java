@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
+// Generated Dec 2, 2016 10:24:32 AM by Hibernate Tools 4.3.1
 
 
 
@@ -10,15 +10,15 @@ public class ProductDetailImages  implements java.io.Serializable {
 
 
      private Integer idproductDetailImages;
-     private DetailImages detailImages;
      private int idProduct;
+     private int idDetailImage;
 
     public ProductDetailImages() {
     }
 
-    public ProductDetailImages(DetailImages detailImages, int idProduct) {
-       this.detailImages = detailImages;
+    public ProductDetailImages(int idProduct, int idDetailImage) {
        this.idProduct = idProduct;
+       this.idDetailImage = idDetailImage;
     }
    
     public Integer getIdproductDetailImages() {
@@ -28,19 +28,19 @@ public class ProductDetailImages  implements java.io.Serializable {
     public void setIdproductDetailImages(Integer idproductDetailImages) {
         this.idproductDetailImages = idproductDetailImages;
     }
-    public DetailImages getDetailImages() {
-        return this.detailImages;
-    }
-    
-    public void setDetailImages(DetailImages detailImages) {
-        this.detailImages = detailImages;
-    }
     public int getIdProduct() {
         return this.idProduct;
     }
     
     public void setIdProduct(int idProduct) {
         this.idProduct = idProduct;
+    }
+    public int getIdDetailImage() {
+        return this.idDetailImage;
+    }
+    
+    public void setIdDetailImage(int idDetailImage) {
+        this.idDetailImage = idDetailImage;
     }
 
 

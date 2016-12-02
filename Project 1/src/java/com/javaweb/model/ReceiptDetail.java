@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
+// Generated Dec 2, 2016 10:24:32 AM by Hibernate Tools 4.3.1
 
 
 
@@ -10,8 +10,8 @@ public class ReceiptDetail  implements java.io.Serializable {
 
 
      private Integer idreceiptDetail;
-     private Product product;
-     private Receipt receipt;
+     private int idReceipt;
+     private int idProduct;
      private int quantity;
      private double unitPrice;
      private String note;
@@ -20,15 +20,15 @@ public class ReceiptDetail  implements java.io.Serializable {
     }
 
 	
-    public ReceiptDetail(Product product, Receipt receipt, int quantity, double unitPrice) {
-        this.product = product;
-        this.receipt = receipt;
+    public ReceiptDetail(int idReceipt, int idProduct, int quantity, double unitPrice) {
+        this.idReceipt = idReceipt;
+        this.idProduct = idProduct;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
     }
-    public ReceiptDetail(Product product, Receipt receipt, int quantity, double unitPrice, String note) {
-       this.product = product;
-       this.receipt = receipt;
+    public ReceiptDetail(int idReceipt, int idProduct, int quantity, double unitPrice, String note) {
+       this.idReceipt = idReceipt;
+       this.idProduct = idProduct;
        this.quantity = quantity;
        this.unitPrice = unitPrice;
        this.note = note;
@@ -41,19 +41,19 @@ public class ReceiptDetail  implements java.io.Serializable {
     public void setIdreceiptDetail(Integer idreceiptDetail) {
         this.idreceiptDetail = idreceiptDetail;
     }
-    public Product getProduct() {
-        return this.product;
+    public int getIdReceipt() {
+        return this.idReceipt;
     }
     
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setIdReceipt(int idReceipt) {
+        this.idReceipt = idReceipt;
     }
-    public Receipt getReceipt() {
-        return this.receipt;
+    public int getIdProduct() {
+        return this.idProduct;
     }
     
-    public void setReceipt(Receipt receipt) {
-        this.receipt = receipt;
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
     }
     public int getQuantity() {
         return this.quantity;

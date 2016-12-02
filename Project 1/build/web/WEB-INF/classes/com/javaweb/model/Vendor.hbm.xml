@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 1, 2016 3:28:03 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 2, 2016 10:24:39 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.javaweb.model.Vendor" table="vendor" catalog="db_tintuc_banhang" optimistic-lock="version">
         <id name="idVendor" type="java.lang.Integer">
@@ -18,13 +18,13 @@
             <column name="contact_name" length="45" not-null="true" />
         </property>
         <property name="contactJobtitle" type="string">
-            <column name="contact_jobtitle" length="50" />
+            <column name="contact_jobtitle" length="50" not-null="true" />
         </property>
         <property name="email" type="string">
-            <column name="email" length="100" />
+            <column name="email" length="100" not-null="true" />
         </property>
         <property name="website" type="string">
-            <column name="website" length="50" not-null="true" />
+            <column name="website" length="50" />
         </property>
         <property name="address" type="string">
             <column name="address" length="100" not-null="true" />
@@ -35,11 +35,5 @@
         <property name="note" type="string">
             <column name="note" length="150" />
         </property>
-        <set name="vendorInvoices" table="vendor_invoice" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_vendor" not-null="true" />
-            </key>
-            <one-to-many class="com.javaweb.model.VendorInvoice" />
-        </set>
     </class>
 </hibernate-mapping>

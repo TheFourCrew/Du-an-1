@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
+// Generated Dec 2, 2016 10:24:32 AM by Hibernate Tools 4.3.1
 
 
 
@@ -9,8 +9,8 @@ package com.javaweb.model;
 public class LikeDislike  implements java.io.Serializable {
 
 
-     private Integer idlike;
-     private Article article;
+     private Integer idlikeDislike;
+     private int idArticle;
      private Boolean likeOrDislike;
      private String ip;
      private String mac;
@@ -19,30 +19,31 @@ public class LikeDislike  implements java.io.Serializable {
     }
 
 	
-    public LikeDislike(Article article, String ip) {
-        this.article = article;
+    public LikeDislike(int idArticle, String ip, String mac) {
+        this.idArticle = idArticle;
         this.ip = ip;
+        this.mac = mac;
     }
-    public LikeDislike(Article article, Boolean likeOrDislike, String ip, String mac) {
-       this.article = article;
+    public LikeDislike(int idArticle, Boolean likeOrDislike, String ip, String mac) {
+       this.idArticle = idArticle;
        this.likeOrDislike = likeOrDislike;
        this.ip = ip;
        this.mac = mac;
     }
    
-    public Integer getIdlike() {
-        return this.idlike;
+    public Integer getIdlikeDislike() {
+        return this.idlikeDislike;
     }
     
-    public void setIdlike(Integer idlike) {
-        this.idlike = idlike;
+    public void setIdlikeDislike(Integer idlikeDislike) {
+        this.idlikeDislike = idlikeDislike;
     }
-    public Article getArticle() {
-        return this.article;
+    public int getIdArticle() {
+        return this.idArticle;
     }
     
-    public void setArticle(Article article) {
-        this.article = article;
+    public void setIdArticle(int idArticle) {
+        this.idArticle = idArticle;
     }
     public Boolean getLikeOrDislike() {
         return this.likeOrDislike;

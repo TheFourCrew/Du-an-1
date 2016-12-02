@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 1, 2016 3:28:03 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 2, 2016 10:24:39 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.javaweb.model.Article" table="article" catalog="db_tintuc_banhang" optimistic-lock="version">
         <id name="idarticle" type="java.lang.Integer">
             <column name="idarticle" />
             <generator class="identity" />
         </id>
-        <many-to-one name="user" class="com.javaweb.model.User" fetch="select">
-            <column name="creater" not-null="true" />
-        </many-to-one>
         <property name="titleArticle" type="string">
             <column name="title_article" length="100" not-null="true" />
         </property>
@@ -20,6 +17,9 @@
         <property name="createdDate" type="timestamp">
             <column name="created_date" length="19" not-null="true" />
         </property>
+        <property name="creater" type="int">
+            <column name="creater" not-null="true" />
+        </property>
         <property name="modifiedDate" type="timestamp">
             <column name="modified_date" length="19" />
         </property>
@@ -27,31 +27,13 @@
             <column name="content" length="65535" not-null="true" />
         </property>
         <property name="thumbnail" type="string">
-            <column name="thumbnail" length="45" />
-        </property>
-        <property name="note" type="string">
-            <column name="note" length="150" />
+            <column name="thumbnail" length="45" not-null="true" />
         </property>
         <property name="public_" type="java.lang.Boolean">
             <column name="public" />
         </property>
-        <set name="comments" table="comment" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_article" not-null="true" />
-            </key>
-            <one-to-many class="com.javaweb.model.Comment" />
-        </set>
-        <set name="likeDislikes" table="like_dislike" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_article" not-null="true" />
-            </key>
-            <one-to-many class="com.javaweb.model.LikeDislike" />
-        </set>
-        <set name="articleTagses" table="article_tags" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_article" not-null="true" />
-            </key>
-            <one-to-many class="com.javaweb.model.ArticleTags" />
-        </set>
+        <property name="note" type="string">
+            <column name="note" length="150" />
+        </property>
     </class>
 </hibernate-mapping>

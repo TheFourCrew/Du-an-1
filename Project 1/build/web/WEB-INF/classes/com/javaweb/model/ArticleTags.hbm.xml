@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 1, 2016 3:28:03 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 2, 2016 10:24:39 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.javaweb.model.ArticleTags" table="article_tags" catalog="db_tintuc_banhang" optimistic-lock="version">
         <id name="idarticleTags" type="java.lang.Integer">
             <column name="idarticle_tags" />
             <generator class="identity" />
         </id>
-        <many-to-one name="article" class="com.javaweb.model.Article" fetch="select">
-            <column name="id_article" not-null="true" />
-        </many-to-one>
-        <many-to-one name="tags" class="com.javaweb.model.Tags" fetch="select">
+        <property name="idTag" type="int">
             <column name="id_tag" not-null="true" />
-        </many-to-one>
+        </property>
+        <property name="idArticle" type="int">
+            <column name="id_article" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

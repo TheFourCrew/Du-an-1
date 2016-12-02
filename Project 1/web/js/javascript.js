@@ -7,9 +7,8 @@ var loadFile = function (event, idthem) {
     var output = document.getElementById('output' + idthem + '');
     output.style.width = "300px";
     output.className = "img-thumbnail";
-    if (this.URL) {
-        output.src = URL.createObjectURL(event.target.files[0]);
-    }
+
+    output.src = URL.createObjectURL(event.target.files[0]);
 };
 $(function () {
     function previewImages() {

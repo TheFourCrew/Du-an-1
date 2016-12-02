@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
+// Generated Dec 2, 2016 10:24:32 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -11,8 +11,8 @@ public class Comment  implements java.io.Serializable {
 
 
      private Integer idcomment;
-     private Article article;
      private String nameUser;
+     private int idArticle;
      private Date dateComment;
      private int commentReply;
      private String content;
@@ -23,15 +23,17 @@ public class Comment  implements java.io.Serializable {
     }
 
 	
-    public Comment(Article article, String nameUser, int commentReply, String content) {
-        this.article = article;
+    public Comment(String nameUser, int idArticle, Date dateComment, int commentReply, String content, String ip) {
         this.nameUser = nameUser;
+        this.idArticle = idArticle;
+        this.dateComment = dateComment;
         this.commentReply = commentReply;
         this.content = content;
+        this.ip = ip;
     }
-    public Comment(Article article, String nameUser, Date dateComment, int commentReply, String content, String ip, String note) {
-       this.article = article;
+    public Comment(String nameUser, int idArticle, Date dateComment, int commentReply, String content, String ip, String note) {
        this.nameUser = nameUser;
+       this.idArticle = idArticle;
        this.dateComment = dateComment;
        this.commentReply = commentReply;
        this.content = content;
@@ -46,19 +48,19 @@ public class Comment  implements java.io.Serializable {
     public void setIdcomment(Integer idcomment) {
         this.idcomment = idcomment;
     }
-    public Article getArticle() {
-        return this.article;
-    }
-    
-    public void setArticle(Article article) {
-        this.article = article;
-    }
     public String getNameUser() {
         return this.nameUser;
     }
     
     public void setNameUser(String nameUser) {
         this.nameUser = nameUser;
+    }
+    public int getIdArticle() {
+        return this.idArticle;
+    }
+    
+    public void setIdArticle(int idArticle) {
+        this.idArticle = idArticle;
     }
     public Date getDateComment() {
         return this.dateComment;

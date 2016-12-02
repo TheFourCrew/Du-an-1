@@ -4,6 +4,9 @@
     Author     : MinhNguyen
 --%>
 
+<%@page import="com.javaweb.service.ProductCategoryServices"%>
+<%@page import="com.javaweb.model.ProductCategory"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -74,6 +77,17 @@
                         <div class="col-sm-3 col-md-7">
                             <select name="loaiSP" class="form-control">
                                 <option value="">Chọn...</option>
+                                <%                                    
+                                    ArrayList<ProductCategory> aPC = null;
+                                    ProductCategoryServices pcs = new ProductCategoryServices();
+                                    aPC = pcs.getAll();
+                                    for (int i = 0; i < aPC.size(); i++) {
+                                %>
+                                <option value="<%=aPC.get(i).getIdproductCategory()%>"><%=aPC.get(i).getCategoryName()%></option>
+                                <%
+  
+                                    }
+                                %>
                             </select>
                         </div>
                     </div>

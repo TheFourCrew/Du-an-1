@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 1, 2016 3:28:03 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 2, 2016 10:24:39 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.javaweb.model.LikeDislike" table="like_dislike" catalog="db_tintuc_banhang" optimistic-lock="version">
-        <id name="idlike" type="java.lang.Integer">
-            <column name="idlike" />
+        <id name="idlikeDislike" type="java.lang.Integer">
+            <column name="idlike_dislike" />
             <generator class="identity" />
         </id>
-        <many-to-one name="article" class="com.javaweb.model.Article" fetch="select">
+        <property name="idArticle" type="int">
             <column name="id_article" not-null="true" />
-        </many-to-one>
+        </property>
         <property name="likeOrDislike" type="java.lang.Boolean">
             <column name="like_or_dislike" />
         </property>
@@ -18,7 +18,7 @@
             <column name="ip" length="45" not-null="true" />
         </property>
         <property name="mac" type="string">
-            <column name="mac" length="45" />
+            <column name="mac" length="45" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

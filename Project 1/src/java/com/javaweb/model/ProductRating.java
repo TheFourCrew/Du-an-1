@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
+// Generated Dec 2, 2016 10:24:32 AM by Hibernate Tools 4.3.1
 
 
 
@@ -10,15 +10,15 @@ public class ProductRating  implements java.io.Serializable {
 
 
      private Integer idproductRating;
-     private Product product;
-     private Rating rating;
+     private int idProduct;
+     private int idRating;
 
     public ProductRating() {
     }
 
-    public ProductRating(Product product, Rating rating) {
-       this.product = product;
-       this.rating = rating;
+    public ProductRating(int idProduct, int idRating) {
+       this.idProduct = idProduct;
+       this.idRating = idRating;
     }
    
     public Integer getIdproductRating() {
@@ -28,19 +28,19 @@ public class ProductRating  implements java.io.Serializable {
     public void setIdproductRating(Integer idproductRating) {
         this.idproductRating = idproductRating;
     }
-    public Product getProduct() {
-        return this.product;
+    public int getIdProduct() {
+        return this.idProduct;
     }
     
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
     }
-    public Rating getRating() {
-        return this.rating;
+    public int getIdRating() {
+        return this.idRating;
     }
     
-    public void setRating(Rating rating) {
-        this.rating = rating;
+    public void setIdRating(int idRating) {
+        this.idRating = idRating;
     }
 
 

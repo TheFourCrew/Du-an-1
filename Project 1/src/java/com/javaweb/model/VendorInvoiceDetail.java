@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
+// Generated Dec 2, 2016 10:24:32 AM by Hibernate Tools 4.3.1
 
 
 
@@ -10,8 +10,8 @@ public class VendorInvoiceDetail  implements java.io.Serializable {
 
 
      private Integer idvendorInvoiceDetail;
-     private Product product;
-     private VendorInvoice vendorInvoice;
+     private int idProduct;
+     private int idVendorInvoice;
      private int quanity;
      private double unitPrice;
      private String note;
@@ -20,15 +20,15 @@ public class VendorInvoiceDetail  implements java.io.Serializable {
     }
 
 	
-    public VendorInvoiceDetail(Product product, VendorInvoice vendorInvoice, int quanity, double unitPrice) {
-        this.product = product;
-        this.vendorInvoice = vendorInvoice;
+    public VendorInvoiceDetail(int idProduct, int idVendorInvoice, int quanity, double unitPrice) {
+        this.idProduct = idProduct;
+        this.idVendorInvoice = idVendorInvoice;
         this.quanity = quanity;
         this.unitPrice = unitPrice;
     }
-    public VendorInvoiceDetail(Product product, VendorInvoice vendorInvoice, int quanity, double unitPrice, String note) {
-       this.product = product;
-       this.vendorInvoice = vendorInvoice;
+    public VendorInvoiceDetail(int idProduct, int idVendorInvoice, int quanity, double unitPrice, String note) {
+       this.idProduct = idProduct;
+       this.idVendorInvoice = idVendorInvoice;
        this.quanity = quanity;
        this.unitPrice = unitPrice;
        this.note = note;
@@ -41,19 +41,19 @@ public class VendorInvoiceDetail  implements java.io.Serializable {
     public void setIdvendorInvoiceDetail(Integer idvendorInvoiceDetail) {
         this.idvendorInvoiceDetail = idvendorInvoiceDetail;
     }
-    public Product getProduct() {
-        return this.product;
+    public int getIdProduct() {
+        return this.idProduct;
     }
     
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
     }
-    public VendorInvoice getVendorInvoice() {
-        return this.vendorInvoice;
+    public int getIdVendorInvoice() {
+        return this.idVendorInvoice;
     }
     
-    public void setVendorInvoice(VendorInvoice vendorInvoice) {
-        this.vendorInvoice = vendorInvoice;
+    public void setIdVendorInvoice(int idVendorInvoice) {
+        this.idVendorInvoice = idVendorInvoice;
     }
     public int getQuanity() {
         return this.quanity;

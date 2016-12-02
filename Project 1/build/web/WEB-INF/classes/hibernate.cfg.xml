@@ -7,26 +7,26 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_tintuc_banhang?characterEncoding=UTF-8</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">123456</property>
-    <mapping resource="com/javaweb/model/ProductTags.hbm.xml"/>
-    <mapping resource="com/javaweb/model/Product.hbm.xml"/>
+    <mapping resource="com/javaweb/model/ArticleTags.hbm.xml"/>
+    <mapping resource="com/javaweb/model/ReceiptDetail.hbm.xml"/>
     <mapping resource="com/javaweb/model/VendorInvoice.hbm.xml"/>
-    <mapping resource="com/javaweb/model/LikeDislike.hbm.xml"/>
-    <mapping resource="com/javaweb/model/Receipt.hbm.xml"/>
     <mapping resource="com/javaweb/model/VendorInvoiceDetail.hbm.xml"/>
     <mapping resource="com/javaweb/model/RoleUser.hbm.xml"/>
+    <mapping resource="com/javaweb/model/Comment.hbm.xml"/>
+    <mapping resource="com/javaweb/model/ProductTags.hbm.xml"/>
+    <mapping resource="com/javaweb/model/LikeDislike.hbm.xml"/>
+    <mapping resource="com/javaweb/model/ProductCategory.hbm.xml"/>
+    <mapping resource="com/javaweb/model/ProductDetailImages.hbm.xml"/>
+    <mapping resource="com/javaweb/model/Tags.hbm.xml"/>
+    <mapping resource="com/javaweb/model/ProductParameters.hbm.xml"/>
+    <mapping resource="com/javaweb/model/Product.hbm.xml"/>
+    <mapping resource="com/javaweb/model/Receipt.hbm.xml"/>
+    <mapping resource="com/javaweb/model/Promotion.hbm.xml"/>
     <mapping resource="com/javaweb/model/Vendor.hbm.xml"/>
     <mapping resource="com/javaweb/model/Rating.hbm.xml"/>
-    <mapping resource="com/javaweb/model/User.hbm.xml"/>
-    <mapping resource="com/javaweb/model/Promotion.hbm.xml"/>
-    <mapping resource="com/javaweb/model/DetailImages.hbm.xml"/>
-    <mapping resource="com/javaweb/model/Comment.hbm.xml"/>
-    <mapping resource="com/javaweb/model/ReceiptDetail.hbm.xml"/>
-    <mapping resource="com/javaweb/model/ProductCategory.hbm.xml"/>
-    <mapping resource="com/javaweb/model/ArticleTags.hbm.xml"/>
-    <mapping resource="com/javaweb/model/ProductParameters.hbm.xml"/>
-    <mapping resource="com/javaweb/model/ProductDetailImages.hbm.xml"/>
-    <mapping resource="com/javaweb/model/ProductRating.hbm.xml"/>
     <mapping resource="com/javaweb/model/Article.hbm.xml"/>
-    <mapping resource="com/javaweb/model/Tags.hbm.xml"/>
+    <mapping resource="com/javaweb/model/DetailImages.hbm.xml"/>
+    <mapping resource="com/javaweb/model/User.hbm.xml"/>
+    <mapping resource="com/javaweb/model/ProductRating.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

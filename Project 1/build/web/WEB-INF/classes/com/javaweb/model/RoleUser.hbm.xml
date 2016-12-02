@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 1, 2016 3:28:03 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 2, 2016 10:24:39 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.javaweb.model.RoleUser" table="role_user" catalog="db_tintuc_banhang" optimistic-lock="version">
         <id name="idroleUser" type="java.lang.Integer">
@@ -14,11 +14,5 @@
         <property name="note" type="string">
             <column name="note" length="150" />
         </property>
-        <set name="users" table="user" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="idrole_user" not-null="true" />
-            </key>
-            <one-to-many class="com.javaweb.model.User" />
-        </set>
     </class>
 </hibernate-mapping>

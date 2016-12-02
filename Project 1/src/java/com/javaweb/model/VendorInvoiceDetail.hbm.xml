@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 1, 2016 3:28:03 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 2, 2016 10:24:39 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.javaweb.model.VendorInvoiceDetail" table="vendor_invoice_detail" catalog="db_tintuc_banhang" optimistic-lock="version">
         <id name="idvendorInvoiceDetail" type="java.lang.Integer">
             <column name="idvendor_invoice_detail" />
             <generator class="identity" />
         </id>
-        <many-to-one name="product" class="com.javaweb.model.Product" fetch="select">
+        <property name="idProduct" type="int">
             <column name="id_product" not-null="true" />
-        </many-to-one>
-        <many-to-one name="vendorInvoice" class="com.javaweb.model.VendorInvoice" fetch="select">
+        </property>
+        <property name="idVendorInvoice" type="int">
             <column name="id_vendor_invoice" not-null="true" />
-        </many-to-one>
+        </property>
         <property name="quanity" type="int">
             <column name="quanity" not-null="true" />
         </property>

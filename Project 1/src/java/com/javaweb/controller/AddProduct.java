@@ -1,6 +1,7 @@
 package com.javaweb.controller;
 
 import com.javaweb.model.Product;
+import com.javaweb.model.ProductCategory;
 import com.javaweb.service.ProductServices;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,8 +41,8 @@ public class AddProduct extends HttpServlet {
         if (isMultiPart) {
             ServletFileUpload upload = new ServletFileUpload();
             try {
-                String tenSP = "", gia = "", soLuong = "", ghiChu = "", hinh = "Unknown.jpg";
-                int loaiSP = 0;
+                String tenSP = "", gia = "",  ghiChu = "", thumbnail = "Unknown.jpg", moTa = "", donVi = "";
+                int loaiSP = 0, soLuong = 0;
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Date date = new Date();
                 FileItemStream item = null;
@@ -55,13 +56,13 @@ public class AddProduct extends HttpServlet {
                         byte[] b = new byte[is.available()];
                         is.read(b);
                         String value = new String(b);
-                        
+
                         if (fieldName.equals("nP-price")) {
                             gia = value;
                         } else if (fieldName.equals("nP-name")) {
                             tenSP = value;
                         } else if (fieldName.equals("nP-quantity")) {
-                            soLuong = value;
+                            soLuong = Integer.parseInt(value);
                         } else if (fieldName.equals("nP-note")) {
                             ghiChu = value;
                         } else if (fieldName.equals("nP-category")) {
@@ -71,24 +72,28 @@ public class AddProduct extends HttpServlet {
                     } else {
                         //do file upload specific process
                         response.getWriter().println("<h2>" + item.getFieldName() + " " + item.getName() + "</h2>");
-//                        String path = getServletContext().getRealPath("/");
+                        String path = getServletContext().getRealPath("/");
                         //call a method to upload file.
-//                        if (!item.getName().equals("")) {
-                        hinh = item.getName();
-//                            ProductServices.processFile(path, item);
+                        if (!item.getName().equals("")) {
+                            thumbnail = item.getName();
+                            ProductServices.processFile(path, item);
 //                            request.setAttribute("hinhne", item.getName() + " item.getName()");
-
-                        sdf.format(date.getDate());
-//                        } else {
-//                        }
-//                        Product product = new Product(tenSP, Float.parseFloat(gia), Integer.parseInt(soLuong), hinh, ghiChu, loaiSP, date, 0);
-//                        ProductServices productServices = new ProductServices();
+                            sdf.format(date.getDate());
+                        } else {
+                            
+                        }
+                        
+                        ProductCategory loaiSp = null;
+//                        loaiSp = (ProductCategory) loaiSP;
+                        
+//                        Product product = new Product(loaiSP, 0, 1, "BK-01", tenSP, gia, 0, soLuong, donVi, moTa, thumbnail);
+                        ProductServices productServices = new ProductServices();
 //                        productServices.InsertOrUpdateProduct(product);
-//                        String url = "/managementproduct.jsp";
-//                        getServletContext().getRequestDispatcher(url).forward(request, response);
+                        String url = "/managementproduct.jsp";
+                        getServletContext().getRequestDispatcher(url).forward(request, response);
                     }
                 }
-                
+
             } catch (FileUploadException fue) {
                 System.out.println(fue.toString());
             }

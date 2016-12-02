@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
+// Generated Dec 2, 2016 10:24:32 AM by Hibernate Tools 4.3.1
 
 
 
@@ -10,25 +10,20 @@ public class ProductParameters  implements java.io.Serializable {
 
 
      private Integer idproductParameters;
-     private Product product;
+     private int idProduct;
      private String model;
      private String cpu;
      private String ram;
      private String screenResolution;
-     private Double screenSize;
-     private Double weight;
+     private double screenSize;
+     private double weight;
      private String operatingSystem;
 
     public ProductParameters() {
     }
 
-	
-    public ProductParameters(Product product, String model) {
-        this.product = product;
-        this.model = model;
-    }
-    public ProductParameters(Product product, String model, String cpu, String ram, String screenResolution, Double screenSize, Double weight, String operatingSystem) {
-       this.product = product;
+    public ProductParameters(int idProduct, String model, String cpu, String ram, String screenResolution, double screenSize, double weight, String operatingSystem) {
+       this.idProduct = idProduct;
        this.model = model;
        this.cpu = cpu;
        this.ram = ram;
@@ -45,12 +40,12 @@ public class ProductParameters  implements java.io.Serializable {
     public void setIdproductParameters(Integer idproductParameters) {
         this.idproductParameters = idproductParameters;
     }
-    public Product getProduct() {
-        return this.product;
+    public int getIdProduct() {
+        return this.idProduct;
     }
     
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
     }
     public String getModel() {
         return this.model;
@@ -80,18 +75,18 @@ public class ProductParameters  implements java.io.Serializable {
     public void setScreenResolution(String screenResolution) {
         this.screenResolution = screenResolution;
     }
-    public Double getScreenSize() {
+    public double getScreenSize() {
         return this.screenSize;
     }
     
-    public void setScreenSize(Double screenSize) {
+    public void setScreenSize(double screenSize) {
         this.screenSize = screenSize;
     }
-    public Double getWeight() {
+    public double getWeight() {
         return this.weight;
     }
     
-    public void setWeight(Double weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
     public String getOperatingSystem() {

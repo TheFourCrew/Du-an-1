@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
+// Generated Dec 2, 2016 10:24:32 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -11,7 +11,6 @@ public class Promotion  implements java.io.Serializable {
 
 
      private Integer idpromotion;
-     private Product product;
      private String description;
      private double promotionValue;
      private Date startDate;
@@ -20,15 +19,7 @@ public class Promotion  implements java.io.Serializable {
     public Promotion() {
     }
 
-	
-    public Promotion(Product product, String description, double promotionValue, Date endDate) {
-        this.product = product;
-        this.description = description;
-        this.promotionValue = promotionValue;
-        this.endDate = endDate;
-    }
-    public Promotion(Product product, String description, double promotionValue, Date startDate, Date endDate) {
-       this.product = product;
+    public Promotion(String description, double promotionValue, Date startDate, Date endDate) {
        this.description = description;
        this.promotionValue = promotionValue;
        this.startDate = startDate;
@@ -41,13 +32,6 @@ public class Promotion  implements java.io.Serializable {
     
     public void setIdpromotion(Integer idpromotion) {
         this.idpromotion = idpromotion;
-    }
-    public Product getProduct() {
-        return this.product;
-    }
-    
-    public void setProduct(Product product) {
-        this.product = product;
     }
     public String getDescription() {
         return this.description;

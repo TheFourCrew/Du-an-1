@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 1, 2016 3:28:02 PM by Hibernate Tools 4.3.1
+// Generated Dec 2, 2016 10:24:32 AM by Hibernate Tools 4.3.1
 
 
 
@@ -10,15 +10,15 @@ public class ArticleTags  implements java.io.Serializable {
 
 
      private Integer idarticleTags;
-     private Article article;
-     private Tags tags;
+     private int idTag;
+     private int idArticle;
 
     public ArticleTags() {
     }
 
-    public ArticleTags(Article article, Tags tags) {
-       this.article = article;
-       this.tags = tags;
+    public ArticleTags(int idTag, int idArticle) {
+       this.idTag = idTag;
+       this.idArticle = idArticle;
     }
    
     public Integer getIdarticleTags() {
@@ -28,19 +28,19 @@ public class ArticleTags  implements java.io.Serializable {
     public void setIdarticleTags(Integer idarticleTags) {
         this.idarticleTags = idarticleTags;
     }
-    public Article getArticle() {
-        return this.article;
+    public int getIdTag() {
+        return this.idTag;
     }
     
-    public void setArticle(Article article) {
-        this.article = article;
+    public void setIdTag(int idTag) {
+        this.idTag = idTag;
     }
-    public Tags getTags() {
-        return this.tags;
+    public int getIdArticle() {
+        return this.idArticle;
     }
     
-    public void setTags(Tags tags) {
-        this.tags = tags;
+    public void setIdArticle(int idArticle) {
+        this.idArticle = idArticle;
     }
 
 

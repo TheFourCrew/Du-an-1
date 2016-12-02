@@ -17,6 +17,7 @@ import org.hibernate.Transaction;
  * @author Admin
  */
 public class UserService {
+    
     public boolean CheckLogin(String giaTri,String password){
         User user=GetUserByEmailOrUserName(giaTri);
         if(user!=null){
