@@ -51,6 +51,13 @@
         <servlet-name>AddProduct</servlet-name>
         <url-pattern>/AddProduct</url-pattern>
     </servlet-mapping>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>
+            uploads\
+        </param-value>
+    </context-param>
     <session-config>
         <session-timeout>
             30

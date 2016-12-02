@@ -2,25 +2,25 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="db_tintuc_banhang"/>
+  <table-filter match-name="user"/>
+  <table-filter match-name="tags"/>
+  <table-filter match-name="product_tags"/>
+  <table-filter match-name="promotion"/>
   <table-filter match-name="article"/>
-  <table-filter match-name="detail_images"/>
+  <table-filter match-name="vendor_invoice_detail"/>
+  <table-filter match-name="product_detail_images"/>
+  <table-filter match-name="receipt_detail"/>
   <table-filter match-name="product_category"/>
+  <table-filter match-name="vendor"/>
+  <table-filter match-name="product_parameters"/>
   <table-filter match-name="receipt"/>
   <table-filter match-name="comment"/>
-  <table-filter match-name="role_user"/>
-  <table-filter match-name="product_detail_images"/>
-  <table-filter match-name="like_dislike"/>
-  <table-filter match-name="product_rating"/>
-  <table-filter match-name="vendor_invoice_detail"/>
-  <table-filter match-name="vendor_invoice"/>
-  <table-filter match-name="tags"/>
-  <table-filter match-name="vendor"/>
-  <table-filter match-name="promotion"/>
   <table-filter match-name="product"/>
-  <table-filter match-name="product_tags"/>
-  <table-filter match-name="user"/>
-  <table-filter match-name="receipt_detail"/>
-  <table-filter match-name="article_tags"/>
   <table-filter match-name="rating"/>
-  <table-filter match-name="product_parameters"/>
+  <table-filter match-name="product_rating"/>
+  <table-filter match-name="role_user"/>
+  <table-filter match-name="detail_images"/>
+  <table-filter match-name="vendor_invoice"/>
+  <table-filter match-name="like_dislike"/>
+  <table-filter match-name="article_tags"/>
 </hibernate-reverse-engineering>
