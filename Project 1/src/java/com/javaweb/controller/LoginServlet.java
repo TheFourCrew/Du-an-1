@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("email", email);
             User user=userservice.GetUserByEmailOrUserName(email);
             session.setAttribute("iduser", user.getIduser());
-            session.setAttribute("idrole_user", user.getRoleUser());
+            session.setAttribute("idrole_user", user.getIdroleUser());
             session.setAttribute("fullname", user.getFullname());
             String url = "/index.jsp";
             getServletContext().getRequestDispatcher(url).forward(request, response);
