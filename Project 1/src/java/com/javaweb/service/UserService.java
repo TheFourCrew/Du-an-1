@@ -6,6 +6,7 @@
 package com.javaweb.service;
 
 import com.javaweb.hibernate.util.HibernateUtil;
+import com.javaweb.model.RoleUser;
 import com.javaweb.model.User;
 import java.util.ArrayList;
 import org.hibernate.Query;
@@ -114,5 +115,25 @@ public class UserService {
             session.close();
         }
         return listUsers;
+    }
+     public ArrayList<RoleUser>GetAllRole(){
+        Session session =HibernateUtil.getSessionFactory().openSession();
+        Transaction tx=null;
+        ArrayList<RoleUser>listRole=new ArrayList<RoleUser>();
+        try {
+            tx=session.getTransaction();
+            tx.begin();
+            Query query=session.createQuery("from RoleUser");
+            listRole=(ArrayList) query.list();
+            tx.commit();
+        } catch (Exception e) {
+            if(tx!=null){
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        }finally{
+            session.close();
+        }
+        return listRole;
     }
 }

@@ -22,7 +22,11 @@
         <%@include file="includes/header.jsp" %>
         <section class="container">
             <div class="col-md-9">
+<<<<<<< HEAD
                 <form class="form-horizontal" action="AddProduct" method="post" enctype="multipart/form-data" id="addproduct">
+=======
+                <form class="form-horizontal" action="AddProduct" method="post" enctype="multipart/form-data">
+>>>>>>> origin/master
                     <div class="form-group">
                         <label class="control-label col-sm-2 col-md-3" for="prod-name">Tên sản phẩm<em>*</em>:</label>
                         <div class="col-md-7">
@@ -30,18 +34,30 @@
                         </div>
                     </div>
 
+<<<<<<< HEAD
 <!--                    <div class="form-group">
+=======
+                    <div class="form-group">
+>>>>>>> origin/master
                         <label class="control-label col-sm-2 col-md-3" for="prod-number">Mã số sản phẩm<em>*</em>:</label>
                         <div class="col-sm-3 col-md-9">
                             <input type="text" name="prod-number" placeholder="Nhập mã sản phẩm" class="form-control" id="prod-number">
                         </div>
+<<<<<<< HEAD
                     </div>-->
+=======
+                    </div>
+>>>>>>> origin/master
 
                     <div class="form-group ">
                         <label class="control-label col-sm-2 col-md-3" for="prod-describe">Mô tả thông tin<em>*</em>:</label>
                         <div class="col-sm-3 col-md-9">
                             <textarea rows="4" id="prod-describe" cols="20" class="form-control ckeditor" placeholder="Nhập" name="prod-describe"></textarea>
                         </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
                         <!--<script src="//cdn.ckeditor.com/4.6.0/ull/ckeditor.js"></script>-->
                         <script type="text/javascript">
                             config = {};

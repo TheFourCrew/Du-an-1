@@ -35,6 +35,7 @@ $(function () {
     }
     $('#prod-images').on("change", previewImages);
 });
+<<<<<<< HEAD
 
 ///Hàm kiểm tra đăng nhập
 
@@ -77,3 +78,5 @@ $(window).ready(function () {
         }
     });
 });
+=======
+>>>>>>> origin/master
