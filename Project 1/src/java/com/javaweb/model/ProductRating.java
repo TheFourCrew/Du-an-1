@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 2, 2016 10:24:32 AM by Hibernate Tools 4.3.1
+// Generated Dec 2, 2016 1:44:12 PM by Hibernate Tools 4.3.1
 
 
 

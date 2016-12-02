@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 2, 2016 10:24:32 AM by Hibernate Tools 4.3.1
+// Generated Dec 2, 2016 1:44:12 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -17,7 +17,7 @@ public class Product  implements java.io.Serializable {
      private double boughtPrice;
      private int productQuantity;
      private String unit;
-     private String describe;
+     private String description;
      private int idproductCategory;
      private Date createdDate;
      private int creater;
@@ -37,7 +37,7 @@ public class Product  implements java.io.Serializable {
         this.boughtPrice = boughtPrice;
         this.productQuantity = productQuantity;
         this.unit = unit;
-        this.describe = describe;
+        this.description = describe;
         this.idproductCategory = idproductCategory;
         this.creater = creater;
         this.productImage = productImage;
@@ -50,7 +50,7 @@ public class Product  implements java.io.Serializable {
        this.boughtPrice = boughtPrice;
        this.productQuantity = productQuantity;
        this.unit = unit;
-       this.describe = describe;
+       this.description = describe;
        this.idproductCategory = idproductCategory;
        this.createdDate = createdDate;
        this.creater = creater;
@@ -109,12 +109,12 @@ public class Product  implements java.io.Serializable {
     public void setUnit(String unit) {
         this.unit = unit;
     }
-    public String getDescribe() {
-        return this.describe;
+    public String getDescription() {
+        return this.description;
     }
     
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setDescription(String description) {
+        this.description = description;
     }
     public int getIdproductCategory() {
         return this.idproductCategory;
