@@ -29,11 +29,13 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  * @author Admin
  */
 public class EditUserServlet extends HttpServlet {
+
     private boolean isMultipart;
     private String filePath;
     private int maxFileSize = 1000 * 1024;
     private int maxMemSize = 1000 * 1024;
     private File file;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -47,13 +49,13 @@ public class EditUserServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        String username = "",id="", fullname = "", email = "", password = "", repassword = "", note = "", gender = "", date = "", fileName = "";
+        String username = "", id = "", fullname = "", email = "", password = "", repassword = "", note = "", gender = "", idrole = "", phone = "", address = "", fileName = "";
         Date datez = new Date();
-        int gt = 0;
+        boolean gt = false;
         HttpSession session = request.getSession();
-        
-        UserService ad=new UserService();
-        
+
+        UserService ad = new UserService();
+
         String folderupload = getServletContext().getInitParameter("file-upload");
         String rootPath = getServletContext().getRealPath("/");
         filePath = rootPath + folderupload;
@@ -109,24 +111,30 @@ public class EditUserServlet extends HttpServlet {
                         password = fi.getString("UTF-8");
                     } else if (fi.getFieldName().equalsIgnoreCase("repassword")) {
                         repassword = fi.getString("UTF-8");
+                    } else if (fi.getFieldName().equalsIgnoreCase("idrole")) {
+                        idrole = fi.getString("UTF-8");
+                    } else if (fi.getFieldName().equalsIgnoreCase("dienthoai")) {
+                        phone = fi.getString("UTF-8");
+                    } else if (fi.getFieldName().equalsIgnoreCase("address")) {
+                        address = fi.getString("UTF-8");
                     } else if (fi.getFieldName().equalsIgnoreCase("note")) {
                         note = fi.getString("UTF-8");
                     } else if (fi.getFieldName().equalsIgnoreCase("gioitinh")) {
-                        String gtt=fi.getString("UTF-8");
+                        String gtt = fi.getString("UTF-8");
                         if (gtt.equals("Nam")) {
-                            gt = 1;
+                            gt = true;
 
                         }
                     } else if (fi.getFieldName().equalsIgnoreCase("birthday")) {
                         String dtt = fi.getString("UTF-8");
-                        
+
                         SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
-                        
+
                         try {
                             datez = dt.parse(dtt);
                         } catch (Exception e) {
                         }
-                    }else if (fi.getFieldName().equalsIgnoreCase("iduser")) {
+                    } else if (fi.getFieldName().equalsIgnoreCase("iduser")) {
                         id = fi.getString("UTF-8");
                     }
                 }
@@ -137,33 +145,33 @@ public class EditUserServlet extends HttpServlet {
             System.out.println(ex);
         }
 //        Date birthday = new Date(request.getParameter("birthday"));
-        
-        
-        User user= ad.getUserByID(id);
+
+        User user = ad.getUserByID(id);
         user.setUsername(username);
         user.setFullname(fullname);
         user.setEmail(email);
-        user.setIdaccess(2);
-        user.setBirtday(datez);
+        user.setIdroleUser(2);
+        user.setBirthday(datez);
         user.setGender(gt);
-        
+        user.setPassword(password);
+        user.setUserPhone(phone);
+        user.setAddress(address);
         user.setNote(note);
-        
-        if(!fileName.equals("")){
-            if(user.getAvatar()!=null){
-                if(!user.getAvatar().equals(fileName)){
-                    user.setAvatar(fileName);
+
+        if (!fileName.equals("")) {
+            if (user.getImage() != null) {
+                if (!user.getImage().equals(fileName)) {
+                    user.setImage(fileName);
                 }
-            }else{
-                user.setAvatar(fileName);
+            } else {
+                user.setImage(fileName);
             }
         }
-        boolean rs=ad.InserUser(user);
-        if(rs){
+        boolean rs = ad.InserUser(user);
+        if (rs) {
             response.sendRedirect("UserManager.jsp");
         }
-        
-        
+
 //        try (PrintWriter out = response.getWriter()) {
 //            /* TODO output your page here. You may use following sample code. */
 //            out.println("<!DOCTYPE html>");
