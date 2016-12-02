@@ -38,13 +38,13 @@
                                 <tr>
                                     <th>TT</th>                        
                                     <th>Username</th>                        
-                                    <th>IDrole_user</th>                        
+                                                           
                                     <th>Fullname</th>                        
-                                    <th>Gender</th>                       
-                                    <th>User_Phone</th>                       
+                                                          
+                                                          
                                     <th>Address</th>
-                                    <th>Email</th> 
-                                    <th>Birthday</th>
+                                   
+                                    
                                     <th>Image</th>
                                     <th>Status</th>
                                     <th>Note</th>
@@ -53,21 +53,21 @@
                             </thead>
                             <tbody>
                                 <%                                    for (int i = 0; i < listUsers.size(); i++) {
-                                        User user = listUsers.get(i);
+                                       User user = listUsers.get(i);
                                 %>
                                 <tr>
                                     <td><%=i + 1%></td>                        
                                     <td><%=user.getUsername()%></td>   
-                                    <td><%=user.getRoleUser()%></td>
+                                    
                                     <td><%=user.getFullname()%></td>
-                                    <td><%=user.getGender()%></td>
-                                    <td><%=user.getUserPhone()%></td>
+                                    
+                                    
                                     <td><%=user.getAddress()%></td>
-                                    <td><%=user.getEmail()%></td>                        
-                                    <td><%=user.getBirthday()%></td>
+                                                          
+                                    
                                     <td><img src="uploads/<%=user.getImage()%>" alt="<%=user.getImage()%>"width="50px"height="50px"/></td> 
                                     <td><%=user.getStatus()%></td>                       
-                                    <td><%=user.getGender()%>=</td>
+                                    
                                     
                                     
                                     <td><%=user.getNote()%>=</td>
