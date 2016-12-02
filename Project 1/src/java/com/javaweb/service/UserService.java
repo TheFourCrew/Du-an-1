@@ -136,4 +136,23 @@ public class UserService {
         }
         return listRole;
     }
+     public boolean DeleteUser(User user){
+        Session session =HibernateUtil.getSessionFactory().openSession();
+        Transaction tx=null;
+        try {
+            tx=session.getTransaction();
+            tx.begin();
+            session.delete(user);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            if(tx!=null){
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        }finally{
+        session.close();
+    }
+        return false;
+}
 }
