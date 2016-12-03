@@ -36,6 +36,8 @@ public class AddProduct extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
+        ProductServices productServices = new ProductServices();
+
 //        String urlError = "/managementproduct.jsp";
         boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
         if (isMultiPart) {
@@ -84,16 +86,16 @@ public class AddProduct extends HttpServlet {
                             thumbnail = item.getName();
                             ProductServices.processFile(path, item);
 //                            request.setAttribute("hinhne", item.getName() + " item.getName()");
-                            sdf.format(date.getDate());
+//                            sdf.format(date.getDate());
                         } else {
 
                         }
                         Product product = new Product(maSP, tenSP, gia, 1, soLuong, donVi, moTa, loaiSP, date, 1, date, thumbnail, 1, ghiChu);
-
-                        ProductServices productServices = new ProductServices();
                         productServices.InsertOrUpdateProduct(product);
-                        String url = "/addproduct.jsp";
-                        getServletContext().getRequestDispatcher(url).forward(request, response);
+//                        String url = "/managerproduct.jsp";
+//                        getServletContext().getRequestDispatcher(url).forward(request, response);
+                        response.sendRedirect("addproduct.jsp");
+                        return;
                     }
                 }
 

@@ -34,4 +34,26 @@ public class ProductCategoryServices {
         }
         return aPC;
     }
+
+    public ProductCategory getbyid(String id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ProductCategory aPC = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            String strQuery = "from ProductCategory where idproduct_category = " + id;
+            Query query = session.createQuery(strQuery);
+            aPC = (ProductCategory) query.uniqueResult();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return aPC;
+    }
 }

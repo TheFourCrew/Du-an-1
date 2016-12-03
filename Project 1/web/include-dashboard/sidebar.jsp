@@ -15,7 +15,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.jsp">SB Admin v2.0</a>
+            <a class="navbar-brand" href="index.jsp">SB Admin v2.0</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -244,7 +244,7 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="dashboard.jsp"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -259,7 +259,15 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="managerproduct.jsp"><i class="fa fa-laptop fa-fw"></i> Quản lý sản phẩm</a>
+                        <a href="managerproduct.jsp"><i class="fa fa-laptop fa-fw"></i> Quản lý sản phẩm<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="managerproduct.jsp">Danh sách sản phẩm</a>
+                            </li>
+                            <li>
+                                <a href="addproduct.jsp">Thêm sản phẩm</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>

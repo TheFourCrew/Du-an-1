@@ -4,6 +4,8 @@
     Author     : MinhNguyen
 --%>
 
+<%@page import="com.javaweb.model.ProductCategory"%>
+<%@page import="com.javaweb.service.ProductCategoryServices"%>
 <%@page import="com.javaweb.model.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.javaweb.service.ProductServices"%>
@@ -56,6 +58,9 @@
                                         ProductServices ps = new ProductServices();
                                         ArrayList<Product> listProduct = null;
                                         listProduct = ps.getAll();
+
+                                        ProductCategoryServices pcs = new ProductCategoryServices();
+                                        ProductCategory pc = null;
                                     %>
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
@@ -73,14 +78,16 @@
                                             <%
                                                 for (int i = 0; i < listProduct.size(); i++) {
                                                     Product product = listProduct.get(i);
+                                                    String id = String.valueOf(product.getIdproductCategory());
+                                                    pc = pcs.getbyid(id);
                                             %>
                                             <tr>
                                                 <th><input type="checkbox" name="id-product" value="ON" /></th>
-                                                <td><%= i+1%></td>
-                                                <td><%=product.getProductName() %></td>
-                                                <td><%=product.getIdproductCategory()%></td>
+                                                <td><%= i + 1%></td>
+                                                <td><%=product.getProductName()%></td>
+                                                <td><%= pc.getCategoryName() %></td>
                                                 <td><%=product.getCreatedDate()%></td>
-                                                <td><img class="img-thumbnail" src="../uploads/<%=product.getProductImage() %>" alt="<%=product.getProductName() %>"/></td>
+                                                <td><img class="img-thumbnail" src="uploads/<%=product.getProductImage()%>" alt="<%=product.getProductName()%>" width="80px"/></td>
                                                 <td>
                                                     <a href="editproduct" class="">
                                                         <input class="btn btn-info" type="submit" value="Sửa" />
@@ -91,7 +98,7 @@
                                                 </td>
                                             </tr>
                                             <%
-                                            }
+                                                }
                                             %>
                                         </tbody>
                                     </table>

@@ -5,7 +5,9 @@ import com.javaweb.model.Product;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import org.apache.commons.fileupload.FileItemStream;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -33,11 +35,11 @@ public class ProductServices {
         }
         return false;
     }
-    
+
     //Hàm thực hiện ghi file vào thư mục có sẵn
     public static boolean processFile(String path, FileItemStream item) {
         try {
-            File f = new File(path + File.separator + "imageUpload");
+            File f = new File(path + File.separator + "uploads");
             if (!f.exists()) {
                 f.mkdir();
             }
@@ -59,5 +61,29 @@ public class ProductServices {
             System.out.println(e.toString());
         }
         return false;
+    }
+
+    //Hàm lấy tất cả dữ liệu
+    public ArrayList<Product> getAll() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ArrayList<Product> listProduct = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            String strQuery = "from Product";
+            Query query = session.createQuery(strQuery);
+            listProduct = (ArrayList<Product>) query.list();
+            tx.commit();
+            
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return listProduct;
     }
 }
