@@ -46,6 +46,7 @@ public class ProductCategoryServices {
             Query query = session.createQuery(strQuery);
             aPC = (ProductCategory) query.uniqueResult();
             tx.commit();
+            return aPC;
         } catch (Exception e) {
             if (tx != null) {
                 tx.rollback();
@@ -54,6 +55,6 @@ public class ProductCategoryServices {
         } finally {
             session.close();
         }
-        return aPC;
+        return null;
     }
 }

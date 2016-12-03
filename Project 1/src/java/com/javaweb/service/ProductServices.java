@@ -75,7 +75,7 @@ public class ProductServices {
             Query query = session.createQuery(strQuery);
             listProduct = (ArrayList<Product>) query.list();
             tx.commit();
-            
+
         } catch (Exception e) {
             if (tx != null) {
                 tx.rollback();
@@ -85,5 +85,48 @@ public class ProductServices {
             session.close();
         }
         return listProduct;
+    }
+
+    public boolean DeleteProduct(Product pt) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            session.delete(pt);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return false;
+    }
+
+    public Product GetById(String id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        Product product = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            String strQuery = "from Product where idproduct = " + id;
+            Query query = session.createQuery(strQuery);
+            product = (Product) query.uniqueResult();
+            tx.commit();
+            return product;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return null;
     }
 }
