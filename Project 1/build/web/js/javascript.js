@@ -5,8 +5,8 @@
  */
 var loadFile = function (event, idthem) {
     var output = document.getElementById('output' + idthem + '');
-    output.style.width = "300px";
-    output.className = "img-thumbnail";
+    output.style.width = "200px";
+    output.className = "img-response";
 
     output.src = URL.createObjectURL(event.target.files[0]);
 };

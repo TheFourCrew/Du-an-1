@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author MinhNguyen
  */
-public class DeleteProduct extends HttpServlet {
+public class DeleteMultipleServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,12 +31,19 @@ public class DeleteProduct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String idpt = request.getParameter("idpt");
-        ProductServices ps = new ProductServices();
-        Product pt = null;
-        pt = ps.GetById(idpt);
+        String[] aId = request.getParameterValues("id-product");
+        String tacVu = request.getParameter("tacvu");
         
-        ps.DeleteProduct(pt);
+        Product pt = null;
+        String id = "";
+        ProductServices ps = new ProductServices();
+        if (tacVu.equals("xoa")) {
+            for (int i = 0; i < aId.length; i++) {
+                id = aId[i];
+                pt = ps.GetById(id);
+                ps.DeleteProduct(pt);
+            }
+        }
         
         response.sendRedirect("managerproduct.jsp");
 //        try (PrintWriter out = response.getWriter()) {
@@ -44,10 +51,10 @@ public class DeleteProduct extends HttpServlet {
 //            out.println("<!DOCTYPE html>");
 //            out.println("<html>");
 //            out.println("<head>");
-//            out.println("<title>Servlet DeleteProduct</title>");            
+//            out.println("<title>Servlet DeleteMultipleServlet</title>");            
 //            out.println("</head>");
 //            out.println("<body>");
-//            out.println("<h1>Servlet DeleteProduct at " + request.getContextPath() + "</h1>");
+//            out.println("<h1>Servlet DeleteMultipleServlet at " + request.getContextPath() + "</h1>");
 //            out.println("</body>");
 //            out.println("</html>");
 //        }
