@@ -66,7 +66,7 @@
                             <%
                                 if (session.getAttribute("email") == null) {
                             %>
-                        <li><a href="Regsister.jsp">
+                        <li><a href="signup.jsp">
                                 <span class="glyphicon glyphicon-user"></span> Đăng ký
                             </a>
                         </li>
