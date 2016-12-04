@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label for="idrole_user">Nhập lại mật khẩu:</label>
-                        <input type="repassword" name="repassword" value="<%=user.getPassword()%>" class="form-control" required id="repassword">
+                        <input type="password" name="repassword" value="<%=user.getPassword()%>" class="form-control" required id="repassword">
                     </div>
                     <div class="form-group">
                         <label for="idrole_user">Quyền:</label>

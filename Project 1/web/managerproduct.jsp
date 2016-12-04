@@ -90,8 +90,8 @@
                                                     <td><%=product.getCreatedDate()%></td>
                                                     <td><img class="img-thumbnail" src="uploads/<%=product.getProductImage()%>" alt="<%=product.getProductName()%>" width="80px"/></td>
                                                     <td>
-                                                        <a href="editproduct" class="">
-                                                            <input class="btn btn-info" type="submit" value="Sửa" />
+                                                        <a href="editproduct.jsp?idpt=<%=product.getIdproduct() %>" class="btn btn-info">
+                                                            Sửa<!--<input class="btn btn-info" type="submit" value="Sửa" />-->
                                                         </a>
                                                         <a href="DeleteProduct?idpt=<%=product.getIdproduct()%>" onclick="return confirm('Bạn có chắc không?')">
                                                             <input class="btn btn-danger" type="submit" value="Xóa" />
