@@ -1,6 +1,7 @@
 package com.javaweb.service;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -23,7 +24,7 @@ import javax.mail.internet.MimeUtility;
 public class Email {
     public static void sendEmail(String host, String port,
             final String name, final String password, String sender,
-            String subject, String message) throws AddressException, MessagingException {
+            String subject, String message, String senderName) throws AddressException, MessagingException {
 
         //set SMTP server properties
         Properties properties = new Properties();
@@ -55,8 +56,12 @@ public class Email {
             msg.setSubject(MimeUtility.encodeText(subject, "utf-8", null));
             msg.setSentDate(new Date());
             msg.setText(message);
-
-            msg.setContent(message, "text/plain; charset=UTF-8");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+            Date date = new Date();
+            msg.setContent("Thời gian: "+sdf.format(date)
+                    +"<br/>Họ tên: <b>"+senderName+"</b>"
+                    +"<br/>Email: "+sender
+                    +"<br/><br/><b>Lời nhắn:</b> "+message, "text/html; charset=UTF-8");
 
         } catch (UnsupportedEncodingException e) {
             Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, e);

@@ -13,9 +13,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Thêm sản phẩm </title>
-        <!--        <script>
-                    window.CKEDITOR_BASEPATH = '/ckeditor/';
-                </script>-->
         <%@include file="include-dashboard/headtag.jsp" %>
     </head>
     <body>

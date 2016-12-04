@@ -41,18 +41,18 @@ public class LienLac extends HttpServlet {
         user = context.getInitParameter("user");
         pass = context.getInitParameter("pass");
 
-        String recipient = request.getParameter("cEmail");
+        String sender = request.getParameter("cEmail");
 
-//        String cname = request.getParameter("c-Name");
+        String cname = request.getParameter("cName");
         String csubject = request.getParameter("cSubject");
         String cMessage = request.getParameter("cMessage");
         HttpSession session = request.getSession();
         String resultMessage = "";
 
         try {
-            Email.sendEmail(host, port, user, pass, recipient,  csubject, cMessage);
+            Email.sendEmail(host, port, user, pass, sender,  csubject, cMessage, cname);
             resultMessage += "The e-mail was sent successfully";
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect("index.jsp");
 //            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (Exception e) {
             resultMessage += "There was an error: " + e.getMessage();
