@@ -30,6 +30,7 @@
                 </div>
                 <section class="container">
                     <div class="col-md-9">
+                        <p><strong>Note:</strong> Required fields are marked with an asterisk (<em>*</em>)</p>
                         <form class="form-horizontal" action="AddProduct" method="post" enctype="multipart/form-data" id="addproduct">
                             <div class="form-group">
                                 <label class="control-label col-sm-2 col-md-3" for="prod-name">Tên sản phẩm<em>*</em>:</label>
@@ -48,7 +49,7 @@
                             <div class="form-group ">
                                 <label class="control-label col-sm-2 col-md-3" for="prod-describe">Mô tả thông tin<em>*</em>:</label>
                                 <div class="col-sm-3 col-md-9">
-                                    <textarea rows="4" id="prod-describe" cols="20" class="form-control ckeditor" placeholder="Nhập" name="prod-describe"></textarea>
+                                    <textarea rows="4" id="prod-describe" cols="20" class="form-control ckeditor" name="prod-describe"></textarea>
                                 </div>
                                 <!--<script src="//cdn.ckeditor.com/4.6.0/ull/ckeditor.js"></script>-->
                                 <script type="text/javascript">

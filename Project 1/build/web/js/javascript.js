@@ -56,7 +56,10 @@ $(window).ready(function () {
             },
             'prod-unit': "required",
             'loaiSP': "required",
-            'prod-thumbnail': "required"
+            'prod-thumbnail':{
+                required:true,
+                extension: "jpg|png|gif|jpeg"
+            }
         },
         messages: {
             'prod-name': "Vui lòng nhập tên sản phẩm.",
@@ -73,7 +76,10 @@ $(window).ready(function () {
             },
             'prod-unit': "Vui lòng nhập đơn vị.",
             'loaiSP': "Vui lòng chọn loại sản phẩm.",
-            'prod-thumbnail': "Vui lòng chọn hình đại diện."
+            'prod-thumbnail':{ 
+                required: "Vui lòng chọn hình đại diện.",
+                extension : "Ảnh sẽ có đuôi *.jpg, *.jpeg, *.gif hoặc *.png"
+            }
         }
     });
 });

@@ -92,9 +92,9 @@ public class AddProduct extends HttpServlet {
                         }
                         Product product = new Product(maSP, tenSP, gia, 1, soLuong, donVi, moTa, loaiSP, date, 1, date, thumbnail, 1, ghiChu);
                         productServices.InsertOrUpdateProduct(product);
-//                        String url = "/managerproduct.jsp";
+//                        String url = "/addproduct.jsp";
 //                        getServletContext().getRequestDispatcher(url).forward(request, response);
-                        response.sendRedirect("addproduct.jsp");
+                        response.sendRedirect("managerproduct.jsp");
                         return;
                     }
                 }

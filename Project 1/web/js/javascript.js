@@ -58,7 +58,7 @@ $(window).ready(function () {
             'loaiSP': "required",
             'prod-thumbnail':{
                 required:true,
-                extension: "jpg|png"
+                extension: "jpg|png|gif|jpeg"
             }
         },
         messages: {

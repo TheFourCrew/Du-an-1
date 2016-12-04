@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="css/style.css" rel="stylesheet" type="text/css"/>
 
 <!-- Bootstrap Core CSS -->
@@ -43,5 +43,6 @@
 <!-- Custom Theme JavaScript -->
 <script src="dist/js/sb-admin-2.js"></script>
 <script src="js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="js/additional-methods.min.js" type="text/javascript"></script>
 <script src="js/javascript.js" type="text/javascript"></script>
 <script src="ckeditor/ckeditor.js" type="text/javascript" ></script>
