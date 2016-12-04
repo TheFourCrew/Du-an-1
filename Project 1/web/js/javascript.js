@@ -48,7 +48,7 @@ $(window).ready(function () {
                 required: true,
                 number: true,
                 digits: true
-            },
+            }, 'prod-discount': "number",
             'prod-quantity': {
                 required: true,
                 number: true,
@@ -69,6 +69,7 @@ $(window).ready(function () {
                 number: "Giá chỉ có số.",
                 digits: "Giá phải trên 0."
             },
+            'prod-discount':"Không phải số.",
             'prod-quantity': {
                 required: "Vui lòng nhập số lượng.",
                 number: "Giá chỉ có số.",

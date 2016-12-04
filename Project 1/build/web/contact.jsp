@@ -17,7 +17,7 @@
         <section class="container">
             <h3>Liên hệ</h3>
             <p>Có thắc mắc, nhu cầu quảng cáo hãy nhập thông tin dưới đây. Cảm ơn.</p>
-            <form action="LienLac" method="post">
+            <form action="LienLac" method="post" id="form-contact">
                 <div class="form-group">
                     <div class="col-sm-3 col-md-7">
                         <label class="control-label" for="c-Name">Họ tên<em>*</em>:</label>
@@ -39,20 +39,20 @@
                     </div>
                 </div>
 
-                <div class="form-group ">
+                <div class="form-group" >
                     <div class="col-sm-3 col-md-7 dia-chi">
                         <label class="control-label" for="c-Message">Nội dung<em>*</em>:</label>
-                        <textarea rows="4" id="c-Message" cols="20" class="form-control" placeholder="Nhập nội dung" name="cMessage"></textarea>
+                        <textarea rows="4"  id="c-Message" cols="20" class="form-control" placeholder="Nhập nội dung" name="cMessage"></textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-3 col-md-7">
-                        <button  type="submit" class="btn btn-info">Gửi</button>
+                        <button  type="submit" style="margin-top:20px" class="btn btn-info">Gửi lời nhắn</button>
                     </div>
                 </div>
             </form>
-            ${Message}
+            <!--${Message}-->
         </section>
         <%@include file="includes/footer.jsp" %>
     </body>

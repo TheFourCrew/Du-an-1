@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 2, 2016 1:44:12 PM by Hibernate Tools 4.3.1
+// Generated Dec 4, 2016 9:52:59 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,6 +16,7 @@ public class Product  implements java.io.Serializable {
      private double pricePerUnit;
      private double boughtPrice;
      private int productQuantity;
+     private Double discountPrice;
      private String unit;
      private String description;
      private int idproductCategory;
@@ -23,40 +24,38 @@ public class Product  implements java.io.Serializable {
      private int creater;
      private Date dateModified;
      private String productImage;
-     private int idPromotion;
      private String note;
 
     public Product() {
     }
 
 	
-    public Product(String productNumber, String productName, double pricePerUnit, double boughtPrice, int productQuantity, String unit, String describe, int idproductCategory, int creater, String productImage, int idPromotion) {
+    public Product(String productNumber, String productName, double pricePerUnit, double boughtPrice, int productQuantity, String unit, String description, int idproductCategory, int creater, String productImage) {
         this.productNumber = productNumber;
         this.productName = productName;
         this.pricePerUnit = pricePerUnit;
         this.boughtPrice = boughtPrice;
         this.productQuantity = productQuantity;
         this.unit = unit;
-        this.description = describe;
+        this.description = description;
         this.idproductCategory = idproductCategory;
         this.creater = creater;
         this.productImage = productImage;
-        this.idPromotion = idPromotion;
     }
-    public Product(String productNumber, String productName, double pricePerUnit, double boughtPrice, int productQuantity, String unit, String describe, int idproductCategory, Date createdDate, int creater, Date dateModified, String productImage, int idPromotion, String note) {
+    public Product(String productNumber, String productName, double pricePerUnit, double boughtPrice, int productQuantity, Double discountPrice, String unit, String description, int idproductCategory, Date createdDate, int creater, Date dateModified, String productImage, String note) {
        this.productNumber = productNumber;
        this.productName = productName;
        this.pricePerUnit = pricePerUnit;
        this.boughtPrice = boughtPrice;
        this.productQuantity = productQuantity;
+       this.discountPrice = discountPrice;
        this.unit = unit;
-       this.description = describe;
+       this.description = description;
        this.idproductCategory = idproductCategory;
        this.createdDate = createdDate;
        this.creater = creater;
        this.dateModified = dateModified;
        this.productImage = productImage;
-       this.idPromotion = idPromotion;
        this.note = note;
     }
    
@@ -101,6 +100,13 @@ public class Product  implements java.io.Serializable {
     
     public void setProductQuantity(int productQuantity) {
         this.productQuantity = productQuantity;
+    }
+    public Double getDiscountPrice() {
+        return this.discountPrice;
+    }
+    
+    public void setDiscountPrice(Double discountPrice) {
+        this.discountPrice = discountPrice;
     }
     public String getUnit() {
         return this.unit;
@@ -150,13 +156,6 @@ public class Product  implements java.io.Serializable {
     
     public void setProductImage(String productImage) {
         this.productImage = productImage;
-    }
-    public int getIdPromotion() {
-        return this.idPromotion;
-    }
-    
-    public void setIdPromotion(int idPromotion) {
-        this.idPromotion = idPromotion;
     }
     public String getNote() {
         return this.note;

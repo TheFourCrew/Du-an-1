@@ -21,7 +21,6 @@
     <mapping resource="com/javaweb/model/ProductParameters.hbm.xml"/>
     <mapping resource="com/javaweb/model/Product.hbm.xml"/>
     <mapping resource="com/javaweb/model/Receipt.hbm.xml"/>
-    <mapping resource="com/javaweb/model/Promotion.hbm.xml"/>
     <mapping resource="com/javaweb/model/Vendor.hbm.xml"/>
     <mapping resource="com/javaweb/model/Rating.hbm.xml"/>
     <mapping resource="com/javaweb/model/Article.hbm.xml"/>

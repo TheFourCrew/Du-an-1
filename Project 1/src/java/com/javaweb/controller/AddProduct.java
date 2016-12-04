@@ -43,7 +43,7 @@ public class AddProduct extends HttpServlet {
         if (isMultiPart) {
             ServletFileUpload upload = new ServletFileUpload();
             try {
-                String tenSP = "", ghiChu = "", thumbnail = "Unknown.jpg", moTa = "", donVi = "", maSP = "";
+                String tenSP = "", ghiChu = "", thumbnail = "Unknown.jpg", moTa = "", donVi = "", maSP = "", strGiamGia = "";
                 int loaiSP = 0, soLuong = 0;
                 double gia = 0;
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -65,6 +65,8 @@ public class AddProduct extends HttpServlet {
                             moTa = value;
                         } else if (fieldName.equals("prod-price")) {
                             gia = Double.parseDouble(value);
+                        } else if (fieldName.equals("prod-discount")) {
+                            strGiamGia = value;
                         } else if (fieldName.equals("prod-quantity")) {
                             soLuong = Integer.parseInt(value);
                         } else if (fieldName.equals("prod-unit")) {
@@ -88,9 +90,14 @@ public class AddProduct extends HttpServlet {
 //                            request.setAttribute("hinhne", item.getName() + " item.getName()");
 //                            sdf.format(date.getDate());
                         } else {
-
+                            thumbnail = "";
                         }
-                        Product product = new Product(maSP, tenSP, gia, 1, soLuong, donVi, moTa, loaiSP, date, 1, date, thumbnail, 1, ghiChu);
+                        double giamGia = 0;
+                        if (!strGiamGia.equals("")) {
+                            giamGia = Double.parseDouble(strGiamGia);
+                        }
+
+                        Product product = new Product(maSP, tenSP, gia, 1, soLuong, giamGia, donVi, moTa, loaiSP, date, 1, date, thumbnail, ghiChu);
                         productServices.InsertOrUpdateProduct(product);
 //                        String url = "/addproduct.jsp";
 //                        getServletContext().getRequestDispatcher(url).forward(request, response);

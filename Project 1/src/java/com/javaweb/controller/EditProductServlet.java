@@ -1,16 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.javaweb.controller;
 
+import com.javaweb.model.Product;
+import com.javaweb.service.ProductServices;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -30,18 +33,101 @@ public class EditProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EditProductServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EditProductServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        request.setCharacterEncoding("UTF-8");
+
+        Product product = null;
+        ProductServices ps = new ProductServices();
+
+        boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
+        if (isMultiPart) {
+            ServletFileUpload upload = new ServletFileUpload();
+            try {
+                String tenSP = "", ghiChu = "", thumbnail = "Unknown.jpg", moTa = "", donVi = "", maSP = "", idpt = "", strGiamGia = "";
+                int loaiSP = 0, soLuong = 0;
+                double gia = 0;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Date date = new Date();
+                FileItemStream item = null;
+                FileItemIterator itr = upload.getItemIterator(request);
+                while (itr.hasNext()) {
+                    item = itr.next();
+                    if (item.isFormField()) {
+                        //do field specific process
+                        String fieldName = item.getFieldName();
+                        InputStream is = item.openStream();
+                        byte[] b = new byte[is.available()];
+                        is.read(b);
+                        String value = new String(b);
+
+                        if (fieldName.equals("idPT")) {
+                            idpt = value;
+                        } else if (fieldName.equals("prod-name")) {
+                            tenSP = value;
+                        } else if (fieldName.equals("prod-describe")) {
+                            moTa = value;
+                        } else if (fieldName.equals("prod-price")) {
+                            gia = Double.parseDouble(value);
+                        } else if (fieldName.equals("prod-discount")) {
+                            strGiamGia = value;
+                        } else if (fieldName.equals("prod-quantity")) {
+                            soLuong = Integer.parseInt(value);
+                        } else if (fieldName.equals("prod-unit")) {
+                            donVi = value;
+                        } else if (fieldName.equals("loaiSP")) {
+                            loaiSP = Integer.parseInt(value);
+                        }
+//                        else if (fieldName.equals("nP-note")) {
+//                            ghiChu = value;
+//                        }
+//                        response.getWriter().println("<h2>" + item.getFieldName() + " " + item.getName() + "</h2>");
+//                        response.getWriter().println("<h3>" + tenSP + " "+ moTa+ " "+" "+loaiSP + " " + date + "</h3>");
+                    } else {
+                        //do file upload specific process
+//                        response.getWriter().println("<h2>" + item.getFieldName() + " " + item.getName() + "</h2>");
+                        String path = getServletContext().getRealPath("/");
+                        //call a method to upload file.
+                        if (!item.getName().equals("")) {
+                            thumbnail = item.getName();
+//                            ProductServices.processFile(path, item);
+//                            request.setAttribute("hinhne", item.getName() + " item.getName()");
+//                            sdf.format(date.getDate());
+                        } else {
+
+                        }
+                        double giamGia = 0;
+                        if (!strGiamGia.equals("")) {
+                            giamGia = Double.parseDouble(strGiamGia);
+                        }
+                        
+                        product = ps.GetById(idpt);
+                        product.setProductName(tenSP);
+                        product.setDateModified(date);
+
+                        ps.InsertOrUpdateProduct(product);
+//                        String url = "/addproduct.jsp";
+//                        getServletContext().getRequestDispatcher(url).forward(request, response);
+                        response.sendRedirect("managerproduct.jsp");
+                        return;
+                    }
+                }
+
+            } catch (FileUploadException fue) {
+                System.out.println(fue.toString());
+            }
         }
+
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet EditProductServlet</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet EditProductServlet at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -48,7 +48,7 @@ $(window).ready(function () {
                 required: true,
                 number: true,
                 digits: true
-            },
+            }, 'prod-discount': "number",
             'prod-quantity': {
                 required: true,
                 number: true,
@@ -56,8 +56,8 @@ $(window).ready(function () {
             },
             'prod-unit': "required",
             'loaiSP': "required",
-            'prod-thumbnail':{
-                required:true,
+            'prod-thumbnail': {
+                required: true,
                 extension: "jpg|png|gif|jpeg"
             }
         },
@@ -69,6 +69,7 @@ $(window).ready(function () {
                 number: "Giá chỉ có số.",
                 digits: "Giá phải trên 0."
             },
+            'prod-discount':"Không phải số.",
             'prod-quantity': {
                 required: "Vui lòng nhập số lượng.",
                 number: "Giá chỉ có số.",
@@ -76,69 +77,101 @@ $(window).ready(function () {
             },
             'prod-unit': "Vui lòng nhập đơn vị.",
             'loaiSP': "Vui lòng chọn loại sản phẩm.",
-            'prod-thumbnail':{ 
+            'prod-thumbnail': {
                 required: "Vui lòng chọn hình đại diện.",
-                extension : "Ảnh sẽ có đuôi *.jpg, *.jpeg, *.gif hoặc *.png"
+                extension: "Ảnh sẽ có đuôi *.jpg, *.jpeg, *.gif hoặc *.png"
             }
         }
     });
 });
+
+//Hàm kiểm tra nhập email
+$(window).ready(function () {
+    $('#form-contact').validate({
+        onchange: true,
+        rules: {
+            'cName': "required",
+            'cSubject': "required",
+            'cEmail': {
+                required: true,
+                email: true
+            },
+            'cMessage': {
+                required: true,
+                minlength: 20
+            }
+        },
+        messages: {
+            'cName': "Vui lòng nhập họ tên.",
+            'cSubject': "Vui lòng nhập tiêu đề.",
+            'cEmail': {
+                required: "Vui lòng nhập email người gửi.",
+                email: "Email không hợp lệ"
+            },
+            'cMessage': {
+                required: "Vui lòng nhập lời nhắn.",
+                minlength: "Vui lòng nhập ít nhất 20 kí tự"
+            }
+        }
+    });
+});
+
 $(window).ready(function () {
     $('#edituser').validate({
         onchange: true,
         rules: {
-            'username':{
-                required:true,
-                minlength:6,
+            'username': {
+                required: true,
+                minlength: 6
             },
-            'password':{
-                required:true,
-                minlength:6,
+            'password': {
+                required: true,
+                minlength: 6
             },
-            'repassword':{
-                required:true,
-                equalto:"#password",
+            'repassword': {
+                required: true,
+                equalTo: "#password"
             },
-            'role':'required',
-            'fullname':'required',
-            'dienthoai':{
-                required:true,
-                number:true,
-                minlength:10,
-                maxlength:11,
+            'role': 'required',
+            'fullname': 'required',
+            'dienthoai': {
+                required: true,
+                number: true,
+                minlength: 10,
+                maxlength: 11
             },
-            'address':'required',
-            'email':{
-                required:true,
-                email:true,
-            },
+            'address': 'required',
+            'email': {
+                required: true,
+                email: true
+            }
         },
         messages: {
-            'username':{
-                required:"Bạn chưa nhập tên đăng nhập",
-                minlength:'Tên đăng nhập chưa đủ 6 ký tự',
+            'username': {
+                required: "Bạn chưa nhập tên đăng nhập",
+                minlength: 'Tên đăng nhập chưa đủ 6 ký tự'
             },
-            'password':{
-                required:"Bạn chưa nhập mật khẩu",
-                minlength:'Mật khẩu chưa đủ 6 ký tự',
+            'password': {
+                required: "Bạn chưa nhập mật khẩu",
+                minlength: 'Mật khẩu chưa đủ 6 ký tự'
             },
-            'repassword':{
-                required:'Vui lòng nhập lại mật khẩu',
-                equaTo:"Mật khẩu nhập lại sai",
+            'repassword': {
+                required: 'Vui lòng nhập lại mật khẩu',
+                equalTo: "Mật khẩu nhập lại sai"
             },
-            'role':'Vui lòng chọn quyền',
-            'fullname':'Bạn chưa nhập họ tên ',
-            'dienthoai':{
-                required:'Chưa nhập điện thoại',
-                number:'Điện thoại chỉ có số',
-                minlength:'Số điện thoại không hợp lệ',
-                maxlength:'Số điện thoại không hợp lệ',
+            'role': 'Vui lòng chọn quyền',
+            'fullname': 'Bạn chưa nhập họ tên ',
+            'dienthoai': {
+                required: 'Chưa nhập điện thoại',
+                number: 'Điện thoại chỉ có số',
+                minlength: 'Số điện thoại không hợp lệ',
+                maxlength: 'Số điện thoại không hợp lệ'
             },
-            'address':'Bạn chưa nhập địa chỉ',
-            'email':{
-                required:'Chưa nhập email',
-                email:'Email không hợp lệ',
-            },
+            'address': 'Bạn chưa nhập địa chỉ',
+            'email': {
+                required: 'Chưa nhập email',
+                email: 'Email không hợp lệ'
+            }
         }
     });
 });

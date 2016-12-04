@@ -62,6 +62,13 @@
                                     <input type="text" name="prod-price" placeholder="Nhập giá" class="form-control" id="prodprice">
                                 </div>
                             </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-discount">Giá giảm<em>*</em>:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-discount" placeholder="Nhập giá" class="form-control" id="prod-discount">
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label class="control-label col-sm-2 col-md-3" for="prod-quantity">Số lượng<em>*</em>:</label>

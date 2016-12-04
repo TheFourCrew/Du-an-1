@@ -28,6 +28,10 @@
         <servlet-name>DeleteMultipleServlet</servlet-name>
         <servlet-class>com.javaweb.controller.DeleteMultipleServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditProductServlet</servlet-name>
+        <servlet-class>com.javaweb.controller.EditProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LienLac</servlet-name>
         <url-pattern>/LienLac</url-pattern>
@@ -81,6 +85,10 @@
     <servlet-mapping>
         <servlet-name>DeleteMultipleServlet</servlet-name>
         <url-pattern>/DeleteMultipleServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProductServlet</servlet-name>
+        <url-pattern>/EditProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
