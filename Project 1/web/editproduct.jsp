@@ -31,7 +31,11 @@
                     String id = request.getParameter("idpt");
                     ProductServices ps = new ProductServices();
                     pt = ps.GetById(id);
-                %>
+
+                    String giaBan = String.valueOf(pt.getPricePerUnit());
+                    String giaGiam = String.valueOf(pt.getDiscountPrice());
+//                    giaBan.substring(0, giaBan.indexOf("."));
+%>
                 <section class="container">
                     <div class="col-md-9">
                         <p><strong>Chú ý:</strong> Những trường bắt buộc có dấu sao (<em>* </em>)</p>
@@ -67,8 +71,16 @@
                             <div class="form-group ">
                                 <label class="control-label col-sm-2 col-md-3" for="prod-price">Giá bán<em>*</em>:</label>
                                 <div class="col-sm-3 col-md-7">
-                                    <input type="text" name="prod-price" value="<%=pt.getPricePerUnit()%>" class="form-control" id="prodprice">
+                                    <input type="text" name="prod-price" value="<%=giaBan.substring(0, giaBan.indexOf("."))%>" class="form-control" id="prodprice">
                                     <!--<span class="input-group-addon">VNĐ</span>-->
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-discount">Giá giảm<em>*</em>:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-discount" value="<%=giaGiam.substring(0, giaGiam.indexOf("."))%>" class="form-control" id="prod-discount">
                                 </div>
                             </div>
 
@@ -100,15 +112,15 @@
                                             for (int i = 0; i < aPC.size(); i++) {
                                                 if (pt.getIdproductCategory() == aPC.get(i).getIdproductCategory()) {
 //                                                    pcs.getbyid(id)
-                                        %>
+%>
                                         <option value="<%=aPC.get(i).getIdproductCategory()%>" selected><%=aPC.get(i).getCategoryName()%></option>
                                         <%
-                                            } else {
+                                        } else {
 
                                         %>
                                         <option value="<%=aPC.get(i).getIdproductCategory()%>"><%=aPC.get(i).getCategoryName()%></option>
                                         <%
-                                            }
+                                                }
                                             }
                                         %>
                                     </select>

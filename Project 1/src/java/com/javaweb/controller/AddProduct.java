@@ -48,6 +48,7 @@ public class AddProduct extends HttpServlet {
                 double gia = 0;
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Date date = new Date();
+                Date dateModified = null;
                 FileItemStream item = null;
                 FileItemIterator itr = upload.getItemIterator(request);
                 while (itr.hasNext()) {
@@ -97,7 +98,7 @@ public class AddProduct extends HttpServlet {
                             giamGia = Double.parseDouble(strGiamGia);
                         }
 
-                        Product product = new Product(maSP, tenSP, gia, 1, soLuong, giamGia, donVi, moTa, loaiSP, date, 1, date, thumbnail, ghiChu);
+                        Product product = new Product(maSP, tenSP, gia, 1, soLuong, giamGia, donVi, moTa, loaiSP, date, 1, dateModified, thumbnail, ghiChu);
                         productServices.InsertOrUpdateProduct(product);
 //                        String url = "/addproduct.jsp";
 //                        getServletContext().getRequestDispatcher(url).forward(request, response);

@@ -100,9 +100,16 @@ public class EditProductServlet extends HttpServlet {
                         }
                         
                         product = ps.GetById(idpt);
+                        
+                        product.setDiscountPrice(giamGia);
+                        product.setDescription(moTa);
+                        product.setIdproductCategory(loaiSP);
+                        product.setPricePerUnit(gia);
+                        product.setProductImage(thumbnail);
+                        product.setProductQuantity(soLuong);
                         product.setProductName(tenSP);
                         product.setDateModified(date);
-
+                        
                         ps.InsertOrUpdateProduct(product);
 //                        String url = "/addproduct.jsp";
 //                        getServletContext().getRequestDispatcher(url).forward(request, response);
