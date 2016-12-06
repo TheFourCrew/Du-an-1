@@ -18,7 +18,7 @@
         <%@include file="includes//header.jsp" %>
         <section class="container">
             <div class="row">
-                <form class="form-horizontal" action="EditUserServlet" method="post"enctype="multipart/form-data" id="edituser" >
+                <form class="form-horizontal" action="RegsisterServlet" method="post"enctype="multipart/form-data" id="edituser" >
                     <input style="display: none;" name="iduser"  />
                     <div class="form-group">
                         <label class="control-label col-sm-2 col-md-3" for="username">Tên Đăng Nhập: </label>
@@ -38,7 +38,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-3" for="idrole_user">Nhập lại mật khẩu:</label>
                         <div class="col-md-7"> 
-                            <input type="repassword" name="repassword"  class="form-control" required id="repassword">
+                            <input type="password" name="repassword"  class="form-control" required id="repassword">
                         </div>
                     </div>
                    
