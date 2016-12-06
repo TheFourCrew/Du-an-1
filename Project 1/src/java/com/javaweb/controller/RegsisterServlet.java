@@ -49,9 +49,26 @@ public class RegsisterServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        String username = "", id = "", fullname = "", email = "", password = "", repassword = "", note = "", gender = "", idrole = "", phone = "", address = "", fileName = "";
+        
+        String username = "", id = "", fullname = "", email = "", password = "", repassword = "", note = "",
+                gender = "", idrole = "", phone = "", address = "", fileName = "",birthday= "";
+        username = request.getParameter("username");
+        password  = request.getParameter("password");
+        repassword = request.getParameter("repassword");
+        fullname = request.getParameter("fullname");
+        phone = request.getParameter("dienthoai");
+        address = request.getParameter("address");
+        email = request.getParameter("email");
+        birthday = request.getParameter("birthday");
+        gender = request.getParameter("gioitinh");
+        
+        
         Date datez = new Date();
         boolean gt = false;
+        
+        if(gender.equals("Nam")){
+            gt = true;
+        }
         HttpSession session = request.getSession();
 
         if (!repassword.equals(password)) {
@@ -62,129 +79,129 @@ public class RegsisterServlet extends HttpServlet {
             EnDeCryption mh = new EnDeCryption("abcqwe");
             String mk = mh.encoding(password);
 
-            User user = new User(username, fullname, email, mk, 2, note, datez, gt, fileName);
+            User user = new User(username, password, 2, fullname, gt, phone, address, email, datez, "Unknown.jpg", false, note);
             UserService userservice = new UserService();
             userservice.InserUser(user);
             String url = "/index.jsp";
             getServletContext().getRequestDispatcher(url).forward(request, response);
         }
-        UserService ad = new UserService();
-
-        String folderupload = getServletContext().getInitParameter("file-upload");
-        String rootPath = getServletContext().getRealPath("/");
-        filePath = rootPath + folderupload;
-        isMultipart = ServletFileUpload.isMultipartContent(request);
-        response.setContentType("text/html");
-        java.io.PrintWriter out = response.getWriter();
-
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-
-        factory.setSizeThreshold(maxMemSize);
-
-        factory.setRepository(new File("D:\\TAM"));
-
-        ServletFileUpload upload = new ServletFileUpload(factory);
-
-        upload.setSizeMax(maxFileSize);
-        try {
-
-            List fileItems = upload.parseRequest(request);
-
-            Iterator i = fileItems.iterator();
-
-            while (i.hasNext()) {
-                FileItem fi = (FileItem) i.next();
-                if (!fi.isFormField()) {
-
-                    String fieldName = fi.getFieldName();
-                    fileName = fi.getName();
-                    String contentType = fi.getContentType();
-                    boolean isInMemory = fi.isInMemory();
-                    long sizeInBytes = fi.getSize();
-
-                    fileName = FileService.ChangeFileName(fileName);
-
-                    if (fileName.lastIndexOf("\\") >= 0) {
-                        file = new File(filePath
-                                + fileName.substring(fileName.lastIndexOf("\\")));
-                    } else {
-                        file = new File(filePath + "/"
-                                + fileName.substring(fileName.lastIndexOf("\\") + 1));
-                    }
-                    fi.write(file);
-                    out.println("Uploaded Filename: " + fileName + "<br>");
-                }
-                if (fi.isFormField()) {
-                    if (fi.getFieldName().equalsIgnoreCase("username")) {
-                        username = fi.getString("UTF-8");
-                    } else if (fi.getFieldName().equalsIgnoreCase("fullname")) {
-                        fullname = fi.getString("UTF-8");
-                    } else if (fi.getFieldName().equalsIgnoreCase("email")) {
-                        email = fi.getString("UTF-8");
-                    } else if (fi.getFieldName().equalsIgnoreCase("password")) {
-                        password = fi.getString("UTF-8");
-                    } else if (fi.getFieldName().equalsIgnoreCase("repassword")) {
-                        repassword = fi.getString("UTF-8");
-                    } else if (fi.getFieldName().equalsIgnoreCase("idrole")) {
-                        idrole = fi.getString("UTF-8");
-                    } else if (fi.getFieldName().equalsIgnoreCase("dienthoai")) {
-                        phone = fi.getString("UTF-8");
-                    } else if (fi.getFieldName().equalsIgnoreCase("address")) {
-                        address = fi.getString("UTF-8");
-                    } else if (fi.getFieldName().equalsIgnoreCase("note")) {
-                        note = fi.getString("UTF-8");
-                    } else if (fi.getFieldName().equalsIgnoreCase("gioitinh")) {
-                        String gtt = fi.getString("UTF-8");
-                        if (gtt.equals("Nam")) {
-                            gt = true;
-
-                        }
-                    } else if (fi.getFieldName().equalsIgnoreCase("birthday")) {
-                        String dtt = fi.getString("UTF-8");
-
-                        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
-
-                        try {
-                            datez = dt.parse(dtt);
-                        } catch (Exception e) {
-                        }
-                    } else if (fi.getFieldName().equalsIgnoreCase("iduser")) {
-                        id = fi.getString("UTF-8");
-                    }
-                }
-
-            }
-
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-//        Date birthday = new Date(request.getParameter("birthday"));
-
-        User user = ad.getUserByID(id);
-        user.setUsername(username);
-        user.setFullname(fullname);
-        user.setEmail(email);
-        user.setIdroleUser(2);
-        user.setBirthday(datez);
-        user.setGender(gt);
-        user.setPassword(password);
-        user.setUserPhone(phone);
-        user.setAddress(address);
-        user.setNote(note);
-
-        if (!fileName.equals("")) {
-            if (user.getImage() != null) {
-                if (!user.getImage().equals(fileName)) {
-                    user.setImage(fileName);
-                }
-            } else {
-                user.setImage(fileName);
-            }
-        }
-        boolean rs = ad.InserUser(user);
-        if (rs) {
-            response.sendRedirect("UserManager.jsp");
-        }
+//        UserService ad = new UserService();
+//
+//        String folderupload = getServletContext().getInitParameter("file-upload");
+//        String rootPath = getServletContext().getRealPath("/");
+//        filePath = rootPath + folderupload;
+//        isMultipart = ServletFileUpload.isMultipartContent(request);
+//        response.setContentType("text/html");
+//        java.io.PrintWriter out = response.getWriter();
+//
+//        DiskFileItemFactory factory = new DiskFileItemFactory();
+//
+//        factory.setSizeThreshold(maxMemSize);
+//
+//        factory.setRepository(new File("D:\\TAM"));
+//
+//        ServletFileUpload upload = new ServletFileUpload(factory);
+//
+//        upload.setSizeMax(maxFileSize);
+//        try {
+//
+//            List fileItems = upload.parseRequest(request);
+//
+//            Iterator i = fileItems.iterator();
+//
+//            while (i.hasNext()) {
+//                FileItem fi = (FileItem) i.next();
+//                if (!fi.isFormField()) {
+//
+//                    String fieldName = fi.getFieldName();
+//                    fileName = fi.getName();
+//                    String contentType = fi.getContentType();
+//                    boolean isInMemory = fi.isInMemory();
+//                    long sizeInBytes = fi.getSize();
+//
+//                    fileName = FileService.ChangeFileName(fileName);
+//
+//                    if (fileName.lastIndexOf("\\") >= 0) {
+//                        file = new File(filePath
+//                                + fileName.substring(fileName.lastIndexOf("\\")));
+//                    } else {
+//                        file = new File(filePath + "/"
+//                                + fileName.substring(fileName.lastIndexOf("\\") + 1));
+//                    }
+//                    fi.write(file);
+//                    out.println("Uploaded Filename: " + fileName + "<br>");
+//                }
+//                if (fi.isFormField()) {
+//                    if (fi.getFieldName().equalsIgnoreCase("username")) {
+//                        username = fi.getString("UTF-8");
+//                    } else if (fi.getFieldName().equalsIgnoreCase("fullname")) {
+//                        fullname = fi.getString("UTF-8");
+//                    } else if (fi.getFieldName().equalsIgnoreCase("email")) {
+//                        email = fi.getString("UTF-8");
+//                    } else if (fi.getFieldName().equalsIgnoreCase("password")) {
+//                        password = fi.getString("UTF-8");
+//                    } else if (fi.getFieldName().equalsIgnoreCase("repassword")) {
+//                        repassword = fi.getString("UTF-8");
+//                    } else if (fi.getFieldName().equalsIgnoreCase("idrole")) {
+//                        idrole = fi.getString("UTF-8");
+//                    } else if (fi.getFieldName().equalsIgnoreCase("dienthoai")) {
+//                        phone = fi.getString("UTF-8");
+//                    } else if (fi.getFieldName().equalsIgnoreCase("address")) {
+//                        address = fi.getString("UTF-8");
+//                    } else if (fi.getFieldName().equalsIgnoreCase("note")) {
+//                        note = fi.getString("UTF-8");
+//                    } else if (fi.getFieldName().equalsIgnoreCase("gioitinh")) {
+//                        String gtt = fi.getString("UTF-8");
+//                        if (gtt.equals("Nam")) {
+//                            gt = true;
+//
+//                        }
+//                    } else if (fi.getFieldName().equalsIgnoreCase("birthday")) {
+//                        String dtt = fi.getString("UTF-8");
+//
+//                        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+//
+//                        try {
+//                            datez = dt.parse(dtt);
+//                        } catch (Exception e) {
+//                        }
+//                    } else if (fi.getFieldName().equalsIgnoreCase("iduser")) {
+//                        id = fi.getString("UTF-8");
+//                    }
+//                }
+//
+//            }
+//
+//        } catch (Exception ex) {
+//            System.out.println(ex);
+//        }
+////        Date birthday = new Date(request.getParameter("birthday"));
+//
+//        User user = ad.getUserByID(id);
+//        user.setUsername(username);
+//        user.setFullname(fullname);
+//        user.setEmail(email);
+//        user.setIdroleUser(2);
+//        user.setBirthday(datez);
+//        user.setGender(gt);
+//        user.setPassword(password);
+//        user.setUserPhone(phone);
+//        user.setAddress(address);
+//        user.setNote(note);
+//
+//        if (!fileName.equals("")) {
+//            if (user.getImage() != null) {
+//                if (!user.getImage().equals(fileName)) {
+//                    user.setImage(fileName);
+//                }
+//            } else {
+//                user.setImage(fileName);
+//            }
+//        }
+//        boolean rs = ad.InserUser(user);
+//        if (rs) {
+//            response.sendRedirect("UserManager.jsp");
+//        }
 
 //        try (PrintWriter out = response.getWriter()) {
 //            /* TODO output your page here. You may use following sample code. */
