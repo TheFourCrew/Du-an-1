@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.javaweb.service;
 
 import com.javaweb.hibernate.util.HibernateUtil;
@@ -18,7 +13,7 @@ import org.hibernate.Transaction;
  * @author Admin
  */
 public class UserService {
-    
+    //Hàm kiểm tra đăng nhập
     public boolean CheckLogin(String giaTri,String password){
         User user=GetUserByEmailOrUserName(giaTri);
         if(user!=null){
@@ -33,6 +28,7 @@ public class UserService {
             return false;
         }
     }
+    //Hàm lấy thông tin bằng email hoặc tên đn
     public User GetUserByEmailOrUserName(String gt){
         Session session=HibernateUtil.getSessionFactory().openSession();
         Transaction tx=null;
@@ -55,6 +51,8 @@ public class UserService {
         }
         return user;
         }
+    
+    //Hàm lấy thông tin theo id
      public User getUserByID(String userID){
         Session session =HibernateUtil.getSessionFactory().openSession();
         Transaction tx=null;
@@ -76,6 +74,8 @@ public class UserService {
         }
         return null;
     }
+     
+     //Hàm thêm hoặc cập nhật user
      public boolean InserUser(User user){
         Session session= HibernateUtil.getSessionFactory().openSession();
         Transaction tx= null;
@@ -96,6 +96,8 @@ public class UserService {
         }
         return false;
     }
+     
+     //Hàm lấy tất cả thông tin
      public ArrayList<User>GetAllUsers(){
         Session session =HibernateUtil.getSessionFactory().openSession();
         Transaction tx=null;
@@ -116,6 +118,7 @@ public class UserService {
         }
         return listUsers;
     }
+     //Hàm lấy tất cả thông tin quyền
      public ArrayList<RoleUser>GetAllRole(){
         Session session =HibernateUtil.getSessionFactory().openSession();
         Transaction tx=null;
@@ -136,6 +139,8 @@ public class UserService {
         }
         return listRole;
     }
+     
+     //Hàm xóa thông tin
      public boolean DeleteUser(User user){
         Session session =HibernateUtil.getSessionFactory().openSession();
         Transaction tx=null;

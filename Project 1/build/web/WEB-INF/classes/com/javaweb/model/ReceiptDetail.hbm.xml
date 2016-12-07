@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 4, 2016 9:53:00 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 5, 2016 2:19:23 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.javaweb.model.ReceiptDetail" table="receipt_detail" catalog="db_tintuc_banhang" optimistic-lock="version">
         <id name="idreceiptDetail" type="java.lang.Integer">

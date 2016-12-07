@@ -69,7 +69,7 @@ $(window).ready(function () {
                 number: "Giá chỉ có số.",
                 digits: "Giá phải trên 0."
             },
-            'prod-discount':"Không phải số.",
+            'prod-discount': "Không phải số.",
             'prod-quantity': {
                 required: "Vui lòng nhập số lượng.",
                 number: "Giá chỉ có số.",
@@ -175,3 +175,37 @@ $(window).ready(function () {
         }
     });
 });
+
+function loadXMLProductName() {
+    var xmlhttp;
+    var productName = document.getElementById("prod-name").value;
+    var urls = "CheckProductName.jsp?tsp=" + productName;
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4) {
+            document.getElementById('errProdName').style.color = "red";
+            document.getElementById('errProdName').innerHTML = xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET", urls, true);
+    xmlhttp.send();
+}
+
+function validateFormProduct() {
+    var x = document.forms["fProduct"]["prod-name"].value;
+    var y = document.getElementById('actual').value;
+
+    if (y == "taken") {
+        alert("Tên sản phẩm đã tồn tại");
+//        document.getElementById('errProdName').style.color = "red";
+//        document.getElementById('errProdName').innerHTML = 'Tồn tại';
+                return false;
+    } else {
+
+    }
+}

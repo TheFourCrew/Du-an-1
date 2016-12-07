@@ -4,6 +4,7 @@
     Author     : MinhNguyen
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="com.javaweb.model.ProductCategory"%>
 <%@page import="com.javaweb.service.ProductCategoryServices"%>
 <%@page import="com.javaweb.model.Product"%>
@@ -69,6 +70,7 @@
                                                     <th><input type="checkbox" name="delete-product" onclick="check(this)" /></th>
                                                     <th class="col-md-1">STT</th>
                                                     <th>Tên sản phẩm</th>
+                                                    <th>Giá bán</th>
                                                     <th>Loại</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Hình</th>
@@ -77,20 +79,30 @@
                                             </thead>
                                             <tbody>
                                                 <%
+                                                    DecimalFormat formatter = new DecimalFormat("###,###,###");
                                                     for (int i = 0; i < listProduct.size(); i++) {
                                                         Product product = listProduct.get(i);
                                                         String id = String.valueOf(product.getIdproductCategory());
                                                         pc = pcs.getbyid(id);
+                                                        double dGiaBan = product.getPricePerUnit();
+                                                        
+                                                        String kqGiaBan = formatter.format(dGiaBan)+" VNĐ";
+//                                                        String chuoi = product.getDetailImages();
+//                                                        String[] word = chuoi.split("<\\s", 0);
+//                                                        for (int h = 0; h < word.length; h++) {
+//                                                            System.out.println(word[h]);
+//                                                        }
                                                 %>
                                                 <tr>
-                                                    <th><input type="checkbox" name="id-product" value="<%=product.getIdproduct() %>" /></th>
+                                                    <th><input type="checkbox" name="id-product" value="<%=product.getIdproduct()%>" /></th>
                                                     <td><%= i + 1%></td>
-                                                    <td><%=product.getProductName()%></td>
+                                                    <td><%=product.getProductName() %></td>
+                                                    <td><%=kqGiaBan%></td>
                                                     <td><%= pc.getCategoryName()%></td>
                                                     <td><%=product.getCreatedDate()%></td>
                                                     <td><img class="img-thumbnail" src="uploads/<%=product.getProductImage()%>" alt="<%=product.getProductName()%>" width="80px"/></td>
                                                     <td>
-                                                        <a href="editproduct.jsp?idpt=<%=product.getIdproduct() %>" class="btn btn-info">
+                                                        <a href="editproduct.jsp?idpt=<%=product.getIdproduct()%>" class="btn btn-info">
                                                             Sửa<!--<input class="btn btn-info" type="submit" value="Sửa" />-->
                                                         </a>
                                                         <a href="DeleteProduct?idpt=<%=product.getIdproduct()%>" onclick="return confirm('Bạn có chắc không?')">
@@ -103,6 +115,7 @@
                                                 %>
                                             </tbody>
                                         </table>
+                                            <span ></span>
                                         <!-- /.table-responsive -->
                                     </form>
                                 </div>
