@@ -1,0 +1,31 @@
+SMAP
+managerproduct_jsp.java
+JSP
+*S JSP
+*F
++ 0 managerproduct.jsp
+managerproduct.jsp
++ 1 headtag.jsp
+include-dashboard/headtag.jsp
++ 2 sidebar.jsp
+include-dashboard/sidebar.jsp
+*L
+5,15:56
+5#1,45:71
+19#0,5:115
+5#2,344:120
+23#0,37:463
+60,7:501
+66,16:508
+82,14:525
+95,2:539
+97,6:541,3
+103:559,5
+104:564
+105:565,3
+106,2:568
+108:570,3
+109,5:573
+114,2:579
+115,19:581
+*E
