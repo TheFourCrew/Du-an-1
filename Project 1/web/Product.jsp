@@ -68,22 +68,12 @@
                     </div>
                 </div>
                 <div class="col-md-9 phai col-sm-3 text-center">
-<<<<<<< HEAD
+
                     <p style="    margin-bottom: 32px;font-weight: 600;font-size: 20px;color: #008ae2;">Máy Tính </p>
+                    
+                    
                     <%
-                    ProductServices ps = new ProductServices();
-                    ArrayList<Product> apt = null;
-                    apt = ps.getAll();
-                    Product pt = null;
-                    DecimalFormat formatter = new DecimalFormat("###,###,###");
-                    
-                    
-                    for(int i =0;i<apt.size();i++){
-                        pt = apt.get(i);
-                        double giaBan = pt.getPricePerUnit();
-=======
-                    <p>Máy Tính </p>
-                    <%                        ProductServices ps = new ProductServices();
+                        ProductServices ps = new ProductServices();
                         ArrayList<Product> apt = null;
                         apt = ps.getAll();
                         Product pt = null;
@@ -93,14 +83,14 @@
                             pt = apt.get(i);
                             double giaBan = pt.getPricePerUnit();
                             double giaGiam = pt.getDiscountPrice();
->>>>>>> origin/master
+
                     %>
-                    <div class="col-md-4 sp ">
+                    <div class="col-md-4 sp sty">
                         <a href="ChiTietSanPham.jsp?id=<%=pt.getIdproduct()%>">
                             <img style="width:240px; height:250px;" class="img-responsive" src="uploads/<%=pt.getProductImage()%>" alt=""/>
                             <span style="font-weight: 600;font-size: 20px;color: #008ae2;"><%=pt.getProductName()%></span>
                             <!--<span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>-->
-                            <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
+                            
                             <%
                                 if (giaGiam > 0) {
                             %>
