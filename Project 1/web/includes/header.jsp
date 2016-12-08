@@ -76,7 +76,7 @@
                                   margin-top: 13px;    margin-right: 10px;"></span> Đăng nhập
 
                             </button>
-                            <div id="myModal" class="modal fade" role="dialog">
+                            <div id="myModal" style="margin-top: 130px;" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
 
                                     <!-- Modal content-->

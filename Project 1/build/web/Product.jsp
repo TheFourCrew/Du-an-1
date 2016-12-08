@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class="col-md-9 phai col-sm-3 text-center">
-                    <p>Máy Tính </p>
+                    <p style="    margin-bottom: 32px;font-weight: 600;font-size: 20px;color: #008ae2;">Máy Tính </p>
                     <%
                     ProductServices ps = new ProductServices();
                     ArrayList<Product> apt = null;
