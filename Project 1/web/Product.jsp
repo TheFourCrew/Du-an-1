@@ -22,9 +22,9 @@
         <%@include file="includes/header.jsp" %>
         <section class="container-fluid">
             <div class="row ">
-<!--                <div class="col-md-12 col-sm-6 danhmucsp ">
-
-                </div>-->
+                <!--                <div class="col-md-12 col-sm-6 danhmucsp ">
+                
+                                </div>-->
                 <div  class="col-md-3 trai col-sm-3 ">
 
                     <div class="row theohang t">
@@ -68,21 +68,7 @@
                     </div>
                 </div>
                 <div class="col-md-9 phai col-sm-3 text-center">
-<<<<<<< HEAD
                     <p style="    margin-bottom: 32px;font-weight: 600;font-size: 20px;color: #008ae2;">Máy Tính </p>
-                    <%
-                    ProductServices ps = new ProductServices();
-                    ArrayList<Product> apt = null;
-                    apt = ps.getAll();
-                    Product pt = null;
-                    DecimalFormat formatter = new DecimalFormat("###,###,###");
-                    
-                    
-                    for(int i =0;i<apt.size();i++){
-                        pt = apt.get(i);
-                        double giaBan = pt.getPricePerUnit();
-=======
-                    <p>Máy Tính </p>
                     <%                        ProductServices ps = new ProductServices();
                         ArrayList<Product> apt = null;
                         apt = ps.getAll();
@@ -93,7 +79,6 @@
                             pt = apt.get(i);
                             double giaBan = pt.getPricePerUnit();
                             double giaGiam = pt.getDiscountPrice();
->>>>>>> origin/master
                     %>
                     <div class="col-md-4 sp ">
                         <a href="ChiTietSanPham.jsp?id=<%=pt.getIdproduct()%>">
