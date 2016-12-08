@@ -27,7 +27,7 @@
                 </div>
                 <section class="container">
                     <div class="col-md-9">
-                        <p><strong>Note:</strong> Required fields are marked with an asterisk (<em>*</em>)</p>
+                        <p><strong>Chú ý:</strong> Những trường bắt buộc có dấu sao (<em>* </em>)</p>
                         <form class="form-horizontal" action="AddProduct" name="fProduct" method="post" onsubmit="return validateFormProduct()" enctype="multipart/form-data" id="addproduct">
                             <div class="form-group">
                                 <label class="control-label col-sm-2 col-md-3" for="prod-name">Tên sản phẩm<em>*</em>:</label>
@@ -65,7 +65,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-sm-2 col-md-3" for="prod-discount">Giá giảm<em>*</em>:</label>
+                                <label class="control-label col-sm-2 col-md-3" for="prod-discount">Giá giảm:</label>
                                 <div class="col-sm-3 col-md-7">
                                     <input type="text" name="prod-discount" placeholder="Nhập giá" class="form-control" id="prod-discount">
                                 </div>

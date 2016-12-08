@@ -315,6 +315,7 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <div class=\"col-md-9 phai col-sm-3 text-center\">\r\n");
       out.write("                    <p>Máy Tính </p>\r\n");
       out.write("                    ");
+<<<<<<< HEAD
 
                     ProductServices ps = new ProductServices();
                     ArrayList<Product> apt = null;
@@ -425,6 +426,41 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                <p style=\"color: red;font-weight: 600;font-size: 20px;\">9.999.000 vnd</p>\r\n");
       out.write("                                                <button  type=\"button\" class=\"btn btn-success active center-block\">Thêm Vào Giỏ</button>\r\n");
       out.write("                                        </div>-->\r\n");
+=======
+                        ProductServices ps = new ProductServices();
+                        ArrayList<Product> apt = null;
+                        apt = ps.getAll();
+                        Product pt = null;
+                        DecimalFormat formatter = new DecimalFormat("###,###,###");
+
+                        for (int i = 0; i < apt.size(); i++) {
+                            pt = apt.get(i);
+                            double giaBan = pt.getPricePerUnit();
+                    
+      out.write("\r\n");
+      out.write("                    <div class=\"col-md-4 sp \">\r\n");
+      out.write("                        <a href=\"ChiTietSanPham.jsp?id=");
+      out.print(pt.getIdproduct());
+      out.write("\">\r\n");
+      out.write("                            <img style=\"width:240px; height:250px;\" class=\"img-responsive\" src=\"uploads/");
+      out.print(pt.getProductImage());
+      out.write("\" alt=\"\"/>\r\n");
+      out.write("                            <span style=\"font-weight: 600;font-size: 20px;color: #008ae2;\">");
+      out.print(pt.getProductName());
+      out.write("</span>\r\n");
+      out.write("                            <span style=\"font-weight: 600;font-size: 20px;color: #008ae2;\">14.0 inch</span>\r\n");
+      out.write("                            <p style=\"color: black;padding-top: 6px;\"> DELL INSPIRON 15-N3543A P40F001 </p>\r\n");
+      out.write("                            <p style=\"color: red;font-weight: 600;font-size: 20px;\">");
+      out.print(formatter.format(giaBan) + " VNĐ");
+      out.write("</p>\r\n");
+      out.write("                        </a>\r\n");
+      out.write("                        <button  type=\"button\" class=\"btn btn-success active center-block\">Thêm Vào Giỏ</button>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    ");
+
+                        }
+                    
+>>>>>>> origin/master
       out.write("\r\n");
       out.write("                </div>\r\n");
       out.write("\r\n");

@@ -82,7 +82,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-sm-2 col-md-3" for="prod-discount">Giá giảm<em>*</em>:</label>
+                                <label class="control-label col-sm-2 col-md-3" for="prod-discount">Giá giảm:</label>
                                 <div class="col-sm-3 col-md-7">
                                     <input type="text" name="prod-discount" value="<%=giaGiam.substring(0, giaGiam.indexOf("."))%>" class="form-control" id="prod-discount">
                                 </div>
