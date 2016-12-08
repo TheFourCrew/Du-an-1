@@ -115,7 +115,7 @@
                         <textarea row="4" cols="20" class="form-control" name="note"> <%=user.getNote()%></textarea>
                     </div>
                     <div class="form-group avatar-gr">
-                        
+
                         <%
                             if (user.getImage() != null) {
                                 String folderupload = getServletContext().getInitParameter("file-upload");
@@ -135,13 +135,10 @@
                         </script>
 
                     </div>
-
-
-                    <div class="checkbox">
-                        <label><input required="" type="checkbox" name="rememberMe" value="Y">Agree condition! </label>
+                        
+                        <div class="form-group">
+                        <button type="submit" class="btn btn-default">Update</button>
                     </div>
-                    <button type="submit" class="btn btn-default">Update</button>
-
                 </form>
             </div>
         </section>
