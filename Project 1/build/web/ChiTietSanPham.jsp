@@ -32,7 +32,7 @@
                 double giaBan = pt.getPricePerUnit();
                 double giaGiam = pt.getDiscountPrice();
             %>
-            <div class="row">
+            <div class="row hinhvathongso">
                 <div class="col-md-12 col-sm-6 ctsp">
                     <div class="col-md-6 col-sm-6 hinhctsp text-center">
                         <div class="w3-content">
@@ -74,6 +74,22 @@
                     </div>
                     <div class="col-md-6 col-sm-6 thongsoctsp">
                         <h4 style="color:black;font-size: 25px;font-weight: normal"><%=pt.getProductName()%></h4>
+<<<<<<< HEAD
+                        <fieldset class="rating">
+                            <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                            <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                            <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        </fieldset><br/>
+                        <p><span style="font-size: 15px; word-wrap: break-word;">MÁY TÍNH XÁCH TAY LENOVO IDEAPAD 310-14ISK,I3-6100U(2.3GHZ/3MB),4GB DDR4,1TB HDD,14" FHD,2CELL,FREE-DOS,SILVER (BẠC),1YWTY_80SL0069VNasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></p>
+
+=======
                         <a href="#">
                             <fieldset class="rating">
                                 <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
@@ -90,8 +106,9 @@
                         </a><br/>
                         <h5 style="font-size: 15px;">MÁY TÍNH XÁCH TAY LENOVO IDEAPAD 310-14ISK,I3-6100U(2.3GHZ/3MB),4GB DDR4,1TB HDD,14" FHD,2CELL,FREE-DOS,SILVER (BẠC),1YWTY_80SL0069VN</h5>
 <<<<<<< HEAD
+>>>>>>> origin/master
                         <p ><b><span style="color:red;">Giá bán:</span><span style="color:red;" class="giaban"> <%=formatter.format(giaBan) + " VNĐ"%></span><span style="color:red;"> </span></b><span > (Đã bao gồm thuế VAT)</span></p>
-=======
+
 
                         <p >
                             <%
@@ -109,7 +126,7 @@
                                         }
                                     %>
                         </p>
->>>>>>> origin/master
+
                         <div class="thongsokythuat">
                             <div class="thongsokythuattrai">
                                 <p>MoDel: <span>Dell core i5</span></p>
@@ -124,11 +141,36 @@
                                 <p style="padding-top: 15px">System: <span>Windows 10</span></p>
                             </div>
                         </div>
-                        <button style="margin-top: 20px;" type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
+                        <button style="margin-top: 20px;margin-bottom: 10px;" type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="container">
+                
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">Mô Tả</a></li>
+                    <li><a data-toggle="tab" href="#menu1">Bình Luận</a></li>
+                    <li><a data-toggle="tab" href="#menu2">Đánh giá</a></li>
+                    
+                </ul>
+
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <h3>Mô Tả</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <h3>Bình Luận</h3>
+                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                    <div id="menu2" class="tab-pane fade">
+                        <h3>Đánh giá</h3>
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="row baivietlienquanctsp">
                 <div class="baivietlienquan col-md-6 col-sm-6">
                     <center><span class="tenbaivietctsp" style="color:#008ac2;font-size: 30px">Bài viết liên quan</span></center>
                     <a href="#">
