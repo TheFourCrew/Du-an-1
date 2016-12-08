@@ -43,76 +43,14 @@
                         <div class="panel panel-default">
 
                             <div class="panel-heading">Danh mục người dùng
-                                <form action="SearchServlet" method="post">
+<!--                                <form action="SearchServlet" method="post">
                                     <div class="searchus">
                                         <input type="text" style="float: right;    width: 300px;" name="username" class="form-control input-sm" maxlength="64" placeholder="Search" />
                                         <button type="submit" style="    margin-left: 645px;" class="btn btn-primary btn-sm searchbtn">Search</button>
-                                    </div>
+                                    </div>-->
  
-<!--                                    <table class="table">
-                                        <%
-                                            if(session.getAttribute("username")!=null){
-                                        %>
-                                    <thead>
-                                        <tr>
-                                            
-                                            <th>TT</th>                        
-                                            <th>Tên đăng nhập</th>                        
+                                    
 
-                                            <th>Họ tên</th>                        
-
-
-                                            <th>Địa chỉ</th>
-
-
-                                            <th>Hình đại diện</th>
-                                            <th>Trạng thái</th>
-                                            <th>Ghi chú</th>
-                                        </tr>
-
-                                    </thead>
-                                    <tbody>
-                                        <%                                   
-                                                User user = listUser.get(i);
-                                        %>
-                                        <tr>
-                                            
-                                            <td><%=1%></td>                        
-                                            <td><%=user.getUsername()%></td>   
-
-                                            <td><%=user.getFullname()%></td>
-
-
-                                            <td><%=user.getAddress()%></td>
-
-
-                                            <td><img src="uploads/<%=user.getImage()%>" alt="<%=user.getImage()%>"width="50px"height="50px"/></td> 
-                                            <td><%=user.getStatus()%></td>                       
-
-
-
-                                            <td><%=user.getNote()%>=</td>
-                                            <td>
-                                                <a href="edituser.jsp?iduser=<%=user.getIduser()%>">Edit</a>
-                                            </td>
-
-                                            <td>
-
-                                                <a href="DeleteUserServlet?iduser=<%=user.getIduser()%>" onclick="return confirm('Bạn có muốn xóa người dùng này?')">Delete</a>
-                                            </td>
-
-                                        </tr>
-                                        <%
-
-                                            }
-                                        %>
-
-
-
-                                    </tbody>
-
-                                </table>-->
-                                </form>
                             </div>
 
                             <form action="DeleteMultipleUser" method="post">

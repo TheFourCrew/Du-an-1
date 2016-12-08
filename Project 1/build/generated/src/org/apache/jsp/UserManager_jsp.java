@@ -482,102 +482,14 @@ public final class UserManager_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <div class=\"panel panel-default\">\r\n");
       out.write("\r\n");
       out.write("                            <div class=\"panel-heading\">Danh mục người dùng\r\n");
-      out.write("                                <form action=\"SearchUserServlet\" method=\"post\">\r\n");
+      out.write("<!--                                <form action=\"SearchServlet\" method=\"post\">\r\n");
       out.write("                                    <div class=\"searchus\">\r\n");
       out.write("                                        <input type=\"text\" style=\"float: right;    width: 300px;\" name=\"username\" class=\"form-control input-sm\" maxlength=\"64\" placeholder=\"Search\" />\r\n");
       out.write("                                        <button type=\"submit\" style=\"    margin-left: 645px;\" class=\"btn btn-primary btn-sm searchbtn\">Search</button>\r\n");
-      out.write("                                    </div>\r\n");
+      out.write("                                    </div>-->\r\n");
       out.write(" \r\n");
-      out.write("<!--                                    <table class=\"table\">\r\n");
-      out.write("                                        ");
-
-                                            if(session.getAttribute("username")!=null){
-                                        
+      out.write("                                    \r\n");
       out.write("\r\n");
-      out.write("                                    <thead>\r\n");
-      out.write("                                        <tr>\r\n");
-      out.write("                                            \r\n");
-      out.write("                                            <th>TT</th>                        \r\n");
-      out.write("                                            <th>Tên đăng nhập</th>                        \r\n");
-      out.write("\r\n");
-      out.write("                                            <th>Họ tên</th>                        \r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            <th>Địa chỉ</th>\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            <th>Hình đại diện</th>\r\n");
-      out.write("                                            <th>Trạng thái</th>\r\n");
-      out.write("                                            <th>Ghi chú</th>\r\n");
-      out.write("                                        </tr>\r\n");
-      out.write("\r\n");
-      out.write("                                    </thead>\r\n");
-      out.write("                                    <tbody>\r\n");
-      out.write("                                        ");
-                                   
-                                                User user = listUser.get(i);
-                                        
-      out.write("\r\n");
-      out.write("                                        <tr>\r\n");
-      out.write("                                            \r\n");
-      out.write("                                            <td>");
-      out.print(1);
-      out.write("</td>                        \r\n");
-      out.write("                                            <td>");
-      out.print(user.getUsername());
-      out.write("</td>   \r\n");
-      out.write("\r\n");
-      out.write("                                            <td>");
-      out.print(user.getFullname());
-      out.write("</td>\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            <td>");
-      out.print(user.getAddress());
-      out.write("</td>\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            <td><img src=\"uploads/");
-      out.print(user.getImage());
-      out.write("\" alt=\"");
-      out.print(user.getImage());
-      out.write("\"width=\"50px\"height=\"50px\"/></td> \r\n");
-      out.write("                                            <td>");
-      out.print(user.getStatus());
-      out.write("</td>                       \r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                            <td>");
-      out.print(user.getNote());
-      out.write("=</td>\r\n");
-      out.write("                                            <td>\r\n");
-      out.write("                                                <a href=\"edituser.jsp?iduser=");
-      out.print(user.getIduser());
-      out.write("\">Edit</a>\r\n");
-      out.write("                                            </td>\r\n");
-      out.write("\r\n");
-      out.write("                                            <td>\r\n");
-      out.write("\r\n");
-      out.write("                                                <a href=\"DeleteUserServlet?iduser=");
-      out.print(user.getIduser());
-      out.write("\" onclick=\"return confirm('Bạn có muốn xóa người dùng này?')\">Delete</a>\r\n");
-      out.write("                                            </td>\r\n");
-      out.write("\r\n");
-      out.write("                                        </tr>\r\n");
-      out.write("                                        ");
-
-
-                                            }
-                                        
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                                    </tbody>\r\n");
-      out.write("\r\n");
-      out.write("                                </table>-->\r\n");
-      out.write("                                </form>\r\n");
       out.write("                            </div>\r\n");
       out.write("\r\n");
       out.write("                            <form action=\"DeleteMultipleUser\" method=\"post\">\r\n");

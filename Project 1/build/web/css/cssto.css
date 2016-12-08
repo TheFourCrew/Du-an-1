@@ -63,15 +63,8 @@ a, a:hover, a:active, a:focus{
     -moz-transform:scale(1.2); 
     -o-transform:scale(1.2);
 }
-.ctsp{
-    height: 400px;
 
-}
-.hinhctsp{
-    height: 400px;
-    background-color: #fff;
-    border: 1px solid #e7e7e7;
-}
+
 .hinhctsp img{
     -webkit-transition-duration: 0.5s; 
     -moz-transition-duration: 0.5s; 
@@ -83,16 +76,8 @@ a, a:hover, a:active, a:focus{
     -moz-transform:scale(1.2); 
     -o-transform:scale(1.2);
 }
-.thongsoctsp{
-    height: 400px;
-    background-color: #fff;
-    border: 1px solid #e7e7e7;
-}
-.baivietctsp{
-    height: 400px;
-    background-color: #fff;
-    margin-top: 20px;
-}
+
+
 .spnoibat{
     height: 300px;
     width: 304px;
@@ -105,6 +90,7 @@ a, a:hover, a:active, a:focus{
     background-color: #f5f5f5;
     margin:0 auto;   
     border: 1px solid #e7e7e7;
+
 }
 .thongsokythuattrai{
     width: 224px;
@@ -116,7 +102,7 @@ a, a:hover, a:active, a:focus{
 }
 
 .thongsokythuatphai{
-    width: 224px;
+    width: 223px;
     height: 200px;
     padding-top: 20px;
     float: left;
@@ -137,7 +123,7 @@ a, a:hover, a:active, a:focus{
 }
 .baivietctsp{
     padding-top: 15px;
-   
+
 }
 .tenbaivietctsp{
     text-align: center !important; 
@@ -149,7 +135,7 @@ a, a:hover, a:active, a:focus{
 }
 
 .searchus {
-    
+
     width: 260px;
     height: 30px;
     position: relative;
@@ -159,29 +145,48 @@ a, a:hover, a:active, a:focus{
     bottom: 0px;
 }
 .searchus input {
-        position: absolute;
-        width: 0px;
-        float: Left;
-        margin-left: 210px;
-        -webkit-transition: all 0.7s ease-in-out;
-        -moz-transition: all 0.7s ease-in-out;
-        -o-transition: all 0.7s ease-in-out;
-        transition: all 0.7s ease-in-out;
-        height: 30px;
-        line-height: 18px;
-        padding: 0 2px 0 2px;
-        border-radius:1px;
-    }
+    position: absolute;
+    width: 0px;
+    float: Left;
+    margin-left: 210px;
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+    height: 30px;
+    line-height: 18px;
+    padding: 0 2px 0 2px;
+    border-radius:1px;
+}
 
-        .searchus:hover input, .searchus input:focus {
-            width: 200px;
-            margin-left: 0px;
-        }
+.searchus:hover input, .searchus input:focus {
+    width: 200px;
+    margin-left: 0px;
+}
 
-    .searchbtn {
-        height: 30px;
-        position: absolute;
-        right: 0;
-        bottom: 0px;
-        border-radius:1px;
-    }
+.searchbtn {
+    height: 30px;
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+    border-radius:1px;
+}
+label#rememberMe-error{
+    float: right !important;
+}
+.hinhvathongso{
+    background-color: #fff;
+    border: 1px solid #e7e7e7;
+}
+.thongsoctsp{
+    border-left: 1px solid  #e7e7e7;
+}
+.baivietlienquanctsp{
+    background-color: #fff;
+    margin-top: 20px;
+    margin-bottom: 20px;
+     border: 1px solid #e7e7e7;
+}
+.baivietlienquan{
+    border-right:  1px solid #e7e7e7;
+}
