@@ -32,6 +32,14 @@
         <servlet-name>EditProductServlet</servlet-name>
         <servlet-class>com.javaweb.controller.EditProductServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteMultipleUser</servlet-name>
+        <servlet-class>com.javaweb.controller.DeleteMultipleUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchUserServlet</servlet-name>
+        <servlet-class>com.javaweb.controller.SearchServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LienLac</servlet-name>
         <url-pattern>/LienLac</url-pattern>
@@ -89,6 +97,14 @@
     <servlet-mapping>
         <servlet-name>EditProductServlet</servlet-name>
         <url-pattern>/EditProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteMultipleUser</servlet-name>
+        <url-pattern>/DeleteMultipleUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchUserServlet</servlet-name>
+        <url-pattern>/SearchUserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
