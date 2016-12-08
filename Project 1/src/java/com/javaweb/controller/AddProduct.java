@@ -6,6 +6,7 @@ import com.javaweb.model.ProductTags;
 import com.javaweb.model.Tags;
 import com.javaweb.service.FileService;
 import com.javaweb.service.ProductServices;
+import com.javaweb.service.TagServices;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -165,24 +166,26 @@ public class AddProduct extends HttpServlet {
                 product = ps.GetProductByName(tenSP);
                 String idpt = String.valueOf(product.getIdproduct());
                 
+                TagServices ts = new TagServices();
+                
                 Tags tag = null;
                 ProductTags prodTags = null;
-
+                
                 String chuoi = the + ", ";
                 String[] words = chuoi.split(", ");
                 for (int i = 0; i < words.length; i++) {
-                    tag = ps.GetByTagName(words[i]);
+                    tag = ts.GetByTagName(words[i]);
 
                     if (tag == null) {
                         tag = new Tags(words[i]);
-                        ps.InsertOrUpdateTags(tag);
+                        ts.InsertOrUpdateTags(tag);
                     }
 
-                    prodTags = ps.GetProductTagByIdProdnTag(idpt, String.valueOf(tag.getIdtags()));
+                    prodTags = ts.GetProductTagByIdProdnTag(idpt, String.valueOf(tag.getIdtags()));
 
                     if (prodTags == null) {
                         prodTags = new ProductTags(Integer.parseInt(idpt), tag.getIdtags());
-                        ps.InsertOrUpdateProductTags(prodTags);
+                        ts.InsertOrUpdateProductTags(prodTags);
                     }
                 }
 
