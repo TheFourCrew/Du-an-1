@@ -40,10 +40,6 @@
         <servlet-name>SearchUserServlet</servlet-name>
         <servlet-class>com.javaweb.controller.SearchServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>RatingServlet</servlet-name>
-        <servlet-class>com.javaweb.controller.RatingServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>LienLac</servlet-name>
         <url-pattern>/LienLac</url-pattern>
@@ -109,10 +105,6 @@
     <servlet-mapping>
         <servlet-name>SearchUserServlet</servlet-name>
         <url-pattern>/SearchUserServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RatingServlet</servlet-name>
-        <url-pattern>/RatingServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

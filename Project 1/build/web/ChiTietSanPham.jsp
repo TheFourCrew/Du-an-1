@@ -89,7 +89,9 @@
                             </fieldset>
                         </a><br/>
                         <h5 style="font-size: 15px;">MÁY TÍNH XÁCH TAY LENOVO IDEAPAD 310-14ISK,I3-6100U(2.3GHZ/3MB),4GB DDR4,1TB HDD,14" FHD,2CELL,FREE-DOS,SILVER (BẠC),1YWTY_80SL0069VN</h5>
+<<<<<<< HEAD
                         <p ><b><span style="color:red;">Giá bán:</span><span style="color:red;" class="giaban"> <%=formatter.format(giaBan) + " VNĐ"%></span><span style="color:red;"> </span></b><span > (Đã bao gồm thuế VAT)</span></p>
+=======
 
                         <p >
                             <%
@@ -107,6 +109,7 @@
                                         }
                                     %>
                         </p>
+>>>>>>> origin/master
                         <div class="thongsokythuat">
                             <div class="thongsokythuattrai">
                                 <p>MoDel: <span>Dell core i5</span></p>
