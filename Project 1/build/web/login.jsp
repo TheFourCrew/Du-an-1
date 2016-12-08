@@ -17,14 +17,15 @@
         <section class="container">
             <div class="row">
                 <form class="form-horizontal"action="LoginServlet" method="post">
+                    
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="email">Email or UserName:</label>
+                        <label class="control-label col-sm-2" for="email">Email:</label>
                         <div class="col-sm-10">
                             <input type="text" name="email" class="form-control" id="email" placeholder="Enter email">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">Password:</label>
+                        <label class="control-label col-sm-2" for="pwd">Mật khẩu:</label>
                         <div class="col-sm-10"> 
                             <input type="password" name="pw" class="form-control" id="pwd" placeholder="Enter password">
                         </div>
@@ -32,13 +33,13 @@
                     <div class="form-group"> 
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="checkbox">
-                                <label><input type="checkbox" name="remember" value="R"> Remember me</label>
+                                <label><input type="checkbox" name="remember" value="R"> Ghi nhớ tài khoản</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group"> 
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button type="submit" class="btn btn-default">Đăng nhập</button>
                             <%                            if (session.getAttribute("errormsg") != null) {
                             %>
                             <div class="text-danger"><%=session.getAttribute("errormsg")%></div>

@@ -83,14 +83,14 @@
                                                         pc = pcs.getbyid(id);
                                                 %>
                                                 <tr>
-                                                    <th><input type="checkbox" name="id-product" value="<%=product.getIdproduct() %>" /></th>
+                                                    <th><input type="checkbox" name="id-product" value="<%=product.getIdproduct()%>" /></th>
                                                     <td><%= i + 1%></td>
                                                     <td><%=product.getProductName()%></td>
                                                     <td><%= pc.getCategoryName()%></td>
                                                     <td><%=product.getCreatedDate()%></td>
                                                     <td><img class="img-thumbnail" src="uploads/<%=product.getProductImage()%>" alt="<%=product.getProductName()%>" width="80px"/></td>
                                                     <td>
-                                                        <a href="editproduct.jsp?idpt=<%=product.getIdproduct() %>" class="btn btn-info">
+                                                        <a href="editproduct.jsp?idpt=<%=product.getIdproduct()%>" class="btn btn-info">
                                                             Sửa<!--<input class="btn btn-info" type="submit" value="Sửa" />-->
                                                         </a>
                                                         <a href="DeleteProduct?idpt=<%=product.getIdproduct()%>" onclick="return confirm('Bạn có chắc không?')">
