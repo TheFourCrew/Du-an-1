@@ -10,6 +10,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 <!--<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">-->
+
+<!-- Start WOWSlider.com HEAD section -->
+<link rel="stylesheet" type="text/css" href="engine1/style.css" />
+<script type="text/javascript" src="engine1/jquery.js"></script>
+<!-- End WOWSlider.com HEAD section -->
+
 <link href="css/w3.css" rel="stylesheet" type="text/css"/>
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -25,3 +31,4 @@
 <script src="js/additional-methods.min.js" type="text/javascript"></script>
 <script src="js/javascript.js" type="text/javascript"></script>
 <script src="ckeditor/ckeditor.js" type="text/javascript" ></script>
+

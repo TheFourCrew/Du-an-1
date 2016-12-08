@@ -45,48 +45,48 @@
                     <div class="col-md-12">
                         <br/>
                         <div class="form-horizontal">
-                            <form  role="form">
+                            <form  role="form" id="dathang">
                                 <fieldset>
 
                                     <legend>Thông Tin Đặt Hàng</legend>
                                     <br/>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label"  for="card-holder-name">Email</label>
+                                        <label class="col-sm-3 control-label"  for="email">Email</label>
                                         <div class="col-sm-9">
-                                            <input  maxlength="100" type="text" required="required" class="form-control" placeholder="Điền email của bạn"  />
+                                            <input  maxlength="100" type="text" name="email" required="required" class="form-control" placeholder="Điền email của bạn"  />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label" for="card-number">Họ Và Tên</label>
+                                        <label class="col-sm-3 control-label" for="username">Họ Và Tên</label>
                                         <div class="col-sm-9">
-                                            <input maxlength="100" type="text" required="required" class="form-control" placeholder="Nhập họ và tên của bạn" />
+                                            <input maxlength="100" type="text" name="username" required="required" class="form-control" placeholder="Nhập họ và tên của bạn" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label" for="card-number">Số Điện Thoại</label>
+                                        <label class="col-sm-3 control-label" for="sdt">Số Điện Thoại</label>
                                         <div class="col-sm-9">
-                                            <input maxlength="100" type="text" required="required" class="form-control" placeholder="Nhập số điện thoại của bạn" />
+                                            <input maxlength="100" type="text" name="sdt" required="required" class="form-control" placeholder="Nhập số điện thoại của bạn" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label" for="card-number">Địa Chỉ</label>
+                                        <label class="col-sm-3 control-label" for="diachi">Địa Chỉ</label>
                                         <div class="col-sm-9">
-                                            <input maxlength="100" type="text" required="required" class="form-control" placeholder="Nhập địa chỉ của bạn" />
+                                            <input maxlength="100" type="text" name="diachi" required="required" class="form-control" placeholder="Nhập địa chỉ của bạn" />
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="col-sm-6 control-label" for="card-number">Thành phố</label>
+                                            <label class="col-sm-6 control-label" for="thanhpho">Thành phố</label>
                                             <div class="col-sm-6" style="padding-left:8px">
-                                                <input maxlength="100" type="text" required="required" class="form-control" placeholder="Nhập Thành phố bạn đang sống" />
+                                                <input maxlength="100" type="text" name="thanhpho" required="required" class="form-control" placeholder="Nhập Thành phố bạn đang sống" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="col-sm-6 control-label" for="card-number">Tỉnh/Huyện</label>
+                                            <label class="col-sm-6 control-label" for="tinhhuyen">Tỉnh/Huyện</label>
                                             <div class="col-sm-6" style="padding:0px">
-                                                <input maxlength="100" type="text" required="required" class="form-control" placeholder="Tên tỉnh/huyện" />
+                                                <input maxlength="100" type="text" name="tinhhuyen" required="required" class="form-control" placeholder="Tên tỉnh/huyện" />
                                             </div>
                                         </div>
                                     </div>
@@ -102,7 +102,7 @@
                 <div class="col-xs-12">
                     <div class="col-md-12">
 
-                        <button class="btn btn-primary btn-lg pull-right nextBtn" type="submit">Xác Nhận Đặt Hàng</button>
+                        <button type="submit" class="btn btn-default">Xác Nhận Đặt Hàng</button>
                     </div>
                 </div>
             </div>

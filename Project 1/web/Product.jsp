@@ -1,4 +1,8 @@
 
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="com.javaweb.model.Product"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.javaweb.service.ProductServices"%>
 <%-- 
     Document   : Product
     Created on : Nov 22, 2016, 7:34:47 AM
@@ -12,14 +16,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Product</title>
         <%@include file="includes/headtag.jsp" %>
-        
+
     </head>
     <body>
         <%@include file="includes/header.jsp" %>
         <section class="container-fluid">
             <div class="row ">
                 <div class="col-md-12 col-sm-6 danhmucsp ">
-                    
 
                 </div>
                 <div  class="col-md-3 trai col-sm-3 ">
@@ -66,89 +69,105 @@
                 </div>
                 <div class="col-md-9 phai col-sm-3 text-center">
                     <p>Máy Tính </p>
-                    <div class="col-md-4 sp ">
-                        <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
-                            
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
-                            <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
-                            <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
-                            <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
-                    </div>
-
-                    <div class="col-md-4 sp">
-                        <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
-                            
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
-                            <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
-                            <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
-                            <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
-                    </div>
+                    <%
+                    ProductServices ps = new ProductServices();
+                    ArrayList<Product> apt = null;
+                    apt = ps.getAll();
+                    Product pt = null;
+                    DecimalFormat formatter = new DecimalFormat("###,###,###");
                     
-                    <div class="col-md-4 sp">
-                       <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
-                            
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
+                    
+                    for(int i =0;i<apt.size();i++){
+                        pt = apt.get(i);
+                        double giaBan = pt.getPricePerUnit();
+                    %>
+                    <div class="col-md-4 sp ">
+                        <a href="ChiTietSanPham.jsp?id=<%=pt.getIdproduct() %>">
+                            <img style="width:240px; height:250px;" class="img-responsive" src="uploads/<%=pt.getProductImage() %>" alt=""/>
+                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;"><%=pt.getProductName()%></span>
                             <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
                             <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
-                            <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
-                            <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
+                            <p style="color: red;font-weight: 600;font-size: 20px;"><%=formatter.format(giaBan)+" VNĐ"%></p>
+                        </a>
+                        <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
                     </div>
-                    <div class="col-md-4 sp">
-                        <a href="#"><img style="width:240px; height:250px;"class="img-responsive" src="img/dell.png" alt=""/>
-                            
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
-                            <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
-                            <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
-                            <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
-                    </div>
-                    <div class="col-md-4 sp">
-                        <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
-                            
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
-                            <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
-                            <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
-                            <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
-                    </div>
-                    <div class="col-md-4 sp">
-                        <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
-                            
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
-                            <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
-                            <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
-                            <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
-                    </div>
-                    <div class="col-md-4 sp">
-                        <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
-                            
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
-                            <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
-                            <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
-                            <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
-                    </div>
-                    <div class="col-md-4 sp">
-                        <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
-                            
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
-                            <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
-                            <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
-                            <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
-                    </div>
-                    <div class="col-md-4 sp">
-                        <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
-                            
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
-                            <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
-                            <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
-                            <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
-                            <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
-                    </div>
+                    <%
+                        }
+                    %>
+
+                    <!--                    <div class="col-md-4 sp">
+                                            <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
+                    
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
+                                                <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
+                                                <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
+                                                <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
+                                        </div>
+                    
+                                        <div class="col-md-4 sp">
+                                            <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
+                    
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
+                                                <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
+                                                <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
+                                                <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
+                                        </div>
+                                        <div class="col-md-4 sp">
+                                            <a href="#"><img style="width:240px; height:250px;"class="img-responsive" src="img/dell.png" alt=""/>
+                    
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
+                                                <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
+                                                <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
+                                                <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
+                                        </div>
+                                        <div class="col-md-4 sp">
+                                            <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
+                    
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
+                                                <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
+                                                <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
+                                                <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
+                                        </div>
+                                        <div class="col-md-4 sp">
+                                            <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
+                    
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
+                                                <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
+                                                <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
+                                                <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
+                                        </div>
+                                        <div class="col-md-4 sp">
+                                            <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
+                    
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
+                                                <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
+                                                <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
+                                                <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
+                                        </div>
+                                        <div class="col-md-4 sp">
+                                            <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
+                    
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
+                                                <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
+                                                <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
+                                                <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
+                                        </div>
+                                        <div class="col-md-4 sp">
+                                            <a href="#"><img style="width:240px; height:250px;" class="img-responsive" src="img/dell.png" alt=""/>
+                    
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">Intel core i5</span>
+                                                <span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>
+                                                <p style="color: black;padding-top: 6px;"> DELL INSPIRON 15-N3543A P40F001 </p>
+                                                <p style="color: red;font-weight: 600;font-size: 20px;">9.999.000 vnd</p>
+                                                <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
+                                        </div>-->
 
                 </div>
 

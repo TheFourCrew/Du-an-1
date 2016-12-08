@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 4, 2016 9:52:59 PM by Hibernate Tools 4.3.1
+// Generated Dec 5, 2016 2:19:17 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -25,6 +25,7 @@ public class Product  implements java.io.Serializable {
      private Date dateModified;
      private String productImage;
      private String note;
+     private String detailImages;
 
     public Product() {
     }
@@ -42,7 +43,7 @@ public class Product  implements java.io.Serializable {
         this.creater = creater;
         this.productImage = productImage;
     }
-    public Product(String productNumber, String productName, double pricePerUnit, double boughtPrice, int productQuantity, Double discountPrice, String unit, String description, int idproductCategory, Date createdDate, int creater, Date dateModified, String productImage, String note) {
+    public Product(String productNumber, String productName, double pricePerUnit, double boughtPrice, int productQuantity, Double discountPrice, String unit, String description, int idproductCategory, Date createdDate, int creater, Date dateModified, String productImage, String note, String detailImages) {
        this.productNumber = productNumber;
        this.productName = productName;
        this.pricePerUnit = pricePerUnit;
@@ -57,6 +58,7 @@ public class Product  implements java.io.Serializable {
        this.dateModified = dateModified;
        this.productImage = productImage;
        this.note = note;
+       this.detailImages = detailImages;
     }
    
     public Integer getIdproduct() {
@@ -163,6 +165,13 @@ public class Product  implements java.io.Serializable {
     
     public void setNote(String note) {
         this.note = note;
+    }
+    public String getDetailImages() {
+        return this.detailImages;
+    }
+    
+    public void setDetailImages(String detailImages) {
+        this.detailImages = detailImages;
     }
 
 

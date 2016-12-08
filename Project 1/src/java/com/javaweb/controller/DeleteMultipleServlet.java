@@ -33,19 +33,24 @@ public class DeleteMultipleServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String[] aId = request.getParameterValues("id-product");
         String tacVu = request.getParameter("tacvu");
-        
+
         Product pt = null;
         String id = "";
         ProductServices ps = new ProductServices();
+
+//        response.getWriter().println(aId);
         if (tacVu.equals("xoa")) {
-            for (int i = 0; i < aId.length; i++) {
-                id = aId[i];
-                pt = ps.GetById(id);
-                ps.DeleteProduct(pt);
+            if (aId != null) {
+                for (int i = 0; i < aId.length; i++) {
+                    id = aId[i];
+                    pt = ps.GetById(id);
+                    ps.DeleteProduct(pt);
+                }
             }
         }
-        
+
         response.sendRedirect("managerproduct.jsp");
+        
 //        try (PrintWriter out = response.getWriter()) {
 //            /* TODO output your page here. You may use following sample code. */
 //            out.println("<!DOCTYPE html>");
