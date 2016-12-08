@@ -62,7 +62,8 @@ public class LoginServlet extends HttpServlet {
             getServletContext().getRequestDispatcher(url).forward(request, response);
         }else{
             session.setAttribute("errormsg", "Tài khoản hoặc mật khẩu sai");
-            request.getRequestDispatcher("login.jsp").include(request, response);
+            String url = "/login.jsp";
+            getServletContext().getRequestDispatcher(url).forward(request, response);
             
             try (PrintWriter out = response.getWriter()) {
                 
