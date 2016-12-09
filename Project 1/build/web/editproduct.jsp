@@ -4,6 +4,7 @@
     Author     : MinhNguyen
 --%>
 
+<%@page import="com.javaweb.service.TagServices"%>
 <%@page import="com.javaweb.model.Tags"%>
 <%@page import="com.javaweb.model.ProductTags"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -116,7 +117,7 @@
                                             for (int i = 0; i < aPC.size(); i++) {
                                                 if (pt.getIdproductCategory() == aPC.get(i).getIdproductCategory()) {
 //                                                    pcs.getbyid(id)
-%>
+                                        %>
                                         <option value="<%=aPC.get(i).getIdproductCategory()%>" selected><%=aPC.get(i).getCategoryName()%></option>
                                         <%
                                         } else {
@@ -131,16 +132,17 @@
                                 </div>
                             </div>
                             <%
+                                TagServices ts = new TagServices();
                                 ArrayList<ProductTags> prodTags = null;
-                                prodTags = ps.GetProductTagsById(id);
+                                prodTags = ts.GetProductTagsById(id);
                                 ProductTags theCTSP = null;
                                 Tags tag = null;
                                 String theTag = "";
                                 for (int i = 0; i < prodTags.size(); i++) {
                                     theCTSP = prodTags.get(i);
-                                    
-                                    tag = ps.GetByTagsId(String.valueOf(theCTSP.getIdTag()));
-                                    theTag += tag.getTagName()+", ";
+
+                                    tag = ts.GetByTagsId(String.valueOf(theCTSP.getIdTag()));
+                                    theTag += tag.getTagName() + ", ";
                                 }
                             %>
                             <div class="form-group">
