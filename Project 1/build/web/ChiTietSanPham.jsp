@@ -253,7 +253,7 @@
                                 <form action="CommentServlet" method="post">
                                     <input type="hidden" name="spID" value="<%=idPT%>" />
                                     <%
-                                        if (session.getAttribute("cmtname") == null) {
+                                        if (session.getAttribute("cmtname") == null || session.getAttribute("fullname") == null) {
 
                                     %>
                                     <div class="form-group">
@@ -271,10 +271,11 @@
                                     </div>
 
                                     <%                } else {
+
                                     %>
                                     <div class="form-group">
                                         <div class="col-sm-3 col-md-7">
-                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%= session.getAttribute("cmtname")%> </label>
+                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("cmtname")%><%=session.getAttribute("fullname")%> </label>
                                             <a href="logout.jsp"> Logout </a>
                                             <input type="hidden" name="cName" value="${cmtname}" class="form-control" id="c-Name">
                                         </div>
@@ -552,21 +553,21 @@
                         Product pct = null;
                         for (int i = 0; i < aPT.size(); i++) {
                             pct = aPT.get(i);
-                            if(pct.getIdproduct()!= Integer.parseInt(idPT)){
+                            if (pct.getIdproduct() != Integer.parseInt(idPT)) {
                     %>
                     <div class="col-md-3 splienquan1 ">
                         <%--<%=aPT.size() %>--%>
                         <center>
-                        <a href="ChiTietSanPham.jsp?id=<%=pct.getIdproduct() %>"><img  class="img-responsive" src="uploads/<%=pct.getProductImage() %>" alt="<%=pct.getProductName() %>"/><br/>
-                            <span style="font-size: 20px;color: #008ae2;"><%=pct.getProductName() %></span>
-                        </a>
+                            <a href="ChiTietSanPham.jsp?id=<%=pct.getIdproduct()%>"><img  class="img-responsive" src="uploads/<%=pct.getProductImage()%>" alt="<%=pct.getProductName()%>"/><br/>
+                                <span style="font-size: 20px;color: #008ae2;"><%=pct.getProductName()%></span>
+                            </a>
                         </center>
-                        </div>
-                        <%
+                    </div>
+                    <%
                             }
                         }
-                        %>
-                    
+                    %>
+
                 </div>
             </div>
         </section>

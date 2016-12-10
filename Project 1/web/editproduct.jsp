@@ -45,12 +45,14 @@
                 <section class="container">
                     <div class="col-md-9">
                         <p><strong>Chú ý:</strong> Những trường bắt buộc có dấu sao (<em>* </em>)</p>
-                        <form class="form-horizontal" action="EditProductServlet" method="post" enctype="multipart/form-data" >
+                        <form class="form-horizontal" action="EditProductServlet"  onsubmit="return validateFormProduct()" method="post" enctype="multipart/form-data" id="editproduct" name="fProduct" >
                             <input type="hidden" name="idPT" value="<%=pt.getIdproduct()%>">
                             <div class="form-group">
                                 <label class="control-label col-sm-2 col-md-3" for="prod-name">Tên sản phẩm<em>*</em>:</label>
                                 <div class="col-md-7">
-                                    <input type="text" name="prod-name" value="<%=pt.getProductName()%>" class="form-control" id="prod-name">
+                                    <input type="hidden" name="prod-old-name" value="<%=pt.getProductName()%>" class="form-control" id="prod-old-name">
+                                    <input type="text" name="prod-name" onkeyup="loadXMLProductName()" value="<%=pt.getProductName()%>" class="form-control" id="prod-name">
+                                    <span id="errProdName"></span>
                                 </div>
                             </div>
 

@@ -10,7 +10,10 @@
 <%
     request.setCharacterEncoding("UTF-8");
     String prodName = request.getParameter("tsp");
-
+    String oldName = request.getParameter("old");
+    
+    if(!prodName.equals(oldName)){
+    
     if (!prodName.equals("")) {
         ProductServices ps = new ProductServices();
         boolean ketQua = ketQua = ps.isProductExists(prodName);
@@ -27,4 +30,5 @@
 <%
         }
     }
+}
 %>

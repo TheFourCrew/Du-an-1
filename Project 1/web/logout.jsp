@@ -15,10 +15,13 @@
     <body>
         <%@include file="includes/header.jsp" %>
         <% if(session!=null){
-                session.removeAttribute("email");
-                response.sendRedirect("index.jsp");
                 session.removeAttribute("idrole_user");
+                session.removeAttribute("email");
+                session.removeAttribute("fullname");
+                session.removeAttribute("iduser");
+                session.removeAttribute("avatar");
                 
+                response.sendRedirect("index.jsp");
             }
             %> 
         

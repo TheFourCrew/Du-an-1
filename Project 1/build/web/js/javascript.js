@@ -1,8 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 var loadFile = function (event, idthem) {
     var output = document.getElementById('output' + idthem + '');
     output.style.width = "200px";
@@ -36,7 +31,7 @@ $(function () {
     $('#prod-images').on("change", previewImages);
 });
 
-///Hàm kiểm tra đăng nhập
+//Hàm kiểm tra thêm sản phẩm
 
 $(window).ready(function () {
     $('#addproduct').validate({
@@ -79,6 +74,53 @@ $(window).ready(function () {
             'loaiSP': "Vui lòng chọn loại sản phẩm.",
             'prod-thumbnail': {
                 required: "Vui lòng chọn hình đại diện.",
+                extension: "Ảnh sẽ có đuôi *.jpg, *.jpeg, *.gif hoặc *.png"
+            }
+        }
+    });
+});
+
+//Hàm kiểm tra thêm sản phẩm
+
+$(window).ready(function () {
+    $('#editproduct').validate({
+        onchange: true,
+        rules: {
+            'prod-name': "required",
+            'prod-describe': "required",
+            'prod-price': {
+                required: true,
+                number: true,
+                digits: true
+            }, 'prod-discount': "number",
+            'prod-quantity': {
+                required: true,
+                number: true,
+                digits: true
+            },
+            'prod-unit': "required",
+            'loaiSP': "required",
+            'prod-thumbnail': {
+                extension: "jpg|png|gif|jpeg"
+            }
+        },
+        messages: {
+            'prod-name': "Vui lòng nhập tên sản phẩm.",
+            'prod-describe': "Vui lòng nhập mô tả.",
+            'prod-price': {
+                required: "Vui lòng nhập giá.",
+                number: "Giá chỉ có số.",
+                digits: "Giá phải trên 0."
+            },
+            'prod-discount': "Không phải số.",
+            'prod-quantity': {
+                required: "Vui lòng nhập số lượng.",
+                number: "Giá chỉ có số.",
+                digits: "Số lượng phải trên 0."
+            },
+            'prod-unit': "Vui lòng nhập đơn vị.",
+            'loaiSP': "Vui lòng chọn loại sản phẩm.",
+            'prod-thumbnail': {
                 extension: "Ảnh sẽ có đuôi *.jpg, *.jpeg, *.gif hoặc *.png"
             }
         }
@@ -179,13 +221,19 @@ $(window).ready(function () {
 function loadXMLProductName() {
     var xmlhttp;
     var productName = document.getElementById("prod-name").value;
-    var urls = "CheckProductName.jsp?tsp=" + productName;
+    var formEdit = document.forms[0].id;
+    
+    if(formEdit == 'editproduct'){
+        var oldName = document.getElementById("prod-old-name").value;
+    }
+    
+    var urls = "CheckProductName.jsp?tsp=" + productName+"&old="+oldName;
+    
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     } else {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4) {
             document.getElementById('errProdName').style.color = "red";
@@ -198,8 +246,9 @@ function loadXMLProductName() {
 
 function validateFormProduct() {
     var x = document.forms["fProduct"]["prod-name"].value;
+    if(x != ""){
     var y = document.getElementById('actual').value;
-
+    }
     if (y == "taken") {
         alert("Tên sản phẩm đã tồn tại");
 //        document.getElementById('errProdName').style.color = "red";
