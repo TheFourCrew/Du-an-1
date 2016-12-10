@@ -57,9 +57,25 @@
                                             }
                                         </script>
                                         <%
+                                            int pageSize = 10;
+                                            int pageNumber = 1;
+                                            String url = "managerproduct.jsp";
                                             ProductServices ps = new ProductServices();
                                             ArrayList<Product> listProduct = null;
-                                            listProduct = ps.getAll();
+
+                                            if (request.getParameter("pagenumber") != null) {
+                                                session.setAttribute("pagenumber", request.getParameter("pagenumber"));
+                                                pageNumber = Integer.parseInt(request.getParameter("pagenumber"));
+                                            } else {
+                                                session.setAttribute("pagenumber", "1");
+                                            }
+
+                                            listProduct = ps.getAllProducts(pageSize, pageNumber);
+
+                                            int pageCount = (ps.productcount) / pageSize + (ps.productcount % pageSize > 0 ? 1 : 0);
+
+                                            String nextPage = (pageCount > pageNumber ? (pageNumber + 1) : pageNumber) + "";
+                                            String prevPage = (pageNumber <= 1 ? 1 : pageNumber - 1) + "";
 
                                             ProductCategoryServices pcs = new ProductCategoryServices();
                                             ProductCategory pc = null;
@@ -85,18 +101,17 @@
                                                         String id = String.valueOf(product.getIdproductCategory());
                                                         pc = pcs.getbyid(id);
                                                         double dGiaBan = product.getPricePerUnit();
-                                                        
-                                                        String kqGiaBan = formatter.format(dGiaBan)+" VNĐ";
-//                                                        String chuoi = product.getDetailImages();
-//                                                        String[] word = chuoi.split("<\\s", 0);
-//                                                        for (int h = 0; h < word.length; h++) {
-//                                                            System.out.println(word[h]);
-//                                                        }
+
+                                                        String kqGiaBan = formatter.format(dGiaBan) + " VNĐ";
+                                                        int dem = i + 1;
+                                                        if (pageNumber > 1) {
+                                                            dem = i + pageSize * (pageNumber - 1) + 1;
+                                                        }
                                                 %>
                                                 <tr>
                                                     <th><input type="checkbox" name="id-product" value="<%=product.getIdproduct()%>" /></th>
-                                                    <td><%= i + 1%></td>
-                                                    <td><%=product.getProductName() %></td>
+                                                    <td><%=dem%></td>
+                                                    <td><a href="ChiTietSanPham.jsp?id=<%=product.getIdproduct()%>"><%=product.getProductName()%></a></td>
                                                     <td><%=kqGiaBan%></td>
                                                     <td><%= pc.getCategoryName()%></td>
                                                     <td><%=product.getCreatedDate()%></td>
@@ -115,9 +130,44 @@
                                                 %>
                                             </tbody>
                                         </table>
-                                            <span ></span>
+                                        <span ></span>
                                         <!-- /.table-responsive -->
                                     </form>
+                                    <%
+                                        if (pageNumber != 1) {
+                                    %>
+                                    <div class="panel-footer">
+                                        <nav aria-label="Page navigation">
+                                            <ul class="pagination">
+                                                <%
+                                                    if (pageNumber != 1) {
+                                                %>
+                                                <li><a aria-label="Previous" href="<%=url%>?pagenumber=<%=prevPage%>"><span aria-hidden="true">&laquo;</span></a></li>
+                                                    <%
+                                                        }
+                                                        for (int j = 1; j <= pageCount; j++) {
+                                                            if (pageNumber == j) {
+                                                    %>
+                                                <li class="active"><a href="<%=url%>?pagenumber=<%=j%>"><%=j%></a></li>
+                                                    <%
+                                                    } else {
+                                                    %>
+                                                <li><a href="<%=url%>?pagenumber=<%=j%>"><%=j%></a></li>
+                                                    <%
+                                                            }
+                                                        }
+                                                        if (pageNumber != pageCount) {
+                                                    %>
+                                                <li><a aria-label="Next" href="<%=url%>?pagenumber=<%=nextPage%>"><span aria-hidden="true">&ra&raquo;</span></a></li>
+                                                    <%
+                                                        }
+                                                    %>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <%
+                                        }
+                                    %>
                                 </div>
                                 <!-- /.panel-body -->
                             </div>

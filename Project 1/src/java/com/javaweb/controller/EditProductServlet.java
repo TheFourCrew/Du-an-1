@@ -26,8 +26,8 @@ public class EditProductServlet extends HttpServlet {
 
     private File file;
     private String filePath;
-    private int maxFileSize = 1000 * 1024;
-    private int maxMemSize = 1000 * 1024;
+    private int maxFileSize = 10000 * 1024;
+    private int maxMemSize = 10000 * 1024;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -68,7 +68,7 @@ public class EditProductServlet extends HttpServlet {
                 //create a new file upload handler
                 ServletFileUpload upload = new ServletFileUpload(factory);
                 //maximun file size to be uploaded.
-                upload.setSizeMax(maxMemSize);
+                upload.setSizeMax(maxFileSize);
 
                 String tenSP = "", ghiChu = "", thumbnail = "Unknown.jpg", moTa = "",
                         donVi = "", maSP = "", idpt = "", strGiamGia = "", hinhNho = "", fileName = "", the = "";

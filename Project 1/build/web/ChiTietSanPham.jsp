@@ -28,10 +28,10 @@
     <body>
         <%@include file="includes/header.jsp" %>
         <section class="container">
-            <%                String id = request.getParameter("id");
+            <%                String idPT = request.getParameter("id");
                 ProductServices ps = new ProductServices();
                 Product pt = null;
-                pt = ps.GetById(id);
+                pt = ps.GetById(idPT);
                 DecimalFormat formatter = new DecimalFormat("###,###,###");
                 double giaBan = pt.getPricePerUnit();
                 double giaGiam = pt.getDiscountPrice();
@@ -82,17 +82,19 @@
                         <h4 style="color:black;font-size: 25px;font-weight: normal"><%=pt.getProductName()%></h4>
                         <%
                             DecimalFormat formatPoint = new DecimalFormat("#.#");
-                            ratings = ps.GetDataByIdSP(id);
+                            ratings = ps.GetDataByIdSP(idPT);
                             double point = 0;
                             double sumPoint = 0;
                             for (int i = 0; i < ratings.size(); i++) {
                                 rg = ratings.get(i);
                                 sumPoint += rg.getRatingPoint();
                             }
-                            point = Double.parseDouble(formatPoint.format(sumPoint/ratings.size()));
+                            if (sumPoint != 0) {
+                                point = Double.parseDouble(formatPoint.format(sumPoint / ratings.size()));
+                            }
                         %>
                         <fieldset class="rating-result">
-                            <label title="<%=point %>/5 điểm">
+                            <label title="<%=point%>/5 điểm">
                                 <%
                                     if (point == 5) {
                                 %>
@@ -230,10 +232,7 @@
                         <%
                             CommentServices cms = new CommentServices();
                             long countCmt = 0;
-                            countCmt = cms.getCountComment(id);
-
-//                            ratings = ps.GetDataByIdSP(id);
-
+                            countCmt = cms.getCountComment(idPT);
                         %>
                         <li class="active"><a data-toggle="tab" href="#description">Mô Tả</a></li>
                         <li><a data-toggle="tab" href="#cmment">Bình Luận <span class="badge"><%=countCmt%></span></a></li>
@@ -252,7 +251,7 @@
                             <h3>Bình Luận</h3>
                             <div class="row">
                                 <form action="CommentServlet" method="post">
-                                    <input type="hidden" name="spID" value="<%=id%>" />
+                                    <input type="hidden" name="spID" value="<%=idPT%>" />
                                     <%
                                         if (session.getAttribute("cmtname") == null) {
 
@@ -304,7 +303,7 @@
                                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:s");
                                     String gioCMT = "";
                                     ArrayList<Comment> cmt = null;
-                                    cmt = cms.getAll(id);
+                                    cmt = cms.getAll(idPT);
                                     for (int i = 0; i < cmt.size(); i++) {
                                         Comment cmtc = cmt.get(i);
                                         gioCMT = sdf.format(cmtc.getDateComment());
@@ -321,7 +320,7 @@
 
                                             <%
                                                 ArrayList<Comment> cmtRep = null;
-                                                cmtRep = cms.getByIdspAndReply(String.valueOf(cmtc.getIdcomment()), id);
+                                                cmtRep = cms.getByIdspAndReply(String.valueOf(cmtc.getIdcomment()), idPT);
                                                 Comment cmtReps = null;
                                                 for (int j = 0; j < cmtRep.size(); j++) {
                                                     cmtReps = cmtRep.get(j);
@@ -344,7 +343,7 @@
 
                                             <form action="CommentServlet" method="post">
                                                 <input type="hidden" name="idCMT" value="<%=cmtc.getIdcomment()%>" />
-                                                <input type="hidden" name="spID" value="<%=id%>" />
+                                                <input type="hidden" name="spID" value="<%=idPT%>" />
                                                 <div id="collapse<%=cmtc.getIdcomment()%>" class="panel-collapse collapse">
                                                     <%
                                                         if (session.getAttribute("cmtname") == null) {
@@ -405,7 +404,7 @@
                             <h3>Đánh giá<span class="badge"></span></h3>
                             <div class="row">
                                 <form method="post" action="RatingServlet">
-                                    <input type="hidden" name="spID" value="<%=id%>" />
+                                    <input type="hidden" name="spID" value="<%=idPT%>" />
                                     <fieldset class="rating">
                                         <input type="radio" id="star5" name="rating" value="5" /><label class = "star full" for="star5" title="Awesome - 5 stars"></label>
                                         <input type="radio" id="star4" name="rating" value="4" /><label class = "star full" for="star4" title="Pretty good - 4 stars"></label>
@@ -452,7 +451,7 @@
                             <hr>
                             <div class="row">
                                 <%
-                                    ratings = ps.GetDataByIdSP(id);
+                                    ratings = ps.GetDataByIdSP(idPT);
                                     String gioDG = "";
                                     for (int i = 0; i < ratings.size(); i++) {
                                         rg = ratings.get(i);
@@ -546,35 +545,28 @@
             <div class="row rowsplienquan ">
                 <center><span class="tenbaivietctsp" style="color:#008ac2;font-size: 25px">Sản phẩm liên quan</span></center>
                 <div class="col-md-12 col-sm-6 splienquan">
-
+                    <%
+                        ArrayList<Product> aPT = null;
+                        String idLoai = String.valueOf(pt.getIdproductCategory());
+                        aPT = ps.getRalatedProducts(idLoai);
+                        Product pct = null;
+                        for (int i = 0; i < aPT.size(); i++) {
+                            pct = aPT.get(i);
+                            if(pct.getIdproduct()!= Integer.parseInt(idPT)){
+                    %>
                     <div class="col-md-3 splienquan1 ">
-
-                        <a href="#"><img  class="img-responsive" src="img/dell.png" alt=""/><br/>
-                            <span style="font-size: 20px;color: #008ae2;">Intel core i5</span>
+                        <%--<%=aPT.size() %>--%>
+                        <center>
+                        <a href="ChiTietSanPham.jsp?id=<%=pct.getIdproduct() %>"><img  class="img-responsive" src="uploads/<%=pct.getProductImage() %>" alt="<%=pct.getProductName() %>"/><br/>
+                            <span style="font-size: 20px;color: #008ae2;"><%=pct.getProductName() %></span>
                         </a>
-
-                    </div>
-                    <div class="col-md-3 splienquan1 ">
-                        <center>
-                            <a href="#"><img  class="img-responsive" src="img/dell.png" alt=""/><br/>
-                                <span style="font-size: 20px;color: #008ae2;">Intel core i5</span>
-                            </a>
                         </center>
-                    </div>
-                    <div class="col-md-3 splienquan1 ">
-                        <center>
-                            <a href="#"><img  class="img-responsive" src="img/dell.png" alt=""/><br/>
-                                <span style="font-size: 20px;color: #008ae2;">Intel core i5</span>
-                            </a>
-                        </center>
-                    </div>
-                    <div class="col-md-3 splienquan1 ">
-                        <center>
-                            <a href="#"><img  class="img-responsive" src="img/dell.png" alt=""/><br/>
-                                <span style="font-size: 20px;color: #008ae2;">Intel core i5</span>
-                            </a>
-                        </center>
-                    </div>
+                        </div>
+                        <%
+                            }
+                        }
+                        %>
+                    
                 </div>
             </div>
         </section>

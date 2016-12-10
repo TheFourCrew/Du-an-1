@@ -196,6 +196,7 @@ public class ProductServices {
         return false;
     }
     
+    //Lấy tất cả dữ liệu theo idsp
     public ArrayList<Rating> GetDataByIdSP(String idSP){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -203,7 +204,7 @@ public class ProductServices {
         try {
             tx = session.getTransaction();
             tx.begin();
-            String strQuery = "from Rating where"+idSP;
+            String strQuery = "from Rating where id_product = "+idSP;
             Query query = session.createQuery(strQuery);
             ratings = (ArrayList<Rating>) query.list();
             tx.commit();
@@ -217,5 +218,64 @@ public class ProductServices {
             session.close();
         }
         return ratings;
+    }
+    
+    //Hàm sản phẩm liên quan
+    public ArrayList<Product> getRalatedProducts(String idLoai){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ArrayList<Product> aPT = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            
+            String strQuery = "from Product where idproduct_category = "+idLoai;
+            Query query = session.createQuery(strQuery);
+            query = query.setFirstResult(0);
+            query.setMaxResults(5);
+            aPT = (ArrayList<Product>) query.list();
+            
+            tx.commit();
+        } catch (Exception e) {
+            if(tx != null){
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        }finally{
+            session.close();
+        }
+        return aPT;
+    }
+    
+    //Hàm phân trang dữ liệu
+    public int productcount = 0;
+
+    public ArrayList<Product> getAllProducts(int pageSize, int pageNumber) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ArrayList listProducts = new ArrayList<Product>();
+
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+
+            Query query = session.createQuery("from Product order by idproduct desc");
+            productcount = query.list().size();
+            query = query.setFirstResult(pageSize * (pageNumber - 1));
+            query.setMaxResults(pageSize);
+            listProducts = (ArrayList) query.list();
+
+            tx.commit();
+
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+
+        return listProducts;
     }
 }
