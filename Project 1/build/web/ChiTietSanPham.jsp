@@ -4,6 +4,7 @@
     Author     : Computer
 --%>
 
+<%@page import="com.javaweb.model.Rating"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.javaweb.service.CommentServices"%>
 <%@page import="com.javaweb.model.Comment"%>
@@ -34,6 +35,8 @@
                 DecimalFormat formatter = new DecimalFormat("###,###,###");
                 double giaBan = pt.getPricePerUnit();
                 double giaGiam = pt.getDiscountPrice();
+                ArrayList<Rating> ratings = null;
+                Rating rg = null;
             %>
             <div class="row hinhvathongso" style="margin:auto 0px;">
                 <div class="col-md-12 col-sm-6 ctsp">
@@ -68,8 +71,8 @@
                                             %>
                                     </div>
                                 </div>
-                                <div class="ws_script" style="position:absolute;left:-99%"><a href="http://wowslider.net">jquery carousel</a> by WOWSlider.com v8.7</div>
-                                <div class="ws_shadow"></div>
+                                <!--                                <div class="ws_script" style="position:absolute;left:-99%"><a href="http://wowslider.net">jquery carousel</a> by WOWSlider.com v8.7</div>
+                                                                <div class="ws_shadow"></div>-->
                             </div>	
                             <script src="engine1/wowslider.js" type="text/javascript"></script>
                             <script src="engine1/script.js" type="text/javascript"></script>
@@ -77,19 +80,114 @@
                     </div>
                     <div class="col-md-6 col-sm-6 thongsoctsp">
                         <h4 style="color:black;font-size: 25px;font-weight: normal"><%=pt.getProductName()%></h4>
-                        <fieldset class="rating">
-                            <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                            <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                            <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                            <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                            <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                            <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                            <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                            <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                            <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                            <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                        </fieldset><br/>
-                        <p><span style="font-size: 15px; word-wrap: break-word;">MÁY TÍNH XÁCH TAY LENOVO IDEAPAD 310-14ISK,I3-6100U(2.3GHZ/3MB),4GB DDR4,1TB HDD,14" FHD,2CELL,FREE-DOS,SILVER (BẠC),1YWTY_80SL0069VNasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></p>
+                        <%
+                            DecimalFormat formatPoint = new DecimalFormat("#.#");
+                            ratings = ps.GetDataByIdSP(id);
+                            double point = 0;
+                            double sumPoint = 0;
+                            for (int i = 0; i < ratings.size(); i++) {
+                                rg = ratings.get(i);
+                                sumPoint += rg.getRatingPoint();
+                            }
+                            point = Double.parseDouble(formatPoint.format(sumPoint/ratings.size()));
+                        %>
+                        <fieldset class="rating-result">
+                            <label title="<%=point %>/5 điểm">
+                                <%
+                                    if (point == 5) {
+                                %>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <%
+                                } else if (point > 4 && point <= 4.9) {
+                                %>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-half"></label>
+                                <%
+                                } else if (point == 4) {
+                                %>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon"></label>
+                                <%
+                                } else if (point > 3 && point <= 3.9) {
+                                %>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-half"></label>
+                                <label class = "icon"></label>
+                                <%
+                                } else if (point == 3) {
+                                %>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <%
+                                } else if (point > 2 && point <= 2.9) {
+                                %>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-half"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <%
+                                } else if (point == 2) {
+                                %>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <%
+                                } else if (point > 1 && point <= 1.9) {
+                                %>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon star-half"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <%
+                                } else if (point == 1) {
+                                %>
+                                <label class = "icon star-full"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <%
+                                } else if (point > 0 && point <= 0.9) {
+                                %>
+                                <label class = "icon star-half"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <%
+                                } else {
+                                %>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <label class = "icon"></label>
+                                <%
+                                    }
+                                %>
+                                <label class="sum-rater">(<%=ratings.size()%> người đánh giá)</label>
+                            </label>
+                        </fieldset>
+                        <p><span style="font-size: 15px; word-wrap: break-word;">MÁY TÍNH XÁCH TAY LENO <span>(<%=ratings.size()%>)</span>VO IDEAPAD 310-14ISK,I3-6100U(2.3GHZ/3MB),4GB DDR4,1TB HDD,14" FHD,2CELL,FREE-DOS,SILVER (BẠC),1YWTY_80SL0069VNasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></p>
 
                         <p >
                             <%
@@ -129,9 +227,17 @@
             <div class="row" style="background-color: #fff; margin: 10px 0px; border: 1px solid  #e7e7e7;">
                 <div class="col-md-6">
                     <ul class="nav nav-tabs">
+                        <%
+                            CommentServices cms = new CommentServices();
+                            long countCmt = 0;
+                            countCmt = cms.getCountComment(id);
+
+//                            ratings = ps.GetDataByIdSP(id);
+
+                        %>
                         <li class="active"><a data-toggle="tab" href="#description">Mô Tả</a></li>
-                        <li><a data-toggle="tab" href="#cmment">Bình Luận</a></li>
-                        <li><a data-toggle="tab" href="#rating">Đánh giá</a></li>
+                        <li><a data-toggle="tab" href="#cmment">Bình Luận <span class="badge"><%=countCmt%></span></a></li>
+                        <li><a data-toggle="tab" href="#rating">Đánh giá <span class="badge"><%=ratings.size()%></span></a></li>
 
                     </ul>
 
@@ -142,68 +248,68 @@
                             <%=pt.getDescription()%>
                         </div>
                         <div id="cmment" class="tab-pane fade">
+
                             <h3>Bình Luận</h3>
-                            <form action="CommentServlet" method="post">
-                                <input type="hidden" name="spID" value="<%=id%>" />
-                                <%
-                                    if (session.getAttribute("cmtname") == null) {
+                            <div class="row">
+                                <form action="CommentServlet" method="post">
+                                    <input type="hidden" name="spID" value="<%=id%>" />
+                                    <%
+                                        if (session.getAttribute("cmtname") == null) {
 
-                                %>
-                                <div class="form-group">
-                                    <div class="col-sm-3 col-md-7">
-                                        <label class="control-label" for="c-Name">Họ tên<em>*</em>:</label>
-                                        <input type="text" name="cName" placeholder="Nhập tên người gửi" class="form-control" id="c-Name">
+                                    %>
+                                    <div class="form-group">
+                                        <div class="col-sm-3 col-md-7">
+                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>:</label>
+                                            <input type="text" name="cName" placeholder="Nhập tên người gửi" class="form-control" id="c-Name">
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <div class="col-sm-3 col-md-7">
-                                        <label class="control-label" for="c-Email">Email<em>*</em>:</label>
-                                        <input type="email" name="cEmail" placeholder="Nhập thư điện tử" class="form-control" id="c-Email">
+                                    <div class="form-group">
+                                        <div class="col-sm-3 col-md-7">
+                                            <label class="control-label" for="c-Email">Email<em>*</em>:</label>
+                                            <input type="email" name="cEmail" placeholder="Nhập thư điện tử" class="form-control" id="c-Email">
+                                        </div>
                                     </div>
-                                </div>
 
-                                <%                } else {
-                                %>
-                                <div class="form-group">
-                                    <div class="col-sm-3 col-md-7">
-                                        <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%= session.getAttribute("cmtname")%> </label>
-                                        <a href="logout.jsp"> Logout </a>
-                                        <input type="hidden" name="cName" value="${cmtname}" class="form-control" id="c-Name">
+                                    <%                } else {
+                                    %>
+                                    <div class="form-group">
+                                        <div class="col-sm-3 col-md-7">
+                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%= session.getAttribute("cmtname")%> </label>
+                                            <a href="logout.jsp"> Logout </a>
+                                            <input type="hidden" name="cName" value="${cmtname}" class="form-control" id="c-Name">
+                                        </div>
                                     </div>
-                                </div>
-                                <%
-                                    }
-                                %>
+                                    <%
+                                        }
+                                    %>
 
-                                <div class="form-group ">
-                                    <div class="col-sm-3 col-md-12 dia-chi">
-                                        <label class="control-label" for="c-Message">Nội dung<em>*</em>:</label>
-                                        <textarea rows="4" id="c-Message" cols="20" class="form-control" placeholder="Nhập nội dung" name="cMessage"></textarea>
+                                    <div class="form-group ">
+                                        <div class="col-sm-3 col-md-12 dia-chi">
+                                            <label class="control-label" for="c-Message">Nội dung<em>*</em>:</label>
+                                            <textarea rows="4" id="c-Message" cols="20" class="form-control" placeholder="Nhập nội dung" name="cMessage"></textarea>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <div class="col-sm-3 col-md-7" style="margin-top: 10px;">
-                                        <button  type="submit" class="btn btn-info">Bình luận</button>
+                                    <div class="form-group">
+                                        <div class="col-sm-3 col-md-7" style="margin-top: 10px;">
+                                            <button  type="submit" class="btn btn-info">Bình luận</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                             <hr>
-                            <%
-                                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:s");
-                                String gioCMT = "";
-                                ArrayList<Comment> cmt = null;
-                                CommentServices cms = new CommentServices();
-                                cmt = cms.getAll(id);
-                            %>
                             <div class="row">
                                 <%
+                                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:s");
+                                    String gioCMT = "";
+                                    ArrayList<Comment> cmt = null;
+                                    cmt = cms.getAll(id);
                                     for (int i = 0; i < cmt.size(); i++) {
                                         Comment cmtc = cmt.get(i);
                                         gioCMT = sdf.format(cmtc.getDateComment());
                                 %>
-                                <div class="col-md-12">
+                                <div class="col-md-12" style="word-break: break-word;">
                                     <div class="media">
                                         <a href="#collapse<%=cmtc.getIdcomment()%>" data-toggle="collapse">Reply <%=cmtc.getIdcomment()%></a>
                                         <div class="media-left">
@@ -296,58 +402,110 @@
                         </div>
 
                         <div id="rating" class="tab-pane fade">
-                            <h3>Đánh giá</h3>
+                            <h3>Đánh giá<span class="badge"></span></h3>
+                            <div class="row">
+                                <form method="post" action="RatingServlet">
+                                    <input type="hidden" name="spID" value="<%=id%>" />
+                                    <fieldset class="rating">
+                                        <input type="radio" id="star5" name="rating" value="5" /><label class = "star full" for="star5" title="Awesome - 5 stars"></label>
+                                        <input type="radio" id="star4" name="rating" value="4" /><label class = "star full" for="star4" title="Pretty good - 4 stars"></label>
+                                        <input type="radio" id="star3" name="rating" value="3" /><label class = "star full" for="star3" title="Meh - 3 stars"></label>
+                                        <input type="radio" id="star2" name="rating" value="2" /><label class = "star full" for="star2" title="Kinda bad - 2 stars"></label>
+                                        <input type="radio" id="star1" name="rating" value="1" /><label class = "star full" for="star1" title="Sucks big time - 1 star"></label>
+                                    </fieldset><br/><br/>
+                                    <%
+                                        if (session.getAttribute("cmtname") == null) {
 
-                            <form method="post" action="RatingServlet">
-                                <input type="hidden" name="spID" value="<%=id%>" />
+                                    %>
+                                    <div class="form-group">
+                                        <div class="col-sm-3 col-md-7">
+                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>:</label>
+                                            <input type="text" name="cName" placeholder="Nhập tên người gửi" class="form-control" id="c-Name">
+                                        </div>
+                                    </div>
+                                    <%                            } else {
+                                    %>
+                                    <div class="form-group">
+                                        <div class="col-sm-3 col-md-7">
+                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%= session.getAttribute("cmtname")%> </label>
+                                            <a href="logout.jsp"> Logout </a>
+                                            <input type="hidden" name="cName" value="${cmtname}" class="form-control" id="c-Name">
+                                        </div>
+                                    </div>
+                                    <%
+                                        }
+                                    %>
+                                    <div class="form-group ">
+                                        <div class="col-sm-3 col-md-12 dia-chi">
+                                            <label class="control-label" for="c-Message">Nội dung<em>*</em>:</label>
+                                            <textarea rows="4" id="c-Message" cols="20" class="form-control" placeholder="Nhập nội dung" name="cMessage"></textarea>
+                                        </div>
+                                    </div>
 
-                                <fieldset class="rating">
-                                    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                </fieldset><br/><br/>
+                                    <div class="form-group">
+                                        <div class="col-sm-3 col-md-7" style="margin-top: 10px;">
+                                            <button  type="submit" class="btn btn-info">Đánh giá</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <hr>
+                            <div class="row">
                                 <%
-                                    if (session.getAttribute("cmtname") == null) {
+                                    ratings = ps.GetDataByIdSP(id);
+                                    String gioDG = "";
+                                    for (int i = 0; i < ratings.size(); i++) {
+                                        rg = ratings.get(i);
+                                        gioDG = sdf.format(rg.getRatingDate());
+                                %>
+                                <div class="col-md-12" style="word-break: break-word;">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <img class="media-object" src="uploads/Photo-Unavailable.jpg" style="width:80px" />
+                                        </div>
+                                        <div class="media-body">
+                                            <fieldset style="float: right;">
+                                                <!--<span class="glyphicon glyphicon-star" style="color: red; font-size: 50px;">&#9734;</span>-->
+                                                <!--<span style="font-size:300%;color:yellow;">&starf;</span>-->
+                                                <!--<span style="font-size:500%;color:red;">&star;</span>-->
+                                                <%
+                                                    switch (rg.getRatingPoint()) {
+                                                        case 1:
+                                                %>
+                                                <span class="sao-check">&bigstar;<span class="sao-uncheck">&bigstar;&bigstar;&bigstar;&bigstar;</span></span>
+                                                <%      break;
+                                                    case 2:
+                                                %>
+                                                <span class="sao-check">&bigstar;&bigstar;<span class="sao-uncheck">&bigstar;&bigstar;&bigstar;</span></span>
+                                                <%      break;
+                                                    case 3:
+                                                %>
+                                                <span class="sao-check">&bigstar;&bigstar;&bigstar;<span class="sao-uncheck">&bigstar;&bigstar;</span></span>
+                                                <%
+                                                        break;
+                                                    case 4:
+                                                %>
+                                                <span class="sao-check">&bigstar;&bigstar;&bigstar;&bigstar;<span class="sao-uncheck">&bigstar;</span></span>
+                                                <%
+                                                        break;
+                                                    default:
+                                                %>
+                                                <span class="sao-check">&bigstar;&bigstar;&bigstar;&bigstar;&bigstar;</span>
+                                                <%
+                                                    }
+                                                %>
+                                            </fieldset>
+                                            <h4 class="media-heading"><%=rg.getNameUser()%> <small><i> <%=gioDG%></i></small></h4>
+                                            <p><%=rg.getReview()%></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
 
-                                %>
-                                <div class="form-group">
-                                    <div class="col-sm-3 col-md-7">
-                                        <label class="control-label" for="c-Name">Họ tên<em>*</em>:</label>
-                                        <input type="text" name="cName" placeholder="Nhập tên người gửi" class="form-control" id="c-Name">
-                                    </div>
-                                </div>
-                                <%                            } else {
-                                %>
-                                <div class="form-group">
-                                    <div class="col-sm-3 col-md-7">
-                                        <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%= session.getAttribute("cmtname")%> </label>
-                                        <a href="logout.jsp"> Logout </a>
-                                        <input type="hidden" name="cName" value="${cmtname}" class="form-control" id="c-Name">
-                                    </div>
-                                </div>
                                 <%
                                     }
                                 %>
-                                <div class="form-group ">
-                                    <div class="col-sm-3 col-md-12 dia-chi">
-                                        <label class="control-label" for="c-Message">Nội dung<em>*</em>:</label>
-                                        <textarea rows="4" id="c-Message" cols="20" class="form-control" placeholder="Nhập nội dung" name="cMessage"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-sm-3 col-md-7" style="margin-top: 10px;">
-                                        <button  type="submit" class="btn btn-info">Đánh giá</button>
-                                    </div>
-                                </div>
-                            </form>
-                            <hr>
-
-                            <%
-
-                            %>
+                            </div>
                         </div>
 
                     </div>
@@ -381,12 +539,6 @@
                                 <span style="font-size: 15px;padding-top: 10px;" class="glyphicon glyphicon-list-alt  "> Macbook Pro 2016 - siêu phẩm đột phá của Apple</span>
                             </a>
                         </div>
-                        <!--                        <div class="baivietctsp col-md-6 col-sm-6">
-                        
-                                                    <center><span class="tenbaivietctsp" style="color:#008ac2;font-size: 25px">LAPTOP DELL INSPIRON 3558 - MÀN HÌNH LED LỚN, XỬ LÝ MẠNH MẼ</span></center>
-                                                    <p style="font-size: 18px">Laptop Dell Inspiron 3558 sở hữu màn hình LED có kích thước lớn 15.6 inches và độ phân giải HD cho hình ảnh sắc nét, màu sắc tươi sáng và giúp người dùng dễ dàng thao tác hơn. Đồng hành cùng màn hình kích thước lớn, laptop còn được trang bị một bộ vi xử lý mạnh mẽ với chip Intel Core i5 Broadwell 5200U, RAM 4GB cùng card đồ họa nVidia GeForce 820M 2GB có thể đáp ứng hoạt động cùng lúc nhiều chương trình mà vẫn mượt mà.</p>
-                                                </div>-->
-
                     </div>
                     <!--</-->
                 </div>

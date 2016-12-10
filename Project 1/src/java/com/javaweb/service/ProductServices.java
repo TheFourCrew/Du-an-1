@@ -4,6 +4,7 @@ import com.javaweb.hibernate.util.HibernateUtil;
 import com.javaweb.model.Product;
 import com.javaweb.model.ProductParameters;
 import com.javaweb.model.ProductTags;
+import com.javaweb.model.Rating;
 import com.javaweb.model.Tags;
 import java.util.ArrayList;
 import org.hibernate.Query;
@@ -157,7 +158,7 @@ public class ProductServices {
         try {
             tx = session.getTransaction();
             tx.begin();
-            Query query = session.createQuery("from Product where product_name = '" + tenSP+"'");
+            Query query = session.createQuery("from Product where product_name = '" + tenSP + "'");
             Product pt = (Product) query.uniqueResult();
             tx.commit();
             if (pt != null) {
@@ -167,11 +168,54 @@ public class ProductServices {
             if (tx != null) {
                 tx.rollback();
             }
-//            System.out.println(e.toString());
+            System.out.println(e.toString());
         } finally {
             session.close();
         }
         return result;
     }
 
+    //Hàm insert đánh giá
+    public boolean InsertRating(Rating rating) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            session.saveOrUpdate(rating);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return false;
+    }
+    
+    public ArrayList<Rating> GetDataByIdSP(String idSP){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ArrayList<Rating> ratings = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            String strQuery = "from Rating where"+idSP;
+            Query query = session.createQuery(strQuery);
+            ratings = (ArrayList<Rating>) query.list();
+            tx.commit();
+
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return ratings;
+    }
 }

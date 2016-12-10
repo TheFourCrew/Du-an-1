@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 5, 2016 2:19:23 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 9, 2016 6:55:02 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.javaweb.model.Rating" table="rating" catalog="db_tintuc_banhang" optimistic-lock="version">
         <id name="idrating" type="java.lang.Integer">
@@ -19,6 +19,9 @@
         </property>
         <property name="ratingDate" type="timestamp">
             <column name="rating_date" length="19" not-null="true" />
+        </property>
+        <property name="idProduct" type="string">
+            <column name="id_product" length="45" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

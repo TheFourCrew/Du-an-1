@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 5, 2016 2:19:17 PM by Hibernate Tools 4.3.1
+// Generated Dec 9, 2016 6:54:57 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,15 +15,17 @@ public class Rating  implements java.io.Serializable {
      private int ratingPoint;
      private String review;
      private Date ratingDate;
+     private String idProduct;
 
     public Rating() {
     }
 
-    public Rating(String nameUser, int ratingPoint, String review, Date ratingDate) {
+    public Rating(String nameUser, int ratingPoint, String review, Date ratingDate, String idProduct) {
        this.nameUser = nameUser;
        this.ratingPoint = ratingPoint;
        this.review = review;
        this.ratingDate = ratingDate;
+       this.idProduct = idProduct;
     }
    
     public Integer getIdrating() {
@@ -60,6 +62,13 @@ public class Rating  implements java.io.Serializable {
     
     public void setRatingDate(Date ratingDate) {
         this.ratingDate = ratingDate;
+    }
+    public String getIdProduct() {
+        return this.idProduct;
+    }
+    
+    public void setIdProduct(String idProduct) {
+        this.idProduct = idProduct;
     }
 
 

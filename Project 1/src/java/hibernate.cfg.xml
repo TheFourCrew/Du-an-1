@@ -16,7 +16,6 @@
     <mapping resource="com/javaweb/model/ProductTags.hbm.xml"/>
     <mapping resource="com/javaweb/model/LikeDislike.hbm.xml"/>
     <mapping resource="com/javaweb/model/ProductCategory.hbm.xml"/>
-    <mapping resource="com/javaweb/model/ProductDetailImages.hbm.xml"/>
     <mapping resource="com/javaweb/model/Tags.hbm.xml"/>
     <mapping resource="com/javaweb/model/ProductParameters.hbm.xml"/>
     <mapping resource="com/javaweb/model/Product.hbm.xml"/>
@@ -24,8 +23,6 @@
     <mapping resource="com/javaweb/model/Vendor.hbm.xml"/>
     <mapping resource="com/javaweb/model/Rating.hbm.xml"/>
     <mapping resource="com/javaweb/model/Article.hbm.xml"/>
-    <mapping resource="com/javaweb/model/DetailImages.hbm.xml"/>
     <mapping resource="com/javaweb/model/User.hbm.xml"/>
-    <mapping resource="com/javaweb/model/ProductRating.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

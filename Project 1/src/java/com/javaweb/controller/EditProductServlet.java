@@ -1,8 +1,6 @@
 package com.javaweb.controller;
 
-import com.javaweb.model.DetailImages;
 import com.javaweb.model.Product;
-import com.javaweb.model.ProductDetailImages;
 import com.javaweb.model.ProductTags;
 import com.javaweb.model.Tags;
 import com.javaweb.service.FileService;
@@ -48,8 +46,6 @@ public class EditProductServlet extends HttpServlet {
         Product product = null;
         ProductServices ps = new ProductServices();
 
-        DetailImages dls = null;
-        ProductDetailImages pdi = null;
 
         boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
         if (isMultiPart) {

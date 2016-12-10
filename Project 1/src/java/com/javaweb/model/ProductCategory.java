@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 5, 2016 2:19:17 PM by Hibernate Tools 4.3.1
+// Generated Dec 9, 2016 6:54:57 PM by Hibernate Tools 4.3.1
 
 
 
@@ -11,6 +11,7 @@ public class ProductCategory  implements java.io.Serializable {
 
      private Integer idproductCategory;
      private String categoryName;
+     private Integer CParent;
      private String note;
 
     public ProductCategory() {
@@ -20,8 +21,9 @@ public class ProductCategory  implements java.io.Serializable {
     public ProductCategory(String categoryName) {
         this.categoryName = categoryName;
     }
-    public ProductCategory(String categoryName, String note) {
+    public ProductCategory(String categoryName, Integer CParent, String note) {
        this.categoryName = categoryName;
+       this.CParent = CParent;
        this.note = note;
     }
    
@@ -38,6 +40,13 @@ public class ProductCategory  implements java.io.Serializable {
     
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+    public Integer getCParent() {
+        return this.CParent;
+    }
+    
+    public void setCParent(Integer CParent) {
+        this.CParent = CParent;
     }
     public String getNote() {
         return this.note;

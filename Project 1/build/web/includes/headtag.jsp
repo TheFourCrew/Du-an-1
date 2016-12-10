@@ -16,7 +16,7 @@
 <script type="text/javascript" src="engine1/jquery.js"></script>
 <!-- End WOWSlider.com HEAD section -->
 
-<link href="css/w3.css" rel="stylesheet" type="text/css"/>
+<!--<link href="css/w3.css" rel="stylesheet" type="text/css"/>-->
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet" type="text/css"/>

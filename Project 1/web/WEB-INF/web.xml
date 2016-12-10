@@ -44,6 +44,10 @@
         <servlet-name>CommentServlet</servlet-name>
         <servlet-class>com.javaweb.controller.CommentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RatingServlet</servlet-name>
+        <servlet-class>com.javaweb.controller.RatingServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LienLac</servlet-name>
         <url-pattern>/LienLac</url-pattern>
@@ -113,6 +117,10 @@
     <servlet-mapping>
         <servlet-name>CommentServlet</servlet-name>
         <url-pattern>/CommentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RatingServlet</servlet-name>
+        <url-pattern>/RatingServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
