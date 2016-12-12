@@ -4,6 +4,8 @@
     Author     : MinhNguyen
 --%>
 
+<%@page import="com.javaweb.service.GioHang"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <header class="container-fluid">
@@ -61,6 +63,43 @@
                         </li>
                         <li><a href="contact.jsp" class="menu">Liên hệ</a></li>
                     </ul>
+                    <form action="SaveServlet" method="post">
+                        <%
+                            if (session.getAttribute("dshang") != null) {
+                                ArrayList<GioHang> listGioHang = (ArrayList) session.getAttribute("dshang");
+
+                                if (request.getParameter("removeidsp") != null) {
+                                    String removeidsp = request.getParameter("removeidsp");
+                                    GioHang.XoaTuGioHang(listGioHang, removeidsp);
+                                }
+                                for (int i = 0; i < listGioHang.size(); i++) {
+                                    GioHang item = listGioHang.get(i);
+                        %>
+                        <span >Sản phẩm : </span><span name="idsp<%=item.getMaSP()%>"><%=item.getMaSP()%></span> 
+
+                        <span >Số lượng: </span><input name="sl<%=item.getMaSP()%>" type="number" value="<%=item.getSoLuong()%>"/>
+
+                        <a href="index.jsp?removeidsp=<%=item.getMaSP()%>">X</a><br />
+                        <%
+
+                            }
+                            if (listGioHang.size() > 0) {
+                        %>
+                        <input type="submit" value="Save">
+                        <%
+                                }
+                            }
+                        %>
+
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" style="outline: none;border: none;background: transparent">
+                                <img src="img/shop-cart-icon.png" alt=""/>
+                                <span class="badge" style="background-color: #fff;color:red;">0</span>
+                            </a>
+                        </li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li> <hr></li>
                             <%
@@ -71,11 +110,8 @@
                             </a>
                         </li>
                         <li class="dropdown">
-                            <button type="button" 
-                                    <span class="glyphicon glyphicon-log-in" data-toggle="modal" data-target="#myModal" style="padding-bottom: 5px;
-                                  margin-top: 13px;    margin-right: 10px;"></span> Đăng nhập
+                            <a href="#myModal" style="outline: none;" data-toggle="modal"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a>
 
-                            </button>
                             <div id="myModal" style="margin-top: 130px;" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
 
@@ -99,13 +135,13 @@
                                                     <input type="password" name="pw" class="form-control" id="pwd" placeholder="Enter password">
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group"> 
                                                 <div class="col-sm-offset-2 col-sm-10">
                                                     <button type="submit" class="btn btn-default" style="margin-left: 150px;">Đăng nhập</button>
-                                                   
+
                                                 </div>
-                                                
+
                                             </div>
                                         </form>
                                     </div>
