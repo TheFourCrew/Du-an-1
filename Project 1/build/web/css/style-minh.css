@@ -177,13 +177,19 @@ label.star:hover {
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 
+
+
+.rating-result label{
+    font-family: FontAwesome; 
+    font-size:inherit;
+    float: none;
+}
 .rating-result{ 
     margin: 5px;
     font-size: 1.25em;
     border: none;
     color:#ddd;
     display: inline-block;
-    font-family: FontAwesome;
 }
 .rating-result .icon:before{
     content: "\f005";
@@ -210,8 +216,5 @@ label.star:hover {
 }
 .sao-uncheck{
     color: #ddd; 
-}
-em{
-    color:red;
 }
 

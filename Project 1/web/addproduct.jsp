@@ -37,13 +37,6 @@
                                 </div>
                             </div>
 
-                            <!--                    <div class="form-group">
-                                                    <label class="control-label col-sm-2 col-md-3" for="prod-number">Mã số sản phẩm<em>*</em>:</label>
-                                                    <div class="col-sm-3 col-md-9">
-                                                        <input type="text" name="prod-number" placeholder="Nhập mã sản phẩm" class="form-control" id="prod-number">
-                                                    </div>
-                                                </div>-->
-
                             <div class="form-group ">
                                 <label class="control-label col-sm-2 col-md-3" for="prod-describe">Mô tả thông tin<em>*</em>:</label>
                                 <div class="col-sm-3 col-md-9">
@@ -140,6 +133,5 @@
                 </section>
             </div><!--Đóng page-wrapper-->
         </div><!--Đóng wrapper-->
-        <%--<%@include file="includes/footer.jsp" %>--%>
     </body>
 </html>

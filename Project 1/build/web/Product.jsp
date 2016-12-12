@@ -74,7 +74,7 @@
 
                     <%                        int pageSize = 9;
                         int pageNumber = 1;
-                        String url = "managerproduct.jsp";
+                        String url = "Product.jsp";
                         ProductServices ps = new ProductServices();
                         ArrayList<Product> listProduct = null;
 
