@@ -48,6 +48,10 @@
         <servlet-name>RatingServlet</servlet-name>
         <servlet-class>com.javaweb.controller.RatingServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveServlet</servlet-name>
+        <servlet-class>com.javaweb.controller.SaveServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LienLac</servlet-name>
         <url-pattern>/LienLac</url-pattern>
@@ -121,6 +125,10 @@
     <servlet-mapping>
         <servlet-name>RatingServlet</servlet-name>
         <url-pattern>/RatingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveServlet</servlet-name>
+        <url-pattern>/SaveServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

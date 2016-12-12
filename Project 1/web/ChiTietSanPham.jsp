@@ -85,10 +85,9 @@
                             ratings = ps.GetDataByIdSP(idPT);
                             double point = 0;
                             double sumPoint = 0;
-                            for (int i = 0; i < ratings.size(); i++) {
-                                rg = ratings.get(i);
-                                sumPoint += rg.getRatingPoint();
-                            }
+//                            for (int i = 0; i < ratings.size(); i++) {
+//                                rg = ratings.get(i);
+//                            }
                             if (sumPoint != 0) {
                                 point = Double.parseDouble(formatPoint.format(sumPoint / ratings.size()));
                             }
@@ -222,7 +221,17 @@
                                 <p style="padding-top: 15px">System: <span>Windows 10</span></p>
                             </div>
                         </div>
-                        <button style="margin-top: 20px;margin-bottom: 10px;" type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
+                        <%
+                            if (pt.getProductQuantity() >= 1) {
+                        %>
+                        <button  type="button" class="btn btn-primary active center-block">Thêm Vào Giỏ</button>
+                        <%
+                        } else {
+                        %>
+                        <button  type="button" class="btn btn-primary active center-block">Hết Hàng</button>
+                        <%
+                            }
+                        %>
                     </div>
                 </div>
             </div>

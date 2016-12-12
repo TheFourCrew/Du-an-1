@@ -19,6 +19,24 @@
             <div class="row">
                 <div class="col-md-6">
                     Slider
+                    <div class="dmsanpham">
+            <div class="sanpham">
+                <a href="#">Tên sản phẩm 1</a>
+                <a href="addtocart.jsp?idsanpham=1">Mua hàng</a>                
+            </div>
+            <div class="sanpham">
+                <a href="#">Tên sản phẩm 2</a>
+                <a href="addtocart.jsp?idsanpham=2">Mua hàng</a>                
+            </div>
+            <div class="sanpham">
+                <a href="#">Tên sản phẩm 3</a>
+                <a href="addtocart.jsp?idsanpham=3">Mua hàng</a>                
+            </div>
+            <div class="sanpham">
+                <a href="#">Tên sản phẩm 4</a>
+                <a href="addtocart.jsp?idsanpham=4">Mua hàng</a>                
+            </div>
+        </div>
                 </div>
                 <div class="col-md-6">
 
