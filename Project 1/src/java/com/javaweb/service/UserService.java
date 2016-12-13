@@ -160,4 +160,28 @@ public class UserService {
     }
         return false;
 }
+     //Hàm kiểm tra tên người dùng
+    public boolean isUserExists(String tenND) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        boolean result = false;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            Query query = session.createQuery("from User where username = '" + tenND + "'");
+            User pt = (User) query.uniqueResult();
+            tx.commit();
+            if (pt != null) {
+                result = true;
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return result;
+    }
 }
