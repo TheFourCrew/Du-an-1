@@ -258,3 +258,40 @@ function validateFormProduct() {
 
     }
 }
+// kiểm tra trùng tên người dùng
+function loadXMLUserName() {
+    var xmlhttp;
+    var UserName = document.getElementById("username").value;
+    var formEdit = document.forms[0].id;
+    
+    
+    
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4) {
+            document.getElementById('errUsername').style.color = "red";
+            document.getElementById('errUsername').innerHTML = xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET", urls, true);
+    xmlhttp.send();
+}
+
+function validateFormUser() {
+    var x = document.forms["fUser"]["username"].value;
+    if(x != ""){
+    var y = document.getElementById('actual').value;
+    }
+    if (y == "taken") {
+        alert("Tên người dùng đã tồn tại");
+//        document.getElementById('errProdName').style.color = "red";
+//        document.getElementById('errProdName').innerHTML = 'Tồn tại';
+                return false;
+    } else {
+
+    }
+}
