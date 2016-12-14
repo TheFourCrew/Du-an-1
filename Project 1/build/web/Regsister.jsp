@@ -18,30 +18,32 @@
         <%@include file="includes//header.jsp" %>
         <section class="container">
             <div class="row">
-                <form class="form-horizontal" action="RegsisterServlet" method="post" id="edituser" >
+                <form class="form-horizontal" name="fUser" onsubmit="return validateFormUser()"  enctype="multipart/form-data" action="RegsisterServlet" method="post" id="edituser" >
+
                     <input style="display: none;" name="iduser"  />
                     <div class="form-group">
                         <label class="control-label col-sm-2 col-md-3" for="username">Tên Đăng Nhập: </label>
-                        <div class="col-md-7"> 
-                            <input type="text" name="username"  class="form-control" required id="username">
+                        <div class="col-md-7">
+                            <input type="text" name="username" onkeyup='loadXMLUserName()' class="form-control" id="username">
+                            <span id="errUserName"></span>
                         </div>
                     </div>
-               
-                    
+
+
                     <div class="form-group">
                         <label class="control-label col-md-3" for="password">Mật Khẩu:</label>
                         <div class="col-md-7"> 
                             <input type="password" name="password"  class="form-control" required id="password">
                         </div>
                     </div>
-                  
+
                     <div class="form-group">
                         <label class="control-label col-md-3" for="idrole_user">Nhập lại mật khẩu:</label>
                         <div class="col-md-7"> 
                             <input type="password" name="repassword"  class="form-control" required id="repassword">
                         </div>
                     </div>
-                   
+
 
                     <div class="form-group">
                         <label class="control-label col-md-3" for="fullname">Họ tên: </label>
@@ -49,33 +51,33 @@
                             <input type="text" name="fullname" class="form-control" required id="fullname">
                         </div>
                     </div>
-               
-                   
+
+
                     <div class="form-group">
                         <label class="control-label col-md-3" for="dienthoai">Điện thoại: </label>
-                         <div class="col-md-7"> 
+                        <div class="col-md-7"> 
                             <input type="text" name="dienthoai"  class="form-control" required id="dienthoai">
-                         </div>
+                        </div>
                     </div>
-                 
+
 
 
                     <div class="form-group">
                         <label class="control-label col-md-3" for="address">Địa chỉ:</label>
-                         <div class="col-md-7"> 
+                        <div class="col-md-7"> 
                             <input type="text" name="address"  class="form-control" required id="address">
-                         </div>
+                        </div>
                     </div>
-                
-                    
+
+
                     <div class="form-group">
                         <label class="control-label col-md-3" for="email">Email: </label>
                         <div class="col-md-7">
                             <input type="email" name="email"  class="form-control" required id="email">
                         </div>
                     </div>
-                 
-                   
+
+
                     <div class="form-group">
                         <label class="control-label col-md-3" for="birthday">Ngày sinh:</label>
                         <div class="col-md-7">

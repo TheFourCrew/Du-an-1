@@ -222,13 +222,13 @@ function loadXMLProductName() {
     var xmlhttp;
     var productName = document.getElementById("prod-name").value;
     var formEdit = document.forms[0].id;
-    
-    if(formEdit == 'editproduct'){
+
+    if (formEdit == 'editproduct') {
         var oldName = document.getElementById("prod-old-name").value;
     }
-    
-    var urls = "CheckProductName.jsp?tsp=" + productName+"&old="+oldName;
-    
+
+    var urls = "CheckProductName.jsp?tsp=" + productName + "&old=" + oldName;
+
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     } else {
@@ -246,14 +246,14 @@ function loadXMLProductName() {
 
 function validateFormProduct() {
     var x = document.forms["fProduct"]["prod-name"].value;
-    if(x != ""){
-    var y = document.getElementById('actual').value;
+    if (x != "") {
+        var y = document.getElementById('actual').value;
     }
     if (y == "taken") {
         alert("Tên sản phẩm đã tồn tại");
 //        document.getElementById('errProdName').style.color = "red";
 //        document.getElementById('errProdName').innerHTML = 'Tồn tại';
-                return false;
+        return false;
     } else {
 
     }
@@ -263,7 +263,7 @@ function loadXMLUserName() {
     var xmlhttp;
     var UserName = document.getElementById("username").value;
     var urls = "CheckUserName.jsp?username=" + UserName;
-    
+
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     } else {
@@ -281,14 +281,14 @@ function loadXMLUserName() {
 
 function validateFormUser() {
     var x = document.forms["fUser"]["username"].value;
-    if(x != ""){
-    var y = document.getElementById('actual').value;
+    if (x != "") {
+        var y = document.getElementById('actual').value;
     }
     if (y == "taken") {
         alert("Tên người dùng đã tồn tại");
 //        document.getElementById('errProdName').style.color = "red";
 //        document.getElementById('errProdName').innerHTML = 'Tồn tại';
-                return false;
+        return false;
     } else {
 
     }

@@ -4,6 +4,7 @@
     Author     : Computer
 --%>
 
+<%@page import="com.javaweb.model.ProductParameters"%>
 <%@page import="com.javaweb.model.Rating"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.javaweb.service.CommentServices"%>
@@ -207,20 +208,22 @@
                                     %>
                         </p>
 
-                        <div class="thongsokythuat">
-                            <div class="thongsokythuattrai">
-                                <p>MoDel: <span>Dell core i5</span></p>
-                                <p style="padding-top: 15px">CPU: <span>Intel Core i3 SkyLake</span></p>
-                                <p style="padding-top: 15px">Ram: <span>4G</span></p>
-                                <p style="padding-top: 15px">Resolution: <span>1366x768</span></p>
-                            </div>
-                            <div class="thongsokythuatphai">
 
-                                <p>Size: <span>40x40</span></p>
-                                <p style="padding-top: 15px">Weight: <span>1kg</span></p>
-                                <p style="padding-top: 15px">System: <span>Windows 10</span></p>
-                            </div>
-                        </div>
+
+                        <!--                        <div class="thongsokythuat">
+                                                    <div class="thongsokythuattrai">
+                                                        <p>MoDel: <span>Dell core i5</span></p>
+                                                        <p style="padding-top: 15px">CPU: <span>Intel Core i3 SkyLake</span></p>
+                                                        <p style="padding-top: 15px">Ram: <span>4G</span></p>
+                                                        <p style="padding-top: 15px">Resolution: <span>1366x768</span></p>
+                                                    </div>
+                                                    <div class="thongsokythuatphai">
+                        
+                                                        <p>Size: <span>40x40</span></p>
+                                                        <p style="padding-top: 15px">Weight: <span>1kg</span></p>
+                                                        <p style="padding-top: 15px">System: <span>Windows 10</span></p>
+                                                    </div>
+                                                </div>-->
                         <%
                             if (pt.getProductQuantity() >= 1) {
                         %>
@@ -244,6 +247,7 @@
                             countCmt = cms.getCountComment(idPT);
                         %>
                         <li class="active"><a data-toggle="tab" href="#description">Mô Tả</a></li>
+                        <li><a data-toggle="tab" href="#parameters">Thông số kỹ thuật</a></li>
                         <li><a data-toggle="tab" href="#cmment">Bình Luận <span class="badge"><%=countCmt%></span></a></li>
                         <li><a data-toggle="tab" href="#rating">Đánh giá <span class="badge"><%=ratings.size()%></span></a></li>
 
@@ -254,6 +258,53 @@
                             <h3>Mô Tả</h3>
                             <!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
                             <%=pt.getDescription()%>
+                        </div>
+                        <div id="parameters" class="tab-pane fade">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">Thông số kỹ thuật</div>
+                                <div class="panel-body">
+                                    <%
+                                        ProductParameters pps = null;
+                                        pps = ps.getAllParametersByIdPt(idPT);
+                                        if (pps != null) {
+                                    %>
+                                    <table class="table table-bordered table-responsive">
+                                        <tbody>
+                                            <tr>
+                                                <td>CPU:</td>
+                                                <td><%=pps.getCpu()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Model:</td>
+                                                <td><%=pps.getModel()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bộ nhớ trong:</td>
+                                                <td><%=pps.getRam()%> GB</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hệ điều hành:</td>
+                                                <td><%=pps.getOperatingSystem()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Độ phân giải:</td>
+                                                <td><%=pps.getScreenResolution()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Kích thước màn hình:</td>
+                                                <td><%=pps.getScreenSize()%> inches</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Trọng lượng:</td>
+                                                <td><%=pps.getWeight()%> kg</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <%
+                                        }
+                                    %>
+                                </div>
+                            </div>
                         </div>
                         <div id="cmment" class="tab-pane fade">
 
@@ -565,7 +616,6 @@
                             if (pct.getIdproduct() != Integer.parseInt(idPT)) {
                     %>
                     <div class="col-md-3 splienquan1 ">
-                        <%--<%=aPT.size() %>--%>
                         <center>
                             <a href="ChiTietSanPham.jsp?id=<%=pct.getIdproduct()%>"><img  class="img-responsive" src="uploads/<%=pct.getProductImage()%>" alt="<%=pct.getProductName()%>"/><br/>
                                 <span style="font-size: 20px;color: #008ae2;"><%=pct.getProductName()%></span>

@@ -1,4 +1,3 @@
-
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="com.javaweb.model.Product"%>
 <%@page import="java.util.ArrayList"%>
@@ -103,7 +102,7 @@
                     %>
                     <div class="col-md-4 sp sty">
                         <a href="ChiTietSanPham.jsp?id=<%=pt.getIdproduct()%>">
-                            <img style="width:240px; height:250px;margin:0 auto;" class="img-responsive" src="uploads/<%=pt.getProductImage()%>" alt=""/>
+                            <img style="width:240px; height:250px;" class="img-responsive" src="uploads/<%=pt.getProductImage()%>" alt=""/>
                             <span style="font-weight: 600;font-size: 20px;color: #008ae2;"><%=pt.getProductName()%></span>
                             <!--<span style="font-weight: 600;font-size: 20px;color: #008ae2;">14.0 inch</span>-->
 
@@ -122,17 +121,7 @@
                                 }
                             %>
                         </a>
-                        <%
-                            if(pt.getProductQuantity()>=1){
-                        %>
-                        <button  type="button" class="btn btn-primary active center-block">Thêm Vào Giỏ</button>
-                        <%
-                            }else{
-                        %>
-                        <span class="btn btn-primary ">Hết Hàng</span>
-                        <%
-                            }
-                        %>
+                        <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
                     </div>
                     <%
                         }
