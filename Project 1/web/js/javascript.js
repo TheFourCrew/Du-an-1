@@ -262,9 +262,7 @@ function validateFormProduct() {
 function loadXMLUserName() {
     var xmlhttp;
     var UserName = document.getElementById("username").value;
-    var formEdit = document.forms[0].id;
-    
-    
+    var urls = "CheckUserName.jsp?username=" + UserName;
     
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
@@ -273,8 +271,8 @@ function loadXMLUserName() {
     }
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4) {
-            document.getElementById('errUsername').style.color = "red";
-            document.getElementById('errUsername').innerHTML = xmlhttp.responseText;
+            document.getElementById('errUserName').style.color = "red";
+            document.getElementById('errUserName').innerHTML = xmlhttp.responseText;
         }
     }
     xmlhttp.open("GET", urls, true);
