@@ -12,10 +12,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>User</title>
-        <%@include file="includes//headtag.jsp" %>
+        <%@include file="includes/headtag.jsp" %>
     </head>
     <body>
-        <%@include file="includes//header.jsp" %>
+        <%@include file="includes/header.jsp" %>
         <section class="container">
             <div class="row">
                 <form class="form-horizontal" name="fUser" onsubmit="return validateFormUser()"  enctype="multipart/form-data" action="RegsisterServlet" method="post" id="edituser" >
