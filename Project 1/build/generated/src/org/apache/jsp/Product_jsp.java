@@ -7,6 +7,8 @@ import java.text.DecimalFormat;
 import com.javaweb.model.Product;
 import java.util.ArrayList;
 import com.javaweb.service.ProductServices;
+import com.javaweb.service.GioHang;
+import java.util.ArrayList;
 
 public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -60,6 +62,7 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
@@ -101,6 +104,8 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
       out.write("        ");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -164,6 +169,60 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        </li>\r\n");
       out.write("                        <li><a href=\"contact.jsp\" class=\"menu\">Liên hệ</a></li>\r\n");
       out.write("                    </ul>\r\n");
+      out.write("                    <form action=\"SaveServlet\" method=\"post\">\r\n");
+      out.write("                        ");
+
+                            if (session.getAttribute("dshang") != null) {
+                                ArrayList<GioHang> listGioHang = (ArrayList) session.getAttribute("dshang");
+
+                                if (request.getParameter("removeidsp") != null) {
+                                    String removeidsp = request.getParameter("removeidsp");
+                                    GioHang.XoaTuGioHang(listGioHang, removeidsp);
+                                }
+                                for (int i = 0; i < listGioHang.size(); i++) {
+                                    GioHang item = listGioHang.get(i);
+                        
+      out.write("\r\n");
+      out.write("                        <span >Sản phẩm : </span><span name=\"idsp");
+      out.print(item.getMaSP());
+      out.write('"');
+      out.write('>');
+      out.print(item.getMaSP());
+      out.write("</span> \r\n");
+      out.write("\r\n");
+      out.write("                        <span >Số lượng: </span><input name=\"sl");
+      out.print(item.getMaSP());
+      out.write("\" type=\"number\" value=\"");
+      out.print(item.getSoLuong());
+      out.write("\"/>\r\n");
+      out.write("\r\n");
+      out.write("                        <a href=\"index.jsp?removeidsp=");
+      out.print(item.getMaSP());
+      out.write("\">X</a><br />\r\n");
+      out.write("                        ");
+
+
+                            }
+                            if (listGioHang.size() > 0) {
+                        
+      out.write("\r\n");
+      out.write("                        <input type=\"submit\" value=\"Save\">\r\n");
+      out.write("                        ");
+
+                                }
+                            }
+                        
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                    </form>\r\n");
+      out.write("                    <ul class=\"nav navbar-nav navbar-right\">\r\n");
+      out.write("                        <li>\r\n");
+      out.write("                            <a href=\"#\" style=\"outline: none;border: none;background: transparent\">\r\n");
+      out.write("                                <img src=\"img/shop-cart-icon.png\" alt=\"\"/>\r\n");
+      out.write("                                <span class=\"badge\" style=\"background-color: #fff;color:red;\">0</span>\r\n");
+      out.write("                            </a>\r\n");
+      out.write("                        </li>\r\n");
+      out.write("                    </ul>\r\n");
       out.write("                    <ul class=\"nav navbar-nav navbar-right\">\r\n");
       out.write("                        <li> <hr></li>\r\n");
       out.write("                            ");
@@ -177,7 +236,7 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        </li>\r\n");
       out.write("                        <li class=\"dropdown\">\r\n");
       out.write("                            <a href=\"#myModal\" style=\"outline: none;\" data-toggle=\"modal\"><span class=\"glyphicon glyphicon-log-in\"></span> Đăng nhập</a>\r\n");
-      out.write("                            \r\n");
+      out.write("\r\n");
       out.write("                            <div id=\"myModal\" style=\"margin-top: 130px;\" class=\"modal fade\" role=\"dialog\">\r\n");
       out.write("                                <div class=\"modal-dialog\">\r\n");
       out.write("\r\n");
@@ -201,13 +260,13 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                    <input type=\"password\" name=\"pw\" class=\"form-control\" id=\"pwd\" placeholder=\"Enter password\">\r\n");
       out.write("                                                </div>\r\n");
       out.write("                                            </div>\r\n");
-      out.write("                                            \r\n");
+      out.write("\r\n");
       out.write("                                            <div class=\"form-group\"> \r\n");
       out.write("                                                <div class=\"col-sm-offset-2 col-sm-10\">\r\n");
       out.write("                                                    <button type=\"submit\" class=\"btn btn-default\" style=\"margin-left: 150px;\">Đăng nhập</button>\r\n");
-      out.write("                                                   \r\n");
+      out.write("\r\n");
       out.write("                                                </div>\r\n");
-      out.write("                                                \r\n");
+      out.write("\r\n");
       out.write("                                            </div>\r\n");
       out.write("                                        </form>\r\n");
       out.write("                                    </div>\r\n");
@@ -267,48 +326,54 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <!--                <div class=\"col-md-12 col-sm-6 danhmucsp \">\r\n");
       out.write("                \r\n");
       out.write("                                </div>-->\r\n");
-      out.write("                <div  class=\"col-md-3 trai col-sm-3 \">\r\n");
+      out.write("                <form action=\"Product.jsp\" method=\"post\">\r\n");
+      out.write("                    <div  class=\"col-md-3 trai col-sm-3 \">\r\n");
       out.write("\r\n");
-      out.write("                    <div class=\"row theohang t\">\r\n");
-      out.write("                        <p >Thương hiệu</p>\r\n");
-      out.write("                        <div class=\" col-md-6 \">\r\n");
-      out.write("                            <label class=\"radio-inline\"><input type=\"checkbox\" name=\"thuonghieu\"> Apple</label><br/>\r\n");
-      out.write("                            <label class=\"radio-inline\"><input type=\"checkbox\" name=\"thuonghieu\"> Acer</label><br/>\r\n");
-      out.write("                            <label class=\"radio-inline\"><input type=\"checkbox\" name=\"thuonghieu\"> HP</label><br/>\r\n");
+      out.write("                        <div class=\"row theohang t\">\r\n");
+      out.write("                            <p >Thương hiệu</p>\r\n");
+      out.write("                            <div class=\" col-md-6 \">\r\n");
+      out.write("                                <label class=\"radio-inline\"><input type=\"radio\" value=\"Apple\" name=\"thuonghieu\"> Apple</label><br/>\r\n");
+      out.write("                                <label class=\"radio-inline\"><input type=\"radio\" value=\"Acer\" name=\"thuonghieu\"> Acer</label><br/>\r\n");
+      out.write("                                <label class=\"radio-inline\"><input type=\"radio\" value=\"HPHP\" name=\"thuonghieu\"> HP</label><br/>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                            <div class=\" col-md-6\">\r\n");
+      out.write("                                <label class=\"radio-inline\"><input type=\"radio\" value=\"Dell\" name=\"thuonghieu\"> Dell</label><br/>\r\n");
+      out.write("                                <label class=\"radio-inline\"><input type=\"radio\" value=\"Asus\" name=\"thuonghieu\"> Asus</label><br/>\r\n");
+      out.write("                                <label class=\"radio-inline\"><input type=\"radio\" value=\"Lenovo\" name=\"thuonghieu\"> Lenovo</label><br/>\r\n");
+      out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
-      out.write("                        <div class=\" col-md-6\">\r\n");
-      out.write("                            <label class=\"radio-inline\"><input type=\"checkbox\" name=\"thuonghieu\"> Dell</label><br/>\r\n");
-      out.write("                            <label class=\"radio-inline\"><input type=\"checkbox\" name=\"thuonghieu\"> Asus</label><br/>\r\n");
-      out.write("                            <label class=\"radio-inline\"><input type=\"checkbox\" name=\"thuonghieu\"> Lenovo</label><br/>\r\n");
+      out.write("                        <div class=\"row theogia\">\r\n");
+      out.write("                            <p >Giá bán</p>\r\n");
+      out.write("                            <div class=\" col-md-6\">\r\n");
+      out.write("                                <label class=\"radio-inline\"><input type=\"radio\" value=\"1 \" name=\"gia\">Dưới 5 triệu</label><br/>\r\n");
+      out.write("                                <label class=\"radio-inline\"><input type=\"radio\" value=\"2\" name=\"gia\">Từ 5-10 triệu</label><br/>\r\n");
+      out.write("                                <label class=\"radio-inline\"><input type=\"radio\" value=\"3\" name=\"gia\">Từ 10-15 triệu</label><br/>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                            <div class=\" col-md-6\">\r\n");
+      out.write("                                <label class=\"radio-inline\"><input type=\"radio\" value=\"4\" name=\"gia\">Từ 15-20 triệu</label><br/>\r\n");
+      out.write("                                <label class=\"radio-inline\"><input type=\"radio\" value=\"5\" name=\"gia\">Từ 20-30 triệu</label><br/>\r\n");
+      out.write("                                <label class=\"radio-inline\"><input type=\"radio\" value=\"6\" name=\"gia\">Trên 30 triệu</label><br/>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                            <div class=\"col-md-12\">\r\n");
+      out.write("                                <button style=\"    margin-top: 24px;\"  type=\"submit\" class=\"btn btn-info active center-block col-md-12\">Tìm</button>\r\n");
+      out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"row theogia\">\r\n");
-      out.write("                        <p >Giá bán</p>\r\n");
-      out.write("                        <div class=\" col-md-6\">\r\n");
-      out.write("                            <label class=\"radio-inline\"><input type=\"radio\" name=\"gia\">Dưới 5 triệu</label><br/>\r\n");
-      out.write("                            <label class=\"radio-inline\"><input type=\"radio\" name=\"gia\">Từ 5-10 triệu</label><br/>\r\n");
-      out.write("                            <label class=\"radio-inline\"><input type=\"radio\" name=\"gia\">Từ 10-15 triệu</label><br/>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                        <div class=\" col-md-6\">\r\n");
-      out.write("                            <label class=\"radio-inline\"><input type=\"radio\" name=\"gia\">Từ 15-20 triệu</label><br/>\r\n");
-      out.write("                            <label class=\"radio-inline\"><input type=\"radio\" name=\"gia\">Từ 20-30 triệu</label><br/>\r\n");
-      out.write("                            <label class=\"radio-inline\"><input type=\"radio\" name=\"gia\">Trên 30 triệu</label><br/>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"quangcao row\">\r\n");
-      out.write("                        <a href=\"#\"><img style=\"width:300px; height:300px;margin: 0 auto;\" class=\"img-responsive\" src=\"img/tải xuống.jpg\" alt=\"\" /></a>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"spnoibat row text-center\">\r\n");
-      out.write("                        <a href=\"#\"><img style=\"width:240px; height:250px\" class=\"img-responsive\" src=\"img/dell.png\" alt=\"\"/>\r\n");
-      out.write("                            <p class=\"spbc\" style=\"color: red;padding-top: 25px\">Sản phẩm bán chạy</p></a>\r\n");
       out.write("\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"spnoibat row text-center\">\r\n");
-      out.write("                        <a href=\"#\"><img style=\"width:240px; height:250px\" class=\"img-responsive\" src=\"img/dell.png\" alt=\"\"/>\r\n");
-      out.write("                            <p class=\"spbc\" style=\"color: red;padding-top: 25px\">Sản phẩm nổi bật</p></a>\r\n");
+      out.write("                        <div class=\"quangcao row\">\r\n");
+      out.write("                            <a href=\"#\"><img style=\"width:300px; height:300px;margin: 0 auto;\" class=\"img-responsive\" src=\"img/tải xuống.jpg\" alt=\"\" /></a>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"spnoibat row text-center\">\r\n");
+      out.write("                            <a href=\"#\"><img style=\"width:240px; height:250px\" class=\"img-responsive\" src=\"img/dell.png\" alt=\"\"/>\r\n");
+      out.write("                                <p class=\"spbc\" style=\"color: red;padding-top: 25px\">Sản phẩm bán chạy</p></a>\r\n");
       out.write("\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"spnoibat row text-center\">\r\n");
+      out.write("                            <a href=\"#\"><img style=\"width:240px; height:250px\" class=\"img-responsive\" src=\"img/dell.png\" alt=\"\"/>\r\n");
+      out.write("                                <p class=\"spbc\" style=\"color: red;padding-top: 25px\">Sản phẩm nổi bật</p></a>\r\n");
+      out.write("\r\n");
+      out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
-      out.write("                </div>\r\n");
+      out.write("                </form> \r\n");
       out.write("                <div class=\"col-md-9 phai col-sm-3 text-center\">\r\n");
       out.write("\r\n");
       out.write("                    <p style=\"    margin-bottom: 32px;font-weight: 600;font-size: 20px;color: #008ae2;\">Máy Tính </p>\r\n");
@@ -317,7 +382,7 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    ");
                         int pageSize = 9;
                         int pageNumber = 1;
-                        String url = "managerproduct.jsp";
+                        String url = "Product.jsp";
                         ProductServices ps = new ProductServices();
                         ArrayList<Product> listProduct = null;
 
@@ -328,8 +393,50 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
                             session.setAttribute("pagenumber", "1");
                         }
 
-                        listProduct = ps.getAllProducts(pageSize, pageNumber);
-
+                        String[] thuonghieu = request.getParameterValues("thuonghieu");
+                        String[] gia = request.getParameterValues("gia");
+                        String th = "";
+                        String gia1 = "0";
+                        String gia2 = "100000000";
+                        ProductServices tim = new ProductServices();
+                        if (thuonghieu != null) {
+                            for (int i = 0; i < thuonghieu.length; i++) {
+                                th = thuonghieu[i];
+                                if (gia != null) {
+                                    gia1 = gia[i];
+                                    if(gia1.equals("1")){
+                                        gia1="0";
+                                        gia2="5000001";
+                                    }else if(gia1.equals("2")){
+                                        gia1="5000001";
+                                        gia2="10000001";
+                                    }
+                                    else if(gia1.equals("3")){
+                                        gia1="10000001";
+                                        gia2="15000001";
+                                    }
+                                    else if(gia1.equals("4")){
+                                        gia1="15000001";
+                                        gia2="20000001";
+                                    }
+                                    else if(gia1.equals("5")){
+                                        gia1="20000001";
+                                        gia2="25000001";
+                                    }
+                                    else if(gia1.equals("5")){
+                                        gia1="25000001";
+                                        gia2="30000001";
+                                    }
+                                    else if(gia1.equals("6")){
+                                        gia1="30000001";
+                                        gia2="100000001";
+                                    }
+                                }
+                                listProduct = tim.searchproduct(th, Double.parseDouble(gia1),Double.parseDouble(gia2));
+                            }
+                        } else {
+                            listProduct = ps.getAllProducts(pageSize, pageNumber);
+                        }
                         int pageCount = (ps.productcount) / pageSize + (ps.productcount % pageSize > 0 ? 1 : 0);
 
                         String nextPage = (pageCount > pageNumber ? (pageNumber + 1) : pageNumber) + "";
@@ -349,7 +456,7 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <a href=\"ChiTietSanPham.jsp?id=");
       out.print(pt.getIdproduct());
       out.write("\">\r\n");
-      out.write("                            <img style=\"width:240px; height:250px;margin:0 auto;\" class=\"img-responsive\" src=\"uploads/");
+      out.write("                            <img style=\"width:240px; height:250px;\" class=\"img-responsive\" src=\"uploads/");
       out.print(pt.getProductImage());
       out.write("\" alt=\"\"/>\r\n");
       out.write("                            <span style=\"font-weight: 600;font-size: 20px;color: #008ae2;\">");
@@ -384,7 +491,23 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
                             
       out.write("\r\n");
       out.write("                        </a>\r\n");
-      out.write("                        <button  type=\"button\" class=\"btn btn-success active center-block\">Thêm Vào Giỏ</button>\r\n");
+      out.write("                        ");
+
+                            if (pt.getProductQuantity() >= 1) {
+                        
+      out.write("\r\n");
+      out.write("                        <button  type=\"button\" class=\"btn btn-primary active center-block\">Thêm Vào Giỏ</button>\r\n");
+      out.write("                        ");
+
+                        } else {
+                        
+      out.write("\r\n");
+      out.write("                        <button  type=\"button\" class=\"btn btn-primary active center-block\">Hết Hàng</button>\r\n");
+      out.write("                        ");
+
+                            }
+                        
+      out.write("\r\n");
       out.write("                    </div>\r\n");
       out.write("                    ");
 
@@ -397,26 +520,26 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
                     if (pageNumber != 1) {
                 
       out.write("\r\n");
-      out.write("                    <nav aria-label=\"Page navigation\">\r\n");
-      out.write("                        <ul class=\"pagination\">\r\n");
-      out.write("                            ");
+      out.write("                <nav aria-label=\"Page navigation\">\r\n");
+      out.write("                    <ul class=\"pagination\">\r\n");
+      out.write("                        ");
 
-                                if (pageNumber != 1) {
-                            
+                            if (pageNumber != 1) {
+                        
       out.write("\r\n");
-      out.write("                            <li><a aria-label=\"Previous\" href=\"");
+      out.write("                        <li><a aria-label=\"Previous\" href=\"");
       out.print(url);
       out.write("?pagenumber=");
       out.print(prevPage);
       out.write("\"><span aria-hidden=\"true\">&laquo;</span></a></li>\r\n");
-      out.write("                                ");
+      out.write("                            ");
 
-                                    }
-                                    for (int j = 1; j <= pageCount; j++) {
-                                        if (pageNumber == j) {
-                                
+                                }
+                                for (int j = 1; j <= pageCount; j++) {
+                                    if (pageNumber == j) {
+                            
       out.write("\r\n");
-      out.write("                            <li class=\"active\"><a href=\"");
+      out.write("                        <li class=\"active\"><a href=\"");
       out.print(url);
       out.write("?pagenumber=");
       out.print(j);
@@ -424,12 +547,12 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write('>');
       out.print(j);
       out.write("</a></li>\r\n");
-      out.write("                                ");
+      out.write("                            ");
 
-                                } else {
-                                
+                            } else {
+                            
       out.write("\r\n");
-      out.write("                            <li><a href=\"");
+      out.write("                        <li><a href=\"");
       out.print(url);
       out.write("?pagenumber=");
       out.print(j);
@@ -437,25 +560,25 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write('>');
       out.print(j);
       out.write("</a></li>\r\n");
-      out.write("                                ");
+      out.write("                            ");
 
-                                        }
                                     }
-                                    if (pageNumber != pageCount) {
-                                
+                                }
+                                if (pageNumber != pageCount) {
+                            
       out.write("\r\n");
-      out.write("                            <li><a aria-label=\"Next\" href=\"");
+      out.write("                        <li><a aria-label=\"Next\" href=\"");
       out.print(url);
       out.write("?pagenumber=");
       out.print(nextPage);
       out.write("\"><span aria-hidden=\"true\">&ra&raquo;</span></a></li>\r\n");
-      out.write("                                ");
+      out.write("                            ");
 
-                                    }
-                                
+                                }
+                            
       out.write("\r\n");
-      out.write("                        </ul>\r\n");
-      out.write("                    </nav>\r\n");
+      out.write("                    </ul>\r\n");
+      out.write("                </nav>\r\n");
       out.write("                ");
 
                     }
@@ -536,6 +659,10 @@ public final class Product_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</footer>\r\n");
       out.write("\r\n");
       out.write("    </body>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

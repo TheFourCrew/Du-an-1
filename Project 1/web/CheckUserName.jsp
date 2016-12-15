@@ -1,5 +1,8 @@
-
-
+<%-- 
+    Document   : CheckUserName
+    Created on : Dec 3, 2016, 3:14:39 PM
+    Author     : Computer
+--%>
 
 <%@page import="com.javaweb.service.UserService"%>
 <%@page import="com.javaweb.service.ProductServices"%>
@@ -25,5 +28,4 @@
 <%
             }
         }
-    }
 %>

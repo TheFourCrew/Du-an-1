@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/master
 <%-- 
     Document   : index
     Created on : Nov 28, 2016, 3:45:16 PM
@@ -19,6 +23,7 @@
             <div class="row">
                 <div class="col-md-6">
                     Slider
+                    
                     <div class="dmsanpham">
                         <%
                             session.setAttribute("urlcur", request.getServletPath().substring(1));
@@ -69,3 +74,7 @@
         <%@include file="includes/footer.jsp" %>
     </body>
 </html>
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/master

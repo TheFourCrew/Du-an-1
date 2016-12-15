@@ -3,6 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import com.javaweb.service.GioHang;
+import java.util.ArrayList;
 
 public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -48,6 +50,8 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write('\r');
+      out.write('\n');
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -92,6 +96,8 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
       out.write("        ");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -155,6 +161,60 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        </li>\r\n");
       out.write("                        <li><a href=\"contact.jsp\" class=\"menu\">Liên hệ</a></li>\r\n");
       out.write("                    </ul>\r\n");
+      out.write("                    <form action=\"SaveServlet\" method=\"post\">\r\n");
+      out.write("                        ");
+
+                            if (session.getAttribute("dshang") != null) {
+                                ArrayList<GioHang> listGioHang = (ArrayList) session.getAttribute("dshang");
+
+                                if (request.getParameter("removeidsp") != null) {
+                                    String removeidsp = request.getParameter("removeidsp");
+                                    GioHang.XoaTuGioHang(listGioHang, removeidsp);
+                                }
+                                for (int i = 0; i < listGioHang.size(); i++) {
+                                    GioHang item = listGioHang.get(i);
+                        
+      out.write("\r\n");
+      out.write("                        <span >Sản phẩm : </span><span name=\"idsp");
+      out.print(item.getMaSP());
+      out.write('"');
+      out.write('>');
+      out.print(item.getMaSP());
+      out.write("</span> \r\n");
+      out.write("\r\n");
+      out.write("                        <span >Số lượng: </span><input name=\"sl");
+      out.print(item.getMaSP());
+      out.write("\" type=\"number\" value=\"");
+      out.print(item.getSoLuong());
+      out.write("\"/>\r\n");
+      out.write("\r\n");
+      out.write("                        <a href=\"index.jsp?removeidsp=");
+      out.print(item.getMaSP());
+      out.write("\">X</a><br />\r\n");
+      out.write("                        ");
+
+
+                            }
+                            if (listGioHang.size() > 0) {
+                        
+      out.write("\r\n");
+      out.write("                        <input type=\"submit\" value=\"Save\">\r\n");
+      out.write("                        ");
+
+                                }
+                            }
+                        
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                    </form>\r\n");
+      out.write("                    <ul class=\"nav navbar-nav navbar-right\">\r\n");
+      out.write("                        <li>\r\n");
+      out.write("                            <a href=\"#\" style=\"outline: none;border: none;background: transparent\">\r\n");
+      out.write("                                <img src=\"img/shop-cart-icon.png\" alt=\"\"/>\r\n");
+      out.write("                                <span class=\"badge\" style=\"background-color: #fff;color:red;\">0</span>\r\n");
+      out.write("                            </a>\r\n");
+      out.write("                        </li>\r\n");
+      out.write("                    </ul>\r\n");
       out.write("                    <ul class=\"nav navbar-nav navbar-right\">\r\n");
       out.write("                        <li> <hr></li>\r\n");
       out.write("                            ");
@@ -168,7 +228,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        </li>\r\n");
       out.write("                        <li class=\"dropdown\">\r\n");
       out.write("                            <a href=\"#myModal\" style=\"outline: none;\" data-toggle=\"modal\"><span class=\"glyphicon glyphicon-log-in\"></span> Đăng nhập</a>\r\n");
-      out.write("                            \r\n");
+      out.write("\r\n");
       out.write("                            <div id=\"myModal\" style=\"margin-top: 130px;\" class=\"modal fade\" role=\"dialog\">\r\n");
       out.write("                                <div class=\"modal-dialog\">\r\n");
       out.write("\r\n");
@@ -192,13 +252,13 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                    <input type=\"password\" name=\"pw\" class=\"form-control\" id=\"pwd\" placeholder=\"Enter password\">\r\n");
       out.write("                                                </div>\r\n");
       out.write("                                            </div>\r\n");
-      out.write("                                            \r\n");
+      out.write("\r\n");
       out.write("                                            <div class=\"form-group\"> \r\n");
       out.write("                                                <div class=\"col-sm-offset-2 col-sm-10\">\r\n");
       out.write("                                                    <button type=\"submit\" class=\"btn btn-default\" style=\"margin-left: 150px;\">Đăng nhập</button>\r\n");
-      out.write("                                                   \r\n");
+      out.write("\r\n");
       out.write("                                                </div>\r\n");
-      out.write("                                                \r\n");
+      out.write("\r\n");
       out.write("                                            </div>\r\n");
       out.write("                                        </form>\r\n");
       out.write("                                    </div>\r\n");
@@ -257,6 +317,24 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div class=\"row\">\r\n");
       out.write("                <div class=\"col-md-6\">\r\n");
       out.write("                    Slider\r\n");
+      out.write("                    <div class=\"dmsanpham\">\r\n");
+      out.write("            <div class=\"sanpham\">\r\n");
+      out.write("                <a href=\"#\">Tên sản phẩm 1</a>\r\n");
+      out.write("                <a href=\"addtocart.jsp?idsanpham=1\">Mua hàng</a>                \r\n");
+      out.write("            </div>\r\n");
+      out.write("            <div class=\"sanpham\">\r\n");
+      out.write("                <a href=\"#\">Tên sản phẩm 2</a>\r\n");
+      out.write("                <a href=\"addtocart.jsp?idsanpham=2\">Mua hàng</a>                \r\n");
+      out.write("            </div>\r\n");
+      out.write("            <div class=\"sanpham\">\r\n");
+      out.write("                <a href=\"#\">Tên sản phẩm 3</a>\r\n");
+      out.write("                <a href=\"addtocart.jsp?idsanpham=3\">Mua hàng</a>                \r\n");
+      out.write("            </div>\r\n");
+      out.write("            <div class=\"sanpham\">\r\n");
+      out.write("                <a href=\"#\">Tên sản phẩm 4</a>\r\n");
+      out.write("                <a href=\"addtocart.jsp?idsanpham=4\">Mua hàng</a>                \r\n");
+      out.write("            </div>\r\n");
+      out.write("        </div>\r\n");
       out.write("                </div>\r\n");
       out.write("                <div class=\"col-md-6\">\r\n");
       out.write("\r\n");
@@ -357,6 +435,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
+      out.write("\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

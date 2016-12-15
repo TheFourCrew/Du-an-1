@@ -6,6 +6,7 @@
 package com.javaweb.controller;
 
 import com.javaweb.model.User;
+import com.javaweb.service.ProductServices;
 import com.javaweb.service.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,18 +34,8 @@ public class SearchServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String username=request.getParameter("username");
-        UserService us= new UserService();
-        User user=us.GetUserByEmailOrUserName(username);
-        HttpSession session=request.getSession();
-        if(username!=null){
-            session.setAttribute("username", username);
-            String url = "/Usermanager.jsp";
-            getServletContext().getRequestDispatcher(url).forward(request, response);
-        }else{
-            String url = "/Usermanager.jsp";
-            getServletContext().getRequestDispatcher(url).forward(request, response);
-        }
+       
+        
 //        try (PrintWriter out = response.getWriter()) {
 //            /* TODO output your page here. You may use following sample code. */
 //            out.println("<!DOCTYPE html>");

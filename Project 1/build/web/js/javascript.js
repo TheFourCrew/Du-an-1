@@ -51,13 +51,6 @@ $(window).ready(function () {
             },
             'prod-unit': "required",
             'loaiSP': "required",
-            'prod-model': "required",
-            'prod-cpu': "required",
-            'prod-ram': "required",
-            'prod-resolution': "required",
-            'prod-size': "required",
-            'prod-weight': "required",
-            'prod-os': "required",
             'prod-thumbnail': {
                 required: true,
                 extension: "jpg|png|gif|jpeg"
@@ -79,13 +72,6 @@ $(window).ready(function () {
             },
             'prod-unit': "Vui lòng nhập đơn vị.",
             'loaiSP': "Vui lòng chọn loại sản phẩm.",
-            'prod-model': "Vui lòng nhập model.",
-            'prod-cpu': "Vui lòng nhập CPU.",
-            'prod-ram': "Vui lòng nhập bộ nhớ trong.",
-            'prod-resolution': "Vui lòng nhập độ phân giải.",
-            'prod-size': "Vui lòng nhập kích thước màn hình.",
-            'prod-weight': "Vui lòng nhập trọng lượng.",
-            'prod-os': "Vui lòng nhập hệ điều hành.",
             'prod-thumbnail': {
                 required: "Vui lòng chọn hình đại diện.",
                 extension: "Ảnh sẽ có đuôi *.jpg, *.jpeg, *.gif hoặc *.png"
@@ -114,13 +100,6 @@ $(window).ready(function () {
             },
             'prod-unit': "required",
             'loaiSP': "required",
-            'prod-model': "required",
-            'prod-cpu': "required",
-            'prod-ram': "required",
-            'prod-resolution': "required",
-            'prod-size': "required",
-            'prod-weight': "required",
-            'prod-os': "required",
             'prod-thumbnail': {
                 extension: "jpg|png|gif|jpeg"
             }
@@ -141,13 +120,6 @@ $(window).ready(function () {
             },
             'prod-unit': "Vui lòng nhập đơn vị.",
             'loaiSP': "Vui lòng chọn loại sản phẩm.",
-            'prod-model': "Vui lòng nhập model.",
-            'prod-cpu': "Vui lòng nhập CPU.",
-            'prod-ram': "Vui lòng nhập bộ nhớ trong.",
-            'prod-resolution': "Vui lòng nhập độ phân giải.",
-            'prod-size': "Vui lòng nhập kích thước màn hình.",
-            'prod-weight': "Vui lòng nhập trọng lượng.",
-            'prod-os': "Vui lòng nhập hệ điều hành.",
             'prod-thumbnail': {
                 extension: "Ảnh sẽ có đuôi *.jpg, *.jpeg, *.gif hoặc *.png"
             }
@@ -252,13 +224,13 @@ function loadXMLProductName() {
     var xmlhttp;
     var productName = document.getElementById("prod-name").value;
     var formEdit = document.forms[0].id;
-    
-    if(formEdit == 'editproduct'){
+
+    if (formEdit == 'editproduct') {
         var oldName = document.getElementById("prod-old-name").value;
     }
-    
-    var urls = "CheckProductName.jsp?tsp=" + productName+"&old="+oldName;
-    
+
+    var urls = "CheckProductName.jsp?tsp=" + productName + "&old=" + oldName;
+
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     } else {
@@ -276,14 +248,14 @@ function loadXMLProductName() {
 
 function validateFormProduct() {
     var x = document.forms["fProduct"]["prod-name"].value;
-    if(x != ""){
-    var y = document.getElementById('actual').value;
+    if (x != "") {
+        var y = document.getElementById('actual').value;
     }
     if (y == "taken") {
         alert("Tên sản phẩm đã tồn tại");
 //        document.getElementById('errProdName').style.color = "red";
 //        document.getElementById('errProdName').innerHTML = 'Tồn tại';
-                return false;
+        return false;
     } else {
 
     }
@@ -292,10 +264,8 @@ function validateFormProduct() {
 function loadXMLUserName() {
     var xmlhttp;
     var UserName = document.getElementById("username").value;
-    var formEdit = document.forms[0].id;
-    
-    
-    
+    var urls = "CheckUserName.jsp?username=" + UserName;
+
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     } else {
@@ -303,8 +273,8 @@ function loadXMLUserName() {
     }
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4) {
-            document.getElementById('errUsername').style.color = "red";
-            document.getElementById('errUsername').innerHTML = xmlhttp.responseText;
+            document.getElementById('errUserName').style.color = "red";
+            document.getElementById('errUserName').innerHTML = xmlhttp.responseText;
         }
     }
     xmlhttp.open("GET", urls, true);
@@ -313,14 +283,14 @@ function loadXMLUserName() {
 
 function validateFormUser() {
     var x = document.forms["fUser"]["username"].value;
-    if(x != ""){
-    var y = document.getElementById('actual').value;
+    if (x != "") {
+        var y = document.getElementById('actual').value;
     }
     if (y == "taken") {
         alert("Tên người dùng đã tồn tại");
 //        document.getElementById('errProdName').style.color = "red";
 //        document.getElementById('errProdName').innerHTML = 'Tồn tại';
-                return false;
+        return false;
     } else {
 
     }
