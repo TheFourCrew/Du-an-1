@@ -183,6 +183,7 @@ label.star:hover {
     font-family: FontAwesome; 
     font-size:inherit;
     float: none;
+    float:left;
 }
 .rating-result{ 
     margin: 5px;
