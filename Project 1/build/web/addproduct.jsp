@@ -105,6 +105,55 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-model">Model:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-model" placeholder="Nhập model" class="form-control" id="prod-model">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-cpu">CPU:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-cpu" placeholder="Nhập CPU" class="form-control" id="prod-cpu">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-ram">RAM:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-ram" placeholder="Nhập bộ nhớ trong" class="form-control" id="prod-ram">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-resolution">Độ phân giải:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-resolution" placeholder="Nhập độ phân giải" class="form-control" id="prod-resolution">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-size">Kích thước:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-size" placeholder="Nhập kích thước màn hình" class="form-control" id="prod-size">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-weight">Trọng lượng:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-weight" placeholder="Nhập trọng lượng" class="form-control" id="prod-weight">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-os">Hệ điều hành:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-os" placeholder="Nhập hệ điều hành" class="form-control" id="prod-os">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="control-label col-sm-2 col-md-3" for="prod-thumbnail">Chọn hình đại diện<em>*</em>:</label>
                                 <div class="col-sm-3 col-md-7">
                                     <input type="file" name="prod-thumbnail" id="prod-thumbnail" onchange="loadFile(event, 'addpro')">

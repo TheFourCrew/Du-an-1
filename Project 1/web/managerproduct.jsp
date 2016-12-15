@@ -84,7 +84,7 @@
                                             <thead>
                                                 <tr>
                                                     <th><input type="checkbox" name="delete-product" onclick="check(this)" /></th>
-                                                    <th class="col-md-1">STT</th>
+                                                    <th>STT</th>
                                                     <th>Tên sản phẩm</th>
                                                     <th>Giá bán</th>
                                                     <th>Loại</th>

@@ -2,6 +2,7 @@ package com.javaweb.controller;
 
 import com.javaweb.model.Product;
 import com.javaweb.model.ProductCategory;
+import com.javaweb.model.ProductParameters;
 import com.javaweb.model.ProductTags;
 import com.javaweb.model.Tags;
 import com.javaweb.service.FileService;
@@ -33,8 +34,8 @@ public class AddProduct extends HttpServlet {
 
     private File file;
     private String filePath;
-    private int maxFileSize = 1000 * 1024;
-    private int maxMemSize = 1000 * 1024;
+    private int maxFileSize = 10000 * 1024;
+    private int maxMemSize = 10000 * 1024;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -76,9 +77,11 @@ public class AddProduct extends HttpServlet {
                 upload.setSizeMax(maxMemSize);
 
                 String tenSP = "", ghiChu = "", thumbnail = "Unknown.jpg", moTa = "",
-                        donVi = "", maSP = "", strGiamGia = "", hinhNho = "", fileName = "", the = "";
+                        donVi = "", maSP = "", strGiamGia = "", hinhNho = "", 
+                        fileName = "", the = "", model = "", cpu ="", ram = "", 
+                        resolution = "", os = "";
                 int loaiSP = 0, soLuong = 0;
-                double gia = 0, giamGia = 0;
+                double gia = 0, giamGia = 0, screensize = 0, weight = 0;
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Date date = new Date();
                 Date dateModified = null;
@@ -114,6 +117,20 @@ public class AddProduct extends HttpServlet {
                             loaiSP = Integer.parseInt(fi.getString("UTF-8"));
                         } else if (fieldName.equals("prod-tags")) {
                             the = fi.getString("UTF-8");
+                        }else if (fieldName.equals("prod-model")) {
+                            model = fi.getString("UTF-8");
+                        }else if (fieldName.equals("prod-cpu")) {
+                            cpu = fi.getString("UTF-8");
+                        }else if (fieldName.equals("prod-ram")) {
+                            ram = fi.getString("UTF-8");
+                        }else if (fieldName.equals("prod-resolution")) {
+                            resolution = fi.getString("UTF-8");
+                        }else if (fieldName.equals("prod-size")) {
+                            screensize = Double.parseDouble(fi.getString("UTF-8"));
+                        }else if (fieldName.equals("prod-weight")) {
+                            weight = Double.parseDouble(fi.getString("UTF-8"));
+                        }else if (fieldName.equals("prod-os")) {
+                            os = fi.getString("UTF-8");
                         }
 //                        else if (fieldName.equals("nP-note")) {
 //                            ghiChu = value;
@@ -168,6 +185,7 @@ public class AddProduct extends HttpServlet {
                 
                 TagServices ts = new TagServices();
                 
+                //Thêm thẻ bài viết
                 Tags tag = null;
                 ProductTags prodTags = null;
                 
@@ -188,6 +206,10 @@ public class AddProduct extends HttpServlet {
                         ts.InsertOrUpdateProductTags(prodTags);
                     }
                 }
+                
+                ProductParameters pps = null;
+                pps = new ProductParameters(Integer.parseInt(idpt), model, cpu, ram, resolution, screensize, weight, os);
+                ps.InsertOrUpdateParameters(pps);
 
                 response.sendRedirect("managerproduct.jsp");
 

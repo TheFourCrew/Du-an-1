@@ -63,35 +63,7 @@
                         </li>
                         <li><a href="contact.jsp" class="menu">Liên hệ</a></li>
                     </ul>
-                    <form action="SaveServlet" method="post">
-                        <%
-                            if (session.getAttribute("dshang") != null) {
-                                ArrayList<GioHang> listGioHang = (ArrayList) session.getAttribute("dshang");
-
-                                if (request.getParameter("removeidsp") != null) {
-                                    String removeidsp = request.getParameter("removeidsp");
-                                    GioHang.XoaTuGioHang(listGioHang, removeidsp);
-                                }
-                                for (int i = 0; i < listGioHang.size(); i++) {
-                                    GioHang item = listGioHang.get(i);
-                        %>
-                        <span >Sản phẩm : </span><span name="idsp<%=item.getMaSP()%>"><%=item.getMaSP()%></span> 
-
-                        <span >Số lượng: </span><input name="sl<%=item.getMaSP()%>" type="number" value="<%=item.getSoLuong()%>"/>
-
-                        <a href="index.jsp?removeidsp=<%=item.getMaSP()%>">X</a><br />
-                        <%
-
-                            }
-                            if (listGioHang.size() > 0) {
-                        %>
-                        <input type="submit" value="Save">
-                        <%
-                                }
-                            }
-                        %>
-
-                    </form>
+                    
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#" style="outline: none;border: none;background: transparent">

@@ -4,6 +4,7 @@
     Author     : MinhNguyen
 --%>
 
+<%@page import="com.javaweb.model.ProductParameters"%>
 <%@page import="com.javaweb.service.TagServices"%>
 <%@page import="com.javaweb.model.Tags"%>
 <%@page import="com.javaweb.model.ProductTags"%>
@@ -151,6 +152,69 @@
                                 <label class="control-label col-sm-2 col-md-3" for="prod-tags">Thẻ sản phẩm<em>*</em>:</label>
                                 <div class="col-sm-3 col-md-7">
                                     <input type="text" name="prod-tags" value="<%=theTag%>" class="form-control" id="prod-tags">
+                                </div>
+                            </div>
+                                <%
+                                ProductParameters pps = null;
+                                        pps = ps.getAllParametersByIdPt(id);
+                                        String model = "", cpu = "", ram = "", 
+                                                resolution = "", os = "", size = "0", weight = "0";
+                                        if(pps != null){
+                                            model = pps.getModel();
+                                            cpu = pps.getCpu();
+                                            ram = pps.getRam();
+                                            resolution = pps.getScreenResolution();
+                                            size = pps.getScreenSize()+"";
+                                            weight = pps.getWeight()+"";
+                                            os = pps.getOperatingSystem();
+                                        }
+                                %>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-model">Model:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-model" value="<%=model %>" class="form-control" id="prod-model">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-cpu">CPU:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-cpu" value="<%=cpu%>" class="form-control" id="prod-cpu">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-ram">RAM:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-ram" value="<%=ram%>" class="form-control" id="prod-ram">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-resolution">Độ phân giải:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-resolution" value="<%=resolution%>" class="form-control" id="prod-resolution">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-size">Kích thước:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-size" value="<%=giaGiam.substring(0, giaGiam.indexOf("."))%>" class="form-control" id="prod-size">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-weight">Trọng lượng:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-weight" value="<%=weight%>" class="form-control" id="prod-weight">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-3" for="prod-os">Hệ điều hành:</label>
+                                <div class="col-sm-3 col-md-7">
+                                    <input type="text" name="prod-os" value="<%=os%>" class="form-control" id="prod-os">
                                 </div>
                             </div>
 
