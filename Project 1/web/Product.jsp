@@ -26,7 +26,7 @@
                 <!--                <div class="col-md-12 col-sm-6 danhmucsp ">
                 
                                 </div>-->
-                <form action="Product.jsp" method="post">
+                <form action="Product.jsp" method="get">
                     <div  class="col-md-3 trai col-sm-3 ">
 
                         <div class="row theohang t">
