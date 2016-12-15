@@ -24,6 +24,9 @@
                 <!--                <div class="col-md-12 col-sm-6 danhmucsp ">
                 
                                 </div>-->
+                <%                    
+                    session.setAttribute("urlcur", request.getServletPath().substring(1));
+                %>
                 <div  class="col-md-3 trai col-sm-3 ">
 
                     <div class="row theohang t">
@@ -121,7 +124,9 @@
                                 }
                             %>
                         </a>
-                        <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
+                        <a href="addtocart.jsp?idsanpham=<%=pt.getIdproduct()%>">
+                            <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
+                        </a>
                     </div>
                     <%
                         }
@@ -130,33 +135,33 @@
                 <%
                     if (pageNumber != 1) {
                 %>
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <%
+                            if (pageNumber != 1) {
+                        %>
+                        <li><a aria-label="Previous" href="<%=url%>?pagenumber=<%=prevPage%>"><span aria-hidden="true">&laquo;</span></a></li>
                             <%
-                                if (pageNumber != 1) {
+                                }
+                                for (int j = 1; j <= pageCount; j++) {
+                                    if (pageNumber == j) {
                             %>
-                            <li><a aria-label="Previous" href="<%=url%>?pagenumber=<%=prevPage%>"><span aria-hidden="true">&laquo;</span></a></li>
-                                <%
+                        <li class="active"><a href="<%=url%>?pagenumber=<%=j%>"><%=j%></a></li>
+                            <%
+                            } else {
+                            %>
+                        <li><a href="<%=url%>?pagenumber=<%=j%>"><%=j%></a></li>
+                            <%
                                     }
-                                    for (int j = 1; j <= pageCount; j++) {
-                                        if (pageNumber == j) {
-                                %>
-                            <li class="active"><a href="<%=url%>?pagenumber=<%=j%>"><%=j%></a></li>
-                                <%
-                                } else {
-                                %>
-                            <li><a href="<%=url%>?pagenumber=<%=j%>"><%=j%></a></li>
-                                <%
-                                        }
-                                    }
-                                    if (pageNumber != pageCount) {
-                                %>
-                            <li><a aria-label="Next" href="<%=url%>?pagenumber=<%=nextPage%>"><span aria-hidden="true">&ra&raquo;</span></a></li>
-                                <%
-                                    }
-                                %>
-                        </ul>
-                    </nav>
+                                }
+                                if (pageNumber != pageCount) {
+                            %>
+                        <li><a aria-label="Next" href="<%=url%>?pagenumber=<%=nextPage%>"><span aria-hidden="true">&ra&raquo;</span></a></li>
+                            <%
+                                }
+                            %>
+                    </ul>
+                </nav>
                 <%
                     }
                 %>

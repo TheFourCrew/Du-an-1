@@ -38,6 +38,7 @@
                 double giaGiam = pt.getDiscountPrice();
                 ArrayList<Rating> ratings = null;
                 Rating rg = null;
+                session.setAttribute("urlcur", request.getServletPath().substring(1) + "?id=" + idPT);
             %>
             <div class="row hinhvathongso" style="margin:auto 0px;">
                 <div class="col-md-12 col-sm-6 ctsp">
@@ -207,31 +208,16 @@
                                         }
                                     %>
                         </p>
-
-
-
-                        <!--                        <div class="thongsokythuat">
-                                                    <div class="thongsokythuattrai">
-                                                        <p>MoDel: <span>Dell core i5</span></p>
-                                                        <p style="padding-top: 15px">CPU: <span>Intel Core i3 SkyLake</span></p>
-                                                        <p style="padding-top: 15px">Ram: <span>4G</span></p>
-                                                        <p style="padding-top: 15px">Resolution: <span>1366x768</span></p>
-                                                    </div>
-                                                    <div class="thongsokythuatphai">
-                        
-                                                        <p>Size: <span>40x40</span></p>
-                                                        <p style="padding-top: 15px">Weight: <span>1kg</span></p>
-                                                        <p style="padding-top: 15px">System: <span>Windows 10</span></p>
-                                                    </div>
-                                                </div>-->
                         <%
                             if (pt.getProductQuantity() >= 1) {
                         %>
-                        <button  type="button" class="btn btn-primary active center-block">Thêm Vào Giỏ</button>
+                        <a href="addtocart.jsp?idsanpham=<%=pt.getIdproduct()%>">
+                            <button  type="button" class="btn btn-info active center-block">Thêm Vào Giỏ</button>
+                        </a>
                         <%
                         } else {
                         %>
-                        <button  type="button" class="btn btn-primary active center-block">Hết Hàng</button>
+                        <label class="btn btn-primary active center-block">Hết Hàng</label>
                         <%
                             }
                         %>
@@ -256,7 +242,6 @@
                     <div class="tab-content">
                         <div id="description" class="tab-pane fade in active">
                             <h3>Mô Tả</h3>
-                            <!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
                             <%=pt.getDescription()%>
                         </div>
                         <div id="parameters" class="tab-pane fade">
@@ -310,10 +295,10 @@
 
                             <h3>Bình Luận</h3>
                             <div class="row">
-                                <form action="CommentServlet" method="post">
+                                <form action="CommentServlet" method="post" id="pcomment">
                                     <input type="hidden" name="spID" value="<%=idPT%>" />
                                     <%
-                                        if (session.getAttribute("cmtname") == null || session.getAttribute("fullname") == null) {
+                                        if (session.getAttribute("cmtname") == null) {
 
                                     %>
                                     <div class="form-group">
@@ -464,14 +449,14 @@
                         <div id="rating" class="tab-pane fade">
                             <h3>Đánh giá<span class="badge"></span></h3>
                             <div class="row">
-                                <form method="post" action="RatingServlet">
+                                <form method="post" action="RatingServlet" id="prating">
                                     <input type="hidden" name="spID" value="<%=idPT%>" />
                                     <fieldset class="rating">
-                                        <input type="radio" id="star5" name="rating" value="5" /><label class = "star full" for="star5" title="Awesome - 5 stars"></label>
-                                        <input type="radio" id="star4" name="rating" value="4" /><label class = "star full" for="star4" title="Pretty good - 4 stars"></label>
-                                        <input type="radio" id="star3" name="rating" value="3" /><label class = "star full" for="star3" title="Meh - 3 stars"></label>
-                                        <input type="radio" id="star2" name="rating" value="2" /><label class = "star full" for="star2" title="Kinda bad - 2 stars"></label>
-                                        <input type="radio" id="star1" name="rating" value="1" /><label class = "star full" for="star1" title="Sucks big time - 1 star"></label>
+                                        <input type="radio" id="star5" name="rating" value="5" /><label class = "star full" for="star5" title="Quá tốt"></label>
+                                        <input type="radio" id="star4" name="rating" value="4" /><label class = "star full" for="star4" title="Tốt"></label>
+                                        <input type="radio" id="star3" name="rating" value="3" /><label class = "star full" for="star3" title="Được"></label>
+                                        <input type="radio" id="star2" name="rating" value="2" /><label class = "star full" for="star2" title="Kém"></label>
+                                        <input type="radio" id="star1" name="rating" value="1" checked /><label class = "star full" for="star1" title="Quá kém"></label>
                                     </fieldset><br/><br/>
                                     <%
                                         if (session.getAttribute("cmtname") == null) {
@@ -610,8 +595,9 @@
                         ArrayList<Product> aPT = null;
                         String idLoai = String.valueOf(pt.getIdproductCategory());
                         aPT = ps.getRalatedProducts(idLoai);
+                        int sizePT = aPT.size();
                         Product pct = null;
-                        for (int i = 0; i < aPT.size(); i++) {
+                        for (int i = 0; i < sizePT - 1; i++) {
                             pct = aPT.get(i);
                             if (pct.getIdproduct() != Integer.parseInt(idPT)) {
                     %>
@@ -623,6 +609,8 @@
                         </center>
                     </div>
                     <%
+                            } else {
+                                sizePT = sizePT + 1;
                             }
                         }
                     %>

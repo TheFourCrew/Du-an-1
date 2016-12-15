@@ -168,7 +168,8 @@ $(window).ready(function () {
             },
             'cMessage': {
                 required: true,
-                minlength: 20
+                minlength: 20,
+                maxlength:300
             }
         },
         messages: {
@@ -180,7 +181,8 @@ $(window).ready(function () {
             },
             'cMessage': {
                 required: "Vui lòng nhập lời nhắn.",
-                minlength: "Vui lòng nhập ít nhất 20 kí tự"
+                minlength: "Vui lòng nhập ít nhất 20 kí tự.",
+                maxlength:"Nhiều nhất 300 kí tự."
             }
         }
     });
@@ -323,3 +325,110 @@ function validateFormUser() {
 
     }
 }
+
+//Hàm kiểm tra thông tin đặt hàng
+$(window).ready(function () {
+    $('#dathang').validate({
+        onchange: true,
+        rules: {
+            'username': "required",
+            'email':{
+                required:true,
+                email:true
+            },
+            'phonenumber': {
+                required: true,
+                number: true,
+                minlength:10,
+                maxlength:11
+            },
+            'address': {
+                required: true,
+                maxlength:150
+            },
+            'city':"required"
+        },
+        messages: {
+            'username': "Vui lòng nhập họ tên người nhận.",
+            'email':{
+                required:"Vui lòng nhập email.",
+                email:"Email không hợp lệ."
+            },
+            'phonenumber': {
+                required: "Vui lòng nhập số điện thoại.",
+                number:"Số điện thoại không có chữ.",
+                minlength:"Giới hạn 10 đến 11 kí tự.",
+                maxlength:"Giới hạn 10 đến 11 kí tự."
+            },
+            'address': {
+                required: "Vui lòng nhập lời nhắn.",
+                maxlength: "Nhiều nhất là 150 kí tự"
+            },
+            'city':"Vui lòng nhập thành phố."
+        }
+    });
+});
+
+//Hàm kiểm tra thông tin bình luận sản phẩm
+$(window).ready(function () {
+    $('#pcomment').validate({
+        onchange: true,
+        rules: {
+            'cName': "required",
+            'cEmail': {
+                required: true,
+                email: true
+            },
+            'cMessage': {
+                required: true,
+                minlength: 20,
+                maxlength:300
+            }
+        },
+        messages: {
+            'cName': "Vui lòng nhập họ tên.",
+            'cEmail': {
+                required: "Vui lòng nhập email.",
+                email: "Email không hợp lệ."
+            },
+            'cMessage': {
+                required: "Vui lòng nhập bình luận.",
+                minlength: "Vui lòng nhập ít nhất 20 kí tự.",
+                maxlength:"Nhiều nhất 300 kí tự."
+            }
+        }
+    });
+});
+
+//Hàm kiểm tra thông tin đánh giá
+$(window).ready(function () {
+    $('#prating').validate({
+        onchange: true,
+        rules: {
+            'cName': "required",
+            'cEmail': {
+                required: true,
+                email: true
+            },
+            'cMessage': {
+                required: true,
+                rangelength:[20,300]
+//                minlength: 20,
+//                maxlength:300
+            }
+        },
+        messages: {
+            'cName': "Vui lòng nhập họ tên.",
+            'cEmail': {
+                required: "Vui lòng nhập email.",
+                email: "Email không hợp lệ."
+            },
+            'cMessage': {
+                required: "Vui lòng nhập đánh giá.",
+                rangelength:"Vui lòng nhập từ 20 đến 300 kí tự."
+//                minlength: "Vui lòng nhập ít nhất 20 kí tự.",
+//                maxlength:"Nhiều nhất 300 kí tự."
+            }
+        }
+    });
+});

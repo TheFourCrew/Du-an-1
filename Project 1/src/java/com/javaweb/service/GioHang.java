@@ -59,6 +59,7 @@ public class GioHang {
         }
     }
 
+    //Xóa sản phẩm trong giỏ hàng
     public static void XoaTuGioHang(ArrayList<GioHang> lst, String maSP) {
         for (int i = 0; i < lst.size(); i++) {
             GioHang item = lst.get(i);
@@ -66,6 +67,12 @@ public class GioHang {
                 lst.remove(item);
             }
         }
+    }
+    
+    public static double TinhTongTien(int soLuong, double donGia){
+        double ketQua = 0 ;
+        ketQua = soLuong * donGia;
+        return ketQua;
     }
 
 }

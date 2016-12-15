@@ -29,7 +29,7 @@
             GioHang.ThemVaoGioHang(listGioHang, idSP, -1);
             session.setAttribute("dshang", listGioHang);
 
-            response.sendRedirect("index.jsp");
+            response.sendRedirect(session.getAttribute("urlcur")+"");
         %>
     </body>
 </html>

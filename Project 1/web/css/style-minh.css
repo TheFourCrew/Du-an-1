@@ -217,4 +217,22 @@ label.star:hover {
 .sao-uncheck{
     color: #ddd; 
 }
+.gioHang{
+    width: 300px;
+    background-color:#54697E;
+    color:white;
+}
+ .x-btn{
+    width: 20px ;
+    height: 20px;
+}
+ .x-btn a{
+    color:red;
+}
+.x-btn:hover,.x-btn a:hover {
+    border-radius: 10px;
+    background-color: white;
+    transition: all .25s;
+}
+
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 9, 2016 6:55:02 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 14, 2016 10:55:28 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.javaweb.model.ProductParameters" table="product_parameters" catalog="db_tintuc_banhang" optimistic-lock="version">
         <id name="idproductParameters" type="java.lang.Integer">
@@ -15,13 +15,13 @@
             <column name="model" length="45" not-null="true" />
         </property>
         <property name="cpu" type="string">
-            <column name="cpu" length="45" not-null="true" />
+            <column name="cpu" length="150" not-null="true" />
         </property>
         <property name="ram" type="string">
-            <column name="ram" length="45" not-null="true" />
+            <column name="ram" length="60" not-null="true" />
         </property>
         <property name="screenResolution" type="string">
-            <column name="screen_resolution" length="45" not-null="true" />
+            <column name="screen_resolution" length="150" not-null="true" />
         </property>
         <property name="screenSize" type="double">
             <column name="screen_size" precision="22" scale="0" not-null="true" />
@@ -30,7 +30,7 @@
             <column name="weight" precision="22" scale="0" not-null="true" />
         </property>
         <property name="operatingSystem" type="string">
-            <column name="operating_system" length="45" not-null="true" />
+            <column name="operating_system" length="150" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>
