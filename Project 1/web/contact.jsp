@@ -13,6 +13,9 @@
         <%@include file="includes/headtag.jsp" %>
     </head>
     <body>
+        <%
+            session.setAttribute("urlcur", request.getServletPath().substring(1));
+        %>
         <%@include file="includes/header.jsp" %>
         <section class="container">
             <h3>Liên hệ</h3>

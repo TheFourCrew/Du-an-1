@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 <%-- 
     Document   : index
     Created on : Nov 28, 2016, 3:45:16 PM
@@ -74,7 +70,3 @@
         <%@include file="includes/footer.jsp" %>
     </body>
 </html>
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
