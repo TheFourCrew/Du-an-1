@@ -278,4 +278,26 @@ public class ProductServices {
 
         return listProducts;
     }
+    public ArrayList<Product> searchproduct(String gt ,double gia1 ,double gia2){
+        Session session=HibernateUtil.getSessionFactory().openSession();
+        Transaction tx=null;
+        ArrayList listProducts = new ArrayList<Product>();
+        try {
+            tx=session.getTransaction();
+            tx.begin();
+            
+             Query query=session.createQuery("from Product where product_name like '%"+gt+"%' and price_per_unit  between '"+gia1+"' and '"+gia2+"' ");
+            listProducts=(ArrayList) query.list();
+            tx.commit();
+            
+        } catch (Exception e) {
+            if(tx!=null){
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        }finally{
+            session.close();
+        }
+        return listProducts;
+        }
 }
