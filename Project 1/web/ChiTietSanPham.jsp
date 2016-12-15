@@ -4,6 +4,7 @@
     Author     : Computer
 --%>
 
+<%@page import="com.javaweb.model.ProductParameters"%>
 <%@page import="com.javaweb.model.Rating"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.javaweb.service.CommentServices"%>
@@ -29,6 +30,7 @@
         <%@include file="includes/header.jsp" %>
         <section class="container">
             <%                String idPT = request.getParameter("id");
+                session.setAttribute("urlcur", request.getServletPath().substring(1) + "?id=" + idPT);
                 ProductServices ps = new ProductServices();
                 Product pt = null;
                 pt = ps.GetById(idPT);
@@ -63,7 +65,6 @@
                                         <a href="#wows1_0" title="<%=pt.getProductImage()%>"><img src="uploads/<%=pt.getProductImage()%>" alt="<%=pt.getProductImage()%>" /></a>
                                             <%
                                                 for (int h = 0; h < word.length; h++) {
-
                                             %>
                                         <a href="#wows1_<%=h + 1%>" title="<%=word[h]%>"><img src="uploads/<%=word[h]%>" alt="<%=word[h]%>" /></a>
                                             <%
@@ -85,9 +86,10 @@
                             ratings = ps.GetDataByIdSP(idPT);
                             double point = 0;
                             double sumPoint = 0;
-//                            for (int i = 0; i < ratings.size(); i++) {
-//                                rg = ratings.get(i);
-//                            }
+                            for (int i = 0; i < ratings.size(); i++) {
+                                rg = ratings.get(i);
+                                sumPoint += rg.getRatingPoint();
+                            }
                             if (sumPoint != 0) {
                                 point = Double.parseDouble(formatPoint.format(sumPoint / ratings.size()));
                             }
@@ -206,25 +208,12 @@
                                         }
                                     %>
                         </p>
-
-                        <div class="thongsokythuat">
-                            <div class="thongsokythuattrai">
-                                <p>MoDel: <span>Dell core i5</span></p>
-                                <p style="padding-top: 15px">CPU: <span>Intel Core i3 SkyLake</span></p>
-                                <p style="padding-top: 15px">Ram: <span>4G</span></p>
-                                <p style="padding-top: 15px">Resolution: <span>1366x768</span></p>
-                            </div>
-                            <div class="thongsokythuatphai">
-
-                                <p>Size: <span>40x40</span></p>
-                                <p style="padding-top: 15px">Weight: <span>1kg</span></p>
-                                <p style="padding-top: 15px">System: <span>Windows 10</span></p>
-                            </div>
-                        </div>
                         <%
                             if (pt.getProductQuantity() >= 1) {
                         %>
-                        <button  type="button" class="btn btn-primary active center-block">Thêm Vào Giỏ</button>
+                        <a href="addtocart.jsp?idsanpham=<%=pt.getIdproduct()%>">
+                            <button  type="button" class="btn btn-primary active center-block">Thêm Vào Giỏ</button>
+                        </a>
                         <%
                         } else {
                         %>
@@ -244,6 +233,7 @@
                             countCmt = cms.getCountComment(idPT);
                         %>
                         <li class="active"><a data-toggle="tab" href="#description">Mô Tả</a></li>
+                        <li><a data-toggle="tab" href="#parameters">Thông số kỹ thuật</a></li>
                         <li><a data-toggle="tab" href="#cmment">Bình Luận <span class="badge"><%=countCmt%></span></a></li>
                         <li><a data-toggle="tab" href="#rating">Đánh giá <span class="badge"><%=ratings.size()%></span></a></li>
 
@@ -255,15 +245,61 @@
                             <!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
                             <%=pt.getDescription()%>
                         </div>
+                        <div id="parameters" class="tab-pane fade">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">Thông số kỹ thuật</div>
+                                <div class="panel-body">
+                                    <%
+                                        ProductParameters pps = null;
+                                        pps = ps.getAllParametersByIdPt(idPT);
+                                        if (pps != null) {
+                                    %>
+                                    <table class="table table-bordered table-responsive">
+                                        <tbody>
+                                            <tr>
+                                                <td>CPU:</td>
+                                                <td><%=pps.getCpu()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Model:</td>
+                                                <td><%=pps.getModel()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bộ nhớ trong:</td>
+                                                <td><%=pps.getRam()%> GB</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hệ điều hành:</td>
+                                                <td><%=pps.getOperatingSystem()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Độ phân giải:</td>
+                                                <td><%=pps.getScreenResolution()%></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Kích thước màn hình:</td>
+                                                <td><%=pps.getScreenSize()%> inches</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Trọng lượng:</td>
+                                                <td><%=pps.getWeight()%> kg</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <%
+                                        }
+                                    %>
+                                </div>
+                            </div>
+                        </div>
                         <div id="cmment" class="tab-pane fade">
 
                             <h3>Bình Luận</h3>
                             <div class="row">
-                                <form action="CommentServlet" method="post">
+                                <form action="CommentServlet" method="post" id="pcomment">
                                     <input type="hidden" name="spID" value="<%=idPT%>" />
                                     <%
-                                        if (session.getAttribute("cmtname") == null || session.getAttribute("fullname") == null) {
-
+                                        if (session.getAttribute("cmtname") == null) {
                                     %>
                                     <div class="form-group">
                                         <div class="col-sm-3 col-md-7">
@@ -280,11 +316,10 @@
                                     </div>
 
                                     <%                } else {
-
                                     %>
                                     <div class="form-group">
                                         <div class="col-sm-3 col-md-7">
-                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("cmtname")%><%=session.getAttribute("fullname")%> </label>
+                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("cmtname")%> </label>
                                             <a href="logout.jsp"> Logout </a>
                                             <input type="hidden" name="cName" value="${cmtname}" class="form-control" id="c-Name">
                                         </div>
@@ -351,13 +386,12 @@
                                             %>
 
 
-                                            <form action="CommentServlet" method="post">
+                                            <form action="CommentServlet" method="post" id="pcomment">
                                                 <input type="hidden" name="idCMT" value="<%=cmtc.getIdcomment()%>" />
                                                 <input type="hidden" name="spID" value="<%=idPT%>" />
                                                 <div id="collapse<%=cmtc.getIdcomment()%>" class="panel-collapse collapse">
                                                     <%
                                                         if (session.getAttribute("cmtname") == null) {
-
                                                     %>
                                                     <div class="form-group">
                                                         <div class="col-sm-3 col-md-7">
@@ -413,18 +447,17 @@
                         <div id="rating" class="tab-pane fade">
                             <h3>Đánh giá<span class="badge"></span></h3>
                             <div class="row">
-                                <form method="post" action="RatingServlet">
+                                <form method="post" action="RatingServlet" id="prating">
                                     <input type="hidden" name="spID" value="<%=idPT%>" />
                                     <fieldset class="rating">
-                                        <input type="radio" id="star5" name="rating" value="5" /><label class = "star full" for="star5" title="Awesome - 5 stars"></label>
-                                        <input type="radio" id="star4" name="rating" value="4" /><label class = "star full" for="star4" title="Pretty good - 4 stars"></label>
-                                        <input type="radio" id="star3" name="rating" value="3" /><label class = "star full" for="star3" title="Meh - 3 stars"></label>
-                                        <input type="radio" id="star2" name="rating" value="2" /><label class = "star full" for="star2" title="Kinda bad - 2 stars"></label>
-                                        <input type="radio" id="star1" name="rating" value="1" /><label class = "star full" for="star1" title="Sucks big time - 1 star"></label>
+                                        <input type="radio" id="star5" name="rating" value="5" /><label class = "star full" for="star5" title="Quá tốt"></label>
+                                        <input type="radio" id="star4" name="rating" value="4" /><label class = "star full" for="star4" title="Tốt"></label>
+                                        <input type="radio" id="star3" name="rating" value="3" /><label class = "star full" for="star3" title="Được"></label>
+                                        <input type="radio" id="star2" name="rating" value="2" /><label class = "star full" for="star2" title="Kém"></label>
+                                        <input type="radio" id="star1" name="rating" value="1" checked /><label class = "star full" for="star1" title="Qúa kém"></label>
                                     </fieldset><br/><br/>
                                     <%
                                         if (session.getAttribute("cmtname") == null) {
-
                                     %>
                                     <div class="form-group">
                                         <div class="col-sm-3 col-md-7">
@@ -559,8 +592,9 @@
                         ArrayList<Product> aPT = null;
                         String idLoai = String.valueOf(pt.getIdproductCategory());
                         aPT = ps.getRalatedProducts(idLoai);
+                        int size = aPT.size();
                         Product pct = null;
-                        for (int i = 0; i < aPT.size(); i++) {
+                        for (int i = 0; i < size -1; i++) {
                             pct = aPT.get(i);
                             if (pct.getIdproduct() != Integer.parseInt(idPT)) {
                     %>
@@ -573,6 +607,8 @@
                         </center>
                     </div>
                     <%
+                            } else {
+                                size += 1;
                             }
                         }
                     %>

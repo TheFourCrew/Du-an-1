@@ -51,6 +51,19 @@ $(window).ready(function () {
             },
             'prod-unit': "required",
             'loaiSP': "required",
+            'prod-model': "required",
+            'prod-cpu': "required",
+            'prod-ram': "required",
+            'prod-resolution': "required",
+            'prod-size':{
+                required:true,
+                number:true
+            },
+            'prod-weight': {
+                required:true,
+                number:true
+            },
+            'prod-os': "required",
             'prod-thumbnail': {
                 required: true,
                 extension: "jpg|png|gif|jpeg"
@@ -72,6 +85,19 @@ $(window).ready(function () {
             },
             'prod-unit': "Vui lòng nhập đơn vị.",
             'loaiSP': "Vui lòng chọn loại sản phẩm.",
+            'prod-model': "Vui lòng nhập model.",
+            'prod-cpu': "Vui lòng nhập CPU.",
+            'prod-ram': "Vui lòng nhập bộ nhớ trong.",
+            'prod-resolution': "Vui lòng nhập độ phân giải.",
+            'prod-size':{
+                required:"Vui lòng nhập kích thước màn hình.",
+                number:"Chỉ nhập số."
+            },
+            'prod-weight': {
+                required: "Vui lòng nhập trọng lượng.",
+                number:"Chỉ nhập số."
+            },
+            'prod-os': "Vui lòng nhập hệ điều hành.",
             'prod-thumbnail': {
                 required: "Vui lòng chọn hình đại diện.",
                 extension: "Ảnh sẽ có đuôi *.jpg, *.jpeg, *.gif hoặc *.png"
@@ -100,6 +126,19 @@ $(window).ready(function () {
             },
             'prod-unit': "required",
             'loaiSP': "required",
+            'prod-model': "required",
+            'prod-cpu': "required",
+            'prod-ram': "required",
+            'prod-resolution': "required",
+            'prod-size':{
+                required:true,
+                number:true
+            },
+            'prod-weight': {
+                required:true,
+                number:true
+            },
+            'prod-os': "required",
             'prod-thumbnail': {
                 extension: "jpg|png|gif|jpeg"
             }
@@ -120,6 +159,19 @@ $(window).ready(function () {
             },
             'prod-unit': "Vui lòng nhập đơn vị.",
             'loaiSP': "Vui lòng chọn loại sản phẩm.",
+            'prod-model': "Vui lòng nhập model.",
+            'prod-cpu': "Vui lòng nhập CPU.",
+            'prod-ram': "Vui lòng nhập bộ nhớ trong.",
+            'prod-resolution': "Vui lòng nhập độ phân giải.",
+            'prod-size':{
+                required:"Vui lòng nhập kích thước màn hình.",
+                number:"Chỉ nhập số."
+            },
+            'prod-weight': {
+                required: "Vui lòng nhập trọng lượng.",
+                number:"Chỉ nhập số."
+            },
+            'prod-os': "Vui lòng nhập hệ điều hành.",
             'prod-thumbnail': {
                 extension: "Ảnh sẽ có đuôi *.jpg, *.jpeg, *.gif hoặc *.png"
             }

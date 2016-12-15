@@ -91,6 +91,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <br/><br/>
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="note">Ghi chú</label>
                                 <div class="col-md-9">

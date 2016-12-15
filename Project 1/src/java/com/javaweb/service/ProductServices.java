@@ -149,6 +149,31 @@ public class ProductServices {
         }
         return false;
     }
+    
+    //Hàm lấy dữ liệu thông số sản phẩm theo mã sản phẩm
+    public ProductParameters getAllParametersByIdPt (String idPT){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ProductParameters parameters = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            String strQuery = "from ProductParameters where id_product = '" + idPT + "'";
+            Query query = session.createQuery(strQuery);
+            parameters = (ProductParameters) query.uniqueResult();
+            tx.commit();
+            return parameters;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
 
     //Hàm kiểm tra tên sản phẩm
     public boolean isProductExists(String tenSP) {

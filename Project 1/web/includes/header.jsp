@@ -47,7 +47,6 @@
                         <li><a href="addproduct.jsp" class="menu">Thêm sản phẩm</a></li>
                             <%
                                 if (session.getAttribute("tenHo") != null) {
-
                             %>
                         <li><a href="managementproduct.jsp" class="menu">Quản lý sản phẩm</a></li>
                         <li><a href="managementuser.jsp" class="menu">Quản lý người dùng</a></li>
@@ -87,7 +86,6 @@
                                             <tbody>
                                                 <%
                                                     for (int i = 0; i < listGioHang.size(); i++) {
-
                                                         ProductServices pssh = new ProductServices();
                                                         Product pth = null;
                                                         GioHang item = listGioHang.get(i);
@@ -106,12 +104,12 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a href="ChiTietSanPham?id=<%=pth.getIdproduct()%>" title="Xem chi tiết sản phẩm">
+                                                        <a href="ChiTietSanPham.jsp?id=<%=pth.getIdproduct()%>" title="Xem chi tiết sản phẩm">
                                                             <img class="img-responsive" src="uploads/<%=pth.getProductImage()%>" width="100px" height="100px"/> 
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <a href="ChiTietSanPham?id=<%=pth.getIdproduct()%>" title="Xem chi tiết sản phẩm" style="color: white;">
+                                                        <a href="ChiTietSanPham.jsp?id=<%=pth.getIdproduct()%>" title="Xem chi tiết sản phẩm" style="color: white;">
                                                             <%=pth.getProductName()%><br/>
                                                         </a>
                                                         <%=soLuong%> x <%=dcf.format(donGia) + " VNĐ"%> 
@@ -122,7 +120,6 @@
 
                                         <!--<span>Số lượng: </span><input name="sl<%=item.getMaSP()%>" type="number" value="<%=item.getSoLuong()%>"/>-->
                                                 <%
-
                                                     }
                                                 %>
                                                 <tr>
