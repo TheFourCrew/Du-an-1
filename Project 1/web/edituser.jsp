@@ -17,10 +17,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>User</title>
-        <%@include file="includes//headtag.jsp" %>
+        <%@include file="include-dashboard/headtag.jsp" %>
     </head>
     <body>
-        <%@include file="includes//header.jsp" %>
+        <div id="wrapper">
+            <%@include file="include-dashboard/sidebar.jsp" %>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Sửa người dùng</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
         <%            UserService us = new UserService();
             User user = null;
             String userId = request.getParameter("iduser");
@@ -44,7 +52,7 @@
                     </div>
                     <div class="form-group">
                         <label for="idrole_user">Quyền:</label>
-                        <select name="role" class="form-control">
+                        <select name="idrole" class="form-control">
 
                             <option value ="">Chọn quyền</option>
                             <%
@@ -53,7 +61,7 @@
 
                                 listRole = role.GetAllRole();
                                 for (int i = 0; i < listRole.size(); i++) {
-                                    if (user.getIduser() == listRole.get(i).getIdroleUser()) {
+                                    if (user.getIdroleUser()== listRole.get(i).getIdroleUser()) {
                             %>
                             <option value="<%=listRole.get(i).getIdroleUser()%>" selected><%=listRole.get(i).getRoleName()%></option>
                             <%
