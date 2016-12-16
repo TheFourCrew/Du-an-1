@@ -270,6 +270,10 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="UserManager.jsp"><i class="fa fa-laptop fa-fw"></i> Quản lý người dùng</span></a>
+                        
+                    </li>
+                    <li>
                         <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
                     </li>
                     <li>

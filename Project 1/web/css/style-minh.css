@@ -223,11 +223,11 @@ label.star:hover {
     background-color:#54697E;
     color:white;
 }
- .x-btn{
+.x-btn{
     width: 20px ;
     height: 20px;
 }
- .x-btn a{
+.x-btn a{
     color:red;
 }
 .x-btn:hover,.x-btn a:hover {
@@ -239,9 +239,17 @@ label.star:hover {
     text-align: center;
     min-width: min-content;
     width: max-content;
-    background-color: skyblue;
+    background-color: #DDDDDD;
     border-radius: 15px;
-    padding:0 8px;
+    padding:4px 8px;
+    font-size: 16px;
+    opacity: .7;
+}
+.the-tag:hover{
+    opacity: 1;
+}
+.the-tag a{
+    color:#78828D;
 }
 
 /* Dropdown Button */
