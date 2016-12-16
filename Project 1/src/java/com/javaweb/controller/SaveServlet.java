@@ -47,7 +47,7 @@ public class SaveServlet extends HttpServlet {
                 }               
             }  
             session.setAttribute("dshang", listGioHang);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect(session.getAttribute("urlcur")+"");
         }
 //        try (PrintWriter out = response.getWriter()) {
 //            /* TODO output your page here. You may use following sample code. */

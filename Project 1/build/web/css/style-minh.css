@@ -183,6 +183,7 @@ label.star:hover {
     font-family: FontAwesome; 
     font-size:inherit;
     float: none;
+    float:left;
 }
 .rating-result{ 
     margin: 5px;
@@ -217,4 +218,75 @@ label.star:hover {
 .sao-uncheck{
     color: #ddd; 
 }
+.gioHang{
+    width: 300px;
+    background-color:#54697E;
+    color:white;
+}
+ .x-btn{
+    width: 20px ;
+    height: 20px;
+}
+ .x-btn a{
+    color:red;
+}
+.x-btn:hover,.x-btn a:hover {
+    border-radius: 10px;
+    background-color: white !important;
+    transition: all .25s;
+}
+.the-tag{
+    text-align: center;
+    min-width: min-content;
+    width: max-content;
+    background-color: skyblue;
+    border-radius: 15px;
+    padding:0 8px;
+}
 
+/* Dropdown Button */
+.dropbtn {
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    /*color: black;*/
+    /*padding: 12px 16px;*/
+    text-decoration: none;
+    /*display: block;*/
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #05B2D2;
+    transition: all .25s;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    color:white;
+}

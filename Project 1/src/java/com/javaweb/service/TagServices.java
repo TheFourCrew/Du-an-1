@@ -155,4 +155,6 @@ public class TagServices {
         }
         return null;
     }
+    //from ProductTags where id_product = 37
+    
 }
