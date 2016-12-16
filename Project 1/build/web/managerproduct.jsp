@@ -134,7 +134,7 @@
                                         <!-- /.table-responsive -->
                                     </form>
                                     <%
-                                        if (pageNumber != 1) {
+                                        if (pageCount > 1) {
                                     %>
                                     <div class="panel-footer">
                                         <nav aria-label="Page navigation">
@@ -158,7 +158,7 @@
                                                         }
                                                         if (pageNumber != pageCount) {
                                                     %>
-                                                <li><a aria-label="Next" href="<%=url%>?pagenumber=<%=nextPage%>"><span aria-hidden="true">&ra&raquo;</span></a></li>
+                                                <li><a aria-label="Next" href="<%=url%>?pagenumber=<%=nextPage%>"><span aria-hidden="true">&raquo;</span></a></li>
                                                     <%
                                                         }
                                                     %>

@@ -1,6 +1,7 @@
 package com.javaweb.service;
 
 import com.javaweb.hibernate.util.HibernateUtil;
+import com.javaweb.model.Product;
 import com.javaweb.model.RoleUser;
 import com.javaweb.model.User;
 import java.util.ArrayList;
@@ -183,5 +184,34 @@ public class UserService {
             session.close();
         }
         return result;
+    }
+    public int usertcount = 0;
+    public ArrayList<User> getAllUser(int pageSize, int pageNumber) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ArrayList listUsers = new ArrayList<User>();
+
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+
+            Query query = session.createQuery("from User order by iduser desc");
+            usertcount = query.list().size();
+            query = query.setFirstResult(pageSize * (pageNumber - 1));
+            query.setMaxResults(pageSize);
+            listUsers = (ArrayList) query.list();
+
+            tx.commit();
+
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+
+        return listUsers;
     }
 }

@@ -49,8 +49,9 @@ public class EditUserServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        String username = "", id = "", fullname = "", email = "", password = "", repassword = "", note = "", gender = "", idrole = "", phone = "", address = "", fileName = "";
+        String username = "", id = "", fullname = "", email = "", password = "", repassword = "", note = "", gender = "", idroles="",  phone = "", address = "", fileName = "";
         Date datez = new Date();
+        
         boolean gt = false;
         HttpSession session = request.getSession();
 
@@ -112,7 +113,7 @@ public class EditUserServlet extends HttpServlet {
                     } else if (fi.getFieldName().equalsIgnoreCase("repassword")) {
                         repassword = fi.getString("UTF-8");
                     } else if (fi.getFieldName().equalsIgnoreCase("idrole")) {
-                        idrole = fi.getString("UTF-8");
+                        idroles = fi.getString("UTF-8");
                     } else if (fi.getFieldName().equalsIgnoreCase("dienthoai")) {
                         phone = fi.getString("UTF-8");
                     } else if (fi.getFieldName().equalsIgnoreCase("address")) {
@@ -150,7 +151,7 @@ public class EditUserServlet extends HttpServlet {
         user.setUsername(username);
         user.setFullname(fullname);
         user.setEmail(email);
-        user.setIdroleUser(2);
+        user.setIdroleUser(Integer.parseInt(idroles));
         user.setBirthday(datez);
         user.setGender(gt);
         user.setPassword(password);
