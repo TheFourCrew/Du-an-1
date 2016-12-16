@@ -67,7 +67,7 @@
                                 <%
                                     int pageSize = 10;
                                     int pageNumber = 1;
-                                    String url = "managerproduct.jsp";
+                                    String url = "UserManager.jsp";
                                     UserService ps = new UserService();
                                     ArrayList<User> listUser = null;
 
@@ -109,10 +109,14 @@
                                     <tbody>
                                         <%                                    for (int i = 0; i < listUser.size(); i++) {
                                                 User user = listUser.get(i);
+                                                int dem =i+1;
+                                                if(pageNumber>1){
+                                                    dem=i+pageSize * (pageNumber -1)+1;
+                                                }
                                         %>
                                         <tr>
                                             <th><input type="checkbox" name="iduser" value="<%=user.getIduser()%>" /></th>
-                                            <td><%=i + 1%></td>                        
+                                            <td><%=dem %></td>                        
                                             <td><%=user.getUsername()%></td>   
 
                                             <td><%=user.getFullname()%></td>
@@ -150,7 +154,7 @@
                             </form>
 
                             <%
-                                if (pageNumber != 1) {
+                                if (pageCount != 1) {
                             %>
                             <div class="panel-footer">
                                 <nav aria-label="Page navigation">
@@ -174,7 +178,7 @@
                                                 }
                                                 if (pageNumber != pageCount) {
                                             %>
-                                        <li><a aria-label="Next" href="<%=url%>?pagenumber=<%=nextPage%>"><span aria-hidden="true">&ra&raquo;</span></a></li>
+                                        <li><a aria-label="Next" href="<%=url%>?pagenumber=<%=nextPage%>"><span aria-hidden="true">&raquo;</span></a></li>
                                             <%
                                                 }
                                             %>
