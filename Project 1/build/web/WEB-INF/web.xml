@@ -56,6 +56,10 @@
         <servlet-name>CheckOutServlet</servlet-name>
         <servlet-class>com.javaweb.controller.CheckOutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddCategory</servlet-name>
+        <servlet-class>com.javaweb.controller.AddCategory</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LienLac</servlet-name>
         <url-pattern>/LienLac</url-pattern>
@@ -137,6 +141,10 @@
     <servlet-mapping>
         <servlet-name>CheckOutServlet</servlet-name>
         <url-pattern>/CheckOutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddCategory</servlet-name>
+        <url-pattern>/AddCategory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

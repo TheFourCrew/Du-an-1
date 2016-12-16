@@ -15,7 +15,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.jsp">SB Admin v2.0</a>
+            <a class="navbar-brand" href="index.jsp">Trang chủ</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -270,11 +270,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="UserManager.jsp"><i class="fa fa-laptop fa-fw"></i> Quản lý người dùng</span></a>
-                        
-                    </li>
-                    <li>
-                        <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                        <a href="UserManager.jsp"><i class="fa fa-edit fa-fw"></i> Quản lý người dùng</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>

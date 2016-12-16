@@ -435,8 +435,6 @@ $(window).ready(function () {
             'cMessage': {
                 required: true,
                 rangelength:[20,300]
-//                minlength: 20,
-//                maxlength:300
             }
         },
         messages: {
@@ -448,9 +446,20 @@ $(window).ready(function () {
             'cMessage': {
                 required: "Vui lòng nhập đánh giá.",
                 rangelength:"Vui lòng nhập từ 20 đến 300 kí tự."
-//                minlength: "Vui lòng nhập ít nhất 20 kí tự.",
-//                maxlength:"Nhiều nhất 300 kí tự."
             }
+        }
+    });
+});
+
+//Hàm kiểm tra loại sản phẩm
+$(window).ready(function () {
+    $('#addcategory').validate({
+        onchange: true,
+        rules: {
+            'c-name': "required"
+        },
+        messages: {
+            'c-name': "Vui lòng nhập tên loại."
         }
     });
 });
