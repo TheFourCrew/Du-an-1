@@ -29,27 +29,18 @@
                 </div>
                 <div class="row">
 
-                    <%                    UserService us = new UserService();
-                        ArrayList<User> listUsers = null;
-                        
-                        listUsers = us.GetAllUsers();
-                        
-                        ArrayList<User>listUser=null;
-                         
-//                        listUser=us.GetUserByEmailOrUserName();
 
-                    %>
                     <section class="container-fluid">
                         <div class="panel panel-default">
 
                             <div class="panel-heading">Danh mục người dùng
-<!--                                <form action="SearchServlet" method="post">
-                                    <div class="searchus">
-                                        <input type="text" style="float: right;    width: 300px;" name="username" class="form-control input-sm" maxlength="64" placeholder="Search" />
-                                        <button type="submit" style="    margin-left: 645px;" class="btn btn-primary btn-sm searchbtn">Search</button>
-                                    </div>-->
- 
-                                    
+                                <!--                                <form action="SearchServlet" method="post">
+                                                                    <div class="searchus">
+                                                                        <input type="text" style="float: right;    width: 300px;" name="username" class="form-control input-sm" maxlength="64" placeholder="Search" />
+                                                                        <button type="submit" style="    margin-left: 645px;" class="btn btn-primary btn-sm searchbtn">Search</button>
+                                                                    </div>-->
+
+
 
                             </div>
 
@@ -73,7 +64,29 @@
                                         }
                                     }
                                 </script>
+                                <%
+                                    int pageSize = 10;
+                                    int pageNumber = 1;
+                                    String url = "managerproduct.jsp";
+                                    UserService ps = new UserService();
+                                    ArrayList<User> listUser = null;
 
+                                    if (request.getParameter("pagenumber") != null) {
+                                        session.setAttribute("pagenumber", request.getParameter("pagenumber"));
+                                        pageNumber = Integer.parseInt(request.getParameter("pagenumber"));
+                                    } else {
+                                        session.setAttribute("pagenumber", "1");
+                                    }
+
+                                    listUser = ps.getAllUser(pageSize, pageNumber);
+
+                                    int pageCount = (ps.usertcount) / pageSize + (ps.usertcount % pageSize > 0 ? 1 : 0);
+
+                                    String nextPage = (pageCount > pageNumber ? (pageNumber + 1) : pageNumber) + "";
+                                    String prevPage = (pageNumber <= 1 ? 1 : pageNumber - 1) + "";
+
+
+                                %>
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -84,18 +97,18 @@
                                             <th>Họ tên</th>                        
 
 
-                                            <th>Địa chỉ</th>
+
 
 
                                             <th>Hình đại diện</th>
                                             <th>Trạng thái</th>
-                                            <th>Ghi chú</th>
+
                                         </tr>
 
                                     </thead>
                                     <tbody>
-                                        <%                                    for (int i = 0; i < listUsers.size(); i++) {
-                                                User user = listUsers.get(i);
+                                        <%                                    for (int i = 0; i < listUser.size(); i++) {
+                                                User user = listUser.get(i);
                                         %>
                                         <tr>
                                             <th><input type="checkbox" name="iduser" value="<%=user.getIduser()%>" /></th>
@@ -105,7 +118,7 @@
                                             <td><%=user.getFullname()%></td>
 
 
-                                            <td><%=user.getAddress()%></td>
+
 
 
                                             <td><img src="uploads/<%=user.getImage()%>" alt="<%=user.getImage()%>"width="50px"height="50px"/></td> 
@@ -113,7 +126,7 @@
 
 
 
-                                            <td><%=user.getNote()%>=</td>
+
                                             <td>
                                                 <a href="edituser.jsp?iduser=<%=user.getIduser()%>">Edit</a>
                                             </td>
@@ -136,11 +149,41 @@
                                 </table>
                             </form>
 
-                            <ul class="pagination pager">
-                                <li><a href="">Previous</a></li>
-
-                                <li><a href="">Next</a></li>
-                            </ul>
+                            <%
+                                if (pageNumber != 1) {
+                            %>
+                            <div class="panel-footer">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        <%
+                                            if (pageNumber != 1) {
+                                        %>
+                                        <li><a aria-label="Previous" href="<%=url%>?pagenumber=<%=prevPage%>"><span aria-hidden="true">&laquo;</span></a></li>
+                                            <%
+                                                }
+                                                for (int j = 1; j <= pageCount; j++) {
+                                                    if (pageNumber == j) {
+                                            %>
+                                        <li class="active"><a href="<%=url%>?pagenumber=<%=j%>"><%=j%></a></li>
+                                            <%
+                                            } else {
+                                            %>
+                                        <li><a href="<%=url%>?pagenumber=<%=j%>"><%=j%></a></li>
+                                            <%
+                                                    }
+                                                }
+                                                if (pageNumber != pageCount) {
+                                            %>
+                                        <li><a aria-label="Next" href="<%=url%>?pagenumber=<%=nextPage%>"><span aria-hidden="true">&ra&raquo;</span></a></li>
+                                            <%
+                                                }
+                                            %>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <%
+                                }
+                            %>
                         </div>
                     </section>
                 </div>
