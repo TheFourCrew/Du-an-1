@@ -46,7 +46,7 @@
                         <div class="row theogia">
                             <p >Giá bán</p>
                             <div class=" col-md-6">
-                                <label class="radio-inline"><input type="radio" value="1 " name="gia">Dưới 5 triệu</label><br/>
+                                <label class="radio-inline"><input type="radio" value="1" name="gia">Dưới 5 triệu</label><br/>
                                 <label class="radio-inline"><input type="radio" value="2" name="gia">Từ 5-10 triệu</label><br/>
                                 <label class="radio-inline"><input type="radio" value="3" name="gia">Từ 10-15 triệu</label><br/>
                             </div>

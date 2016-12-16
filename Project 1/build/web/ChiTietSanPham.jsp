@@ -4,6 +4,10 @@
     Author     : Computer
 --%>
 
+<%@page import="com.javaweb.model.Tags"%>
+<%@page import="com.javaweb.model.ProductTags"%>
+<%@page import="com.javaweb.model.ProductTags"%>
+<%@page import="com.javaweb.service.TagServices"%>
 <%@page import="com.javaweb.model.ProductParameters"%>
 <%@page import="com.javaweb.model.Rating"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -39,6 +43,7 @@
                 double giaGiam = pt.getDiscountPrice();
                 ArrayList<Rating> ratings = null;
                 Rating rg = null;
+                TagServices tss = new TagServices();
             %>
             <div class="row hinhvathongso" style="margin:auto 0px;">
                 <div class="col-md-12 col-sm-6 ctsp">
@@ -190,7 +195,6 @@
                                 <label class="sum-rater">(<%=ratings.size()%> người đánh giá)</label>
                             </label>
                         </fieldset>
-                        <p><span style="font-size: 15px; word-wrap: break-word;">MÁY TÍNH XÁCH TAY LENO <span>(<%=ratings.size()%>)</span>VO IDEAPAD 310-14ISK,I3-6100U(2.3GHZ/3MB),4GB DDR4,1TB HDD,14" FHD,2CELL,FREE-DOS,SILVER (BẠC),1YWTY_80SL0069VNasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></p>
 
                         <p >
                             <%
@@ -208,19 +212,38 @@
                                         }
                                     %>
                         </p>
+
                         <%
                             if (pt.getProductQuantity() >= 1) {
                         %>
+                        <span>Còn <%=pt.getProductQuantity() %> sản phẩm :</span>
+                        <input type="number" name="" class=""  value="0" min="0" max="<%=pt.getProductQuantity()%>" />
                         <a href="addtocart.jsp?idsanpham=<%=pt.getIdproduct()%>">
-                            <button  type="button" class="btn btn-primary active center-block">Thêm Vào Giỏ</button>
+                            <button  type="button" class="btn btn-primary">Thêm Vào Giỏ</button>
                         </a>
                         <%
                         } else {
                         %>
-                        <button  type="button" class="btn btn-primary active center-block">Hết Hàng</button>
+                        <button  type="button" class="btn btn-primary center-block">Hết Hàng</button>
                         <%
                             }
                         %>
+                        <hr><br/><p>Từ khóa: 
+                            <%           
+                                ArrayList<ProductTags> aPTags = null;
+                                aPTags = tss.GetProductTagsById(idPT);
+                                ProductTags ptags = null;
+                                Tags tags = null;
+                                for (int i = 0; i < aPTags.size(); i++) {
+                                    ptags = aPTags.get(i);
+                                    int idTags = ptags.getIdTag();
+                                    tags = tss.GetByTagsId(idTags+"");
+                            %>
+                            <span class="the-tag"><a href="#"><%=tags.getTagName() %></a></span>
+                                <%
+                                    }
+                                %>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -450,11 +473,11 @@
                                 <form method="post" action="RatingServlet" id="prating">
                                     <input type="hidden" name="spID" value="<%=idPT%>" />
                                     <fieldset class="rating">
-                                        <input type="radio" id="star5" name="rating" value="5" /><label class = "star full" for="star5" title="Quá tốt"></label>
+                                        <input type="radio" id="star5" name="rating" value="5" checked/><label class = "star full" for="star5" title="Quá tốt"></label>
                                         <input type="radio" id="star4" name="rating" value="4" /><label class = "star full" for="star4" title="Tốt"></label>
                                         <input type="radio" id="star3" name="rating" value="3" /><label class = "star full" for="star3" title="Được"></label>
                                         <input type="radio" id="star2" name="rating" value="2" /><label class = "star full" for="star2" title="Kém"></label>
-                                        <input type="radio" id="star1" name="rating" value="1" checked /><label class = "star full" for="star1" title="Qúa kém"></label>
+                                        <input type="radio" id="star1" name="rating" value="1" /><label class = "star full" for="star1" title="Qúa kém"></label>
                                     </fieldset><br/><br/>
                                     <%
                                         if (session.getAttribute("cmtname") == null) {
@@ -594,7 +617,7 @@
                         aPT = ps.getRalatedProducts(idLoai);
                         int size = aPT.size();
                         Product pct = null;
-                        for (int i = 0; i < size -1; i++) {
+                        for (int i = 0; i < size - 1; i++) {
                             pct = aPT.get(i);
                             if (pct.getIdproduct() != Integer.parseInt(idPT)) {
                     %>

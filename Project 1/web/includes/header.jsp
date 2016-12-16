@@ -52,12 +52,12 @@
                         <li><a href="managementuser.jsp" class="menu">Quản lý người dùng</a></li>
                             <%                                }
                             %>
-                        <li class="dropdown-submenu menu">
-                            <a class="dropdown-toggle menu" data-toggle="dropdown" href="#">
+                        <li class="dropdown-submenu menu dropdown">
+                            <a class="dropdown-toggle menu dropbtn" href="Product.jsp">
                                 <span class="glyphicon glyphicon-usd"></span> Áo
                                 <span class="caret"></span>
                             </a>
-                            <ul class="dropdown-menu menu"  role="menu" aria-labelledby="dropdownMenu">
+                            <ul class="dropdown-menu menu dropdown-content">
                                 <li><a href="#" class="menu">Áo sơ mi</a></li>
                                 <li><a href="#" class="menu">Áo hoodie</a></li>
                                 <li><a href="#" class="menu">Áo thun</a></li> 
@@ -67,8 +67,8 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown-submenu menu">
-                            <ul class="dropdown-menu menu gioHang col-md-12"  role="menu" aria-labelledby="dropdownMenu">
+                        <li class="dropdown-submenu menu dropdown">
+                            <ul class="dropdown-menu menu gioHang col-md-12 dropdown-content">
                                 <li>
                                     <form action="SaveServlet" method="post">
                                         <%
@@ -150,7 +150,7 @@
                                     </form>
                                 </li>
                             </ul>
-                            <a href="#" style="outline: none;border: none;background: transparent;" class="dropdown-toggle menu" data-toggle="dropdown">
+                            <a href="#" style="outline: none;border: none;background: transparent;" class="dropdown-toggle menu dropbtn" >
                                 <%
                                     ArrayList<GioHang> gioHang = null;
                                 %>

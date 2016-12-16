@@ -60,7 +60,7 @@
                                     </div>
                                 </td>
                                 <td><%=pdt.getProductName()%></td>
-                                <td><input type="number" name="sl<%=item.getMaSP()%>" value="<%=soLuong%>" /> 
+                                <td><input type="number" name="sl<%=item.getMaSP()%>" value="<%=soLuong%>" min="<%=item.getSoLuong() %>" max="<%=pdt.getProductQuantity() %>" /> 
                                     <input type="submit" class="btn btn-default" value="Cập nhật" name="update" /> 
                                 </td>
                                 <td><%=dcf.format(donGia) + " VNĐ"%></td>
