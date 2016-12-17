@@ -463,3 +463,65 @@ $(window).ready(function () {
         }
     });
 });
+
+
+//Kiểm tra đăng ký 
+$(window).ready(function () {
+    $('#fregister').validate({
+        onchange: true,
+        rules: {
+            'username': {
+                required: true,
+                minlength: 6
+            },
+            'mk': {
+                required: true,
+                minlength: 8
+            },
+            'repassword': {
+                required: true,
+                equalTo: "#password"
+            },
+            'fullname': 'required',
+            'dienthoai': {
+                required: true,
+                number: true,
+                rangelength: [10, 11]
+            },
+            'address': 'required',
+            'email': {
+                required: true,
+                email: true
+            },
+            'birthday': "required",
+            'gender': "required",
+            'dieukhoan': "required"
+        },
+        messages: {
+            'username': {
+                required: "Bạn chưa nhập tên đăng nhập",
+                minlength: 'Tên đăng nhập chưa đủ 6 ký tự'
+            },
+            'mk': {
+                required: "Bạn chưa nhập mật khẩu",
+                minlength: 'Mật khẩu chưa đủ 8 ký tự'
+            },
+            'repassword': {
+                required: 'Vui lòng nhập lại mật khẩu',
+                equalTo: "Mật khẩu nhập lại sai"
+            },
+            'role': 'Vui lòng chọn quyền',
+            'fullname': 'Bạn chưa nhập họ tên ',
+            'dienthoai': {
+                required: 'Chưa nhập điện thoại',
+                number: 'Điện thoại chỉ có số',
+                rangelength: '10-11 số'
+            },
+            'address': 'Bạn chưa nhập địa chỉ',
+            'email': {
+                required: 'Chưa nhập email',
+                email: 'Email không hợp lệ'
+            }
+        }
+    });
+});

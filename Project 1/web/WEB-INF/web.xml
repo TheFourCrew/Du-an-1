@@ -60,6 +60,10 @@
         <servlet-name>AddCategory</servlet-name>
         <servlet-class>com.javaweb.controller.AddCategory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegsisterServlet</servlet-name>
+        <servlet-class>com.javaweb.controller.RegsisterServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LienLac</servlet-name>
         <url-pattern>/LienLac</url-pattern>
@@ -145,6 +149,10 @@
     <servlet-mapping>
         <servlet-name>AddCategory</servlet-name>
         <url-pattern>/AddCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegsisterServlet</servlet-name>
+        <url-pattern>/RegsisterServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
