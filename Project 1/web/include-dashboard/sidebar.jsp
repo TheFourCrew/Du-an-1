@@ -273,6 +273,9 @@
                         <a href="UserManager.jsp"><i class="fa fa-edit fa-fw"></i> Quản lý người dùng</a>
                     </li>
                     <li>
+                        <a href="receiptmanager.jsp"><i class="fa fa-edit fa-fw"></i> Quản lý hóa đơn</a>
+                    </li>
+                    <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>

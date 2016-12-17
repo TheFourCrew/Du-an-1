@@ -1,21 +1,20 @@
 <%-- 
-    Document   : managerproduct
-    Created on : Dec 3, 2016, 2:06:29 PM
+    Document   : receiptmanager
+    Created on : Dec 16, 2016, 10:35:14 PM
     Author     : MinhNguyen
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="com.javaweb.model.ProductCategory"%>
-<%@page import="com.javaweb.service.ProductCategoryServices"%>
-<%@page import="com.javaweb.model.Product"%>
+<%@page import="com.javaweb.model.Receipt"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.javaweb.service.ProductServices"%>
+<%@page import="com.javaweb.service.ReceiptServices"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Quản lý sản phẩm</title>
+        <title>Quản lý hóa đơn</title>
         <%@include file="include-dashboard/headtag.jsp" %>
     </head>
     <body>
@@ -59,9 +58,9 @@
                                         <%
                                             int pageSize = 10;
                                             int pageNumber = 1;
-                                            String url = "managerproduct.jsp";
-                                            ProductServices ps = new ProductServices();
-                                            ArrayList<Product> listProduct = null;
+                                            String url = "receiptmanager.jsp";
+                                            ReceiptServices rs = new ReceiptServices();
+                                            ArrayList<Receipt> listReceipt = null;
 
                                             if (request.getParameter("pagenumber") != null) {
                                                 session.setAttribute("pagenumber", request.getParameter("pagenumber"));
@@ -70,57 +69,48 @@
                                                 session.setAttribute("pagenumber", "1");
                                             }
 
-                                            listProduct = ps.getAllProducts(pageSize, pageNumber);
+                                            listReceipt = rs.getAllReceipt(pageSize, pageNumber);
 
-                                            int pageCount = (ps.productcount) / pageSize + (ps.productcount % pageSize > 0 ? 1 : 0);
+                                            int pageCount = (rs.receiptcount) / pageSize + (rs.receiptcount % pageSize > 0 ? 1 : 0);
 
                                             String nextPage = (pageCount > pageNumber ? (pageNumber + 1) : pageNumber) + "";
                                             String prevPage = (pageNumber <= 1 ? 1 : pageNumber - 1) + "";
 
-                                            ProductCategoryServices pcs = new ProductCategoryServices();
-                                            ProductCategory pc = null;
                                         %>
                                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                             <thead>
                                                 <tr>
                                                     <th><input type="checkbox" name="delete-product" onclick="check(this)" /></th>
                                                     <th>STT</th>
-                                                    <th>Tên sản phẩm</th>
-                                                    <th>Giá bán</th>
-                                                    <th>Loại</th>
+                                                    <th>Tổng tiền</th>
                                                     <th>Ngày tạo</th>
-                                                    <th>Hình</th>
+                                                    <th>Tình trạng</th>
                                                     <th class="col-md-2">Hành động</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <%
+                                                <%                                                    
                                                     DecimalFormat formatter = new DecimalFormat("###,###,###");
-                                                    for (int i = 0; i < listProduct.size(); i++) {
-                                                        Product product = listProduct.get(i);
-                                                        String id = String.valueOf(product.getIdproductCategory());
-                                                        pc = pcs.getbyid(id);
-                                                        double dGiaBan = product.getPricePerUnit();
-
-                                                        String kqGiaBan = formatter.format(dGiaBan) + " VNĐ";
+//                                                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+                                                    for (int i = 0; i < listReceipt.size(); i++) {
+                                                        Receipt rt = listReceipt.get(i);
+                                                        double tongTien = rt.getTotalPrice();
                                                         int dem = i + 1;
                                                         if (pageNumber > 1) {
                                                             dem = i + pageSize * (pageNumber - 1) + 1;
                                                         }
                                                 %>
                                                 <tr>
-                                                    <th><input type="checkbox" name="id-product" value="<%=product.getIdproduct()%>" /></th>
+                                                    <td><input type="checkbox" name="id-receipt" /></td>
                                                     <td><%=dem%></td>
-                                                    <td><a href="ChiTietSanPham.jsp?id=<%=product.getIdproduct()%>"><%=product.getProductName()%></a></td>
-                                                    <td><%=kqGiaBan%></td>
-                                                    <td><%= pc.getCategoryName()%></td>
-                                                    <td><%=product.getCreatedDate()%></td>
-                                                    <td><img class="img-thumbnail" src="uploads/<%=product.getProductImage()%>" alt="<%=product.getProductName()%>" width="80px"/></td>
+                                                    <td><%=formatter.format(tongTien)+" VNĐ"%></a></td>
+                                                    <td><%=rt.getCreatedDate()%></td>
+                                                    <td><%= rt.getStatus()%></td>
                                                     <td>
-                                                        <a href="editproduct.jsp?idpt=<%=product.getIdproduct()%>" class="btn btn-info">
+                                                        <a href="editreceipt.jsp?idpt=<%=rt.getIdreceipt()%>" class="btn btn-info">
                                                             Sửa<!--<input class="btn btn-info" type="submit" value="Sửa" />-->
                                                         </a>
-                                                        <a href="DeleteProduct?idpt=<%=product.getIdproduct()%>" onclick="return confirm('Bạn có chắc không?')">
+                                                        <a href="DeleteReceipt?idpt=<%=rt.getIdreceipt()%>" onclick="return confirm('Bạn có chắc không?')">
                                                             <input class="btn btn-danger" type="submit" value="Xóa" />
                                                         </a>
                                                     </td>
