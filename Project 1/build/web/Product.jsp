@@ -179,40 +179,42 @@
                     <%
                         }
                     %>
+                    <%
+                        if (pageCount != 1) {
+                    %>
+                    <div class="panel-footer">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <%
+                                    if (pageNumber != 1) {
+                                %>
+                                <li><a aria-label="Previous" href="<%=url%>?pagenumber=<%=prevPage%>"><span aria-hidden="true">&laquo;</span></a></li>
+                                    <%
+                                        }
+                                        for (int j = 1; j <= pageCount; j++) {
+                                            if (pageNumber == j) {
+                                    %>
+                                <li class="active"><a href="<%=url%>?pagenumber=<%=j%>"><%=j%></a></li>
+                                    <%
+                                    } else {
+                                    %>
+                                <li><a href="<%=url%>?pagenumber=<%=j%>"><%=j%></a></li>
+                                    <%
+                                            }
+                                        }
+                                        if (pageNumber != pageCount) {
+                                    %>
+                                <li><a aria-label="Next" href="<%=url%>?pagenumber=<%=nextPage%>"><span aria-hidden="true">&ra&raquo;</span></a></li>
+                                    <%
+                                        }
+                                    %>
+                            </ul>
+                        </nav>
+                    </div>
+                    <%
+                        }
+                    %>
                 </div>
-                <%
-                    if (pageNumber != 1) {
-                %>
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <%
-                            if (pageNumber != 1) {
-                        %>
-                        <li><a aria-label="Previous" href="<%=url%>?pagenumber=<%=prevPage%>"><span aria-hidden="true">&laquo;</span></a></li>
-                            <%
-                                }
-                                for (int j = 1; j <= pageCount; j++) {
-                                    if (pageNumber == j) {
-                            %>
-                        <li class="active"><a href="<%=url%>?pagenumber=<%=j%>"><%=j%></a></li>
-                            <%
-                            } else {
-                            %>
-                        <li><a href="<%=url%>?pagenumber=<%=j%>"><%=j%></a></li>
-                            <%
-                                    }
-                                }
-                                if (pageNumber != pageCount) {
-                            %>
-                        <li><a aria-label="Next" href="<%=url%>?pagenumber=<%=nextPage%>"><span aria-hidden="true">&ra&raquo;</span></a></li>
-                            <%
-                                }
-                            %>
-                    </ul>
-                </nav>
-                <%
-                    }
-                %>
             </div>
         </section>
         <%@include file="includes/footer.jsp" %>

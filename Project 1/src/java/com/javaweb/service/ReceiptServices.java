@@ -86,6 +86,7 @@ public class ReceiptServices {
         return null;
     }
 
+    //Hàm phân trang 
     public int receiptcount = 0;
 
     public ArrayList<Receipt> getAllReceipt(int pageSize, int pageNumber) {

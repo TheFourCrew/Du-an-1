@@ -216,7 +216,7 @@
                         <%
                             if (pt.getProductQuantity() >= 1) {
                         %>
-                        <span>Còn <%=pt.getProductQuantity() %> sản phẩm :</span>
+                        <span>Còn <%=pt.getProductQuantity()%> sản phẩm :</span>
                         <input type="number" name="" class=""  value="0" min="0" max="<%=pt.getProductQuantity()%>" />
                         <a href="addtocart.jsp?idsanpham=<%=pt.getIdproduct()%>">
                             <button  type="button" class="btn btn-primary">Thêm Vào Giỏ</button>
@@ -227,23 +227,27 @@
                         <button  type="button" class="btn btn-primary center-block">Hết Hàng</button>
                         <%
                             }
+                            ArrayList<ProductTags> aPTags = null;
+                            aPTags = tss.GetProductTagsById(idPT);
+                            ProductTags ptags = null;
+                            Tags tags = null;
+                            if (aPTags != null) {
                         %>
                         <hr><br/><p>Từ khóa: 
-                            <%           
-                                ArrayList<ProductTags> aPTags = null;
-                                aPTags = tss.GetProductTagsById(idPT);
-                                ProductTags ptags = null;
-                                Tags tags = null;
+                            <%
                                 for (int i = 0; i < aPTags.size(); i++) {
                                     ptags = aPTags.get(i);
                                     int idTags = ptags.getIdTag();
-                                    tags = tss.GetByTagsId(idTags+"");
+                                    tags = tss.GetByTagsId(idTags + "");
                             %>
-                            <span class="the-tag"><a href="#"><%=tags.getTagName() %></a></span>
+                            <span class="the-tag"><a href="#"><%=tags.getTagName()%></a></span>
                                 <%
                                     }
                                 %>
                         </p>
+                        <%
+                            }
+                        %>
                     </div>
                 </div>
             </div>
@@ -322,7 +326,7 @@
                                 <form action="CommentServlet" method="post" id="pcomment">
                                     <input type="hidden" name="spID" value="<%=idPT%>" />
                                     <%
-                                        if (session.getAttribute("cmtname") == null) {
+                                        if (session.getAttribute("cmtname") == null && session.getAttribute("email") == null) {
                                     %>
                                     <div class="form-group">
                                         <div class="col-sm-3 col-md-7">
@@ -338,11 +342,20 @@
                                         </div>
                                     </div>
 
-                                    <%                } else {
+                                    <%                } else{
                                     %>
                                     <div class="form-group">
                                         <div class="col-sm-3 col-md-7">
+                                            <%
+                                                if (session.getAttribute("cmtname") != null) {
+                                            %>
                                             <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("cmtname")%> </label>
+                                            <%} else if(session.getAttribute("email") != null){
+                                            %>
+                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("fullname")%> </label>
+                                            <%
+                                                    }
+                                            %>
                                             <a href="logout.jsp"> Logout </a>
                                             <input type="hidden" name="cName" value="${cmtname}" class="form-control" id="c-Name">
                                         </div>
@@ -367,8 +380,7 @@
                             </div>
                             <hr>
                             <div class="row">
-                                <%
-                                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:s");
+                                <%                                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:s");
                                     String gioCMT = "";
                                     ArrayList<Comment> cmt = null;
                                     cmt = cms.getAll(idPT);
@@ -383,7 +395,7 @@
                                             <img class="media-object" src="uploads/Photo-Unavailable.jpg" style="width:80px" />
                                         </div>
                                         <div class="media-body">
-                                            <h4 class="media-heading"><%=cmtc.getNameUser()%> <small><i> <%=gioCMT%></i></small></h4>
+                                            <h4 class="media-heading"><%=cmtc.getNameUser()%> <small><i> <%=cmtc.getDateComment()%></i></small></h4>
                                             <p><%=cmtc.getContent()%></p>
 
                                             <%
@@ -400,7 +412,7 @@
                                                     <img class="media-object" src="uploads/Photo-Unavailable.jpg" style="width:80px" />
                                                 </div>
                                                 <div class="media-body">
-                                                    <h4 class="media-heading"><%=cmtReps.getNameUser()%> <small><i> <%=gioCMT%></i></small></h4>
+                                                    <h4 class="media-heading"><%=cmtReps.getNameUser()%> <small><i> <%=cmtReps.getDateComment()%></i></small></h4>
                                                     <p><%=cmtReps.getContent()%></p>
                                                 </div>
                                             </div>
@@ -414,7 +426,7 @@
                                                 <input type="hidden" name="spID" value="<%=idPT%>" />
                                                 <div id="collapse<%=cmtc.getIdcomment()%>" class="panel-collapse collapse">
                                                     <%
-                                                        if (session.getAttribute("cmtname") == null) {
+                                                        if (session.getAttribute("cmtname") == null && session.getAttribute("email") == null) {
                                                     %>
                                                     <div class="form-group">
                                                         <div class="col-sm-3 col-md-7">
@@ -430,11 +442,20 @@
                                                         </div>
                                                     </div>
 
-                                                    <%                } else {
+                                                    <%                } else{
                                                     %>
                                                     <div class="form-group">
                                                         <div class="col-sm-3 col-md-7">
-                                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%= session.getAttribute("cmtname")%> </label>
+                                                            <%
+                                                                if (session.getAttribute("cmtname") != null) {
+                                                            %>
+                                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("cmtname")%> </label>
+                                                            <%} else if(session.getAttribute("email") != null){
+                                                            %>
+                                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("fullname")%> </label>
+                                                            <%
+                                                                }
+                                                            %>
                                                             <a href="logout.jsp"> Logout </a>
                                                             <input type="hidden" name="cName" value="${cmtname}" class="form-control" id="c-Name">
                                                         </div>
@@ -480,7 +501,7 @@
                                         <input type="radio" id="star1" name="rating" value="1" /><label class = "star full" for="star1" title="Qúa kém"></label>
                                     </fieldset><br/><br/>
                                     <%
-                                        if (session.getAttribute("cmtname") == null) {
+                                        if (session.getAttribute("cmtname") == null && session.getAttribute("email") == null) {
                                     %>
                                     <div class="form-group">
                                         <div class="col-sm-3 col-md-7">
@@ -488,11 +509,20 @@
                                             <input type="text" name="cName" placeholder="Nhập tên người gửi" class="form-control" id="c-Name">
                                         </div>
                                     </div>
-                                    <%                            } else {
+                                    <%                            } else{
                                     %>
                                     <div class="form-group">
                                         <div class="col-sm-3 col-md-7">
-                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%= session.getAttribute("cmtname")%> </label>
+                                            <%
+                                                if (session.getAttribute("cmtname") != null) {
+                                            %>
+                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("cmtname")%> </label>
+                                            <%} else if(session.getAttribute("email") != null){
+                                            %>
+                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("fullname")%> </label>
+                                            <%
+                                                    }
+                                            %>
                                             <a href="logout.jsp"> Logout </a>
                                             <input type="hidden" name="cName" value="${cmtname}" class="form-control" id="c-Name">
                                         </div>
@@ -516,8 +546,7 @@
                             </div>
                             <hr>
                             <div class="row">
-                                <%
-                                    ratings = ps.GetDataByIdSP(idPT);
+                                <%                                    ratings = ps.GetDataByIdSP(idPT);
                                     String gioDG = "";
                                     for (int i = 0; i < ratings.size(); i++) {
                                         rg = ratings.get(i);

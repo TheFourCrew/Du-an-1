@@ -218,24 +218,28 @@
 
                                 </div>
                             </div>
-                            <ul id="login-dp" class="dropdown-menu">
-                                <%--<%@include file="../login.jsp" %>--%>
-                                <%
-                                } else {
-                                %>
+                        </li>
+                        <!--<ul id="login-dp" class="dropdown-menu">-->
+                        <%
+                        } else {
+                        %>
+                        <li class="dropdown-submenu menu dropdown">
+                            <a href="index.jsp" class="dropdown-toggle menu dropbtn">
+                                <i class="glyphicon glyphicon-user"> <strong style="color: white"><%=session.getAttribute("fullname")%> </strong></i>
+                            </a>
+                            <ul class="dropdown-menu menu dropdown-content">
+                                <li><a href="infouser.jsp" class="menu">Điều chỉnh hồ sơ</a></li>
+                                <li><a href="dashboard.jsp" class="menu">Về trang quản trị</a></li>
                                 <li>
-                                    <a href="index.jsp"><span class="glyphicon glyphicon-user">
-                                            <strong style="color: white"><%=session.getAttribute("email")%> </strong>
-                                        </span>
-                                    </a>
+                                    <a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span>Thoát</a>
                                 </li>
-
-                                <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span>Thoát</a></li>
-                                    <%
-                                        }
-                                    %>
                             </ul>
                         </li>
+
+                        <%
+                            }
+                        %>
+                        <!--</ul>-->
                     </ul>
                 </div>
             </div>

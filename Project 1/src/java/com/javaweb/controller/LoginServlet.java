@@ -34,44 +34,51 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String email=request.getParameter("email");
-        String password=request.getParameter("pw");
-        String remem=request.getParameter("remember");
-        
-        boolean remember="R".equals(remem);
-        UserService userservice =new UserService();
+        String email = request.getParameter("email");
+        String password = request.getParameter("pw");
+        String remem = request.getParameter("remember");
+
+        boolean remember = "R".equals(remem);
+        UserService userservice = new UserService();
 //        EnDeCryption mh=new EnDeCryption("asdasdasda");
 //        String mk=mh.encoding(password);
-        
-        boolean login=userservice.CheckLogin(email, password);
-        HttpSession session=request.getSession();
+
+        boolean login = userservice.CheckLogin(email, password);
+        HttpSession session = request.getSession();
         session.removeAttribute("errormsg");
-        if(login){
-            if(session.getAttribute("email")!=null){
-                String em=(String) session.getAttribute("email");
-                if(em.equals(email)){
+        if (login) {
+            session.removeAttribute("idrole_user");
+            session.removeAttribute("email");
+            session.removeAttribute("fullname");
+            session.removeAttribute("iduser");
+            session.removeAttribute("avatar");
+            session.removeAttribute("cmtname");
+            if (session.getAttribute("email") != null) {
+                String em = (String) session.getAttribute("email");
+                if (em.equals(email)) {
                     response.sendRedirect("eroorsession.jsp");
                 }
             }
-            session.setAttribute("email", email);
-            User user=userservice.GetUserByEmailOrUserName(email);
+            User user = userservice.GetUserByEmailOrUserName(email);
+            session.setAttribute("email", user.getEmail());
             session.setAttribute("iduser", user.getIduser());
             session.setAttribute("idrole_user", user.getIdroleUser());
             session.setAttribute("fullname", user.getFullname());
             session.setAttribute("avatar", user.getImage());
-            String url = "/index.jsp";
-            getServletContext().getRequestDispatcher(url).forward(request, response);
-        }else{
+
+//            String url = "/index.jsp";
+//            getServletContext().getRequestDispatcher(url).forward(request, response);
+            response.sendRedirect(session.getAttribute("urlcur") + "");
+        } else {
             session.setAttribute("errormsg", "Tài khoản hoặc mật khẩu sai");
             String url = "/login.jsp";
             getServletContext().getRequestDispatcher(url).forward(request, response);
-            
-            try (PrintWriter out = response.getWriter()) {
-                
 
-                out.println("<script>\n"                   
-                        + "$( document ).ready(function() {\n"                   
-                        + "$(\"#myModal\").modal('show');\n"                 
+            try (PrintWriter out = response.getWriter()) {
+
+                out.println("<script>\n"
+                        + "$( document ).ready(function() {\n"
+                        + "$(\"#myModal\").modal('show');\n"
                         + "});\n"
                         + "</script>");
 
@@ -131,4 +138,3 @@ public class LoginServlet extends HttpServlet {
     }// </editor-fold>
 
 }
-

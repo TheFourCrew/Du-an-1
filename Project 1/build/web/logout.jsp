@@ -20,8 +20,9 @@
                 session.removeAttribute("fullname");
                 session.removeAttribute("iduser");
                 session.removeAttribute("avatar");
+                session.removeAttribute("cmtname");
                 
-                response.sendRedirect("index.jsp");
+                response.sendRedirect(session.getAttribute("urlcur")+"");
             }
             %> 
         

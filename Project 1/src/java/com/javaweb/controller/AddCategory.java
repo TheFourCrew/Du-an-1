@@ -41,7 +41,7 @@ public class AddCategory extends HttpServlet {
         ProductCategory pcy = new ProductCategory(tenLoai, Integer.parseInt(parent), note);
         ProductCategoryServices pcs = new ProductCategoryServices();
         
-        pcs.InsertOrUpdate(pcy);
+//        pcs.InsertOrUpdate(pcy);
         response.sendRedirect("addproduct.jsp");
         
 //        try (PrintWriter out = response.getWriter()) {
