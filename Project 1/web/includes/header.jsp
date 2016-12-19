@@ -189,26 +189,27 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title" style="    margin-left: 246px;">Đăng nhập</h4>
+                                            <h4 class="modal-title"><i class="glyphicon glyphicon-user"></i> Đăng nhập</h4>
                                         </div>
+                                        
                                         <form class="form-horizontal"action="LoginServlet" method="post">
 
                                             <div class="form-group">
-                                                <label class="control-label col-sm-2" for="email"> Email:</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="email" class="form-control" id="email" placeholder="Enter email">
+                                                <label class="control-label col-sm-3" for="email"> Tên đăng nhập</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" name="email" class="form-control" id="email" placeholder="Nhập tên đăng nhập">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-sm-2" for="pwd">Mật khẩu:</label>
-                                                <div class="col-sm-10"> 
-                                                    <input type="password" name="pw" class="form-control" id="pwd" placeholder="Enter password">
+                                                <label class="control-label col-sm-3" for="pwd">Mật khẩu</label>
+                                                <div class="col-sm-8"> 
+                                                    <input type="password" name="pw" class="form-control" id="pwd" placeholder="Nhập mật khẩu">
                                                 </div>
                                             </div>
 
                                             <div class="form-group"> 
                                                 <div class="col-sm-offset-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-default" style="margin-left: 150px;">Đăng nhập</button>
+                                                    <button type="submit" class="btn btn-info" style="margin-left: 150px;">Đăng nhập</button>
 
                                                 </div>
 

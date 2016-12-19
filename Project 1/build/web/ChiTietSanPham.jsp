@@ -212,28 +212,39 @@
                                         }
                                     %>
                         </p>
-
+                        <div id="giaoHang" class="tab-pane fade in active col-md-7">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">Giao hàng</div>
+                                <div class="panel-body">
+                                    <p><i class="fa-fw fa fa-truck"></i> Giao hàng : 1-3 ngày</p>
+                                    <p><i class="fa-fw fa fa-exchange"></i> Đổi hàng nếu lỗi nhà sản xuất</p>
+                                    <p><i class="fa-fw fa fa-credit-card"></i> Thanh toán khi nhận hàng (COD)</p>
+                                </div>
+                            </div>
+                        </div>
                         <%
                             if (pt.getProductQuantity() >= 1) {
                         %>
-                        <span>Còn <%=pt.getProductQuantity()%> sản phẩm :</span>
-                        <input type="number" name="" class=""  value="0" min="0" max="<%=pt.getProductQuantity()%>" />
-                        <a href="addtocart.jsp?idsanpham=<%=pt.getIdproduct()%>">
-                            <button  type="button" class="btn btn-primary">Thêm Vào Giỏ</button>
-                        </a>
-                        <%
-                        } else {
-                        %>
-                        <button  type="button" class="btn btn-primary center-block">Hết Hàng</button>
-                        <%
-                            }
-                            ArrayList<ProductTags> aPTags = null;
-                            aPTags = tss.GetProductTagsById(idPT);
-                            ProductTags ptags = null;
-                            Tags tags = null;
-                            if (aPTags != null) {
-                        %>
-                        <hr><br/><p>Từ khóa: 
+                        <div class="col-md-8">
+                            <span>Còn <%=pt.getProductQuantity()%> sản phẩm :</span>
+                            <input type="number" name="" class=""  value="0" min="0" max="<%=pt.getProductQuantity()%>" />
+                            <a href="addtocart.jsp?idsanpham=<%=pt.getIdproduct()%>">
+                                <button  type="button" class="btn btn-primary">Thêm Vào Giỏ</button>
+                            </a>
+                            <%
+                            } else {
+                            %>
+                            <button  type="button" class="btn btn-primary center-block">Hết Hàng</button>
+                            <%
+                                }
+                                ArrayList<ProductTags> aPTags = null;
+                                aPTags = tss.GetProductTagsById(idPT);
+                                ProductTags ptags = null;
+                                Tags tags = null;
+                                if (aPTags != null) {
+                            %>
+                        </div>
+                        <br/><hr><p>Từ khóa: 
                             <%
                                 for (int i = 0; i < aPTags.size(); i++) {
                                     ptags = aPTags.get(i);
@@ -350,7 +361,7 @@
                                                 if (session.getAttribute("cmtname") != null) {
                                             %>
                                             <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("cmtname")%> </label>
-                                            <%} else if(session.getAttribute("email") != null){
+                                            <%} else if (session.getAttribute("email") != null) {
                                             %>
                                             <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("fullname")%> </label>
                                             <%
@@ -450,11 +461,11 @@
                                                                 if (session.getAttribute("cmtname") != null) {
                                                             %>
                                                             <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("cmtname")%> </label>
-                                                            <%} else if(session.getAttribute("email") != null){
+                                                            <%} else if (session.getAttribute("email") != null) {
                                                             %>
                                                             <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("fullname")%> </label>
                                                             <%
-                                                                }
+                                                                    }
                                                             %>
                                                             <a href="logout.jsp"> Logout </a>
                                                             <input type="hidden" name="cName" value="${cmtname}" class="form-control" id="c-Name">
@@ -482,8 +493,7 @@
                                     <hr>
                                 </div>
 
-                                <%
-                                    }
+                                <%                                    }
                                 %>
                             </div>
                         </div>
@@ -517,7 +527,7 @@
                                                 if (session.getAttribute("cmtname") != null) {
                                             %>
                                             <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("cmtname")%> </label>
-                                            <%} else if(session.getAttribute("email") != null){
+                                            <%} else if (session.getAttribute("email") != null) {
                                             %>
                                             <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("fullname")%> </label>
                                             <%
