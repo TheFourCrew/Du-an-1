@@ -64,6 +64,10 @@
         <servlet-name>RegsisterServlet</servlet-name>
         <servlet-class>com.javaweb.controller.RegsisterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteMulitpleReceipt</servlet-name>
+        <servlet-class>com.javaweb.controller.DeleteMulitpleReceipt</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LienLac</servlet-name>
         <url-pattern>/LienLac</url-pattern>
@@ -153,6 +157,10 @@
     <servlet-mapping>
         <servlet-name>RegsisterServlet</servlet-name>
         <url-pattern>/RegsisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteMulitpleReceipt</servlet-name>
+        <url-pattern>/DeleteMulitpleReceipt</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

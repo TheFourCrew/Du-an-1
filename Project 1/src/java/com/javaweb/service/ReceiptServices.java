@@ -41,6 +41,27 @@ public class ReceiptServices {
         return false;
     }
 
+    //Hàm xóa hóa đơn
+    public boolean DeleteReceipt(Receipt rt) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            session.delete(rt);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return false;
+    }
+
     //Hàm thêm sửa chi tiết hóa đơn
     public boolean InsertOrUpdateReceiptDetail(ReceiptDetail rdl) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -85,6 +106,75 @@ public class ReceiptServices {
         }
         return null;
     }
+    
+    //Hàm xóa chi tiết hóa đơn
+    public boolean DeleteReceiptDetail(ReceiptDetail rdl) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            session.delete(rdl);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return false;
+    }
+
+    //Hàm lấy hóa đơn theo mã hóa đơn
+    public Receipt getReceiptById(String idRt) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        Receipt rt = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+
+            Query query = session.createQuery("from Receipt where idreceipt = '" + idRt + "'");
+            rt = (Receipt) query.uniqueResult();
+            tx.commit();
+            return rt;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+    
+    //Hàm lấy chi tiết hóa đơn theo mã hóa đơn
+    public ArrayList<ReceiptDetail> getReceiptDetailByIdReceipt(String idRt) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ArrayList<ReceiptDetail> rt = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+
+            Query query = session.createQuery("from ReceiptDetail where id_receipt = '" + idRt + "'");
+            rt = (ArrayList<ReceiptDetail>) query.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return rt;
+    }
+    
 
     //Hàm phân trang 
     public int receiptcount = 0;
@@ -102,7 +192,7 @@ public class ReceiptServices {
             query = query.setFirstResult(pageSize * (pageNumber - 1));
             query.setMaxResults(pageSize);
             art = (ArrayList) query.list();
-            
+
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {

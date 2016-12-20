@@ -17,6 +17,7 @@ import org.hibernate.Transaction;
  */
 public class ProductServices {
 
+    //Hàm thêm, cập nhật sản phẩm
     public boolean InsertOrUpdateProduct(Product sp) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;

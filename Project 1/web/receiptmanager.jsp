@@ -36,7 +36,7 @@
                                 </div>
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
-                                    <form action="DeleteMultipleServlet" method="post">
+                                    <form action="DeleteMulitpleReceipt?action=multiple" method="post">
                                         <div class="form-group">
                                             <label>
                                                 <select name="tacvu" class="form-control-static">
@@ -49,7 +49,7 @@
                                         <!-- Table -->
                                         <script type="text/javascript">
                                             function check(source) {
-                                                checkboxes = document.getElementsByName('id-product');
+                                                checkboxes = document.getElementsByName('id-receipt');
                                                 for (var i = 0; i < checkboxes.length; i++) {
                                                     checkboxes[i].checked = source.checked;
                                                 }
@@ -80,7 +80,7 @@
                                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                             <thead>
                                                 <tr>
-                                                    <th><input type="checkbox" name="delete-product" onclick="check(this)" /></th>
+                                                    <th><input type="checkbox" name="delete-receipt" onclick="check(this)" /></th>
                                                     <th>STT</th>
                                                     <th>Tổng tiền</th>
                                                     <th>Ngày tạo</th>
@@ -101,7 +101,7 @@
                                                         }
                                                 %>
                                                 <tr>
-                                                    <td><input type="checkbox" name="id-receipt" /></td>
+                                                    <td><input type="checkbox" value="<%=rt.getIdreceipt() %>" name="id-receipt" /></td>
                                                     <td><%=dem%></td>
                                                     <td><%=formatter.format(tongTien)+" VNĐ"%></a></td>
                                                     <td><%=rt.getCreatedDate()%></td>
@@ -110,8 +110,8 @@
                                                         <a href="editreceipt.jsp?idpt=<%=rt.getIdreceipt()%>" class="btn btn-info">
                                                             Sửa<!--<input class="btn btn-info" type="submit" value="Sửa" />-->
                                                         </a>
-                                                        <a href="DeleteReceipt?idpt=<%=rt.getIdreceipt()%>" onclick="return confirm('Bạn có chắc không?')">
-                                                            <input class="btn btn-danger" type="submit" value="Xóa" />
+                                                        <a href="DeleteMulitpleReceipt?action=single&idpt=<%=rt.getIdreceipt()%>" class="btn btn-danger" onclick="return confirm('Bạn có chắc không?')">
+                                                            Xóa
                                                         </a>
                                                     </td>
                                                 </tr>
