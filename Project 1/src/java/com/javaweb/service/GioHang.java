@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Admin
  */
 public class GioHang {
+
     String MaSP;
     String SoLuong;
 
@@ -44,17 +45,23 @@ public class GioHang {
         for (int i = 0; i < lst.size(); i++) {
             GioHang item = lst.get(i);
             if (item.getMaSP().equalsIgnoreCase(maSP)) {
-                if(soLuong == -1)
+                if (soLuong == -1) {
                     soLuong = Integer.parseInt(item.getSoLuong()) + 1;
-                
+                }
+
                 item.setSoLuong(soLuong + "");
-                
+
                 newItem = false;
             }
         }
 
-        if(newItem){
-            GioHang gh = new GioHang(maSP, "1");
+        if (newItem) {
+            GioHang gh = null;
+            if (soLuong > -1) {
+                gh = new GioHang(maSP, soLuong + "");
+            } else {
+                gh = new GioHang(maSP, "1");
+            }
             lst.add(gh);
         }
     }
@@ -68,9 +75,9 @@ public class GioHang {
             }
         }
     }
-    
-    public static double TinhTongTien(int soLuong, double donGia){
-        double ketQua = 0 ;
+
+    public static double TinhTongTien(int soLuong, double donGia) {
+        double ketQua = 0;
         ketQua = soLuong * donGia;
         return ketQua;
     }

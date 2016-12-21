@@ -175,7 +175,8 @@ public class AddProduct extends HttpServlet {
                         }
                     }
                 }
-                product = new Product(maSP, tenSP, gia, 0, soLuong, giamGia, donVi, moTa, loaiSP, date, 1, dateModified, thumbnail, ghiChu, hinhNho);
+                product = new Product(maSP, tenSP, gia, 0, soLuong, giamGia, donVi, moTa,
+                        loaiSP, date, 1, dateModified, thumbnail, ghiChu, hinhNho);
                 ps.InsertOrUpdateProduct(product);
 
                 

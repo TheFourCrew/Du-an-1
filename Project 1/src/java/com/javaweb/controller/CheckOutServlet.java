@@ -70,8 +70,12 @@ public class CheckOutServlet extends HttpServlet {
                 pt = ps.GetById(idPT);
                 rt = rs.getReceiptByNumber(receiptNumber);
                 
+                pt.setProductQuantity(pt.getProductQuantity() - soLuong);
+                
                 ReceiptDetail rdl = new  ReceiptDetail(rt.getIdreceipt(), pt.getIdproduct(), soLuong, pt.getPricePerUnit(), "");
                 rs.InsertOrUpdateReceiptDetail(rdl);
+                
+                ps.InsertOrUpdateProduct(pt);
                 
                 donGia = pt.getPricePerUnit();
                 
@@ -84,6 +88,7 @@ public class CheckOutServlet extends HttpServlet {
         rt.setTotalPrice(sumtotal);
         rs.InsertOrUpdateReceipt(rt);
         session.setAttribute("thanhcong", "OK");
+        
         response.sendRedirect("checkout.jsp");
 
 //        try (PrintWriter out = response.getWriter()) {

@@ -35,13 +35,11 @@ public class CommentServlet extends HttpServlet {
 
         int idSP = Integer.parseInt(request.getParameter("spID"));
         String ten, email, noiDung, cmtRep;
-        ten = request.getParameter("cName");
-        email = request.getParameter("cEmail");
+        ten = request.getParameter("c-Name");
+        email = request.getParameter("c-Email");
         noiDung = request.getParameter("cMessage");
         cmtRep = request.getParameter("idCMT");
-        
-        
-        
+
         Date date = new Date();
         Comment cmt = null;
         CommentServices cmts = new CommentServices();
@@ -53,10 +51,10 @@ public class CommentServlet extends HttpServlet {
         }
 
         cmts.InsertOrUpdateComment(cmt);
-
-        session.setAttribute("cmtname", ten);
-        
-        response.sendRedirect("ChiTietSanPham.jsp?id="+idSP);
+        if (session.getAttribute("fullname") == null) {
+            session.setAttribute("cmtname", ten);
+        }
+        response.sendRedirect("ChiTietSanPham.jsp?id=" + idSP);
 
 //        try (PrintWriter out = response.getWriter()) {
 //            /* TODO output your page here. You may use following sample code. */

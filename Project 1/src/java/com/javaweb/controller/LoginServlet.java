@@ -53,6 +53,7 @@ public class LoginServlet extends HttpServlet {
             session.removeAttribute("iduser");
             session.removeAttribute("avatar");
             session.removeAttribute("cmtname");
+            
             if (session.getAttribute("email") != null) {
                 String em = (String) session.getAttribute("email");
                 if (em.equals(email)) {

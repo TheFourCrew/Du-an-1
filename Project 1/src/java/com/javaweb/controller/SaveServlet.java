@@ -34,21 +34,41 @@ public class SaveServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        if (session.getAttribute("dshang") != null) {
-            ArrayList<GioHang> listGioHang = (ArrayList) session.getAttribute("dshang");
-       
-            String name="", value = "";
-            for(int i = 0; i < listGioHang.size(); i++){
-                GioHang item = listGioHang.get(i);
-                if(item.getMaSP() != null){
-                            
-                    value = request.getParameter("sl" + item.getMaSP());
-                    GioHang.ThemVaoGioHang(listGioHang, item.getMaSP(), Integer.parseInt(value));
-                }               
-            }  
-            session.setAttribute("dshang", listGioHang);
-            response.sendRedirect(session.getAttribute("urlcur")+"");
+        String idSP = "", value = "";
+        if (request.getParameter("idsanpham") != null) {
+            idSP = request.getParameter("idsanpham");
         }
+        ArrayList<GioHang> listGioHang = new ArrayList();
+        if (session.getAttribute("dshang") != null) {
+            listGioHang = (ArrayList) session.getAttribute("dshang");
+        }
+        if (!idSP.equals("")) {
+            value = request.getParameter("sl" + idSP);
+            GioHang.ThemVaoGioHang(listGioHang, idSP, Integer.parseInt(value));
+            session.setAttribute("dshang", listGioHang);
+        }
+
+        if (session.getAttribute("dshang") != null) {
+            listGioHang = (ArrayList) session.getAttribute("dshang");
+            String name = "";
+
+            if (idSP.equals("")) {
+
+                for (int i = 0; i < listGioHang.size(); i++) {
+                    GioHang item = listGioHang.get(i);
+                    if (item.getMaSP() != null) {
+
+                        value = request.getParameter("sl" + item.getMaSP());
+                        GioHang.ThemVaoGioHang(listGioHang, item.getMaSP(), Integer.parseInt(value));
+                    }
+                }
+            }
+            session.setAttribute("dshang", listGioHang);
+            response.sendRedirect(session.getAttribute("urlcur") + "");
+        }
+        session.setAttribute("soluongthem", value);
+        session.setAttribute("themgio", "done");
+        session.setAttribute("tenSP", request.getParameter("tenSP"));
 //        try (PrintWriter out = response.getWriter()) {
 //            /* TODO output your page here. You may use following sample code. */
 //            out.println("<!DOCTYPE html>");

@@ -37,21 +37,22 @@ public class RatingServlet extends HttpServlet {
         point = request.getParameter("rating");
         tenDG = request.getParameter("cName");
         noiDung = request.getParameter("cMessage");
-        
+
         HttpSession session = request.getSession();
-        
+
         Date date = new Date();
-        
+
         ProductServices ps = new ProductServices();
         Rating rating = null;
-        
+
         rating = new Rating(tenDG, Integer.parseInt(point), noiDung, date, idSP);
-        
+
         ps.InsertRating(rating);
-        
-        session.setAttribute("cmtname", tenDG);
-        
-        response.sendRedirect("ChiTietSanPham.jsp?id="+idSP);
+        if (session.getAttribute("fullname") == null) {
+            session.setAttribute("cmtname", tenDG);
+        }
+
+        response.sendRedirect("ChiTietSanPham.jsp?id=" + idSP);
 
 //        try (PrintWriter out = response.getWriter()) {
 //            /* TODO output your page here. You may use following sample code. */
