@@ -15,21 +15,48 @@
     </head>
     <body>
         <%
-            
+            request.setCharacterEncoding("UTF-8");
             String idSP = "";
-            if(request.getParameter("idsanpham") != null){
+            boolean ketQua = true;
+            int kho = Integer.parseInt(request.getParameter("kho"));
+            if (request.getParameter("idsanpham") != null) {
                 idSP = request.getParameter("idsanpham");
             }
-                
-            ArrayList<GioHang> listGioHang = new ArrayList();
-            if(session.getAttribute("dshang") != null){
-                listGioHang = (ArrayList)session.getAttribute("dshang");
-            }
-                    
-            GioHang.ThemVaoGioHang(listGioHang, idSP, -1);
-            session.setAttribute("dshang", listGioHang);
 
-            response.sendRedirect(session.getAttribute("urlcur")+"");
+            ArrayList<GioHang> listGioHang = new ArrayList();
+            if (session.getAttribute("dshang") != null) {
+                listGioHang = (ArrayList) session.getAttribute("dshang");
+            }
+            if (listGioHang.size() > 0) {
+                for (int i = 0; i < listGioHang.size(); i++) {
+                    GioHang item = listGioHang.get(i);
+                    if (item.getMaSP().equals(idSP)) {
+                        int tongSL = Integer.parseInt(item.getSoLuong()) + 1;
+                        if (item.getMaSP() != null) {
+                            if (tongSL > kho) {
+                                session.setAttribute("themgio", "failed");
+                                session.setAttribute("tenSP", request.getParameter("tenSP"));
+                                session.setAttribute("kho", kho);
+                                ketQua = false;
+                            } else {
+                                GioHang.ThemVaoGioHang(listGioHang, idSP, -1);
+                                session.setAttribute("themgio", "done");
+                                session.setAttribute("tenSP", request.getParameter("tenSP"));
+                                session.setAttribute("dshang", listGioHang);
+                                ketQua = false;
+                            }
+                        }
+                    }
+                }
+            } 
+            if(ketQua){
+                GioHang.ThemVaoGioHang(listGioHang, idSP, -1);
+                session.setAttribute("themgio", "done");
+                session.setAttribute("tenSP", request.getParameter("tenSP"));
+                session.setAttribute("dshang", listGioHang);
+            }
+
+            response.sendRedirect(session.getAttribute("urlcur") + "");
         %>
     </body>
 </html>

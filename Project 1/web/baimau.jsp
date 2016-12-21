@@ -13,7 +13,12 @@
         <%@include file="includes/headtag.jsp" %>
     </head>
     <body>
+        <%
+            session.setAttribute("urlcur", request.getServletPath().substring(1));
+            session.removeAttribute("urlctsp");
+        %>
         <%@include file="includes/header.jsp" %>
+        
         <div class="container">
             <div class="baiviet col-md-9 col-xs-12">
                 <div class="row">

@@ -16,10 +16,16 @@
         <title>JSP Page</title>
     </head>
 
-    <body>
+    <body><%
+            session.setAttribute("urlcur", request.getServletPath().substring(1));
+            session.removeAttribute("urlctsp");
+            session.removeAttribute("themgio");
+        %>
         <%@include file="includes/header.jsp" %>
+        
         <div class="container">
-            <%                if (session.getAttribute("dshang") != null) {
+            <%                
+                if (session.getAttribute("dshang") != null) {
             %>
             <div class="stepwizard">
                 <div class="stepwizard-row setup-panel">
@@ -45,126 +51,145 @@
             </div>
 
             <div class="row setup-content" id="ProfileSetup-step">
-                <div class="col-md-6">
-                    <form action="CheckOutServlet" method="post"  role="form" id="dathang" class="form-horizontal">
-                        <fieldset>
-                            <legend>Thông Tin Đặt Hàng</legend>
-                            <br/>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="username">Họ Và Tên</label>
-                                <div class="col-md-9">
-                                    <input maxlength="100" type="text" name="username" class="form-control" placeholder="Nhập họ và tên" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label"  for="email">Email</label>
-                                <div class="col-md-9">
-                                    <input  maxlength="100" type="text" name="email" class="form-control" placeholder="Nhập email"  />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="sdt">Số Điện Thoại</label>
-                                <div class="col-md-9">
-                                    <input maxlength="100" type="text" name="phonenumber" class="form-control" placeholder="Nhập số điện thoại" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="diachi">Địa Chỉ</label>
-                                <div class="col-md-9">
-                                    <input maxlength="100" type="text" name="address" class="form-control" placeholder="Nhập địa chỉ" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
+                <center>
+                    <%
+                        if (session.getAttribute("thanhcong") == null) {
+                    %>
+                    <div class="col-md-6">
+                        
+                        <form action="CheckOutServlet" method="post"  role="form" id="dathang" class="form-horizontal">
+                            <fieldset>
+                                <legend>Thông Tin Đặt Hàng</legend>
+                                <p><strong>Chú ý:</strong> Những trường bắt buộc có dấu sao (<em>* </em>)</p>
+                                <br/>
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label" for="thanhpho">Thành phố</label>
-                                    <div class="col-md-6" style="padding-left:8px">
-                                        <input maxlength="100" type="text" name="city" class="form-control" placeholder="Nhập Thành phố" />
+                                    <label class="col-md-3 control-label" for="username">Họ Và Tên<em>* </em></label>
+                                    <div class="col-md-9">
+                                        <input maxlength="100" type="text" name="username" class="form-control" placeholder="Nhập họ và tên" />
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label" for="tinhhuyen">Tỉnh/Huyện</label>
-                                    <div class="col-md-6" style="padding:0px">
-                                        <input maxlength="100" type="text" name="province" class="form-control" placeholder="Tên tỉnh/huyện" />
+                                    <label class="col-md-3 control-label"  for="email">Email<em>* </em></label>
+                                    <div class="col-md-9">
+                                        <input  maxlength="100" type="text" name="email" class="form-control" placeholder="Nhập email"  />
                                     </div>
                                 </div>
-                            </div>
-                            <br/><br/>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="note">Ghi chú</label>
-                                <div class="col-md-9">
-                                    <textarea name="note" class="form-control" id="note" placeholder="Ghi chú về đơn hàng, ví dụ: lưu ý khi giao hàng." rows="5" cols="20"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group pull-right">
-                                    <a href="Product.jsp" class="control-label btn btn-default">
-                                        Tiếp tục mua sắm
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group pull-right">
-                                    <button type="submit" class="btn btn-primary">Xác Nhận Đặt Hàng</button>
-                                </div>
-                            </div>
 
-                        </fieldset>
-                    </form>
-                </div>
-
-                <div class="col-md-6">
-                    <fieldset>
-                        <legend>Đơn hàng của bạn</legend>
-                        <%
-                            if (session.getAttribute("dshang") != null) {
-                                ArrayList<GioHang> itemCart = (ArrayList) session.getAttribute("dshang");
-                        %>
-                        <table class="table table-bordered table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>Tên sản phẩm</th>
-                                    <th>Thành tiền</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <%
-                                    double total = 0;
-                                    DecimalFormat dcf = new DecimalFormat("###,###,###");
-                                    ProductServices pss = new ProductServices();
-                                    Product pdt = null;
-                                    for (int i = 0; i < itemCart.size(); i++) {
-                                        GioHang item = itemCart.get(i);
-                                        pdt = pss.GetById(item.getMaSP());
-                                        int soLuong = Integer.parseInt(item.getSoLuong());
-                                        double donGia = pdt.getPricePerUnit();
-                                        double ketQua = GioHang.TinhTongTien(soLuong, donGia);
-                                        total += ketQua;
-                                %>
-                                <tr>
-                                    <td>
-                                        <a href="ChiTietSanPham.jsp?id=<%=pdt.getIdproduct()%>">
-                                            <%=pdt.getProductName()%> x <%=soLuong%>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="sdt">Số Điện Thoại<em>* </em></label>
+                                    <div class="col-md-9">
+                                        <input maxlength="100" type="text" name="phonenumber" class="form-control" placeholder="Nhập số điện thoại" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="diachi">Địa Chỉ<em>* </em></label>
+                                    <div class="col-md-9">
+                                        <input maxlength="100" type="text" name="address" class="form-control" placeholder="Nhập địa chỉ" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-6 control-label" for="thanhpho">Thành phố<em>* </em></label>
+                                        <div class="col-md-6" style="padding-left:8px">
+                                            <input maxlength="100" type="text" name="city" class="form-control" placeholder="Nhập Thành phố" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-6 control-label" for="tinhhuyen">Tỉnh/Huyện</label>
+                                        <div class="col-md-6" style="padding:0px">
+                                            <input maxlength="100" type="text" name="province" class="form-control" placeholder="Tên tỉnh/huyện" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/><br/>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="note">Ghi chú</label>
+                                    <div class="col-md-9">
+                                        <textarea name="note" class="form-control" id="note" placeholder="Ghi chú về đơn hàng, ví dụ: lưu ý khi giao hàng." rows="5" cols="20"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group pull-right">
+                                        <a href="Product.jsp" class="control-label btn btn-default">
+                                            Tiếp tục mua sắm
                                         </a>
-                                    </td>
-                                    <td><%=dcf.format(ketQua) + " VNĐ"%></td>
-                                </tr>
-                                <%
-                                    }
-                                %>
-                                <tr>
-                                    <td><b>Tổng tiền</b></td>
-                                    <td><b><%=dcf.format(total) + " VNĐ"%></b></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <%
-                            }
-                        %>
-                    </fieldset>
-                </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group pull-right">
+                                        <button type="submit" class="btn btn-primary">Xác Nhận Đặt Hàng</button>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                    <%
+                        }else if(session.getAttribute("thanhcong") == "OK"){
+                    %>
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Thành công!</strong> <h2>Cảm ơn bạn đã đặt hàng !</h2>.
+                    </div>
+                    
+                    <%
+                        session.removeAttribute("themgio");
+                        session.removeAttribute("dshang");
+                    }
+                    %>
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend>Đơn hàng của bạn</legend>
+                            <%
+                                if (session.getAttribute("dshang") != null) {
+                                    ArrayList<GioHang> itemCart = (ArrayList) session.getAttribute("dshang");
+                            %>
+                            <table class="table table-bordered table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Thành tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%
+                                        double total = 0;
+                                        DecimalFormat dcf = new DecimalFormat("###,###,###");
+                                        ProductServices pss = new ProductServices();
+                                        Product pdt = null;
+                                        for (int i = 0; i < itemCart.size(); i++) {
+                                            GioHang item = itemCart.get(i);
+                                            pdt = pss.GetById(item.getMaSP());
+                                            int soLuong = Integer.parseInt(item.getSoLuong());
+                                            double donGia = pdt.getPricePerUnit();
+                                            double ketQua = GioHang.TinhTongTien(soLuong, donGia);
+                                            total += ketQua;
+                                    %>
+                                    <tr>
+                                        <td>
+                                            <a href="ChiTietSanPham.jsp?id=<%=pdt.getIdproduct()%>">
+                                                <%=pdt.getProductName()%> x <%=soLuong%>
+                                            </a>
+                                        </td>
+                                        <td><%=dcf.format(ketQua) + " VNĐ"%></td>
+                                    </tr>
+                                    <%
+                                        }
+                                    %>
+                                    <tr>
+                                        <td><b>Tổng tiền</b></td>
+                                        <td><b><%=dcf.format(total) + " VNĐ"%></b></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <%
+                                }
+                            %>
+                        </fieldset>
+                    </div>
+                </center>
             </div>
             <%
             } else {

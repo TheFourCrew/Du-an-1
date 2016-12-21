@@ -21,6 +21,7 @@
                 session.removeAttribute("iduser");
                 session.removeAttribute("avatar");
                 session.removeAttribute("cmtname");
+                session.removeAttribute("dshang");
                 
                 response.sendRedirect(session.getAttribute("urlcur")+"");
             }

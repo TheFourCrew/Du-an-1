@@ -31,10 +31,15 @@
         </style>
     </head>
     <body>
+        <%
+            session.setAttribute("urlctsp", request.getServletPath().substring(1));
+            String idPT = request.getParameter("id");
+            session.setAttribute("urlcur", request.getServletPath().substring(1) + "?id=" + idPT);
+            
+        %>
         <%@include file="includes/header.jsp" %>
         <section class="container">
-            <%                String idPT = request.getParameter("id");
-                session.setAttribute("urlcur", request.getServletPath().substring(1) + "?id=" + idPT);
+            <%                
                 ProductServices ps = new ProductServices();
                 Product pt = null;
                 pt = ps.GetById(idPT);
@@ -46,6 +51,20 @@
                 TagServices tss = new TagServices();
             %>
             <div class="row hinhvathongso" style="margin:auto 0px;">
+                    <%                        
+                        if (session.getAttribute("themgio") != null) {
+                            if (session.getAttribute("themgio").equals("done")) {
+                    %>
+                    <div class="alert alert-info alert-dismissible text-center">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Thành công!</strong> Bạn đã thêm ${soluongthem} sản phẩm <strong><%=session.getAttribute("tenSP")%></strong>.
+                    </div>
+                    <%
+                        }
+                        session.removeAttribute("themgio");
+                        session.removeAttribute("soluongthem");
+                    }
+                    %>
                 <div class="col-md-12 col-sm-6 ctsp">
                     <div class="col-md-6 col-sm-6 hinhctsp text-center">
                         <div class="w3-content">
@@ -196,7 +215,7 @@
                             </label>
                         </fieldset>
 
-                        <p >
+                        <p>
                             <%
                                 if (giaGiam > 0) {
                             %>
@@ -212,50 +231,58 @@
                                         }
                                     %>
                         </p>
-                        <div id="giaoHang" class="tab-pane fade in active col-md-7">
-                            <div class="panel panel-info">
-                                <div class="panel-heading">Giao hàng</div>
-                                <div class="panel-body">
-                                    <p><i class="fa-fw fa fa-truck"></i> Giao hàng : 1-3 ngày</p>
-                                    <p><i class="fa-fw fa fa-exchange"></i> Đổi hàng nếu lỗi nhà sản xuất</p>
-                                    <p><i class="fa-fw fa fa-credit-card"></i> Thanh toán khi nhận hàng (COD)</p>
+                        <div class="row">
+                            <div id="giaoHang" class="tab-pane fade in active col-md-7">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">Giao hàng</div>
+                                    <div class="panel-body">
+                                        <p><i class="fa-fw fa fa-truck"></i> Giao hàng : 1-3 ngày</p>
+                                        <p><i class="fa-fw fa fa-exchange"></i> Đổi hàng nếu lỗi nhà sản xuất</p>
+                                        <p><i class="fa-fw fa fa-credit-card"></i> Thanh toán khi nhận hàng (COD)</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <%
-                            if (pt.getProductQuantity() >= 1) {
-                        %>
-                        <div class="col-md-8">
-                            <span>Còn <%=pt.getProductQuantity()%> sản phẩm :</span>
-                            <input type="number" name="" class=""  value="0" min="0" max="<%=pt.getProductQuantity()%>" />
-                            <a href="addtocart.jsp?idsanpham=<%=pt.getIdproduct()%>">
-                                <button  type="button" class="btn btn-primary">Thêm Vào Giỏ</button>
-                            </a>
-                            <%
-                            } else {
-                            %>
-                            <button  type="button" class="btn btn-primary center-block">Hết Hàng</button>
-                            <%
-                                }
-                                ArrayList<ProductTags> aPTags = null;
-                                aPTags = tss.GetProductTagsById(idPT);
-                                ProductTags ptags = null;
-                                Tags tags = null;
-                                if (aPTags != null) {
-                            %>
+                        
+                        <div class="row">
+                            <div class="col-md-8">
+                                <%
+                                    if (pt.getProductQuantity() >= 1) {
+                                %>
+                                <span>Còn <%=pt.getProductQuantity()%> sản phẩm :</span>
+                                <form action="SaveServlet" method="post">
+                                    <input type="hidden" name="tenSP" value="<%=pt.getProductName()%>" />
+                                    <input type="hidden" name="idsanpham" value="<%=pt.getIdproduct() %>" />
+                                    <input type="number" name="sl<%=pt.getIdproduct()%>" value="1" class="" min="1" max="<%=pt.getProductQuantity()%>" />
+                                    <button  type="submit" class="btn btn-primary">Thêm Vào Giỏ</button>
+                                </form>
+                                <%
+                                } else {
+                                %>
+                                <span class="label label-primary" style="font-size: 20px;">Hết hàng</span>
+                                <%
+                                    }
+                                    ArrayList<ProductTags> aPTags = null;
+                                    aPTags = tss.GetProductTagsById(idPT);
+                                    ProductTags ptags = null;
+                                    Tags tags = null;
+                                    if (aPTags != null) {
+                                %>
+                            </div>
                         </div>
-                        <br/><hr><p>Từ khóa: 
+                            <hr>
+                            <p>Từ khóa: 
                             <%
                                 for (int i = 0; i < aPTags.size(); i++) {
                                     ptags = aPTags.get(i);
                                     int idTags = ptags.getIdTag();
                                     tags = tss.GetByTagsId(idTags + "");
                             %>
-                            <span class="the-tag"><a href="#"><%=tags.getTagName()%></a></span>
+                                <span class="the-tag"><a href="#"><%=tags.getTagName()%></a></span>
                                 <%
                                     }
                                 %>
-                        </p>
+                            </p>
                         <%
                             }
                         %>
@@ -365,10 +392,10 @@
                                             %>
                                             <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("fullname")%> </label>
                                             <%
-                                                    }
+                                                }
                                             %>
                                             <a href="logout.jsp"> Logout </a>
-                                            <input type="hidden" name="cName" value="${cmtname}" class="form-control" id="c-Name">
+                                            <input type="hidden" name="c-Name" value="${cmtname}${fullname}" class="form-control" id="c-Name">
                                         </div>
                                     </div>
                                     <%
@@ -418,7 +445,7 @@
                                                     gioCMT = sdf.format(cmtReps.getDateComment());
                                             %>
                                             <div class="media">
-                                                <!--<a href="#collapse1" data-toggle="collapse">Reply <%=cmtc.getIdcomment()%></a>-->
+                                                <a href="#collapse<%=cmtc.getIdcomment()%>" data-toggle="collapse">Reply <%=cmtc.getIdcomment()%></a>
                                                 <div class="media-left">
                                                     <img class="media-object" src="uploads/Photo-Unavailable.jpg" style="width:80px" />
                                                 </div>
@@ -436,58 +463,61 @@
                                                 <input type="hidden" name="idCMT" value="<%=cmtc.getIdcomment()%>" />
                                                 <input type="hidden" name="spID" value="<%=idPT%>" />
                                                 <div id="collapse<%=cmtc.getIdcomment()%>" class="panel-collapse collapse">
-                                                    <%
-                                                        if (session.getAttribute("cmtname") == null && session.getAttribute("email") == null) {
-                                                    %>
-                                                    <div class="form-group">
-                                                        <div class="col-sm-3 col-md-7">
-                                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>:</label>
-                                                            <input type="text" name="cName" placeholder="Nhập tên người gửi" class="form-control" id="c-Name">
+                                                    <div class="panel-body">
+                                                        <%
+                                                            if (session.getAttribute("cmtname") == null && session.getAttribute("email") == null) {
+                                                        %>
+                                                        <div class="form-group">
+                                                            <div class="col-sm-3 col-md-7">
+                                                                <label class="control-label" for="c-Name">Họ tên<em>*</em>:</label>
+                                                                <input type="text" name="cName" placeholder="Nhập tên người gửi" class="form-control" id="c-Name">
+                                                            </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="form-group">
-                                                        <div class="col-sm-3 col-md-7">
-                                                            <label class="control-label" for="c-Email">Email<em>*</em>:</label>
-                                                            <input type="email" name="cEmail" placeholder="Nhập thư điện tử" class="form-control" id="c-Email">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-3 col-md-7">
+                                                                <label class="control-label" for="c-Email">Email<em>*</em>:</label>
+                                                                <input type="email" name="cEmail" placeholder="Nhập thư điện tử" class="form-control" id="c-Email">
+                                                            </div>
                                                         </div>
-                                                    </div>
 
-                                                    <%                } else{
-                                                    %>
-                                                    <div class="form-group">
-                                                        <div class="col-sm-3 col-md-7">
-                                                            <%
-                                                                if (session.getAttribute("cmtname") != null) {
-                                                            %>
-                                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("cmtname")%> </label>
-                                                            <%} else if (session.getAttribute("email") != null) {
-                                                            %>
-                                                            <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("fullname")%> </label>
-                                                            <%
-                                                                    }
-                                                            %>
-                                                            <a href="logout.jsp"> Logout </a>
-                                                            <input type="hidden" name="cName" value="${cmtname}" class="form-control" id="c-Name">
+                                                        <%                } else{
+                                                        %>
+                                                        <div class="form-group">
+                                                            <div class="col-sm-3 col-md-7">
+                                                                <%
+                                                                    if (session.getAttribute("cmtname") != null) {
+                                                                %>
+                                                                <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("cmtname")%> </label>
+                                                                <%} else if (session.getAttribute("email") != null) {
+                                                                %>
+                                                                <label class="control-label" for="c-Name">Họ tên<em>*</em>: <%=session.getAttribute("fullname")%> </label>
+                                                                <%
+                                                                        }
+                                                                %>
+                                                                <a href="logout.jsp"> Logout </a>
+                                                                <input type="hidden" name="c-Name" value="${cmtname}${fullname}" class="form-control" id="c-Name">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <%
-                                                        }
-                                                    %>
+                                                        <%
+                                                            }
+                                                        %>
 
-                                                    <div class="form-group ">
-                                                        <div class="col-sm-3 col-md-12 dia-chi">
-                                                            <label class="control-label" for="c-Message">Nội dung<em>*</em>:</label>
-                                                            <textarea rows="4" id="c-Message" cols="20" class="form-control" placeholder="Nhập nội dung" name="cMessage"></textarea>
+                                                        <div class="form-group ">
+                                                            <div class="col-sm-3 col-md-12 dia-chi">
+                                                                <label class="control-label" for="c-Message">Nội dung<em>*</em>:</label>
+                                                                <textarea rows="4" id="c-Message" cols="20" class="form-control" placeholder="Nhập nội dung" name="cMessage"></textarea>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="col-sm-3 col-md-7" style="margin-top: 10px;">
-                                                            <button  type="submit" class="btn btn-info">Bình luận</button>
+                                                        <div class="form-group">
+                                                            <div class="col-sm-3 col-md-7" style="margin-top: 10px;">
+                                                                <button  type="submit" class="btn btn-info">Bình luận</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </form>
+
                                         </div>
                                     </div>
                                     <hr>
@@ -534,7 +564,7 @@
                                                     }
                                             %>
                                             <a href="logout.jsp"> Logout </a>
-                                            <input type="hidden" name="cName" value="${cmtname}" class="form-control" id="c-Name">
+                                            <input type="hidden" name="cName" value="${cmtname}${fullname}" class="form-control" id="c-Name">
                                         </div>
                                     </div>
                                     <%

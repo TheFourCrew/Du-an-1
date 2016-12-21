@@ -14,6 +14,10 @@
     </head>
     <body>
         <%@include file="includes/header.jsp" %>
+        <%
+            session.setAttribute("urlcur", request.getServletPath().substring(1));
+            session.removeAttribute("urlctsp");
+        %>
         <section class="container">
             <div class="row">
                 <form class="form-horizontal"action="LoginServlet" method="post">

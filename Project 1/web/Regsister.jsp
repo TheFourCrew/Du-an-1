@@ -15,7 +15,12 @@
         <%@include file="includes/headtag.jsp" %>
     </head>
     <body>
+        <%
+            session.setAttribute("urlcur", request.getServletPath().substring(1));
+            session.removeAttribute("urlctsp");
+        %>
         <%@include file="includes/header.jsp" %>
+        
         <section class="container">
             <div class="row">
                 <form class="form-horizontal" name="fUser" onsubmit="return validateFormUser()"  enctype="multipart/form-data" action="RegsisterServlet" method="post" id="edituser" >

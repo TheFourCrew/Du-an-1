@@ -72,15 +72,21 @@
                                 <li>
                                     <form action="SaveServlet" method="post">
                                         <%
+                                            ArrayList<GioHang> sizeGH = (ArrayList) session.getAttribute("dshang");
+                                            ArrayList<GioHang> listGioHang = null;
                                             if (session.getAttribute("dshang") != null) {
-                                                ArrayList<GioHang> listGioHang = (ArrayList) session.getAttribute("dshang");
+                                                listGioHang = (ArrayList) session.getAttribute("dshang");
+                                            }
+                                            if (request.getParameter("removeidsp") != null) {
+                                                session.removeAttribute("urlctsp");
+                                                String removeidsp = request.getParameter("removeidsp");
+                                                GioHang.XoaTuGioHang(listGioHang, removeidsp);
+                                                session.setAttribute("dshang", listGioHang);
+                                            }
+                                            if (session.getAttribute("dshang") != null && sizeGH.size() > 0) {
+                                                listGioHang = (ArrayList) session.getAttribute("dshang");
                                                 double tongTien = 0;
                                                 DecimalFormat dcf = new DecimalFormat("###,###,###");
-                                                if (request.getParameter("removeidsp") != null) {
-                                                    String removeidsp = request.getParameter("removeidsp");
-                                                    GioHang.XoaTuGioHang(listGioHang, removeidsp);
-                                                    session.setAttribute("dshang", listGioHang);
-                                                }
                                         %>
                                         <table class="table">
                                             <tbody>
@@ -99,7 +105,17 @@
                                                     <td>
                                                         <div class="x-btn">
                                                             <center>
+                                                                <%
+                                                                    if (session.getAttribute("urlctsp") == null) {
+                                                                %>
                                                                 <a href="<%=session.getAttribute("urlcur")%>?removeidsp=<%=item.getMaSP()%>">X</a>
+                                                                <%
+                                                                } else {
+                                                                %>
+                                                                <a href="<%=session.getAttribute("urlcur")%>&removeidsp=<%=item.getMaSP()%>">X</a>
+                                                                <%
+                                                                    }
+                                                                %>
                                                             </center>
                                                         </div>
                                                     </td>
@@ -115,10 +131,6 @@
                                                         <%=soLuong%> x <%=dcf.format(donGia) + " VNĐ"%> 
                                                     </td>
                                                 </tr>
-
-<!--<span>Sản phẩm : </span> <span name="idsp<%=item.getMaSP()%>"><%=item.getMaSP()%></span>--> 
-
-                                        <!--<span>Số lượng: </span><input name="sl<%=item.getMaSP()%>" type="number" value="<%=item.getSoLuong()%>"/>-->
                                                 <%
                                                     }
                                                 %>
@@ -179,7 +191,7 @@
                                 <span class="glyphicon glyphicon-user"></span> Đăng ký
                             </a>
                         </li>
-                        <li class="dropdown">
+                        <li>
                             <a href="#myModal" style="outline: none;" data-toggle="modal"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a>
 
                             <div id="myModal" style="margin-top: 130px;" class="modal fade" role="dialog">
@@ -191,7 +203,7 @@
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             <h4 class="modal-title"><i class="glyphicon glyphicon-user"></i> Đăng nhập</h4>
                                         </div>
-                                        
+
                                         <form class="form-horizontal"action="LoginServlet" method="post">
 
                                             <div class="form-group">
