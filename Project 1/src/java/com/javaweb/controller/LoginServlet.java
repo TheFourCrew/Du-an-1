@@ -42,8 +42,10 @@ public class LoginServlet extends HttpServlet {
         UserService userservice = new UserService();
 //        EnDeCryption mh=new EnDeCryption("asdasdasda");
 //        String mk=mh.encoding(password);
-
-        boolean login = userservice.CheckLogin(email, password);
+        EnDeCryption mh = new EnDeCryption("zxczxsdfsdfgsdjklh");
+        String mk = mh.encoding(password);
+        
+        boolean login = userservice.CheckLogin(email, mk);
         HttpSession session = request.getSession();
         session.removeAttribute("errormsg");
         if (login) {
@@ -53,7 +55,7 @@ public class LoginServlet extends HttpServlet {
             session.removeAttribute("iduser");
             session.removeAttribute("avatar");
             session.removeAttribute("cmtname");
-            
+
             if (session.getAttribute("email") != null) {
                 String em = (String) session.getAttribute("email");
                 if (em.equals(email)) {
