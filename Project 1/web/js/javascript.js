@@ -579,3 +579,40 @@ $(window).ready(function () {
         }
     });
 });
+
+function loadXMLNewPassword() {
+    var xmlhttp;
+    var mkcu1 = document.getElementById("mkcu").value;
+     var mkcu2 = document.getElementById("mkcunhap").value;
+
+    var urls = "NewPassword.jsp?cu=" + mkcu1 + "&nhap=" + mkcu2;
+
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4) {
+            document.getElementById('errPassword').style.color = "red";
+            document.getElementById('errPassword').innerHTML = xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET", urls, true);
+    xmlhttp.send();
+}
+
+function validatePassword() {
+    var x = document.forms["fPWD"]["mkcunhap"].value;
+    if (x != "") {
+        var y = document.getElementById('actual').value;
+    }
+    if (y == "taken") {
+        alert("Saipass");
+//        document.getElementById('errProdName').style.color = "red";
+//        document.getElementById('errProdName').innerHTML = 'Tồn tại';
+        return false;
+    } else {
+
+    }
+}
