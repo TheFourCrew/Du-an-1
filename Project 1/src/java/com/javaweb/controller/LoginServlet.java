@@ -68,7 +68,8 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("idrole_user", user.getIdroleUser());
             session.setAttribute("fullname", user.getFullname());
             session.setAttribute("avatar", user.getImage());
-
+            session.setAttribute("tendn", user.getUsername());
+            
 //            String url = "/index.jsp";
 //            getServletContext().getRequestDispatcher(url).forward(request, response);
             response.sendRedirect(session.getAttribute("urlcur") + "");
