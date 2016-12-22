@@ -4,7 +4,11 @@ import com.javaweb.model.User;
 import com.javaweb.service.EnDeCryption;
 import com.javaweb.service.UserService;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +35,7 @@ public class RegsisterServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-        String username, id, fullname, email, password, repassword, note = "", gender, idrole, phone, address, fileName, birthday;
+        String username, id, fullname, email, password, repassword, note = "", gender, idrole, phone, address, fileName, strBirthday;
         username = request.getParameter("username");
         password = request.getParameter("mk");
         repassword = request.getParameter("repassword");
@@ -39,10 +43,19 @@ public class RegsisterServlet extends HttpServlet {
         phone = request.getParameter("dienthoai");
         address = request.getParameter("address");
         email = request.getParameter("email");
-        birthday = request.getParameter("birthday");
+        strBirthday = request.getParameter("birthday");
         gender = request.getParameter("gender");
 
         Date datez = new Date();
+        Date birthday = null;
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        try {
+            birthday = sdf.parse(strBirthday);
+        } catch (ParseException ex) {
+            System.out.println(ex.toString());
+        }
+        
         boolean gt = false;
 
         if (gender.equals("Nam")) {
@@ -52,8 +65,11 @@ public class RegsisterServlet extends HttpServlet {
 
         EnDeCryption mh = new EnDeCryption("zxczxsdfsdfgsdjklh");
         String mk = mh.encoding(password);
+        
+        session.setAttribute("email", username);
+        session.setAttribute("fullname", fullname);
 
-        User user = new User(username, mk, 2, fullname, gt, phone, address, email, datez, "Photo-Unavailable.jpg", false, note);
+        User user = new User(username, mk, 3, fullname, gt, phone, address, email, birthday, "Photo-Unavailable.jpg", false, note, datez) ;
         UserService userservice = new UserService();
         userservice.InserUser(user);
         session.setAttribute("tendn", username);
