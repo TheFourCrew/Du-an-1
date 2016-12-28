@@ -20,6 +20,7 @@
     <body>
         <%
             session.setAttribute("urlcur", request.getServletPath().substring(1));
+            session.removeAttribute("urlctsp");
         %>
         <%@include file="includes/header.jsp" %>
         <section class="container-fluid">
@@ -76,7 +77,25 @@
                     </div>
                 </form> 
                 <div class="col-md-9 phai col-sm-3 text-center">
-
+                    <%                        
+                        if (session.getAttribute("themgio") != null) {
+                            if (session.getAttribute("themgio").equals("done")) {
+                    %>
+                    <div class="alert alert-info alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Thành công!</strong> Bạn đã thêm 1 sản phẩm <%=session.getAttribute("tenSP")%>.
+                    </div>
+                    <%
+                    } else {
+                    %>
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Thất bại!</strong> <%=session.getAttribute("tenSP")%> chỉ còn <strong>${kho}</strong> sản phẩm trong kho.
+                    </div>
+                    <%
+                            }
+                        }
+                    %>
                     <p style="    margin-bottom: 32px;font-weight: 600;font-size: 20px;color: #008ae2;">Máy Tính </p>
 
 
@@ -165,13 +184,13 @@
                         <%
                             if (pt.getProductQuantity() >= 1) {
                         %>
-                        <a href="addtocart.jsp?idsanpham=<%=pt.getIdproduct()%>">
+                        <a href="addtocart.jsp?idsanpham=<%=pt.getIdproduct()%>&tenSP=<%=pt.getProductName()%>&kho=<%=pt.getProductQuantity()%>">
                             <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
                         </a>
                         <%
                         } else {
                         %>
-                        <button  type="button" class="btn btn-primary active center-block">Hết Hàng</button>
+                        <span class="label label-primary" style="font-size: 20px;">Hết hàng</span>
                         <%
                             }
                         %>
@@ -180,7 +199,7 @@
                         }
                     %>
                     <%
-                        if (pageCount != 1) {
+                        if (pageCount > 1) {
                     %>
                     <div class="panel-footer">
                         <nav aria-label="Page navigation">
@@ -204,7 +223,7 @@
                                         }
                                         if (pageNumber != pageCount) {
                                     %>
-                                <li><a aria-label="Next" href="<%=url%>?pagenumber=<%=nextPage%>"><span aria-hidden="true">&ra&raquo;</span></a></li>
+                                <li><a aria-label="Next" href="<%=url%>?pagenumber=<%=nextPage%>"><span aria-hidden="true">&raquo;</span></a></li>
                                     <%
                                         }
                                     %>

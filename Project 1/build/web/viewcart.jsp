@@ -16,11 +16,15 @@
         <%@include file="includes/headtag.jsp" %>
     </head>
     <body>
+        <%
+            session.setAttribute("urlcur", request.getServletPath().substring(1));
+            session.removeAttribute("urlctsp");
+        %>
         <%@include file="includes/header.jsp" %>
         <section class="container">
             <div class="row">
-                <%                    
-                    session.setAttribute("urlcur", request.getServletPath().substring(1));
+                <%                    session.setAttribute("urlcur", request.getServletPath().substring(1));
+                    session.removeAttribute("urlctsp");
                     if (session.getAttribute("dshang") != null) {
                         ArrayList<GioHang> itemCart = (ArrayList) session.getAttribute("dshang");
                 %>
@@ -60,7 +64,7 @@
                                     </div>
                                 </td>
                                 <td><%=pdt.getProductName()%></td>
-                                <td><input type="number" name="sl<%=item.getMaSP()%>" value="<%=soLuong%>" min="<%=item.getSoLuong() %>" max="<%=pdt.getProductQuantity() %>" /> 
+                                <td><input type="number" name="sl<%=item.getMaSP()%>" value="<%=soLuong%>" min="<%=item.getSoLuong()%>" max="<%=pdt.getProductQuantity()%>" /> 
                                     <input type="submit" class="btn btn-default" value="Cập nhật" name="update" /> 
                                 </td>
                                 <td><%=dcf.format(donGia) + " VNĐ"%></td>

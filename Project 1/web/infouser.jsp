@@ -30,9 +30,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-                                <a href="edit.html" >Edit Profile</a>
+                                <a href="" >Edit Profile</a>
 
-                                <a href="edit.html" >Logout</a>
+                                <a href="logout.jsp" >Logout</a>
                                 <br>
                                 <p class=" text-info">May 05,2014,03:00 pm </p>
                             </div>
@@ -102,8 +102,7 @@
                                                     </tbody>
                                                 </table>
 
-                                                <a href="#" class="btn btn-primary">My Sales Performance</a>
-                                                <a href="#" class="btn btn-primary">Team Sales Performance</a>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -199,15 +198,15 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Mật khẩu :</label>
                                         <div class="col-md-8">
-                                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#doiMk">Doi mK</button>
+                                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#doiMk">Đổi Mật Khẩu</button>
                                             <div id="doiMk" class="collapse">
                                                 <div class="form-group">
                                                     
-                                                    <label class="col-md-3 control-label">Mật khẩu cu :</label>
+                                                    <label class="col-md-3 control-label">Mật khẩu cũ :</label>
                                                     
                                                     <div class="col-md-8">
                                                         <input class="form-control" onchange="loadXMLNewPassword()" name="mkcunhap" type="password" id="mkcunhap" >
-                                                        <input class="form-control" value="<%=mk%>" name="mkcu" id="mkcu" type="text" >
+                                                        <input class="form-control" value="<%=mk%>" name="mkcu" id="mkcu" type="password" >
                                                         <span id="errPassword"></span>
                                                     </div>
                                                 </div>

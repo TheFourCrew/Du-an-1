@@ -15,4 +15,216 @@ label em{
     color: red;
     font-style: italic;
 }
+
+
+.tieude{
+    width: 100%;
+    background: linear-gradient(rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 0.0));
+}
+.tieude h3{
+    z-index: 9999;
+    padding: 10px 10px;
+    color: white;
+}
+
+.textCmt{
+    border: black solid 1px;
+}
+.textbv p{
+    color: black;
+}
+
+.ot{border: 1px solid black;
+    padding:5px 10px;
+    background-color: white;
+}
+
+.in{
+    position:relative;
+}
+.txtdes{
+    visibility:hidden;
+    color:white;
+    width:100%;
+    height:100%;
+    margin:0;
+    background-color:rgba(245,245,245,0.9);
+    text-align:center;
+    z-index:9999;
+    left: 0;
+    position: absolute;
+    top: 0;
+    opacity:0;
+}
+.txtdes p{
+    margin-top:5%;
+    text-transform:uppercase;
+    margin-bottom:inherit;
+    font-weight:bold;
+}
+.in:hover .txtdes{
+    
+    visibility: visible;
+    opacity:1;
+}
+.in .button {z-index: 9999}
 /*Đừng xóa nha anh Tư*/
+/*button*/
+
+button, .btn-default,.btn{
+    background-color: #6fb048;
+    color:white;
+}
+/*animated button*/
+.button {
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 14px;
+    padding: 20px;
+    width: 120px;
+    height:40px;
+    line-height:0px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 20px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+
+/*floatbox*/
+.float{
+    width:60px;
+    height:285px;
+    position:fixed;
+    bottom:35%;
+    right:15px;
+    float:right;
+    box-shadow: 3px 3px 15px gray;
+    z-index:9999;
+    background-color:white;
+    display: none;
+}
+.fb2, .tw2, .gp2,.rss2{
+    width: 32px;
+    height:32px;
+    float:left;
+    margin:11px;}
+.fb2{background-image:url(images/fb2.png)}
+.tw2{background-image:url(images/tw2.png)}
+.gp2{background-image:url(images/gp2.png)}
+.rss2{background-image:url(images/rss2.png)}
+.mxh2{height: 222px;
+      width:60px;}
+.top-buttom{margin-left:10px;}
+
+
+.banner{
+    height:80px;
+}
+.banner img{
+    height: 80px;
+}
+
+
+
+/*o news*/
+.news h3 a {
+    color: black;
+    text-decoration:none;
+}
+.textbv{padding: 0px 20px;}      
+
+.slideNews {
+    heigth:300px;
+}
+.newsbox{    padding-left: 0px;}
+.newsbox li{
+    list-style:none;
+    margin-top:10px;
+    height:95px;
+    width:auto;
+}
+.newsbox li a img{
+    width:90px;
+    height:90px;
+}
+.newsbox li a figure{
+    float: left;
+}
+.newsbox li a h4{
+    margin-top: 0px;
+    margin-left: 5px;
+    color:black;
+}
+.newsbox li a p{
+    margin-top: 0px;
+    margin-left: 5px;
+    color:#7E7E7E;
+    font-weight:normal;
+}
+.news h3 {
+    position: relative;
+    font-family: "UTMCafeta";
+    font-size: 24px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #000;
+    line-height: 1.3;
+    padding-bottom: 5px;
+}
+.news h3 span {
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    padding-right: 7px;
+    text-transform: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    display: block;
+    background: #fff;
+    line-height: 1;
+}
+
+.sanpham .dmsp {
+    height:350px;
+    padding: 10px 20px ;
+}
+.dmsp a img{
+    max-height:100%;
+    max-width:100%;
+}
+
+
+/*bai viet*/
+.anhbv{height:360px;}
+.noidung {border-bottom: 1px solid black}
+.lbanner, .rbanner{
+    padding:2px 2px 5px;
+}
+

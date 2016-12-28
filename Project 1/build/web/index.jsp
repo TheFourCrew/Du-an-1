@@ -266,7 +266,7 @@
             </div>
         </div>
     </section>
-    <%@include file="includes/floatbtn.jsp" %>
+        <%@include file="includes/floatbox.jsp" %>
     <%@include file="includes/footer.jsp" %>
 </body>
 </html>

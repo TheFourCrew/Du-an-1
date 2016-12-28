@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 14, 2016 10:55:21 PM by Hibernate Tools 4.3.1
+// Generated Dec 22, 2016 4:28:13 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,41 +12,29 @@ public class Receipt  implements java.io.Serializable {
 
      private Integer idreceipt;
      private String receiptNumber;
-     private String email;
-     private String address;
-     private String phoneNumber;
-     private int creater;
-     private String buyer;
-     private double totalPrice;
      private Date createdDate;
-     private String status;
+     private int creater;
+     private int buyer;
+     private double totalPrice;
      private String note;
 
     public Receipt() {
     }
 
 	
-    public Receipt(String receiptNumber, String email, String address, String phoneNumber, int creater, String buyer, double totalPrice, Date createdDate, String status) {
+    public Receipt(String receiptNumber, Date createdDate, int creater, int buyer, double totalPrice) {
         this.receiptNumber = receiptNumber;
-        this.email = email;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
+        this.createdDate = createdDate;
         this.creater = creater;
         this.buyer = buyer;
         this.totalPrice = totalPrice;
-        this.createdDate = createdDate;
-        this.status = status;
     }
-    public Receipt(String receiptNumber, String email, String address, String phoneNumber, int creater, String buyer, double totalPrice, Date createdDate, String status, String note) {
+    public Receipt(String receiptNumber, Date createdDate, int creater, int buyer, double totalPrice, String note) {
        this.receiptNumber = receiptNumber;
-       this.email = email;
-       this.address = address;
-       this.phoneNumber = phoneNumber;
+       this.createdDate = createdDate;
        this.creater = creater;
        this.buyer = buyer;
        this.totalPrice = totalPrice;
-       this.createdDate = createdDate;
-       this.status = status;
        this.note = note;
     }
    
@@ -64,26 +52,12 @@ public class Receipt  implements java.io.Serializable {
     public void setReceiptNumber(String receiptNumber) {
         this.receiptNumber = receiptNumber;
     }
-    public String getEmail() {
-        return this.email;
+    public Date getCreatedDate() {
+        return this.createdDate;
     }
     
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getAddress() {
-        return this.address;
-    }
-    
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    public String getPhoneNumber() {
-        return this.phoneNumber;
-    }
-    
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
     public int getCreater() {
         return this.creater;
@@ -92,11 +66,11 @@ public class Receipt  implements java.io.Serializable {
     public void setCreater(int creater) {
         this.creater = creater;
     }
-    public String getBuyer() {
+    public int getBuyer() {
         return this.buyer;
     }
     
-    public void setBuyer(String buyer) {
+    public void setBuyer(int buyer) {
         this.buyer = buyer;
     }
     public double getTotalPrice() {
@@ -105,20 +79,6 @@ public class Receipt  implements java.io.Serializable {
     
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
-    }
-    public Date getCreatedDate() {
-        return this.createdDate;
-    }
-    
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-    public String getStatus() {
-        return this.status;
-    }
-    
-    public void setStatus(String status) {
-        this.status = status;
     }
     public String getNote() {
         return this.note;

@@ -1,16 +1,3 @@
-$(window).bind('scroll', function () {
-    if ($(window).scrollTop() > 169) {
-        $('.menu-bar').addClass('fixed');
-    } else {
-        $('.menu-bar').removeClass('fixed');
-    }
-});
-
-var loadFile = function (event, idthem) {
-    var output = document.getElementById('output' + idthem + '');
-    output.src = URL.createObjectURL(event.target.files[0]);
-};
-
 var loadFile = function (event, idthem) {
     var output = document.getElementById('output' + idthem + '');
     output.style.width = "200px";
@@ -476,3 +463,156 @@ $(window).ready(function () {
         }
     });
 });
+
+//Kiểm tra đăng ký 
+$(window).ready(function () {
+    $('#fregister').validate({
+        onchange: true,
+        rules: {
+            'username': {
+                required: true,
+                minlength: 6
+            },
+            'mk': {
+                required: true,
+                minlength: 8
+            },
+            'repassword': {
+                required: true,
+                equalTo: "#password"
+            },
+            'fullname': 'required',
+            'dienthoai': {
+                required: true,
+                number: true,
+                rangelength: [10, 11]
+            },
+            'address': 'required',
+            'email': {
+                required: true,
+                email: true
+            },
+            'birthday': "required",
+            'gender': "required",
+            'dieukhoan': "required"
+        },
+        messages: {
+            'username': {
+                required: "Bạn chưa nhập tên đăng nhập",
+                minlength: 'Tên đăng nhập chưa đủ 6 ký tự'
+            },
+            'mk': {
+                required: "Bạn chưa nhập mật khẩu",
+                minlength: 'Mật khẩu chưa đủ 8 ký tự'
+            },
+            'repassword': {
+                required: 'Vui lòng nhập lại mật khẩu',
+                equalTo: "Mật khẩu nhập lại sai"
+            },
+            'role': 'Vui lòng chọn quyền',
+            'fullname': 'Bạn chưa nhập họ tên ',
+            'dienthoai': {
+                required: 'Chưa nhập điện thoại',
+                number: 'Điện thoại chỉ có số',
+                rangelength: '10-11 số'
+            },
+            'address': 'Bạn chưa nhập địa chỉ',
+            'email': {
+                required: 'Chưa nhập email',
+                email: 'Email không hợp lệ'
+            }
+        }
+    });
+});
+
+//Kiem tra nhap thong tin nguoi dung
+
+$(window).ready(function () {
+    $('#editinfo').validate({
+        onchange: true,
+        rules: {
+            'username': {
+                required: true,
+                minlength: 6
+            },
+            'password': {
+                required: true,
+                minlength: 6
+            },
+            'repassword': {
+                required: true,
+                equalTo: "#password"
+            },
+            'role': 'required',
+            'fullname': 'required',
+            'dienthoai': {
+                required: true,
+                number: true,
+                minlength: 10,
+                maxlength: 11
+           }
+        },
+        messages: {
+            'username': {
+                required: "Bạn chưa nhập Họ và Tên",
+                minlength: 'Họ và Tên chưa đủ 6 ký tự,không để trống ô này'
+            },
+            'password': {
+                required: "Bạn chưa nhập mật khẩu",
+                minlength: 'Mật khẩu chưa đủ 6 ký tự'
+            },
+            'repassword': {
+                required: 'Vui lòng nhập lại mật khẩu',
+                equalTo: "Mật khẩu nhập lại sai"
+            },
+            'dienthoai': {
+                required: 'Chưa nhập điện thoại',
+                number: 'Điện thoại chỉ có số',
+                minlength: 'Số điện thoại không hợp lệ',
+                maxlength: 'Số điện thoại không hợp lệ'
+            },
+            'address': 'Bạn chưa nhập địa chỉ',
+            'email': {
+                required: 'Chưa nhập email',
+                email: 'Email không hợp lệ'
+            }
+        }
+    });
+});
+
+function loadXMLNewPassword() {
+    var xmlhttp;
+    var mkcu1 = document.getElementById("mkcu").value;
+     var mkcu2 = document.getElementById("mkcunhap").value;
+
+    var urls = "NewPassword.jsp?cu=" + mkcu1 + "&nhap=" + mkcu2;
+
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4) {
+            document.getElementById('errPassword').style.color = "red";
+            document.getElementById('errPassword').innerHTML = xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET", urls, true);
+    xmlhttp.send();
+}
+
+function validatePassword() {
+    var x = document.forms["fPWD"]["mkcunhap"].value;
+    if (x != "") {
+        var y = document.getElementById('actual').value;
+    }
+    if (y == "taken") {
+        alert("Saipass");
+//        document.getElementById('errProdName').style.color = "red";
+//        document.getElementById('errProdName').innerHTML = 'Tồn tại';
+        return false;
+    } else {
+
+    }
+}
