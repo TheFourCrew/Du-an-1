@@ -102,7 +102,7 @@
                                                     </tbody>
                                                 </table>
 
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -129,35 +129,29 @@
                     <div class="container">
                         <hr>
                         <div class="row">
-                            <!-- left column -->
-                            <div class="col-md-3">
-                                <div class="text-center">
+                            <form action="EditInfo" method="post" onsubmit="return validatePassword()" enctype="multipart/form-data" id="editinfo"  name="fPWD">
+                                <!-- left column -->
+                                <div class="col-md-3">
+                                    <div class="text-center">
 
-                                    <h5>Tải lên ảnh khác </h5>
-                                    <%
-                                        if (user.getImage() != null) {
-                                            String folderupload = getServletContext().getInitParameter("file-upload");
-                                    %>
-                                    <img class="img-thumbnail" id="output" src="<%=folderupload%><%=user.getImage()%>" />
-                                    <%
-                                        }
-                                    %>       
-                                    <input type="file"  name="file" size="50" onchange="loadFile(event)" class="form-control">
-                                    <script type="text/javascript">
-                                        var loadFile = function (event) {
-                                            var ouput = document.getElementById('ouput');
-                                            output.src = URL.createObjectURL(event.target.files[0]);
-                                        }
-
-                                    </script>
+                                        <h5>Tải lên ảnh khác </h5>
+                                        <%
+                                            if (user.getImage() != null) {
+                                                String folderupload = getServletContext().getInitParameter("file-upload");
+                                        %>
+                                        <img class="img-thumbnail" id="outputeditinfo" src="<%=folderupload%><%=user.getImage()%>" />
+                                        <%
+                                            }
+                                        %>       
+                                        <input type="file"  name="anhu" size="50" onchange="loadFile(event, 'editinfo')" class="form-control">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-9 personal-info">
+                                <div class="col-md-9 personal-info">
 
-                                <h3 style="text-align: center;color: #007bb6;">Thông Tin Cá Nhân</h3>
-                                </br>
-                                <form action="EditUserServlet" method="post" onsubmit="return validatePassword()" id="editinfo"  name="fPWD">
-                                    <input value="<%=user.getIduser()%>" name="iduser" type="hidden" >
+                                    <h3 style="text-align: center;color: #007bb6;">Thông Tin Cá Nhân</h3>
+                                    </br>
+
+                                    <input value="<%=user.getIduser()%>" name="iduser" id="iduser" type="hidden" >
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">Họ và Tên:</label>
                                         <div class="col-lg-8">
@@ -187,39 +181,45 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Giới Tính:</label>
                                         <div class="col-md-8">
+                                            <%
+                                            if(user.isGender()){
+                                            %>
                                             <input type="radio" name="gender" value="Nam" checked="checked" />Nam
                                             <input type="radio" name="gender" value="Nữ"/>Nữ
+                                            <%
+                                            }else{
+                                            %>
+                                            <input type="radio" name="gender" value="Nam"/>Nam
+                                            <input type="radio" name="gender" value="Nữ" checked="checked" />Nữ
+                                            <%
+                                            }
+                                            %>
                                         </div>
                                     </div>
-                                        <%
-                                        EnDeCryption mh = new EnDeCryption("zxczxsdfsdfgsdjklh");
-                                        String mk = mh.decoding(user.getPassword());
-                                        %>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Mật khẩu :</label>
                                         <div class="col-md-8">
                                             <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#doiMk">Đổi Mật Khẩu</button>
                                             <div id="doiMk" class="collapse">
                                                 <div class="form-group">
-                                                    
+
                                                     <label class="col-md-3 control-label">Mật khẩu cũ :</label>
-                                                    
+
                                                     <div class="col-md-8">
                                                         <input class="form-control" onchange="loadXMLNewPassword()" name="mkcunhap" type="password" id="mkcunhap" >
-                                                        <input class="form-control" value="<%=mk%>" name="mkcu" id="mkcu" type="password" >
                                                         <span id="errPassword"></span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3 control-label">Mật khẩu mới :</label>
                                                     <div class="col-md-8">
-                                                        <input class="form-control" value="" name="mkmoi" type="password" >
+                                                        <input class="form-control" name="mkmoi" type="password" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3 control-label">Nhập lại :</label>
                                                     <div class="col-md-8">
-                                                        <input class="form-control" value="" name="nhaplaimk" type="password" >
+                                                        <input class="form-control" name="nhaplaimk" type="password" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -235,8 +235,8 @@
                                             <input type="reset" class="btn btn-default" value="Hủy Bỏ">
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

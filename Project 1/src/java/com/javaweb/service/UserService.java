@@ -62,7 +62,7 @@ public class UserService {
         try {
             tx = session.getTransaction();
             tx.begin();
-            String strQuery = "from User where iduser=" + userID;
+            String strQuery = "from User where iduser = " + userID;
             Query query = session.createQuery(strQuery);
             User user = (User) query.uniqueResult();
             tx.commit();

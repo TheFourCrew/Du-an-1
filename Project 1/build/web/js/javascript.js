@@ -582,10 +582,10 @@ $(window).ready(function () {
 
 function loadXMLNewPassword() {
     var xmlhttp;
-    var mkcu1 = document.getElementById("mkcu").value;
-     var mkcu2 = document.getElementById("mkcunhap").value;
+    var iduser = document.getElementById("iduser").value;
+     var mknhap = document.getElementById("mkcunhap").value;
 
-    var urls = "NewPassword.jsp?cu=" + mkcu1 + "&nhap=" + mkcu2;
+    var urls = "NewPassword.jsp?id=" + iduser + "&nhap=" + mknhap;
 
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();

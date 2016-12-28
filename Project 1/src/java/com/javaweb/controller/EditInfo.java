@@ -6,17 +6,16 @@
 package com.javaweb.controller;
 
 import com.javaweb.model.User;
+import com.javaweb.service.EnDeCryption;
 import com.javaweb.service.FileService;
 import com.javaweb.service.UserService;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,11 +49,12 @@ public class EditInfo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        String username = "", id = "", fullname = "", email = "", mkcu = "",
+        String username = "", id = "", fullname = "", email = "", password = "",
                 nhaplaimk = "", note = "", gender = "", idroles = "", dienthoai = "", address = "", fileName = "";
         Date birthday = new Date();
 
         boolean gt = false;
+
         HttpSession session = request.getSession();
 
         UserService ad = new UserService();
@@ -86,35 +86,33 @@ public class EditInfo extends HttpServlet {
                 if (!fi.isFormField()) {
 
                     String fieldName = fi.getFieldName();
-                    fileName = fi.getName();
-                    String contentType = fi.getContentType();
-                    boolean isInMemory = fi.isInMemory();
-                    long sizeInBytes = fi.getSize();
+                    if (!fi.getName().equals("")) {
+                        fileName = fi.getName();
+                        String contentType = fi.getContentType();
+                        boolean isInMemory = fi.isInMemory();
+                        long sizeInBytes = fi.getSize();
 
-                    fileName = FileService.ChangeFileName(fileName);
+                        fileName = FileService.ChangeFileName(fileName);
 
-                    if (fileName.lastIndexOf("\\") >= 0) {
-                        file = new File(filePath
-                                + fileName.substring(fileName.lastIndexOf("\\")));
-                    } else {
-                        file = new File(filePath + "/"
-                                + fileName.substring(fileName.lastIndexOf("\\") + 1));
+                        if (fileName.lastIndexOf("\\") >= 0) {
+                            file = new File(filePath
+                                    + fileName.substring(fileName.lastIndexOf("\\")));
+                        } else {
+                            file = new File(filePath + "/"
+                                    + fileName.substring(fileName.lastIndexOf("\\") + 1));
+                        }
+                        fi.write(file);
+                        out.println("Uploaded Filename: " + fileName + "<br>");
                     }
-                    fi.write(file);
-                    out.println("Uploaded Filename: " + fileName + "<br>");
                 }
                 if (fi.isFormField()) {
-                    if (fi.getFieldName().equalsIgnoreCase("username")) {
-                        username = fi.getString("UTF-8");
-                    } else if (fi.getFieldName().equalsIgnoreCase("fullname")) {
+                    if (fi.getFieldName().equalsIgnoreCase("fullname")) {
                         fullname = fi.getString("UTF-8");
 //                    } 
 //                    else if (fi.getFieldName().equalsIgnoreCase("email")) {
 //                        email = fi.getString("UTF-8");
-                    } else if (fi.getFieldName().equalsIgnoreCase("password")) {
-                        mkcu = fi.getString("UTF-8");
-                    } else if (fi.getFieldName().equalsIgnoreCase("repassword")) {
-                        nhaplaimk = fi.getString("UTF-8");
+                    } else if (fi.getFieldName().equalsIgnoreCase("mkmoi")) {
+                        password = fi.getString("UTF-8");
 //                    } else if (fi.getFieldName().equalsIgnoreCase("idrole")) {
 //                        idroles = fi.getString("UTF-8");
                     } else if (fi.getFieldName().equalsIgnoreCase("dienthoai")) {
@@ -123,7 +121,7 @@ public class EditInfo extends HttpServlet {
                         address = fi.getString("UTF-8");
 //                    } else if (fi.getFieldName().equalsIgnoreCase("note")) {
 //                        note = fi.getString("UTF-8");
-                    } else if (fi.getFieldName().equalsIgnoreCase("gioitinh")) {
+                    } else if (fi.getFieldName().equalsIgnoreCase("gender")) {
                         String gtt = fi.getString("UTF-8");
                         if (gtt.equals("Nam")) {
                             gt = true;
@@ -160,8 +158,12 @@ public class EditInfo extends HttpServlet {
         user.setUserPhone(dienthoai);
         user.setAddress(address);
 //        user.setNote(note);
-    
-        user.setPassword(mkcu);
+        String newpassword = password;
+        if (!newpassword.equals("")) {
+            EnDeCryption mh = new EnDeCryption("zxczxsdfsdfgsdjklh");
+            String mk = mh.encoding(password);
+            user.setPassword(mk);
+        }
 
         if (!fileName.equals("")) {
             if (user.getImage() != null) {
@@ -172,7 +174,7 @@ public class EditInfo extends HttpServlet {
                 user.setImage(fileName);
             }
         }
-        
+
         boolean rs = ad.InserUser(user);
         if (rs) {
             response.sendRedirect("infouser.jsp");
@@ -191,16 +193,16 @@ public class EditInfo extends HttpServlet {
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-/**
- * Handles the HTTP <code>GET</code> method.
- *
- * @param request servlet request
- * @param response servlet response
- * @throws ServletException if a servlet-specific error occurs
- * @throws IOException if an I/O error occurs
- */
-@Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -214,7 +216,7 @@ public class EditInfo extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -225,7 +227,7 @@ public class EditInfo extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 
