@@ -15,6 +15,7 @@
     <body>
         <%
             session.setAttribute("urlcur", request.getServletPath().substring(1));
+            session.removeAttribute("urlctsp");
         %>
         <%@include file="includes/header.jsp" %>
         <section class="container">

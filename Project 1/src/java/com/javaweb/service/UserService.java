@@ -14,154 +14,181 @@ import org.hibernate.Transaction;
  * @author Admin
  */
 public class UserService {
+
     //Hàm kiểm tra đăng nhập
-    public boolean CheckLogin(String giaTri,String password){
-        User user=GetUserByEmailOrUserName(giaTri);
-        if(user!=null){
-            if(user.getPassword().equals(password)){
+    public boolean CheckLogin(String giaTri, String password) {
+        User user = GetUserByEmailOrUserName(giaTri);
+        if (user != null) {
+            if (user.getPassword().equals(password)) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
-            
-        }else{
-            
+
+        } else {
+
             return false;
         }
     }
+
     //Hàm lấy thông tin bằng email hoặc tên đn
-    public User GetUserByEmailOrUserName(String gt){
-        Session session=HibernateUtil.getSessionFactory().openSession();
-        Transaction tx=null;
-        User user=null;
+    public User GetUserByEmailOrUserName(String gt) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        User user = null;
         try {
-            tx=session.getTransaction();
+            tx = session.getTransaction();
             tx.begin();
-            String strQuery="from User where email='"+gt+"' or username='"+gt+"'";
-            Query query=session.createQuery(strQuery);
-            user=(User)query.uniqueResult();
+            String strQuery = "from User where email= '" + gt + "' or username= '" + gt + "'";
+            Query query = session.createQuery(strQuery);
+            user = (User) query.uniqueResult();
             tx.commit();
-            
+
         } catch (Exception e) {
-            if(tx!=null){
+            if (tx != null) {
                 tx.rollback();
             }
             System.out.println(e.toString());
-        }finally{
+        } finally {
             session.close();
         }
         return user;
-        }
-    
+    }
+
     //Hàm lấy thông tin theo id
-     public User getUserByID(String userID){
-        Session session =HibernateUtil.getSessionFactory().openSession();
-        Transaction tx=null;
+    public User getUserByID(String userID) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
         try {
-            tx=session.getTransaction();
+            tx = session.getTransaction();
             tx.begin();
-            String strQuery="from User where iduser="+userID;
-            Query query=session.createQuery(strQuery);
-            User user=(User)query.uniqueResult();
+            String strQuery = "from User where iduser = " + userID;
+            Query query = session.createQuery(strQuery);
+            User user = (User) query.uniqueResult();
             tx.commit();
             return user;
         } catch (Exception e) {
-            if(tx!=null){
+            if (tx != null) {
                 tx.rollback();
             }
             System.out.println(e.toString());
-        }finally{
+        } finally {
             session.close();
         }
         return null;
     }
-     
-     //Hàm thêm hoặc cập nhật user
-     public boolean InserUser(User user){
-        Session session= HibernateUtil.getSessionFactory().openSession();
-        Transaction tx= null;
+
+    //Hàm thêm hoặc cập nhật user
+    public boolean InserUser(User user) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
         try {
-            
-            tx=session.getTransaction();
+
+            tx = session.getTransaction();
             tx.begin();
             session.saveOrUpdate(user);
             tx.commit();
             return true;
         } catch (Exception e) {
-            if(tx!=null){
+            if (tx != null) {
                 tx.rollback();
             }
             System.out.println(e.toString());
-        }finally{
+        } finally {
             session.close();
         }
         return false;
     }
-     
-     //Hàm lấy tất cả thông tin
-     public ArrayList<User>GetAllUsers(){
-        Session session =HibernateUtil.getSessionFactory().openSession();
-        Transaction tx=null;
-        ArrayList<User>listUsers=new ArrayList<User>();
+
+    //Hàm lấy tất cả thông tin
+    public ArrayList<User> GetAllUsers() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ArrayList<User> listUsers = new ArrayList<User>();
         try {
-            tx=session.getTransaction();
+            tx = session.getTransaction();
             tx.begin();
-            Query query=session.createQuery("from User");
-            listUsers=(ArrayList) query.list();
+            Query query = session.createQuery("from User");
+            listUsers = (ArrayList) query.list();
             tx.commit();
         } catch (Exception e) {
-            if(tx!=null){
+            if (tx != null) {
                 tx.rollback();
             }
             System.out.println(e.toString());
-        }finally{
+        } finally {
             session.close();
         }
         return listUsers;
     }
-     //Hàm lấy tất cả thông tin quyền
-     public ArrayList<RoleUser>GetAllRole(){
-        Session session =HibernateUtil.getSessionFactory().openSession();
-        Transaction tx=null;
-        ArrayList<RoleUser>listRole=new ArrayList<RoleUser>();
+    //Hàm lấy tất cả thông tin quyền
+
+    public ArrayList<RoleUser> GetAllRole() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ArrayList<RoleUser> listRole = new ArrayList<RoleUser>();
         try {
-            tx=session.getTransaction();
+            tx = session.getTransaction();
             tx.begin();
-            Query query=session.createQuery("from RoleUser");
-            listRole=(ArrayList) query.list();
+            Query query = session.createQuery("from RoleUser");
+            listRole = (ArrayList) query.list();
             tx.commit();
         } catch (Exception e) {
-            if(tx!=null){
+            if (tx != null) {
                 tx.rollback();
             }
             System.out.println(e.toString());
-        }finally{
+        } finally {
             session.close();
         }
         return listRole;
     }
-     
-     //Hàm xóa thông tin
-     public boolean DeleteUser(User user){
-        Session session =HibernateUtil.getSessionFactory().openSession();
-        Transaction tx=null;
+    
+    public RoleUser GetRoleById(String id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        RoleUser role = null;
         try {
-            tx=session.getTransaction();
+            tx = session.getTransaction();
+            tx.begin();
+            Query query = session.createQuery("from RoleUser where idrole_user = '"+id+"'");
+            role = (RoleUser) query.uniqueResult();
+            tx.commit();
+            return role;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+    
+
+    //Hàm xóa thông tin
+    public boolean DeleteUser(User user) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.getTransaction();
             tx.begin();
             session.delete(user);
             tx.commit();
             return true;
         } catch (Exception e) {
-            if(tx!=null){
+            if (tx != null) {
                 tx.rollback();
             }
             System.out.println(e.toString());
-        }finally{
-        session.close();
-    }
+        } finally {
+            session.close();
+        }
         return false;
-}
-     //Hàm kiểm tra tên người dùng
+    }
+    //Hàm kiểm tra tên người dùng
+
     public boolean isUserExists(String tenND) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -186,6 +213,7 @@ public class UserService {
         return result;
     }
     public int usertcount = 0;
+
     public ArrayList<User> getAllUser(int pageSize, int pageNumber) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;

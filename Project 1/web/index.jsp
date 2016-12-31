@@ -14,11 +14,14 @@
 
     </head>
     <body>
+<<<<<<< HEAD
         <%
             session.setAttribute("urlcur", request.getServletPath().substring(1));
             session.removeAttribute("urlctsp");
             session.removeAttribute("themgio");
         %>
+=======
+>>>>>>> origin/master
         <%@include file="includes/header.jsp" %>
 
         <div class="container slideNews">
@@ -158,6 +161,7 @@
             <div class="container-fluid sanpham">
                 <h3>Sản phẩm mới</h3>
                 <div class="row">
+<<<<<<< HEAD
                     <%
                     ProductServices ps = new ProductServices();
                     ArrayList<Product> aPT = null;
@@ -174,15 +178,29 @@
                                     <p>Thông số:</p>
                                     <br>
                                     User Interface Design
+=======
+                    <div class="col-md-3 dmsp text-center">
+                        <div class="in">
+                            <a href="#">
+                                <img src="images/works_10.jpg" /><br>
+                                <p>Điện thoại</p><br>
+                                <div class="txtdes"><p>Thông số:</p>
+                                    <br>
+                                    <a>User Interface Design</a>
+>>>>>>> origin/master
                                     <button href="#" type="button" class="button"><span>Đặt hàng</span></button>
                                 </div>
                             </a>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <%
                     }
                     %>
 <!--                    <div class="col-md-3 dmsp text-center">
+=======
+                    <div class="col-md-3 dmsp text-center">
+>>>>>>> origin/master
                         <div class="in">
                             <a href="#">
                                 <img src="images/works_10.jpg" /><br>
@@ -220,7 +238,11 @@
                                 </div>
                             </a>
                         </div>
+<<<<<<< HEAD
                     </div>-->
+=======
+                    </div>
+>>>>>>> origin/master
                 </div>
             </div>
             <div class="container-fluid sanpham">

@@ -1,5 +1,5 @@
 package com.javaweb.model;
-// Generated Dec 14, 2016 10:55:21 PM by Hibernate Tools 4.3.1
+// Generated Dec 22, 2016 4:28:13 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -23,6 +23,7 @@ public class User  implements java.io.Serializable {
      private String image;
      private Boolean status;
      private String note;
+     private Date createdDate;
 
     public User() {
     }
@@ -37,7 +38,7 @@ public class User  implements java.io.Serializable {
         this.email = email;
         this.birthday = birthday;
     }
-    public User(String username, String password, int idroleUser, String fullname, boolean gender, String userPhone, String address, String email, Date birthday, String image, Boolean status, String note) {
+    public User(String username, String password, int idroleUser, String fullname, boolean gender, String userPhone, String address, String email, Date birthday, String image, Boolean status, String note, Date createdDate) {
        this.username = username;
        this.password = password;
        this.idroleUser = idroleUser;
@@ -50,6 +51,7 @@ public class User  implements java.io.Serializable {
        this.image = image;
        this.status = status;
        this.note = note;
+       this.createdDate = createdDate;
     }
    
     public Integer getIduser() {
@@ -142,6 +144,13 @@ public class User  implements java.io.Serializable {
     
     public void setNote(String note) {
         this.note = note;
+    }
+    public Date getCreatedDate() {
+        return this.createdDate;
+    }
+    
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
 

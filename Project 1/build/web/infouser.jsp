@@ -4,6 +4,8 @@
     Author     : Computer
 --%>
 
+<%@page import="com.javaweb.service.EnDeCryption"%>
+<%@page import="com.javaweb.model.RoleUser"%>
 <%@page import="com.javaweb.model.User"%>
 <%@page import="com.javaweb.service.UserService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,18 +30,21 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-                                <a href="edit.html" >Edit Profile</a>
+                                <a href="" >Edit Profile</a>
 
-                                <a href="edit.html" >Logout</a>
+                                <a href="logout.jsp" >Logout</a>
                                 <br>
                                 <p class=" text-info">May 05,2014,03:00 pm </p>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
 
-                                <% UserService us = new UserService();
+                                <%                                    UserService us = new UserService();
                                     User user = null;
                                     String tendn = session.getAttribute("tendn") + "";
                                     user = us.GetUserByEmailOrUserName(tendn);
+                                    String idRole = user.getIdroleUser() + "";
+                                    RoleUser role = null;
+                                    role = us.GetRoleById(idRole);
 
                                 %>
                                 <div class="panel panel-info">
@@ -49,26 +54,12 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-3 col-lg-3 " align="center"> <img alt="<%=user.getFullname()%>" src="uploads/<%=user.getImage()%>" class="img-circle img-responsive"> </div>
-
-                                            <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-                                              <dl>
-                                                <dt>DEPARTMENT:</dt>
-                                                <dd>Administrator</dd>
-                                                <dt>HIRE DATE</dt>
-                                                <dd>11/12/2013</dd>
-                                                <dt>DATE OF BIRTH</dt>
-                                                   <dd>11/12/2013</dd>
-                                                <dt>GENDER</dt>
-                                                <dd>Male</dd>
-                                              </dl>
-                                            </div>-->
                                             <div class=" col-md-9 col-lg-9 "> 
                                                 <table class="table table-user-information">
                                                     <tbody>
-
                                                         <tr>
                                                             <td>Quyền :</td>
-
+                                                            <td><%=role.getRoleName()%></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Ngày Tạo :</td>
@@ -107,14 +98,11 @@
                                                         <tr>
                                                             <td>Số Điện Thoại :</td>
                                                             <td><%=user.getUserPhone()%></td>
-
                                                         </tr>
-
                                                     </tbody>
                                                 </table>
 
-                                                <a href="#" class="btn btn-primary">My Sales Performance</a>
-                                                <a href="#" class="btn btn-primary">Team Sales Performance</a>
+
                                             </div>
                                         </div>
                                     </div>
@@ -141,39 +129,33 @@
                     <div class="container">
                         <hr>
                         <div class="row">
-                            <!-- left column -->
-                            <div class="col-md-3">
-                                <div class="text-center">
-                                   
-                                    <h5>Tải lên ảnh khác </h5>
-                                    <%
-                                        if (user.getImage() != null) {
-                                            String folderupload = getServletContext().getInitParameter("file-upload");
-                                    %>
-                                    <img class="img-thumbnail" src="<%=folderupload%><%=user.getImage()%>" />
-                                    <%
-                                        }
-                                    %>       
-                                    <input type="file"  name="file" size="50" onchange="loadFile(event)" class="form-control">
-                                    <img id="output" src="">
-                                    <script type="text/javascript">
-                                        var loadFile = function (event) {
-                                            var ouput = document.getElementById('ouput');
-                                            output.src = URL.createObjectURL(event.target.files[0]);
-                                        }
+                            <form action="EditInfo" method="post" onsubmit="return validatePassword()" enctype="multipart/form-data" id="editinfo"  name="fPWD">
+                                <!-- left column -->
+                                <div class="col-md-3">
+                                    <div class="text-center">
 
-                                    </script>
+                                        <h5>Tải lên ảnh khác </h5>
+                                        <%
+                                            if (user.getImage() != null) {
+                                                String folderupload = getServletContext().getInitParameter("file-upload");
+                                        %>
+                                        <img class="img-thumbnail" id="outputeditinfo" src="<%=folderupload%><%=user.getImage()%>" />
+                                        <%
+                                            }
+                                        %>       
+                                        <input type="file"  name="anhu" size="50" onchange="loadFile(event, 'editinfo')" class="form-control">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-9 personal-info">
+                                <div class="col-md-9 personal-info">
 
-                                <h3 style="text-align: center;color: #007bb6;">Thông Tin Cá Nhân</h3>
-                                </br>
-                                <form action="E" method="post" id="editinfo" >
+                                    <h3 style="text-align: center;color: #007bb6;">Thông Tin Cá Nhân</h3>
+                                    </br>
+
+                                    <input value="<%=user.getIduser()%>" name="iduser" id="iduser" type="hidden" >
                                     <div class="form-group">
                                         <label class="col-lg-3 control-label">Họ và Tên:</label>
                                         <div class="col-lg-8">
-                                            <input class="form-control" value="<%=user.getFullname()%>" name="username" type="text" >
+                                            <input class="form-control" value="<%=user.getFullname()%>" name="fullname" type="text" >
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -195,19 +177,57 @@
                                             <input class="form-control" value="<%=user.getUserPhone()%>" name="dienthoai" type="number" >
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Giới Tính:</label>
+                                        <div class="col-md-8">
+                                            <%
+                                            if(user.isGender()){
+                                            %>
+                                            <input type="radio" name="gender" value="Nam" checked="checked" />Nam
+                                            <input type="radio" name="gender" value="Nữ"/>Nữ
+                                            <%
+                                            }else{
+                                            %>
+                                            <input type="radio" name="gender" value="Nam"/>Nam
+                                            <input type="radio" name="gender" value="Nữ" checked="checked" />Nữ
+                                            <%
+                                            }
+                                            %>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Mật khẩu :</label>
                                         <div class="col-md-8">
-                                            <input class="form-control" value="<%=user.getPassword()%>" name="password" type="password" >
+                                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#doiMk">Đổi Mật Khẩu</button>
+                                            <div id="doiMk" class="collapse">
+                                                <div class="form-group">
+
+                                                    <label class="col-md-3 control-label">Mật khẩu cũ :</label>
+
+                                                    <div class="col-md-8">
+                                                        <input class="form-control" onchange="loadXMLNewPassword()" name="mkcunhap" type="password" id="mkcunhap" >
+                                                        <span id="errPassword"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Mật khẩu mới :</label>
+                                                    <div class="col-md-8">
+                                                        <input class="form-control" name="mkmoi" type="password" >
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Nhập lại :</label>
+                                                    <div class="col-md-8">
+                                                        <input class="form-control" name="nhaplaimk" type="password" >
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    <br/>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">Nhập Lại Mật khẩu :</label>
-                                        <div class="col-md-8">
-                                            <input class="form-control" value="<%=user.getPassword()%>" name="repassword" type="password" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
+                                        <br/>
                                         <label class="col-md-3 control-label"></label>
                                         <div class="col-md-8">
                                             <input type="submit" class="btn btn-primary" value="Cập Nhập">
@@ -215,9 +235,8 @@
                                             <input type="reset" class="btn btn-default" value="Hủy Bỏ">
                                         </div>
                                     </div>
-                                </form>
-
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
