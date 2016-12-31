@@ -14,14 +14,11 @@
 
     </head>
     <body>
-<<<<<<< HEAD
         <%
             session.setAttribute("urlcur", request.getServletPath().substring(1));
             session.removeAttribute("urlctsp");
             session.removeAttribute("themgio");
         %>
-=======
->>>>>>> origin/master
         <%@include file="includes/header.jsp" %>
 
         <div class="container slideNews">
@@ -161,88 +158,30 @@
             <div class="container-fluid sanpham">
                 <h3>Sản phẩm mới</h3>
                 <div class="row">
-<<<<<<< HEAD
-                    <%
-                    ProductServices ps = new ProductServices();
-                    ArrayList<Product> aPT = null;
-                    aPT = ps.getAll();
-                    for(int i=0; i < 4;i++){
-                        Product pt = aPT.get(i);
+                    <%                        ProductServices ps = new ProductServices();
+                        ArrayList<Product> aPT = null;
+                        aPT = ps.getAll();
+                        for (int i = 0; i < 4; i++) {
+                            Product pt = aPT.get(i);
                     %>
                     <div class="col-md-3 dmsp text-center">
                         <div class="in">
-                            <a href="ChiTietSanPham.jsp?id=<%=pt.getIdproduct() %>">
+                            <a href="ChiTietSanPham.jsp?id=<%=pt.getIdproduct()%>">
                                 <img src="uploads/<%=pt.getProductImage()%>" />
-                                <p><%=pt.getProductName() %></p><br>
+                                <p><%=pt.getProductName()%></p><br>
                                 <div class="txtdes">
                                     <p>Thông số:</p>
                                     <br>
                                     User Interface Design
-=======
-                    <div class="col-md-3 dmsp text-center">
-                        <div class="in">
-                            <a href="#">
-                                <img src="images/works_10.jpg" /><br>
-                                <p>Điện thoại</p><br>
-                                <div class="txtdes"><p>Thông số:</p>
-                                    <br>
-                                    <a>User Interface Design</a>
->>>>>>> origin/master
+
                                     <button href="#" type="button" class="button"><span>Đặt hàng</span></button>
                                 </div>
                             </a>
                         </div>
                     </div>
-<<<<<<< HEAD
                     <%
-                    }
+                        }
                     %>
-<!--                    <div class="col-md-3 dmsp text-center">
-=======
-                    <div class="col-md-3 dmsp text-center">
->>>>>>> origin/master
-                        <div class="in">
-                            <a href="#">
-                                <img src="images/works_10.jpg" /><br>
-                                <p>Điện thoại</p><br>
-                                <div class="txtdes"><p>Thông số:</p>
-                                    <br>
-                                    <a>User Interface Design</a>
-                                    <button href="#" type="button" class="button"><span>Đặt hàng</span></button>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 dmsp text-center">
-                        <div class="in">
-                            <a href="#">
-                                <img src="images/works_10.jpg" /><br>
-                                <p>Điện thoại</p><br>
-                                <div class="txtdes"><p>Thông số:</p>
-                                    <br>
-                                    <a>User Interface Design</a>
-                                    <button href="#" type="button" class="button"><span>Đặt hàng</span></button>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 dmsp text-center">
-                        <div class="in">
-                            <a href="#">
-                                <img src="images/works_10.jpg" /><br>
-                                <p>Điện thoại</p><br>
-                                <div class="txtdes"><p>Thông số:</p>
-                                    <br>
-                                    <a>User Interface Design</a>
-                                    <button href="#" type="button" class="button"><span>Đặt hàng</span></button>
-                                </div>
-                            </a>
-                        </div>
-<<<<<<< HEAD
-                    </div>-->
-=======
-                    </div>
->>>>>>> origin/master
                 </div>
             </div>
             <div class="container-fluid sanpham">
@@ -302,9 +241,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
         <%@include file="includes/floatbox.jsp" %>
-    <%@include file="includes/footer.jsp" %>
-</body>
+        <%@include file="includes/footer.jsp" %>
+    </body>
 </html>

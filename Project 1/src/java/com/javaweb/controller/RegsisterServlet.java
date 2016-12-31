@@ -74,7 +74,7 @@ public class RegsisterServlet extends HttpServlet {
         userservice.InserUser(user);
         session.setAttribute("tendn", username);
 
-        response.sendRedirect("index.jsp");
+        response.sendRedirect(session.getAttribute("urlcur")+"");
 
 //        try (PrintWriter out = response.getWriter()) {
 //            /* TODO output your page here. You may use following sample code. */

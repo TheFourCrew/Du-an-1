@@ -55,13 +55,13 @@ $(window).ready(function () {
             'prod-cpu': "required",
             'prod-ram': "required",
             'prod-resolution': "required",
-            'prod-size':{
-                required:true,
-                number:true
+            'prod-size': {
+                required: true,
+                number: true
             },
             'prod-weight': {
-                required:true,
-                number:true
+                required: true,
+                number: true
             },
             'prod-os': "required",
             'prod-thumbnail': {
@@ -89,13 +89,13 @@ $(window).ready(function () {
             'prod-cpu': "Vui lòng nhập CPU.",
             'prod-ram': "Vui lòng nhập bộ nhớ trong.",
             'prod-resolution': "Vui lòng nhập độ phân giải.",
-            'prod-size':{
-                required:"Vui lòng nhập kích thước màn hình.",
-                number:"Chỉ nhập số."
+            'prod-size': {
+                required: "Vui lòng nhập kích thước màn hình.",
+                number: "Chỉ nhập số."
             },
             'prod-weight': {
                 required: "Vui lòng nhập trọng lượng.",
-                number:"Chỉ nhập số."
+                number: "Chỉ nhập số."
             },
             'prod-os': "Vui lòng nhập hệ điều hành.",
             'prod-thumbnail': {
@@ -130,13 +130,13 @@ $(window).ready(function () {
             'prod-cpu': "required",
             'prod-ram': "required",
             'prod-resolution': "required",
-            'prod-size':{
-                required:true,
-                number:true
+            'prod-size': {
+                required: true,
+                number: true
             },
             'prod-weight': {
-                required:true,
-                number:true
+                required: true,
+                number: true
             },
             'prod-os': "required",
             'prod-thumbnail': {
@@ -163,13 +163,13 @@ $(window).ready(function () {
             'prod-cpu': "Vui lòng nhập CPU.",
             'prod-ram': "Vui lòng nhập bộ nhớ trong.",
             'prod-resolution': "Vui lòng nhập độ phân giải.",
-            'prod-size':{
-                required:"Vui lòng nhập kích thước màn hình.",
-                number:"Chỉ nhập số."
+            'prod-size': {
+                required: "Vui lòng nhập kích thước màn hình.",
+                number: "Chỉ nhập số."
             },
             'prod-weight': {
                 required: "Vui lòng nhập trọng lượng.",
-                number:"Chỉ nhập số."
+                number: "Chỉ nhập số."
             },
             'prod-os': "Vui lòng nhập hệ điều hành.",
             'prod-thumbnail': {
@@ -193,7 +193,7 @@ $(window).ready(function () {
             'cMessage': {
                 required: true,
                 minlength: 20,
-                maxlength:300
+                maxlength: 300
             }
         },
         messages: {
@@ -206,7 +206,7 @@ $(window).ready(function () {
             'cMessage': {
                 required: "Vui lòng nhập lời nhắn.",
                 minlength: "Vui lòng nhập ít nhất 20 kí tự.",
-                maxlength:"Nhiều nhất 300 kí tự."
+                maxlength: "Nhiều nhất 300 kí tự."
             }
         }
     });
@@ -354,39 +354,39 @@ $(window).ready(function () {
         onchange: true,
         rules: {
             'username': "required",
-            'email':{
-                required:true,
-                email:true
+            'email': {
+                required: true,
+                email: true
             },
             'phonenumber': {
                 required: true,
                 number: true,
-                minlength:10,
-                maxlength:11
+                minlength: 10,
+                maxlength: 11
             },
             'address': {
                 required: true,
-                maxlength:150
+                maxlength: 150
             },
-            'city':"required"
+            'city': "required"
         },
         messages: {
             'username': "Vui lòng nhập họ tên người nhận.",
-            'email':{
-                required:"Vui lòng nhập email.",
-                email:"Email không hợp lệ."
+            'email': {
+                required: "Vui lòng nhập email.",
+                email: "Email không hợp lệ."
             },
             'phonenumber': {
                 required: "Vui lòng nhập số điện thoại.",
-                number:"Số điện thoại không có chữ.",
-                minlength:"Giới hạn 10 đến 11 kí tự.",
-                maxlength:"Giới hạn 10 đến 11 kí tự."
+                number: "Số điện thoại không có chữ.",
+                minlength: "Giới hạn 10 đến 11 kí tự.",
+                maxlength: "Giới hạn 10 đến 11 kí tự."
             },
             'address': {
                 required: "Vui lòng nhập lời nhắn.",
                 maxlength: "Nhiều nhất là 150 kí tự"
             },
-            'city':"Vui lòng nhập thành phố."
+            'city': "Vui lòng nhập thành phố."
         }
     });
 });
@@ -404,7 +404,7 @@ $(window).ready(function () {
             'cMessage': {
                 required: true,
                 minlength: 20,
-                maxlength:300
+                maxlength: 300
             }
         },
         messages: {
@@ -416,7 +416,7 @@ $(window).ready(function () {
             'cMessage': {
                 required: "Vui lòng nhập bình luận.",
                 minlength: "Vui lòng nhập ít nhất 20 kí tự.",
-                maxlength:"Nhiều nhất 300 kí tự."
+                maxlength: "Nhiều nhất 300 kí tự."
             }
         }
     });
@@ -434,7 +434,7 @@ $(window).ready(function () {
             },
             'cMessage': {
                 required: true,
-                rangelength:[20,300]
+                rangelength: [20, 300]
             }
         },
         messages: {
@@ -445,7 +445,7 @@ $(window).ready(function () {
             },
             'cMessage': {
                 required: "Vui lòng nhập đánh giá.",
-                rangelength:"Vui lòng nhập từ 20 đến 300 kí tự."
+                rangelength: "Vui lòng nhập từ 20 đến 300 kí tự."
             }
         }
     });
@@ -462,9 +462,6 @@ $(window).ready(function () {
             'c-name': "Vui lòng nhập tên loại."
         }
     });
-<<<<<<< HEAD
-});
-=======
 });
 
 //Kiểm tra đăng ký 
@@ -553,7 +550,7 @@ $(window).ready(function () {
                 number: true,
                 minlength: 10,
                 maxlength: 11
-           }
+            }
         },
         messages: {
             'username': {
@@ -586,7 +583,7 @@ $(window).ready(function () {
 function loadXMLNewPassword() {
     var xmlhttp;
     var iduser = document.getElementById("iduser").value;
-     var mknhap = document.getElementById("mkcunhap").value;
+    var mknhap = document.getElementById("mkcunhap").value;
 
     var urls = "NewPassword.jsp?id=" + iduser + "&nhap=" + mknhap;
 
@@ -619,4 +616,3 @@ function validatePassword() {
 
     }
 }
->>>>>>> origin/master

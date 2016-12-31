@@ -42,15 +42,11 @@ public class LoginServlet extends HttpServlet {
         UserService userservice = new UserService();
 //        EnDeCryption mh=new EnDeCryption("asdasdasda");
 //        String mk=mh.encoding(password);
-<<<<<<< HEAD
 
-        boolean login = userservice.CheckLogin(email, password);
-=======
         EnDeCryption mh = new EnDeCryption("zxczxsdfsdfgsdjklh");
         String mk = mh.encoding(password);
         
         boolean login = userservice.CheckLogin(email, mk);
->>>>>>> origin/master
         HttpSession session = request.getSession();
         session.removeAttribute("errormsg");
         if (login) {
@@ -60,11 +56,7 @@ public class LoginServlet extends HttpServlet {
             session.removeAttribute("iduser");
             session.removeAttribute("avatar");
             session.removeAttribute("cmtname");
-<<<<<<< HEAD
-            
-=======
 
->>>>>>> origin/master
             if (session.getAttribute("email") != null) {
                 String em = (String) session.getAttribute("email");
                 if (em.equals(email)) {
@@ -77,12 +69,9 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("idrole_user", user.getIdroleUser());
             session.setAttribute("fullname", user.getFullname());
             session.setAttribute("avatar", user.getImage());
-<<<<<<< HEAD
 
-=======
             session.setAttribute("tendn", user.getUsername());
             
->>>>>>> origin/master
 //            String url = "/index.jsp";
 //            getServletContext().getRequestDispatcher(url).forward(request, response);
             response.sendRedirect(session.getAttribute("urlcur") + "");
