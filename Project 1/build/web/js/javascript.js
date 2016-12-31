@@ -1,16 +1,3 @@
-$(window).bind('scroll', function () {
-    if ($(window).scrollTop() > 169) {
-        $('.menu-bar').addClass('fixed');
-    } else {
-        $('.menu-bar').removeClass('fixed');
-    }
-});
-
-var loadFile = function (event, idthem) {
-    var output = document.getElementById('output' + idthem + '');
-    output.src = URL.createObjectURL(event.target.files[0]);
-};
-
 var loadFile = function (event, idthem) {
     var output = document.getElementById('output' + idthem + '');
     output.style.width = "200px";
