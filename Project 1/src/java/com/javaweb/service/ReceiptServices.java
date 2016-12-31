@@ -204,4 +204,29 @@ public class ReceiptServices {
         }
         return art;
     }
+    
+    
+    public ArrayList<Object[]> getTopSale() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ArrayList<Object[]> aRDL = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            String strQuery = "select sum(rd.quantity) as tong, rd.idProduct from ReceiptDetail rd group by rd.idProduct order by tong desc";
+            Query query = session.createQuery(strQuery);
+            query = query.setFirstResult(0);
+            query.setMaxResults(1);
+            aRDL = (ArrayList<Object[]>) query.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return aRDL;
+    }
 }

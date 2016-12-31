@@ -39,12 +39,11 @@ label em{
     background-color: white;
 }
 
-.in{
+.dmsp .in{
     position:relative;
 }
 .txtdes{
     visibility:hidden;
-    color:white;
     width:100%;
     height:100%;
     margin:0;
@@ -55,6 +54,7 @@ label em{
     position: absolute;
     top: 0;
     opacity:0;
+    transition: all 1s ease-in-out;
 }
 .txtdes p{
     margin-top:5%;
@@ -63,15 +63,15 @@ label em{
     font-weight:bold;
 }
 .in:hover .txtdes{
-    
     visibility: visible;
     opacity:1;
+    
 }
-.in .button {z-index: 9999}
+.dmsp .in .button {z-index: 9999}
 /*Đừng xóa nha anh Tư*/
 /*button*/
 
-button, .btn-default,.btn{
+.dmsp .btn-default, .dmsp .btn{
     background-color: #6fb048;
     color:white;
 }
@@ -212,7 +212,7 @@ button, .btn-default,.btn{
 }
 
 .sanpham .dmsp {
-    height:350px;
+    /*height:350px;*/
     padding: 10px 20px ;
 }
 .dmsp a img{

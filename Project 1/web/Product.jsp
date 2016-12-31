@@ -1,3 +1,6 @@
+<%@page import="java.lang.Object"%>
+<%@page import="com.javaweb.service.ReceiptServices"%>
+<%@page import="com.javaweb.model.ReceiptDetail"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="com.javaweb.model.Product"%>
 <%@page import="java.util.ArrayList"%>
@@ -25,9 +28,6 @@
         <%@include file="includes/header.jsp" %>
         <section class="container-fluid">
             <div class="row ">
-                <!--                <div class="col-md-12 col-sm-6 danhmucsp ">
-                
-                                </div>-->
                 <form action="Product.jsp" method="get">
                     <div  class="col-md-3 trai col-sm-3 ">
 
@@ -65,19 +65,35 @@
                             <a href="#"><img style="width:300px; height:300px;margin: 0 auto;" class="img-responsive" src="img/tải xuống.jpg" alt="" /></a>
                         </div>
                         <div class="spnoibat row text-center">
-                            <a href="#"><img style="width:240px; height:250px" class="img-responsive" src="img/dell.png" alt=""/>
-                                <p class="spbc" style="color: red;padding-top: 25px">Sản phẩm bán chạy</p></a>
-
+                            <%                    
+                                DecimalFormat formatter = new DecimalFormat("###,###,###");
+                                ProductServices ps = new ProductServices();
+                                ReceiptServices rs = new ReceiptServices();
+                                Product topSale = null;
+                                ArrayList<Object[]> aTopSale = null;
+                                aTopSale = rs.getTopSale();
+                                Object[] eTopSale = aTopSale.get(0);
+                                topSale = ps.GetById(eTopSale[1] + "");
+                            %>
+                            <p class="spbc" style="color: red;padding-top: 25px">Sản phẩm bán chạy</p>
+                            <a href="ChiTietSanPham.jsp?id=<%=eTopSale[1] %>">
+                                <img style="width:240px; height:250px" class="img-responsive" src="uploads/<%=topSale.getProductImage()%>" alt="<%=topSale.getProductName()%>"/>
+                            </a>
+                            <h3><%=topSale.getProductName()%></h3>
+                            <h4><%=formatter.format(topSale.getPricePerUnit())+" VNĐ"%></h4>
                         </div>
                         <div class="spnoibat row text-center">
-                            <a href="#"><img style="width:240px; height:250px" class="img-responsive" src="img/dell.png" alt=""/>
-                                <p class="spbc" style="color: red;padding-top: 25px">Sản phẩm nổi bật</p></a>
-
+                            <p class="spbc" style="color: red;padding-top: 25px">Sản phẩm nổi bật</p>
+                            <a href="ChiTietSanPham.jsp?id=">
+                                <img style="width:240px; height:250px" class="img-responsive" src="img/dell.png" alt=""/>
+                            </a>
+                            <h3><%=topSale.getProductName()%></h3>
+                            <h4><%=formatter.format(topSale.getPricePerUnit())+" VNĐ"%></h4>
                         </div>
                     </div>
                 </form> 
-                <div class="col-md-9 phai col-sm-3 text-center">
-                    <%                        
+                <div class="col-md-9  text-center">
+                    <%
                         if (session.getAttribute("themgio") != null) {
                             if (session.getAttribute("themgio").equals("done")) {
                     %>
@@ -102,7 +118,7 @@
                     <%                        int pageSize = 9;
                         int pageNumber = 1;
                         String url = "Product.jsp";
-                        ProductServices ps = new ProductServices();
+
                         ArrayList<Product> listProduct = null;
                         if (request.getParameter("pagenumber") != null) {
                             session.setAttribute("pagenumber", request.getParameter("pagenumber"));
@@ -154,13 +170,13 @@
                         String nextPage = (pageCount > pageNumber ? (pageNumber + 1) : pageNumber) + "";
                         String prevPage = (pageNumber <= 1 ? 1 : pageNumber - 1) + "";
                         Product pt = null;
-                        DecimalFormat formatter = new DecimalFormat("###,###,###");
+                        
                         for (int i = 0; i < listProduct.size(); i++) {
                             pt = listProduct.get(i);
                             double giaBan = pt.getPricePerUnit();
                             double giaGiam = pt.getDiscountPrice();
                     %>
-                    <div class="col-md-4 sp sty">
+                    <div class="col-md-4 sp">
                         <a href="ChiTietSanPham.jsp?id=<%=pt.getIdproduct()%>">
                             <img style="width:240px; height:250px;" class="img-responsive" src="uploads/<%=pt.getProductImage()%>" alt=""/>
                             <span style="font-weight: 600;font-size: 20px;color: #008ae2;"><%=pt.getProductName()%></span>
@@ -185,7 +201,7 @@
                             if (pt.getProductQuantity() >= 1) {
                         %>
                         <a href="addtocart.jsp?idsanpham=<%=pt.getIdproduct()%>&tenSP=<%=pt.getProductName()%>&kho=<%=pt.getProductQuantity()%>">
-                            <button  type="button" class="btn btn-success active center-block">Thêm Vào Giỏ</button>
+                            <button  type="button" class="btn btn-success">Thêm Vào Giỏ</button>
                         </a>
                         <%
                         } else {

@@ -14,6 +14,11 @@
 
     </head>
     <body>
+        <%
+            session.setAttribute("urlcur", request.getServletPath().substring(1));
+            session.removeAttribute("urlctsp");
+            session.removeAttribute("themgio");
+        %>
         <%@include file="includes/header.jsp" %>
 
         <div class="container slideNews">
@@ -153,7 +158,31 @@
             <div class="container-fluid sanpham">
                 <h3>Sản phẩm mới</h3>
                 <div class="row">
+                    <%
+                    ProductServices ps = new ProductServices();
+                    ArrayList<Product> aPT = null;
+                    aPT = ps.getAll();
+                    for(int i=0; i < 4;i++){
+                        Product pt = aPT.get(i);
+                    %>
                     <div class="col-md-3 dmsp text-center">
+                        <div class="in">
+                            <a href="ChiTietSanPham.jsp?id=<%=pt.getIdproduct() %>">
+                                <img src="uploads/<%=pt.getProductImage()%>" />
+                                <p><%=pt.getProductName() %></p><br>
+                                <div class="txtdes">
+                                    <p>Thông số:</p>
+                                    <br>
+                                    User Interface Design
+                                    <button href="#" type="button" class="button"><span>Đặt hàng</span></button>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <%
+                    }
+                    %>
+<!--                    <div class="col-md-3 dmsp text-center">
                         <div class="in">
                             <a href="#">
                                 <img src="images/works_10.jpg" /><br>
@@ -191,20 +220,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div>
-                    <div class="col-md-3 dmsp text-center">
-                        <div class="in">
-                            <a href="#">
-                                <img src="images/works_10.jpg" /><br>
-                                <p>Điện thoại</p><br>
-                                <div class="txtdes"><p>Thông số:</p>
-                                    <br>
-                                    <a>User Interface Design</a>
-                                    <button href="#" type="button" class="button"><span>Đặt hàng</span></button>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="container-fluid sanpham">
@@ -266,7 +282,7 @@
             </div>
         </div>
     </section>
-    <%@include file="includes/floatbtn.jsp" %>
+        <%@include file="includes/floatbox.jsp" %>
     <%@include file="includes/footer.jsp" %>
 </body>
 </html>

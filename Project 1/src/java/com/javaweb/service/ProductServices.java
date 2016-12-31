@@ -45,7 +45,7 @@ public class ProductServices {
         try {
             tx = session.getTransaction();
             tx.begin();
-            String strQuery = "from Product";
+            String strQuery = "from Product order by created_date desc";
             Query query = session.createQuery(strQuery);
             listProduct = (ArrayList<Product>) query.list();
             tx.commit();
@@ -150,9 +150,9 @@ public class ProductServices {
         }
         return false;
     }
-    
+
     //Hàm lấy dữ liệu thông số sản phẩm theo mã sản phẩm
-    public ProductParameters getAllParametersByIdPt (String idPT){
+    public ProductParameters getAllParametersByIdPt(String idPT) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         ProductParameters parameters = null;
@@ -174,7 +174,6 @@ public class ProductServices {
         }
         return null;
     }
-
 
     //Hàm kiểm tra tên sản phẩm
     public boolean isProductExists(String tenSP) {
@@ -221,16 +220,16 @@ public class ProductServices {
         }
         return false;
     }
-    
+
     //Lấy tất cả dữ liệu theo idsp
-    public ArrayList<Rating> GetDataByIdSP(String idSP){
+    public ArrayList<Rating> GetDataByIdSP(String idSP) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         ArrayList<Rating> ratings = null;
         try {
             tx = session.getTransaction();
             tx.begin();
-            String strQuery = "from Rating where id_product = "+idSP;
+            String strQuery = "from Rating where id_product = " + idSP;
             Query query = session.createQuery(strQuery);
             ratings = (ArrayList<Rating>) query.list();
             tx.commit();
@@ -245,34 +244,34 @@ public class ProductServices {
         }
         return ratings;
     }
-    
+
     //Hàm sản phẩm liên quan
-    public ArrayList<Product> getRalatedProducts(String idLoai){
+    public ArrayList<Product> getRalatedProducts(String idLoai) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         ArrayList<Product> aPT = null;
         try {
             tx = session.getTransaction();
             tx.begin();
-            
-            String strQuery = "from Product where idproduct_category = "+idLoai;
+
+            String strQuery = "from Product where idproduct_category = " + idLoai;
             Query query = session.createQuery(strQuery);
             query = query.setFirstResult(0);
             query.setMaxResults(5);
             aPT = (ArrayList<Product>) query.list();
-            
+
             tx.commit();
         } catch (Exception e) {
-            if(tx != null){
+            if (tx != null) {
                 tx.rollback();
             }
             System.out.println(e.toString());
-        }finally{
+        } finally {
             session.close();
         }
         return aPT;
     }
-    
+
     //Hàm phân trang dữ liệu
     public int productcount = 0;
 
@@ -304,26 +303,28 @@ public class ProductServices {
 
         return listProducts;
     }
-    public ArrayList<Product> searchproduct(String gt ,double gia1 ,double gia2){
-        Session session=HibernateUtil.getSessionFactory().openSession();
-        Transaction tx=null;
+
+    //Tìm kiếm sản phẩm
+    public ArrayList<Product> searchproduct(String gt, double gia1, double gia2) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
         ArrayList listProducts = new ArrayList<Product>();
         try {
-            tx=session.getTransaction();
+            tx = session.getTransaction();
             tx.begin();
-            
-             Query query=session.createQuery("from Product where product_name like '%"+gt+"%' and price_per_unit  between '"+gia1+"' and '"+gia2+"' ");
-            listProducts=(ArrayList) query.list();
+
+            Query query = session.createQuery("from Product where product_name like '%" + gt + "%' and price_per_unit  between '" + gia1 + "' and '" + gia2 + "' ");
+            listProducts = (ArrayList) query.list();
             tx.commit();
-            
+
         } catch (Exception e) {
-            if(tx!=null){
+            if (tx != null) {
                 tx.rollback();
             }
             System.out.println(e.toString());
-        }finally{
+        } finally {
             session.close();
         }
         return listProducts;
-        }
+    }
 }

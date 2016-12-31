@@ -22,34 +22,17 @@ a, a:hover, a:active, a:focus{
 }
 .trai{
 
-    height: 1245px;
     border: 1px solid #fff;;
 
 }
-.phai{
-    background-color: #fff;
-    height:1245px;
-}
 .theohang{
-    height: 150px;
     background-color: #f5f5f5;
 }
 .theogia{
-    height: 150px;
     background-color: #f5f5f5;
 }
-.quangcao{
-    height: 300px;
-
-
-
-}
 .sp{
-
-    width: 300px;
-    height: 400px;
-
-
+    margin-bottom: 20px;
 }
 .sp img{
     -webkit-transition-duration: 0.5s; 
@@ -79,34 +62,8 @@ a, a:hover, a:active, a:focus{
 
 
 .spnoibat{
-    height: 300px;
-    width: 304px;
     border-bottom: 1px solid red;
     margin: 0 auto;
-}
-.thongsokythuat{
-    width: 450px;
-    height: 200px;
-    background-color: #f5f5f5;
-    margin:0 auto;   
-    border: 1px solid #e7e7e7;
-
-}
-.thongsokythuattrai{
-    width: 224px;
-    height: 200px;
-    padding-top: 20px;
-    float: left;
-    border-right: 1px solid #fff;
-    padding-left: 4px;
-}
-
-.thongsokythuatphai{
-    width: 223px;
-    height: 200px;
-    padding-top: 20px;
-    float: left;
-    padding-left: 3px;
 }
 .splienquan{
     margin-top: 20px;
@@ -186,7 +143,4 @@ label#rememberMe-error{
     /*margin-top: 20px;*/
     margin-bottom: 20px;
 }
-.sty{
-    margin-right: 54px;
-   
-}
+
