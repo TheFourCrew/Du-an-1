@@ -258,6 +258,17 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="ArticlesManager.jsp"><i class="fa fa-laptop fa-fw"></i>Bài viết<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="ArticlesManager.jsp">Quản lý bài viết</a>
+                            </li>
+                            <li>
+                                <a href="AddNewArticle.jsp">Viết bài mới</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="UserManager.jsp"><i class="fa fa-edit fa-fw"></i> Quản lý người dùng</a>
                     </li>
                     <li>
