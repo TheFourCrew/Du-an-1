@@ -1,20 +1,9 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Nov 19, 2016, 11:31:45 AM
-    Author     : MinhNguyen
-*/
-label em{
-    color:red
-}
-#field{margin-left:.5em;float:left;}#field,label{float:left;font-family:Arial,Helvetica,sans-serif;font-size:small;}br{clear:both;}input{border:1px solid black;margin-bottom:.5em;}input.error{border:1px solid red;}label.error{background:url('images/unchecked.gif') no-repeat;padding-left:16px;margin-left:.3em;}
-.error{
+@@ -15,4 +15,216 @@ label em{
     color: red;
     font-style: italic;
 }
+/*Đừng xóa nha anh Tư*/
+\ No newline at end of file
 
 
 .tieude{
@@ -39,11 +28,12 @@ label em{
     background-color: white;
 }
 
-.dmsp .in{
+.in{
     position:relative;
 }
 .txtdes{
     visibility:hidden;
+    color:white;
     width:100%;
     height:100%;
     margin:0;
@@ -54,7 +44,6 @@ label em{
     position: absolute;
     top: 0;
     opacity:0;
-    transition: all 1s ease-in-out;
 }
 .txtdes p{
     margin-top:5%;
@@ -63,15 +52,15 @@ label em{
     font-weight:bold;
 }
 .in:hover .txtdes{
+
     visibility: visible;
     opacity:1;
-    
 }
-.dmsp .in .button {z-index: 9999}
+.in .button {z-index: 9999}
 /*Đừng xóa nha anh Tư*/
 /*button*/
 
-.dmsp .btn-default, .dmsp .btn{
+button, .btn-default,.btn{
     background-color: #6fb048;
     color:white;
 }
@@ -212,7 +201,7 @@ label em{
 }
 
 .sanpham .dmsp {
-    /*height:350px;*/
+    height:350px;
     padding: 10px 20px ;
 }
 .dmsp a img{
@@ -228,3 +217,106 @@ label em{
     padding:2px 2px 5px;
 }
 
+/*tranglien he*/
+.map{margin-top:20px;}
+.text2{width:970px;
+       height:50px;
+       margin:0 auto;}
+.text2 span{font-size:27px;}
+.gt{background-image:url(../img/shop.jpg);
+    background-repeat:no-repeat;
+    background-size: cover;
+    height:585px;
+    width:100%;
+}
+.ct{width:555px;
+    height:500px;
+    margin-left:4%;
+    padding-top:40px;}
+.ct h1{font-weight:200;}
+.ct img{float:left;}
+.ct span{
+    float:left;
+    width: 340px;
+    height:400px;
+    font-size:19px;
+    line-height:30px;
+}
+.tx {padding: 19px 30px;}
+.kecuoi{
+    margin:0 auto;
+    background-color:#ebebeb}
+.inke{
+    margin:0 auto;}
+.cc{height:210px;
+    width:400px;
+    float:left;
+    background-image:url(../img/cc.png);
+    background-repeat:no-repeat;}
+.cc span{
+    width:317px;
+    height:128px;
+    line-height:25px;
+}
+.ins{
+    width:317px;
+    height:128px;
+    padding-top:40px;
+    padding-left:15px;}
+.brand{
+    height:200px;
+    width: 260px;
+    float:right;
+    padding-top:22px;}
+
+.brand a{font-size:20px;
+         padding-bottom:20px;}
+.lo{
+    margin-top:20px;
+    width:260px;
+    height:121px;
+}
+.lo img:hover{
+    opacity:0.7;
+}
+.cg img, .at img{
+    height:153px;
+    width:153px;
+}
+.cg img{float:left;}
+.at img{float:right;
+}
+.cg, .at{float:left;
+}
+.at{
+    padding-top:60px;
+    margin-top:10px;}
+.paper{
+    margin:0 auto;
+    background-image:url(../img/pp.png);
+    background-repeat:no-repeat;
+    width: 326px;
+    height:156px;
+    float:left;
+}
+.dgt{
+	padding-top:15px;
+	padding-bottom:10px;}
+.dgt a{font-size:27px;}
+.map iframe{
+    pointer-events: none;
+}
+
+
+.topbar .topphai li{
+    list-style:none;
+    float:right;
+}
+
+
+
+.tab-pane{
+  height:300px;
+  overflow-y:scroll;
+  width:100%;
+}
