@@ -4,6 +4,8 @@
     Author     : tn
 --%>
 
+<%@page import="com.javaweb.model.Article"%>
+<%@page import="com.javaweb.service.ArticleServices"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,11 +16,6 @@
 
     </head>
     <body>
-        <%
-            session.setAttribute("urlcur", request.getServletPath().substring(1));
-            session.removeAttribute("urlctsp");
-            session.removeAttribute("themgio");
-        %>
         <%@include file="includes/header.jsp" %>
 
         <div class="container slideNews">
@@ -50,43 +47,60 @@
                 <!-- End WOWSlider.com BODY section -->
             </div>
             <div class= "news col-md-4 col-sm-12">
-                <h3><a href="#">Tin công nghệ <span>Xem thêm</span></a></h3>
-                <ul class="newsbox">
-                    <li>
-                        <a href="">
-                            <figure>
-                                <img src="images/works_03.jpg">
-                            </figure>
-                            <h4>Tin mới nhất về</h4><br>
-                            <p>Tổng hợp tin về biển</p>
-                        </a>
+                <%  int pageSize = 8;
+                    int pageNumber = 1;
+                    String url = "News.jsp";
+                    ArticleServices as = new ArticleServices();
+                    ArrayList<Article> listArticle = null;
 
-                    </li>
-                </ul>
-                <ul class="newsbox">
-                    <li>
-                        <a href="">
-                            <figure>
-                                <img src="images/works_03.jpg">
-                            </figure>
-                            <h4>Tin mới nhất về</h4><br>
-                            <p>Tổng hợp tin về biển</p>
-                        </a>
+                    if (request.getParameter("pagenumber") != null) {
+                        session.setAttribute("pagenumber", request.getParameter("pagenumber"));
+                        pageNumber = Integer.parseInt(request.getParameter("pagenumber"));
+                    } else {
+                        session.setAttribute("pagenumber", "1");
+                    }
 
-                    </li>
-                </ul>
-                <ul class="newsbox">
-                    <li>
-                        <a href="">
-                            <figure>
-                                <img src="images/works_03.jpg">
-                            </figure>
-                            <h4>Tin mới nhất về</h4><br>
-                            <p>Tổng hợp tin về biển</p>
-                        </a>
+                    listArticle = as.getAllNews(pageSize, pageNumber);
 
-                    </li>
-                </ul>
+                    int pageCount = (as.newscount) / pageSize + (as.newscount % pageSize > 0 ? 1 : 0);
+
+                    String nextPage = (pageCount > pageNumber ? (pageNumber + 1) : pageNumber) + "";
+                    String prevPage = (pageNumber <= 1 ? 1 : pageNumber - 1) + "";
+
+
+                %>
+                <h3><a href="News.jsp">Tin công nghệ <span>Xem thêm</span></a></h3>
+                <div class="tab-content">
+                    <div class="tab-pane active" style="overflow-y: auto;
+                         height: 350px;
+                         ">
+                        <%                        for (int i = 0; i < listArticle.size(); i++) {
+                                Article art = listArticle.get(i);
+                                int dem = i + 1;
+                                if (pageNumber > 1) {
+                                    dem = i + pageSize * (pageNumber - 1) + 1;
+                                }
+                        %>
+                        <ul class="newsbox">
+                            <li>
+                                <a href="baiviet.jsp?idbv=<%=art.getIdarticle()%>">
+                                    <figure>
+                                        <img src="uploads/<%=art.getThumbnail()%>">
+                                    </figure>
+                                    <h4><%=art.getTitleArticle()%></h4><br>
+                                    <p><%=art.getHeadline()%></p>
+                                </a>
+
+                            </li>
+                        </ul>
+                        <%
+
+                            }
+                        %>
+                    </div>
+                </div>
+
+
 
             </div>
         </div>
@@ -158,30 +172,58 @@
             <div class="container-fluid sanpham">
                 <h3>Sản phẩm mới</h3>
                 <div class="row">
-                    <%                        ProductServices ps = new ProductServices();
-                        ArrayList<Product> aPT = null;
-                        aPT = ps.getAll();
-                        for (int i = 0; i < 4; i++) {
-                            Product pt = aPT.get(i);
-                    %>
                     <div class="col-md-3 dmsp text-center">
                         <div class="in">
-                            <a href="ChiTietSanPham.jsp?id=<%=pt.getIdproduct()%>">
-                                <img src="uploads/<%=pt.getProductImage()%>" />
-                                <p><%=pt.getProductName()%></p><br>
-                                <div class="txtdes">
-                                    <p>Thông số:</p>
+                            <a href="#">
+                                <img src="images/works_10.jpg" /><br>
+                                <p>Điện thoại</p><br>
+                                <div class="txtdes"><p>Thông số:</p>
                                     <br>
-                                    User Interface Design
-
+                                    <a>User Interface Design</a>
                                     <button href="#" type="button" class="button"><span>Đặt hàng</span></button>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <%
-                        }
-                    %>
+                    <div class="col-md-3 dmsp text-center">
+                        <div class="in">
+                            <a href="#">
+                                <img src="images/works_10.jpg" /><br>
+                                <p>Điện thoại</p><br>
+                                <div class="txtdes"><p>Thông số:</p>
+                                    <br>
+                                    <a>User Interface Design</a>
+                                    <button href="#" type="button" class="button"><span>Đặt hàng</span></button>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 dmsp text-center">
+                        <div class="in">
+                            <a href="#">
+                                <img src="images/works_10.jpg" /><br>
+                                <p>Điện thoại</p><br>
+                                <div class="txtdes"><p>Thông số:</p>
+                                    <br>
+                                    <a>User Interface Design</a>
+                                    <button href="#" type="button" class="button"><span>Đặt hàng</span></button>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 dmsp text-center">
+                        <div class="in">
+                            <a href="#">
+                                <img src="images/works_10.jpg" /><br>
+                                <p>Điện thoại</p><br>
+                                <div class="txtdes"><p>Thông số:</p>
+                                    <br>
+                                    <a>User Interface Design</a>
+                                    <button href="#" type="button" class="button"><span>Đặt hàng</span></button>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="container-fluid sanpham">
@@ -241,8 +283,9 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <%@include file="includes/floatbox.jsp" %>
-        <%@include file="includes/footer.jsp" %>
-    </body>
+        </div>
+    </section>
+    <%@include file="includes/floatbox.jsp" %>
+    <%@include file="includes/footer.jsp" %>
+</body>
 </html>
