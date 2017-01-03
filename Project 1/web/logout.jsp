@@ -10,11 +10,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Logout</title>
-        
+
     </head>
     <body>
         <%@include file="includes/header.jsp" %>
-        <% if(session!=null){
+        <% if (session != null) {
                 session.removeAttribute("idrole_user");
                 session.removeAttribute("email");
                 session.removeAttribute("fullname");
@@ -22,10 +22,11 @@
                 session.removeAttribute("avatar");
                 session.removeAttribute("cmtname");
                 session.removeAttribute("dshang");
-                
-                response.sendRedirect(session.getAttribute("urlcur")+"");
+                session.removeAttribute("idroleuser");
+
+                response.sendRedirect(session.getAttribute("urlcur") + "");
             }
-            %> 
-        
+        %> 
+
     </body>
 </html>

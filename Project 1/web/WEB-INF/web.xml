@@ -72,6 +72,10 @@
         <servlet-name>EditInfo</servlet-name>
         <servlet-class>com.javaweb.controller.EditInfo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditReceipt</servlet-name>
+        <servlet-class>com.javaweb.controller.EditReceipt</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LienLac</servlet-name>
         <url-pattern>/LienLac</url-pattern>
@@ -169,6 +173,10 @@
     <servlet-mapping>
         <servlet-name>EditInfo</servlet-name>
         <url-pattern>/EditInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditReceipt</servlet-name>
+        <url-pattern>/EditReceipt</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

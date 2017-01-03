@@ -1,9 +1,11 @@
 package com.javaweb.controller;
 
+import com.javaweb.model.Product;
 import com.javaweb.model.Rating;
 import com.javaweb.service.ProductServices;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -51,6 +53,26 @@ public class RatingServlet extends HttpServlet {
         if (session.getAttribute("fullname") == null) {
             session.setAttribute("cmtname", tenDG);
         }
+
+        DecimalFormat formatPoint = new DecimalFormat("#.#");
+        ArrayList<Rating> aRT = ps.GetDataByIdSP(idSP);
+        Rating rg = null;
+        double dPoint = 0;
+        double sumPoint = 0;
+
+        for (int i = 0; i < aRT.size(); i++) {
+            rg = aRT.get(i);
+            sumPoint += rg.getRatingPoint();
+        }
+
+        if (sumPoint != 0) {
+            dPoint = Double.parseDouble(formatPoint.format(sumPoint / aRT.size()));
+        }
+
+        Product pt = null;
+        pt = ps.GetById(idSP);
+        pt.setNote(dPoint + "");
+        ps.InsertOrUpdateProduct(pt);
 
         response.sendRedirect("ChiTietSanPham.jsp?id=" + idSP);
 

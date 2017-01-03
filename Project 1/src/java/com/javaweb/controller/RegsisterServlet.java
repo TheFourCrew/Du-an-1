@@ -47,9 +47,9 @@ public class RegsisterServlet extends HttpServlet {
         gender = request.getParameter("gender");
 
         Date datez = new Date();
-        Date birthday = null;
+        Date birthday = new Date();
         
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             birthday = sdf.parse(strBirthday);
         } catch (ParseException ex) {
@@ -68,6 +68,7 @@ public class RegsisterServlet extends HttpServlet {
         
         session.setAttribute("email", username);
         session.setAttribute("fullname", fullname);
+        session.setAttribute("idroleuser", 3);
 
         User user = new User(username, mk, 3, fullname, gt, phone, address, email, birthday, "Photo-Unavailable.jpg", false, note, datez) ;
         UserService userservice = new UserService();

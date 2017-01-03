@@ -38,7 +38,7 @@ public class AddCategory extends HttpServlet {
         parent = request.getParameter("c-parent");
         note = request.getParameter("prod-name");
         
-        ProductCategory pcy = new ProductCategory(tenLoai, Integer.parseInt(parent), note);
+        ProductCategory pcy = new ProductCategory(tenLoai);
         ProductCategoryServices pcs = new ProductCategoryServices();
         
 //        pcs.InsertOrUpdate(pcy);

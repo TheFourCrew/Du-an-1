@@ -24,9 +24,12 @@
 
 <!-- Custom Fonts -->
 <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="css/style-sort-table.css" rel="stylesheet" type="text/css"/>
+
 
 <!-- jQuery -->
 <script src="vendor/jquery/jquery.min.js"></script>
+
 
 
 <!-- Bootstrap Core JavaScript -->
@@ -46,3 +49,4 @@
 <script src="js/additional-methods.min.js" type="text/javascript"></script>
 <script src="js/javascript.js" type="text/javascript"></script>
 <script src="ckeditor/ckeditor.js" type="text/javascript" ></script>
+

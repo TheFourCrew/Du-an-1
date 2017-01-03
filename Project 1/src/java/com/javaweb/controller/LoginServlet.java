@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
             User user = userservice.GetUserByEmailOrUserName(email);
             session.setAttribute("email", user.getEmail());
             session.setAttribute("iduser", user.getIduser());
-            session.setAttribute("idrole_user", user.getIdroleUser());
+            session.setAttribute("idroleuser", user.getIdroleUser());
             session.setAttribute("fullname", user.getFullname());
             session.setAttribute("avatar", user.getImage());
 

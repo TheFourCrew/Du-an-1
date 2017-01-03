@@ -82,6 +82,7 @@
                                                 <tr>
                                                     <th><input type="checkbox" name="delete-receipt" onclick="check(this)" /></th>
                                                     <th>STT</th>
+                                                    <th>Số hóa đơn</th>
                                                     <th>Tổng tiền</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Tình trạng</th>
@@ -103,14 +104,15 @@
                                                 <tr>
                                                     <td><input type="checkbox" value="<%=rt.getIdreceipt() %>" name="id-receipt" /></td>
                                                     <td><%=dem%></td>
+                                                    <td>#<%=rt.getReceiptNumber() %></td>
                                                     <td><%=formatter.format(tongTien)+" VNĐ"%></a></td>
                                                     <td><%=rt.getCreatedDate()%></td>
                                                     <td><%= rt.getStatus()%></td>
                                                     <td>
-                                                        <a href="editreceipt.jsp?idpt=<%=rt.getIdreceipt()%>" class="btn btn-info">
+                                                        <a href="editreceipt.jsp?idRT=<%=rt.getIdreceipt()%>" class="btn btn-info">
                                                             Sửa<!--<input class="btn btn-info" type="submit" value="Sửa" />-->
                                                         </a>
-                                                        <a href="DeleteMulitpleReceipt?action=single&idpt=<%=rt.getIdreceipt()%>" class="btn btn-danger" onclick="return confirm('Bạn có chắc không?')">
+                                                        <a href="DeleteMulitpleReceipt?action=single&idrt=<%=rt.getIdreceipt()%>" class="btn btn-danger" onclick="return confirm('Bạn có chắc không?')">
                                                             Xóa
                                                         </a>
                                                     </td>

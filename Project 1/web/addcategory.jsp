@@ -25,54 +25,15 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2 col-md-3" for="c-name">Tên loại<em>*</em>:</label>
                         <div class="col-sm-3 col-md-7">
-                            <input type="text" name="c-name" placeholder="Nhập thẻ" class="form-control" id="c-name">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2 col-md-3" for="prod-tags">Cha mẹ:</label>
-                        <div class="col-sm-3 col-md-7">
-                            <select name="c-parent" class="form-control">
-                                <option value="">Chọn...</option>
-                                <%
-                                    ArrayList<ProductCategory> aPCy = null;
-                                    ProductCategoryServices pcss = new ProductCategoryServices();
-                                    aPCy = pcss.getAll();
-                                    for (int i = 0; i < aPCy.size(); i++) {
-                                        ProductCategory pcy = aPCy.get(i);
-                                        if (pcy.getCParent()==null) {
-                                %>
-                                <option value="<%=pcy.getIdproductCategory()%>" style="font-weight: bold;"><%=pcy.getCategoryName()%></option>
-                                <%
-
-                                    ArrayList<ProductCategory> parenty = null;
-                                    parenty = pcss.getAllByIdParent(pcy.getIdproductCategory() + "");
-
-                                    for (int j = 0; j < parenty.size(); j++) {
-                                %>
-                                <option style="font-style: italic; font-size: 14px;">&nbsp;&nbsp;&nbsp;<%=parenty.get(i).getCategoryName()%></option>
-                                <%
-                                            }
-                                        }
-                                    }
-                                %>
-                            </select>
+                            <input type="text" name="c-name" placeholder="Nhập tên loại" class="form-control" id="c-name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2 col-md-3" for="c-note">Ghi chú:</label>
                         <div class="col-sm-3 col-md-7">
-                            <!--<input type="text" name="prod-tags" placeholder="Nhập thẻ" class="form-control" id="prod-tags">-->
                             <textarea rows="4" id="c-note" cols="20" class="form-control" name="c-note"></textarea>
                         </div>
                     </div>
-                    <!--                    <div class="form-group">
-                                            <div class="col-sm-3 col-md-1">
-                                            </div>
-                                            <div class="col-sm-3 col-md-7">
-                                                <button  type="submit" class="btn btn-info">Thêm</button>
-                                                <button  type="reset" class="btn btn-info">Hủy</button>
-                                            </div>
-                                        </div>-->
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-info">Thêm</button>

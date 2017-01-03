@@ -434,7 +434,7 @@ $(window).ready(function () {
             },
             'cMessage': {
                 required: true,
-                rangelength: [20, 300]
+                maxlength:300
             }
         },
         messages: {
@@ -445,7 +445,7 @@ $(window).ready(function () {
             },
             'cMessage': {
                 required: "Vui lòng nhập đánh giá.",
-                rangelength: "Vui lòng nhập từ 20 đến 300 kí tự."
+                maxlength: "Vui lòng nhập không quá 300 kí tự."
             }
         }
     });
@@ -487,13 +487,11 @@ $(window).ready(function () {
                 number: true,
                 rangelength: [10, 11]
             },
-            'address': 'required',
             'email': {
                 required: true,
                 email: true
             },
             'birthday': "required",
-            'gender': "required",
             'dieukhoan': "required"
         },
         messages: {
@@ -514,13 +512,14 @@ $(window).ready(function () {
             'dienthoai': {
                 required: 'Chưa nhập điện thoại',
                 number: 'Điện thoại chỉ có số',
-                rangelength: '10-11 số'
+                rangelength: 'Điện thoại có độ dài 10-11 số'
             },
-            'address': 'Bạn chưa nhập địa chỉ',
             'email': {
                 required: 'Chưa nhập email',
                 email: 'Email không hợp lệ'
-            }
+            },
+            'birthday': "Vui lòng chọn ngày sinh.",
+            'dieukhoan': "Vui lòng đồng ý điều khoản"
         }
     });
 });
@@ -616,3 +615,37 @@ function validatePassword() {
 
     }
 }
+
+//Kiem tra nhap thong tin sửa hóa đơn
+
+$(window).ready(function () {
+    $('#editreceipt').validate({
+        onchange: true,
+        rules: {
+            'rtbuyer': "required",
+            'rtemail': {
+                required: true,
+                email: true
+            },
+            'rtaddress':"required",
+            'rtphone': {
+                required:true,
+                number: true,
+                rangelength: [10, 11]
+            }
+        },
+        messages: {
+            'rtbuyer': "Vui lòng nhập tên người mua",
+            'rtemail': {
+                required: "Vui lòng nhập email",
+                email: "Email không hợp lệ"
+            },
+            'rtaddress':"Vui lòng nhập địa chỉ",
+            'rtphone': {
+                required:"Vui lòng nhập số điện thoại",
+                number: "SĐT phải là số",
+                rangelength: "SĐT có độ dài từ 10-11"
+            }
+        }
+    });
+});

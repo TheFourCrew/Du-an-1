@@ -23,7 +23,7 @@
 <%
 } else {
 %>
-<font color=green>Tên người dùng có thể dùng</font>
+<!--<font color=green>Tên người dùng có thể dùng</font>-->
 <input type="hidden" id="actual" name="actual" value="available">
 <%
             }

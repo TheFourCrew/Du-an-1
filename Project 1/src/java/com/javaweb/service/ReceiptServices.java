@@ -106,7 +106,7 @@ public class ReceiptServices {
         }
         return null;
     }
-    
+
     //Hàm xóa chi tiết hóa đơn
     public boolean DeleteReceiptDetail(ReceiptDetail rdl) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -151,7 +151,7 @@ public class ReceiptServices {
         }
         return null;
     }
-    
+
     //Hàm lấy chi tiết hóa đơn theo mã hóa đơn
     public ArrayList<ReceiptDetail> getReceiptDetailByIdReceipt(String idRt) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -174,7 +174,6 @@ public class ReceiptServices {
         }
         return rt;
     }
-    
 
     //Hàm phân trang 
     public int receiptcount = 0;
@@ -204,8 +203,7 @@ public class ReceiptServices {
         }
         return art;
     }
-    
-    
+
     public ArrayList<Object[]> getTopSale() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -228,5 +226,28 @@ public class ReceiptServices {
             session.close();
         }
         return aRDL;
+    }
+
+    public ReceiptDetail getByIdPtAndIdRt(String idPt, String idRt) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ReceiptDetail rtdl = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            String strQuery = "from ReceiptDetail where id_receipt = " + idRt + " and id_product = " + idPt;
+            Query query = session.createQuery(strQuery);
+            rtdl = (ReceiptDetail) query.uniqueResult();
+            tx.commit();
+            return rtdl;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return null;
     }
 }

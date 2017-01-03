@@ -57,7 +57,7 @@
                                             }
                                         </script>
                                         <%
-                                            int pageSize = 10;
+                                            int pageSize = 15;
                                             int pageNumber = 1;
                                             String url = "managerproduct.jsp";
                                             ProductServices ps = new ProductServices();
@@ -88,6 +88,7 @@
                                                     <th>Tên sản phẩm</th>
                                                     <th>Giá bán</th>
                                                     <th>Loại</th>
+                                                    <th>Số lượng</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Hình</th>
                                                     <th class="col-md-2">Hành động</th>
@@ -114,6 +115,7 @@
                                                     <td><a href="ChiTietSanPham.jsp?id=<%=product.getIdproduct()%>"><%=product.getProductName()%></a></td>
                                                     <td><%=kqGiaBan%></td>
                                                     <td><%= pc.getCategoryName()%></td>
+                                                    <td><%=product.getProductQuantity() %> <%=product.getUnit() %></td>
                                                     <td><%=product.getCreatedDate()%></td>
                                                     <td><img class="img-thumbnail" src="uploads/<%=product.getProductImage()%>" alt="<%=product.getProductName()%>" width="80px"/></td>
                                                     <td>

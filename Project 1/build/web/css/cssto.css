@@ -21,9 +21,7 @@ a, a:hover, a:active, a:focus{
     color:#fff;
 }
 .trai{
-
-    border: 1px solid #fff;;
-
+    padding-left:28px;
 }
 .theohang{
     background-color: #f5f5f5;
@@ -61,9 +59,8 @@ a, a:hover, a:active, a:focus{
 }
 
 
-.spnoibat{
-    border-bottom: 1px solid red;
-    margin: 0 auto;
+.spnoibat, .quangcao{
+    margin-top: 20px;
 }
 .splienquan{
     margin-top: 20px;

@@ -60,6 +60,30 @@ public class ProductServices {
         }
         return listProduct;
     }
+    
+    //Hàm lấy tất cả dữ liệu còn trong kho
+    public ArrayList<Product> getProductInStock() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ArrayList<Product> listProduct = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            String strQuery = "from Product where product_quantity > 0 order by created_date desc";
+            Query query = session.createQuery(strQuery);
+            listProduct = (ArrayList<Product>) query.list();
+            tx.commit();
+
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return listProduct;
+    }
 
     //Hàm xóa sp
     public boolean DeleteProduct(Product pt) {
@@ -244,6 +268,36 @@ public class ProductServices {
         }
         return ratings;
     }
+    
+    //Lấy sản phẩm đánh giá cao
+    public ArrayList<Product> getTopRatingProducts() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ArrayList listProducts = new ArrayList<Product>();
+
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+
+            Query query = session.createQuery("from Product order by note desc");
+            productcount = query.list().size();
+            query = query.setFirstResult(0);
+            query.setMaxResults(4);
+            listProducts = (ArrayList) query.list();
+
+            tx.commit();
+
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+
+        return listProducts;
+    }
 
     //Hàm sản phẩm liên quan
     public ArrayList<Product> getRalatedProducts(String idLoai) {
@@ -326,5 +380,28 @@ public class ProductServices {
             session.close();
         }
         return listProducts;
+    }
+    
+    //Lấy sản phẩm theo id
+    public ArrayList<Product> GetTopQuantity() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        ArrayList<Product> product = null;
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            String strQuery = "from Product order by product_quantity desc";
+            Query query = session.createQuery(strQuery);
+            product = (ArrayList<Product>) query.list();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.close();
+        }
+        return product;
     }
 }

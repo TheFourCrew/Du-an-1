@@ -647,7 +647,9 @@
                 <div class="col-md-6">
                     <div class="baivietlienquanctsp">
                         <div class="baivietlienquan col-md-12 col-sm-6">
-                            <center><span class="tenbaivietctsp" style="color:#008ac2;font-size: 30px">Bài viết liên quan</span></center>
+                            <div class="heading-row" style="margin-top:5px;">
+                                <h3>Bài viết liên quan</h3>
+                            </div>
                             <a href="#">
                                 <span style="font-size: 15px;padding-top: 36px;" class="glyphicon glyphicon-list-alt  "> Mẹo "cấpcứu" bàn phím máy tính bị vô nước</span>
                             </a>
@@ -678,33 +680,52 @@
                 </div>
             </div>
             <div class="row rowsplienquan ">
-                <center><span class="tenbaivietctsp" style="color:#008ac2;font-size: 25px">Sản phẩm liên quan</span></center>
-                <div class="col-md-12 col-sm-6 splienquan">
-                    <%
-                        ArrayList<Product> aPT = null;
-                        String idLoai = String.valueOf(pt.getIdproductCategory());
-                        aPT = ps.getRalatedProducts(idLoai);
-                        int size = aPT.size();
-                        Product pct = null;
-                        for (int i = 0; i < size - 1; i++) {
-                            pct = aPT.get(i);
-                            if (pct.getIdproduct() != Integer.parseInt(idPT)) {
-                    %>
-                    <div class="col-md-3 splienquan1 ">
-                        <%--<%=aPT.size() %>--%>
-                        <center>
-                            <a href="ChiTietSanPham.jsp?id=<%=pct.getIdproduct()%>"><img  class="img-responsive" src="uploads/<%=pct.getProductImage()%>" alt="<%=pct.getProductName()%>"/><br/>
-                                <span style="font-size: 20px;color: #008ae2;"><%=pct.getProductName()%></span>
-                            </a>
-                        </center>
+                <div class="col-md-12">
+                    <div class="heading-row" style="margin-top:5px;">
+                        <h3>Sản phẩm liên quan</h3>
                     </div>
-                    <%
-                            } else {
-                                size += 1;
+                    <div class="col-md-12 col-sm-6 splienquan">
+                        <%
+                            ArrayList<Product> aPT = null;
+                            String idLoai = String.valueOf(pt.getIdproductCategory());
+                            aPT = ps.getRalatedProducts(idLoai);
+                            int size = aPT.size();
+                            Product pct = null;
+                            for (int i = 0; i < size - 1; i++) {
+                                pct = aPT.get(i);
+                                if (pct.getIdproduct() != Integer.parseInt(idPT)) {
+                                    double giamGia = pct.getDiscountPrice();
+                                    double giaDau = pct.getPricePerUnit();
+                        %>
+                        <div class="col-md-3 splienquan1 ">
+                            <center>
+                                    <a href="ChiTietSanPham.jsp?id=<%=pct.getIdproduct()%>"><img  class="img-responsive" src="uploads/<%=pct.getProductImage()%>" alt="<%=pct.getProductName()%>"/><br/>
+                                        <span style="font-size: 20px;color: #008ae2;"><%=pct.getProductName()%></span>
+                                    </a>
+                                    <%
+                                    if (giamGia > 0) {
+                                    %>
+                                         <p>
+                                            <span style="text-decoration: line-through; color: grey; font-size: 14px;"><%=formatter.format(giaDau) + " VNĐ"%></span> <i class="glyphicon glyphicon-arrow-right"></i>
+                                            <span style="color: red;  font-size: 18px;"><%=formatter.format(giamGia) + " VNĐ"%></span>
+                                        </p>
+                                    <%
+                                    } else {
+                                    %>
+                                        <p style="color: red;font-size: 16px;"><%=formatter.format(giaDau) + " VNĐ"%></p>
+                                    <%
+                                        }
+                                    %>
+                            </center>
+                        </div>
+                        <%
+                                } else {
+                                    size += 1;
+                                }
                             }
-                        }
-                    %>
+                        %>
 
+                    </div>
                 </div>
             </div>
         </section>

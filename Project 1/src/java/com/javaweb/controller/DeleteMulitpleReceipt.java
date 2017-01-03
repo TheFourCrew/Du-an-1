@@ -1,7 +1,9 @@
 package com.javaweb.controller;
 
+import com.javaweb.model.Product;
 import com.javaweb.model.Receipt;
 import com.javaweb.model.ReceiptDetail;
+import com.javaweb.service.ProductServices;
 import com.javaweb.service.ReceiptServices;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,37 +35,52 @@ public class DeleteMulitpleReceipt extends HttpServlet {
         ReceiptServices rs = new ReceiptServices();
         String cmd = request.getParameter("action");
 
+        ProductServices ps = new ProductServices();
+        Product pt = null;
+
 //        if () {
         if (cmd.equals("single")) {
-            String idPT = request.getParameter("idpt");
+            String idRt = request.getParameter("idrt");
             Receipt rt = null;
-            rt = rs.getReceiptById(idPT);
+            rt = rs.getReceiptById(idRt);
             rs.DeleteReceipt(rt);
 
             ArrayList<ReceiptDetail> aRDl = null;
-            aRDl = rs.getReceiptDetailByIdReceipt(idPT);
-            for (int i = 0; i < aRDl.size(); i++) {
+            aRDl = rs.getReceiptDetailByIdReceipt(idRt);
+            if (aRDl != null) {
+                for (int i = 0; i < aRDl.size(); i++) {
 
-                ReceiptDetail rdl = aRDl.get(i);
+                    ReceiptDetail rdl = aRDl.get(i);
 
-                rs.DeleteReceiptDetail(rdl);
+                    pt = ps.GetById(rdl.getIdProduct() + "");
+                    pt.setProductQuantity(pt.getProductQuantity() + rdl.getQuantity());
+
+                    ps.InsertOrUpdateProduct(pt);
+
+                    rs.DeleteReceiptDetail(rdl);
+                }
             }
 
         } else if (cmd.equals("multiple")) {
             if (tacVu.equals("xoa")) {
                 if (ChkHD != null) {
                     for (int i = 0; i < ChkHD.length; i++) {
-                        String maSP = ChkHD[i];
+                        String maRT = ChkHD[i];
                         Receipt rt = null;
-                        rt = rs.getReceiptById(maSP);
+                        rt = rs.getReceiptById(maRT);
                         rs.DeleteReceipt(rt);
 
                         ArrayList<ReceiptDetail> aRDL = null;
 
-                        aRDL = rs.getReceiptDetailByIdReceipt(maSP);
+                        aRDL = rs.getReceiptDetailByIdReceipt(maRT);
 
                         for (int j = 0; j < aRDL.size(); j++) {
                             ReceiptDetail rdl = aRDL.get(j);
+
+                            pt = ps.GetById(rdl.getIdProduct() + "");
+                            pt.setProductQuantity(pt.getProductQuantity() + rdl.getQuantity());
+
+                            ps.InsertOrUpdateProduct(pt);
 
                             rs.DeleteReceiptDetail(rdl);
                         }

@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-4">
                 <a href="index.jsp">
-                    <img class="img-responsive" src="#" alt="Logo"/>
+                    <img class="img-responsive" src="images/logo.png" alt="Logo"/>
                 </a>
             </div>
             <div class="col-md-8">
@@ -37,24 +37,21 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span> 
                     </button>
-                    <a class="navbar-brand active menu" href="index.jsp">
-                        <span class="glyphicon glyphicon-home"></span>
-                    </a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav ">
-                        <li><a href="#" class="menu">Introduce</a></li>
-                        <li><a href="addproduct.jsp" class="menu">Thêm sản phẩm</a></li>
-                            <%
-                                if (session.getAttribute("tenHo") != null) {
-                            %>
+                        <li><a href="index.jsp" class="menu active"><span class="glyphicon glyphicon-home"></span></a></li>
+                        <!--<li><a href="addproduct.jsp" class="menu">Thêm sản phẩm</a></li>-->
+                        <%
+                            if (session.getAttribute("tenHo") != null) {
+                        %>
                         <li><a href="managementproduct.jsp" class="menu">Quản lý sản phẩm</a></li>
                         <li><a href="managementuser.jsp" class="menu">Quản lý người dùng</a></li>
                             <%                                }
                             %>
                         <li class="dropdown-submenu menu dropdown">
                             <a class="dropdown-toggle menu dropbtn" href="Product.jsp">
-                                <span class="glyphicon glyphicon-usd"></span> Áo
+                                <span class="glyphicon glyphicon-usd"></span> Sản phẩm
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu menu dropdown-content">
@@ -63,6 +60,8 @@
                                 <li><a href="#" class="menu">Áo thun</a></li> 
                             </ul>
                         </li>
+                        <li><a href="#" class="menu">Giới thiệu</a></li>
+                        <li><a href="#" class="menu">Bài viết</a></li>
                         <li><a href="contact.jsp" class="menu">Liên hệ</a></li>
                     </ul>
 
@@ -242,7 +241,15 @@
                             </a>
                             <ul class="dropdown-menu menu dropdown-content">
                                 <li><a href="infouser.jsp" class="menu">Điều chỉnh hồ sơ</a></li>
+                                    <%
+                                        if (session.getAttribute("idroleuser") != null) {
+                                            if (session.getAttribute("idroleuser").equals(1) || session.getAttribute("idroleuser").equals(2)) {
+                                    %>
                                 <li><a href="dashboard.jsp" class="menu">Về trang quản trị</a></li>
+                                    <%
+                                            }
+                                        }
+                                    %>
                                 <li>
                                     <a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span>Thoát</a>
                                 </li>

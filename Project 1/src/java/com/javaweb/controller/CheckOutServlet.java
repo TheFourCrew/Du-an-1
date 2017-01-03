@@ -49,7 +49,7 @@ public class CheckOutServlet extends HttpServlet {
         tinhHuyen = request.getParameter("province");
         ghiChu = request.getParameter("note");
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyddMMhhssmm");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyMMddhhssmm");
         Date date = new Date();
         receiptNumber = sdf.format(date);
 

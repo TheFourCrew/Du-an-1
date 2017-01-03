@@ -6,68 +6,61 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<footer class="container-fluid">
-    <div class="footer" id="footer">
-        <div class="container">
+<footer>
+    <div class="container">
+        <div class="wrap-footer">
             <div class="row">
-                <div class="col-lg-4  col-md-4 col-sm-4 col-xs-6">
-                    <h3> Giới thiệu </h3>
+                <div class="col-md-3 col-footer footer-1">
+                    <img src="images/logofooter.png" />
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+                <div class="col-md-3 col-footer footer-2">
+                    <div class="heading"><h4>Customer Service</h4></div>
                     <ul>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Delivery Information</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Contact Us</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4  col-md-4 col-sm-4 col-xs-6">
-                    <h3> Thông tin liên hệ </h3>
+                <div class="col-md-3 col-footer footer-3">
+                    <div class="heading"><h4>My Account</h4></div>
                     <ul>
-                        <li> <a href="#"> Liên kết </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Brands</a></li>
+                        <li><a href="#">Gift Vouchers</a></li>
+                        <li><a href="#">Specials</a></li>
+                        <li><a href="#">Site Map</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4  col-md-4 col-sm-4 col-xs-6">
-                    <h3> Liên kết </h3>
+                <div class="col-md-3 col-footer footer-4">
+                    <div class="heading"><h4>Contact Us</h4></div>
                     <ul>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
-                        <li> <a href="#"> Lorem Ipsum </a> </li>
+                        <li><span class="glyphicon glyphicon-home"></span>California, United States 3000009</li>
+                        <li><span class="glyphicon glyphicon-earphone"></span>+91 8866888111</li>
+                        <li><span class="glyphicon glyphicon-envelope"></span>infor@yoursite.com</li>
                     </ul>
                 </div>
-                <!--<div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
-                    <h3> Lorem Ipsum </h3>
-                    <ul>
-                        <li>
-                            <div class="input-append newsletter-box text-center">
-                                <input type="text" class="full text-center" placeholder="Email ">
-                                <button class="btn  bg-gray" type="button"> Lorem ipsum <i class="fa fa-long-arrow-right"> </i> </button>
-                            </div>
-                        </li>
-                    </ul>-->
-                <ul class="social pull-right">
-                    <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
-                    <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
-                    <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
-                    <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
-                    <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
-                </ul>
             </div>
         </div>
-        <!--/.row--> 
     </div>
-    <div class="footer-bottom">
+    <div class="copyright">
         <div class="container">
-            <p class="pull-left"> Copyright © 2016. All right reserved. </p>
-            <div class="pull-right">
-                <ul class="nav nav-pills payments">
-                    <li><i class="fa fa-cc-visa"></i></li>
-                    <li><i class="fa fa-cc-mastercard"></i></li>
-                    <li><i class="fa fa-cc-amex"></i></li>
-                    <li><i class="fa fa-cc-paypal"></i></li>
-                </ul> 
+            <div class="row">
+                <div class="col-md-6">
+                    Your Store © 20xx - <a href="http://www.365bootstrap.com" rel="nofollow" target="_blank">Ecommerce Themes</a> Designed by <a href="http://www.365bootstrap.com" rel="nofollow" target="_blank">365BOOTSTRAP</a>
+                </div>
+                <div class="col-md-6">
+                    <div class="pull-right">
+                        <ul>
+                            <li><img src="images/visa-curved-32px.png" /></li>
+                            <li><img src="images/paypal-curved-32px.png" /></li>
+                            <li><img src="images/discover-curved-32px.png" /></li>
+                            <li><img src="images/maestro-curved-32px.png" /></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
