@@ -137,6 +137,7 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                     </a>
                 </li>
                 <li class="divider"></li>
@@ -264,6 +265,44 @@
                     <a href="receiptmanager.jsp"><i class="fa fa-edit fa-fw"></i> Quản lý hóa đơn</a>
                 </li>
             </ul>
+=======
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a href="dashboard.jsp"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="managerproduct.jsp"><i class="fa fa-laptop fa-fw"></i> Quản lý sản phẩm<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="managerproduct.jsp">Danh sách sản phẩm</a>
+                            </li>
+                            <li>
+                                <a href="addproduct.jsp">Thêm sản phẩm</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="ArticlesManager.jsp"><i class="fa fa-laptop fa-fw"></i>Bài viết<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="ArticlesManager.jsp">Quản lý bài viết</a>
+                            </li>
+                            <li>
+                                <a href="AddNewArticle.jsp">Viết bài mới</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="UserManager.jsp"><i class="fa fa-edit fa-fw"></i> Quản lý người dùng</a>
+                    </li>
+                    <li>
+                        <a href="receiptmanager.jsp"><i class="fa fa-edit fa-fw"></i> Quản lý hóa đơn</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+>>>>>>> origin/master
         </div>
         <!-- /.sidebar-collapse -->
     </div>

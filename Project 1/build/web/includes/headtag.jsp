@@ -25,12 +25,20 @@
 <link href="css/dathang.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="fonts/font-slider.css" type="text/css">
 
+<<<<<<< HEAD
 
 <script src="js/jquery-2.1.1.js"></script>
+=======
+<!-- Start WOWSlider.com HEAD section -->
+<link rel="stylesheet" type="text/css" href="engine1/style.css" />
+<script type="text/javascript" src="engine1/jquery.js"></script>
+<!-- End WOWSlider.com HEAD section -->
+>>>>>>> origin/master
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>  
 <script src="js/jquery.validate.min.js" type="text/javascript"></script>
 <script src="js/additional-methods.min.js" type="text/javascript"></script>
 <script src="js/javascript.js" type="text/javascript"></script>
 <script src="ckeditor/ckeditor.js" type="text/javascript" ></script>
+<script src="js/stheme.js" type="text/javascript"></script>
 
