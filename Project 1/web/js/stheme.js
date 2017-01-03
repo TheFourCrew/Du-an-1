@@ -38,6 +38,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     var offset = 200;
     var offset2=550;
+    var offset3 = 200;
     var duration = 1200;
     $(window).scroll(function() {
     if ($(this).scrollTop() > offset) {
@@ -50,6 +51,14 @@ $(document).ready(function(){
     } else {
     $('.dg').fadeOut(duration);
     }
+    if ($(this).scrollTop()>0)
+     {
+        $('.topbar').fadeOut();
+     }
+    else
+     {
+      $('.topbar').fadeIn();
+     }
     });
     
 });
