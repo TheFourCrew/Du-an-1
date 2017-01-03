@@ -46,7 +46,7 @@ public class ArticleServices {
             tx = session.getTransaction();
             tx.begin();
 
-            Query query = session.createQuery("from Article where id = " + newsID);
+            Query query = session.createQuery("from Article where idarticle = " + newsID);
             news = (Article) query.uniqueResult();
             tx.commit();
         } catch (Exception ex) {
@@ -90,7 +90,7 @@ public class ArticleServices {
             tx = session.getTransaction();
             tx.begin();
             
-            Query query = session.createQuery("from Article order by datecreated desc");
+            Query query = session.createQuery("from Article order by created_date desc");
             newscount = query.list().size();
             query = query.setFirstResult(pageSize * (pageNumber - 1));
             query.setMaxResults(pageSize);            
